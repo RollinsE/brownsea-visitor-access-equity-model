@@ -1,5 +1,3 @@
-Brownsea Island Membership Analysis Pipeline
-
 This script analyzes membership visit patterns to identify underserved areas
 and recommend strategic interventions. It combines school data, deprivation 
 metrics, and geographic information to prioritize outreach efforts.
