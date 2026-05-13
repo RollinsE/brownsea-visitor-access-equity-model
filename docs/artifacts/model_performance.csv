@@ -1,0 +1,10 @@
+Model,Type,Mean MAE,Std MAE,Mean R2,Std R2,Mean RMSE
+HybridEnsemble,Ensemble,0.1227,0.0,0.7588,0.0,
+Ridge Regression_Tuned,Tuned rate,0.1241,0.0,0.7355,0.0,
+Ridge Regression,Rate,0.1286,0.0458,0.4671,0.1878,0.3277
+Gradient Boosting_Tuned,Tuned rate,0.1295,0.0,0.678,0.0,
+Gradient Boosting,Rate,0.1295,0.0466,0.4608,0.2031,0.3205
+XGBoost,Poisson,0.1333,0.0491,0.4213,0.2276,0.3289
+CatBoost,Rate,0.138,0.0565,0.3937,0.1368,0.3736
+Random Forest,Rate,0.1396,0.0555,0.398,0.1651,0.3581
+LightGBM,Poisson,0.1465,0.0622,0.2969,0.1781,0.4149

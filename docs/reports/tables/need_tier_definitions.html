@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Need Tier Definitions</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 24px; color: #222; }
+h1 { margin-bottom: 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #2c3e50; color: white; position: sticky; top: 0; }
+tr:nth-child(even) { background: #f8f8f8; }
+.small { color: #666; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+<h1>Need Tier Definitions</h1>
+<div class="small">Rows: 3</div>
+<table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Need Tier</th>
+      <th>Definition</th>
+      <th>Calculation</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>High Need</td>
+      <td>Composite Need Score ≥ 26</td>
+      <td>(FSM% × 0.3) + (Deprivation% × 0.7) ≥ 26</td>
+      <td>Identifies areas with severe socioeconomic challenges using balanced metrics</td>
+    </tr>
+    <tr>
+      <td>Medium Need</td>
+      <td>Composite Need Score 16-25.9</td>
+      <td>(FSM% × 0.3) + (Deprivation% × 0.7) between 16 and 25.9</td>
+      <td>Identifies areas with moderate socioeconomic challenges</td>
+    </tr>
+    <tr>
+      <td>Low Need</td>
+      <td>Composite Need Score &lt; 16</td>
+      <td>(FSM% × 0.3) + (Deprivation% × 0.7) &lt; 16</td>
+      <td>Identifies relatively affluent areas with lower challenges</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

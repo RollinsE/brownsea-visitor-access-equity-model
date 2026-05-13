@@ -1,0 +1,81 @@
+# Secrets and environment
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Runtime outputs and caches
+outputs/
+logs/
+checkpoints/
+cache/
+route_cache/
+routing_cache.json
+*.log
+
+# Raw/intermediate/private data
+data/raw/
+data/interim/
+data/processed/
+data/private/
+
+# Model/checkpoint artifacts
+*.joblib
+*.pkl
+*.pickle
+*.parquet
+
+# Generated archives
+*.zip
+*.tar
+*.tar.gz
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Keep GitHub Pages export if deliberately generated
+!docs/
+!docs/**
+
+# Local runtime/generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+catboost_info/
+
+# Environment/secrets
+.env
+*.env
+
+# Private/raw data
+data/*.csv
+data/*.xlsx
+data/*.parquet
+data/*.geojson
+!data/reference/
+!data/reference/nt_sites.csv
+
+# Pipeline outputs and caches
+outputs/
+route_cache/
+*.joblib
+*.pkl
+
+# Local archives
+*.zip
+
+# Exclude member visit map outputs from public repo
+docs/reports/figures/map_member_visits_distribution.*

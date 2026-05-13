@@ -1,0 +1,3 @@
+# Minimal requirements for serving the postcode lookup Flask app
+Flask>=3.0,<4.0
+gunicorn>=21.2,<22.0

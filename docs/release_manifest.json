@@ -1,0 +1,555 @@
+{
+  "schema_version": "release-qa-v1",
+  "generated_at": "2026-05-11T12:32:52.322914",
+  "release_name": "latest",
+  "run_id": "20260511_122420",
+  "source_build": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420",
+  "release_dir": "/content/drive/MyDrive/brownsea/outputs/releases/latest",
+  "output_root": "/content/drive/MyDrive/brownsea/outputs",
+  "route_cache_dir": "/content/drive/MyDrive/brownsea/outputs/cache/route_cache",
+  "qa_status": "pass",
+  "qa_summary": {
+    "target": "/content/drive/MyDrive/brownsea/outputs/releases/latest",
+    "run_id": "20260511_122420",
+    "runtime": "colab",
+    "stage_plan": {
+      "from_stage": 1,
+      "to_stage": 5,
+      "stages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "required_files": 7,
+    "required_missing": 0,
+    "recommended_files": 9,
+    "recommended_missing": 1,
+    "invalid_files": 0,
+    "pointer": {
+      "checked": true,
+      "path": "/content/drive/MyDrive/brownsea/outputs/releases/release_pointer.json",
+      "exists": true,
+      "ok": true,
+      "release_name": "latest",
+      "run_id": "20260511_122420",
+      "target_path": "/content/drive/MyDrive/brownsea/outputs/releases/latest",
+      "expected_path": "/content/drive/MyDrive/brownsea/outputs/releases/latest"
+    },
+    "repaired_aliases": []
+  },
+  "files": [
+    {
+      "path": "artifacts/district_analysis_export.json",
+      "size_bytes": 84371,
+      "sha256": "9197a66c03a73d569ed3cf5127faa85129934eec9ff31192e546e3c031f55d2e",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "artifacts/district_analysis_export.xlsx",
+      "size_bytes": 25197,
+      "sha256": "c210963a6710777f58b61128a0ada74dae8a41d3a28f5f0f53df6dc067bcefff",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "artifacts/ml_ready_district_data.csv",
+      "size_bytes": 515348,
+      "sha256": "fafc7bd48c87ef6da5c21de8b3a5e3b5b765ea6b5f9e5393828814aefb74232c",
+      "modified_at": "2026-05-11T12:25:08"
+    },
+    {
+      "path": "artifacts/model_performance.csv",
+      "size_bytes": 533,
+      "sha256": "53be4ad1c2c3b7c78991a81b26dcccc9cb16e5022cd2b637b75673e1db00cca7",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/model_performance.parquet",
+      "size_bytes": 4780,
+      "sha256": "bef7c4caef6907689c331520caaa4ed38887adb450a76c9a5cfa548b5d94c99f",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/model_performance_summary.json",
+      "size_bytes": 129,
+      "sha256": "014f9a89aabe866eca1e90f2bba51d9fd0491e5d3e3c515f3bf4989f1743130b",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/postcode_lookup.csv",
+      "size_bytes": 24228388,
+      "sha256": "070166f0d7e8fe23d000ac8d3494ae3b59617a8b570ce2a314e17f87665f1e38",
+      "modified_at": "2026-05-11T12:32:09"
+    },
+    {
+      "path": "artifacts/postcode_lookup.json",
+      "size_bytes": 62207015,
+      "sha256": "89232361eef3150fe55c52ad6697ec0a6fb976c98ac4c682912cde3554f85cd7",
+      "modified_at": "2026-05-11T12:32:22"
+    },
+    {
+      "path": "artifacts/postcode_lookup.parquet",
+      "size_bytes": 1838311,
+      "sha256": "89b5071ab7078149b18132ea1c61e5dd1867727d50ab42949e267f0c70be61cb",
+      "modified_at": "2026-05-11T12:32:09"
+    },
+    {
+      "path": "artifacts/tables/analysis_kpis.csv",
+      "size_bytes": 93,
+      "sha256": "17afa88748b3cb9c48462769e50b38c43ea9363017f007052920ac13e1feeead",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "artifacts/tables/analysis_kpis.parquet",
+      "size_bytes": 3078,
+      "sha256": "9d2cc2ebda4feeff73c207b2ed24c90cdc25b9751a81ba9a5f5d601c865f77a3",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "artifacts/tables/analysis_table.csv",
+      "size_bytes": 60731,
+      "sha256": "f776168de739b77dd259e516f6c6d698551fcac935fdd22f16b2c0ce13ca9346",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "artifacts/tables/analysis_table.parquet",
+      "size_bytes": 63528,
+      "sha256": "8ca75844bd071c7ef0eb7bc3e6c130c04cdbb82d81ec8ff8eca2a53cc870ab98",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "artifacts/tables/district_analysis_export.csv",
+      "size_bytes": 35637,
+      "sha256": "cba448a9a8aa5eddc6fbbafbca034df00a68760d86714d8dc8f1b4c1e63d76d1",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "artifacts/tables/district_analysis_export.parquet",
+      "size_bytes": 37235,
+      "sha256": "a51c993831fc5d13c24a089effe7c0ca2955e7e90d2246aec5309e88ef4bf5d2",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "artifacts/tables/intervention_strategy_distribution.csv",
+      "size_bytes": 166,
+      "sha256": "f019fada6d094b685b597930f0c5f68254b788ea51cc1574b21c63a55d2b7865",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "artifacts/tables/intervention_strategy_distribution.parquet",
+      "size_bytes": 2530,
+      "sha256": "10037013c27c5bf48ebfe278f6b81e90f5acde748a6732b3dc8efe87efd28b8a",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "artifacts/tables/intervention_strategy_framework.csv",
+      "size_bytes": 400,
+      "sha256": "086bc6a93d2fef704b4b47219ff9eff8588a42f9afa0e52e9b255896cc7b46ff",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/tables/intervention_strategy_framework.parquet",
+      "size_bytes": 2790,
+      "sha256": "f3df682ba3b7ccbddc0f9947178fc9be29a33ff598621dcc3ad9a63d63377df8",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/tables/need_tier_definitions.csv",
+      "size_bytes": 493,
+      "sha256": "ada9ae00bdf03dcd2a96df9cb1522aa6e70c2672a7fcf406ee3ee32c7b9b9411",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/tables/need_tier_definitions.parquet",
+      "size_bytes": 3411,
+      "sha256": "a8b7fa5d81a5494f5627714c0ecde8c601b792455b05da83bd0b9e8a9458dc03",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/tables/performance_tier_distribution.csv",
+      "size_bytes": 96,
+      "sha256": "c40ba3492de92eab6ca35e7bc4ad2b2db65d00a0e960af7c078c27262d56a7b6",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "artifacts/tables/performance_tier_distribution.parquet",
+      "size_bytes": 2418,
+      "sha256": "9665150fa793fe26cf11be21a15c438a4f131b5219418101d98fdb05e8e1ad24",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "artifacts/tables/priority_action_matrix_categories.csv",
+      "size_bytes": 759,
+      "sha256": "be3e29bc0cf7ce7eb5b73222fc2804ca19701102478f0342c0e705177cc004c6",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/tables/priority_action_matrix_categories.parquet",
+      "size_bytes": 4334,
+      "sha256": "dd8aae0b10dea32e814c44bd16d2c0b26b4cc685cec13468adfe763060edf534",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "artifacts/tables/quick_wins.csv",
+      "size_bytes": 211,
+      "sha256": "a74b5a04e262ba87e1e0d6544246214041f858e65214c62a4ee75645891432be",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "artifacts/tables/quick_wins.parquet",
+      "size_bytes": 3626,
+      "sha256": "fa5f53cede4669a2ae455107cf3a3b554572f848d7f61b3927383a3f12468679",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "artifacts/tables/sensitivity_summary.csv",
+      "size_bytes": 175,
+      "sha256": "acdf7d451ca3f4808184e132a4bf116b875bc289534d14275bc7a94622989e14",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "artifacts/tables/sensitivity_summary.parquet",
+      "size_bytes": 3439,
+      "sha256": "7855e91830e771de83e8f3187cca2cbb3b630cc4922245c87466834ed4c2817e",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "artifacts/tables/targeted_support_needed.csv",
+      "size_bytes": 205,
+      "sha256": "ac409afd6cead27f59fbd4ec37af9aa80c51ee05dccec9736719bdf9022b3d0f",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "artifacts/tables/targeted_support_needed.parquet",
+      "size_bytes": 3523,
+      "sha256": "a827b6e5100e9fde400568469c166fe42ddc05bab420745042c7f6dc1615c0d6",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "artifacts/tables/urgent_action_required.csv",
+      "size_bytes": 288,
+      "sha256": "a3edcf0c52be85e7ab0143f0fa2b81ed550aaf28aff11ec7e0397380a6bf886b",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "artifacts/tables/urgent_action_required.parquet",
+      "size_bytes": 3579,
+      "sha256": "bea954222843826f4776fff7f9e10105371af3c55908620ddf644c24591c92b1",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "artifacts/three_way_intersection_analysis_v2.csv",
+      "size_bytes": 60731,
+      "sha256": "f776168de739b77dd259e516f6c6d698551fcac935fdd22f16b2c0ce13ca9346",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "checkpoints/district_lsoa_map.parquet",
+      "size_bytes": 356607,
+      "sha256": "fbe4d84ea0f53c10e61661f090d87ec691ac2e26a80bea461a3233e5fbf58054",
+      "modified_at": "2026-05-11T12:24:55"
+    },
+    {
+      "path": "checkpoints/engineered_features.parquet",
+      "size_bytes": 165418,
+      "sha256": "94a0887b21a2e3d8cb911c7003a37e432800257b87b68aca87116aeaa59f9b36",
+      "modified_at": "2026-05-11T12:25:08"
+    },
+    {
+      "path": "checkpoints/lsoa_master.parquet",
+      "size_bytes": 1488976,
+      "sha256": "9b44115a9e334beccc5ecf26879c3db6c4562ed3b0909ec33d47488f8361a832",
+      "modified_at": "2026-05-11T12:24:55"
+    },
+    {
+      "path": "checkpoints/model_bundle.joblib",
+      "size_bytes": 20635222,
+      "sha256": "1beadc7889e21e8f6ed86ac8cab2c204581b47d9ad06e3e84267d31492e917d0",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "checkpoints/ons_clean.parquet",
+      "size_bytes": 65053874,
+      "sha256": "73022cd3b66d11328d85060599653d6b1ed1c5ca09df4fca3ebb8f4d6483640a",
+      "modified_at": "2026-05-11T12:24:58"
+    },
+    {
+      "path": "logs/brownsea_pipeline_20260511_122420.log",
+      "size_bytes": 16190,
+      "sha256": "d4f0368a15217ec7cea4ebaac0c1afe23ac6d1570695c7a419c71875aa0a4637",
+      "modified_at": "2026-05-11T12:32:43"
+    },
+    {
+      "path": "reports/downloads.html",
+      "size_bytes": 3572,
+      "sha256": "d5a2231faf2c02f0da5976e1f302e17d44261d7aed87d28b27904b8cdfd161ea",
+      "modified_at": "2026-05-11T12:32:43"
+    },
+    {
+      "path": "reports/executive_summary.html",
+      "size_bytes": 3321,
+      "sha256": "43deb57352090e8c8411fb11aaa7aef4a4922ab93b52540d9046e323848b445a",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "reports/figures/analysis_kpis.html",
+      "size_bytes": 8939,
+      "sha256": "b67d4a572134d244954f0317b787d0d240347587da34a57e272c84a7d3bfd6ad",
+      "modified_at": "2026-05-11T12:31:42"
+    },
+    {
+      "path": "reports/figures/analysis_kpis.png",
+      "size_bytes": 42350,
+      "sha256": "1ea1b3c85b4380a3f6fba3dcdb7a00615d0ec28cd77c78b61dcd46456b1181ed",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "reports/figures/equity_gap_analysis.html",
+      "size_bytes": 9682,
+      "sha256": "a171c4f08112c17a1bc46bf8e76a3ce7495846c4402dcf87dec2bc583d82224f",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/equity_gap_analysis.png",
+      "size_bytes": 83218,
+      "sha256": "f685ace9c214d1718f3a5cf5bcee67d8d718d5b13c47774867a5db35ba053282",
+      "modified_at": "2026-05-11T12:31:50"
+    },
+    {
+      "path": "reports/figures/growth_opportunity_matrix.html",
+      "size_bytes": 18077,
+      "sha256": "452f99c7dea5dd644d5a092632231e4c12babb359488a7f537f0e2af7caa441e",
+      "modified_at": "2026-05-11T12:31:48"
+    },
+    {
+      "path": "reports/figures/growth_opportunity_matrix.png",
+      "size_bytes": 176041,
+      "sha256": "ed1250b030974d6bc16d0a5336a21678632077e6cae4cf6c8a9f74f28df62364",
+      "modified_at": "2026-05-11T12:31:48"
+    },
+    {
+      "path": "reports/figures/intervention_strategy_treemap.html",
+      "size_bytes": 23336,
+      "sha256": "e4943ac7989515d428367d27e6b8ac3f36c99a2c70cd0221ab19385f1fa370e2",
+      "modified_at": "2026-05-11T12:31:48"
+    },
+    {
+      "path": "reports/figures/intervention_strategy_treemap.png",
+      "size_bytes": 203182,
+      "sha256": "6647559fb5b7ee7612aec66300dbb28d50c16227debd085d243b9a112c545500",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/map_member_visits_distribution.html",
+      "size_bytes": 167258,
+      "sha256": "e2029826c890d36905cdb15f92b334233ff897a247e84df8a80769f4168ada5e",
+      "modified_at": "2026-05-11T12:31:52"
+    },
+    {
+      "path": "reports/figures/map_member_visits_distribution.png",
+      "size_bytes": 744437,
+      "sha256": "be21a869fd5d93a9a5590fc26131346281f3d395571348fe51110fa513fe5f20",
+      "modified_at": "2026-05-11T12:31:59"
+    },
+    {
+      "path": "reports/figures/map_visit_rate_distribution.html",
+      "size_bytes": 167819,
+      "sha256": "e54fe4fb4c4d67feeae816589a2e377753a770f3a46cb294fcbc0a6efd218d9b",
+      "modified_at": "2026-05-11T12:31:59"
+    },
+    {
+      "path": "reports/figures/map_visit_rate_distribution.png",
+      "size_bytes": 805991,
+      "sha256": "009940815b14d61ae3154b85d6963a7173b4efd6fa62f7d36c94b724cd37a4e1",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "reports/figures/priority_action_matrix.html",
+      "size_bytes": 18971,
+      "sha256": "08b7b9a6bedf11bb9cffdb34c4d075d52fecbd2018678c5410e8f7515e4700d7",
+      "modified_at": "2026-05-11T12:31:47"
+    },
+    {
+      "path": "reports/figures/priority_action_matrix.png",
+      "size_bytes": 179603,
+      "sha256": "8d6f604a81b13e81a7ab3add77e30d6d2d0834925de86a74ab86d9ed9ff6f71f",
+      "modified_at": "2026-05-11T12:31:47"
+    },
+    {
+      "path": "reports/figures/safe_zone_analysis.html",
+      "size_bytes": 13328,
+      "sha256": "5e440840b277e422b8872e5c10cb240343f4dc47012738196490252da505e4fa",
+      "modified_at": "2026-05-11T12:31:48"
+    },
+    {
+      "path": "reports/figures/safe_zone_analysis.png",
+      "size_bytes": 182742,
+      "sha256": "2d26285318cca2ee2cb48d47f33b5a621c102e57f5a490ef635dad522c6e2f10",
+      "modified_at": "2026-05-11T12:31:48"
+    },
+    {
+      "path": "reports/figures/sensitivity_geo_barriers_decile.html",
+      "size_bytes": 9471,
+      "sha256": "f457effe24d00631d3a6cc84236f07183e9c399a7e284ef55effac8e06166b2c",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/sensitivity_geo_barriers_decile.png",
+      "size_bytes": 64544,
+      "sha256": "67263271593477166b0526dc3d58c93c96fbe38a05eec33ff4c02f3be206ff0c",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/sensitivity_income_decile.html",
+      "size_bytes": 9467,
+      "sha256": "bf7c9dd40c540e96828c3ec8c1f7f042a49edc35c112ba787430a2e591710fc9",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/sensitivity_income_decile.png",
+      "size_bytes": 67528,
+      "sha256": "ed9c2d4f8b68b4895b2553f07dbf05dd591ad74d8e7d6787bb290fce5bb53a82",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/sensitivity_total_journey_min.html",
+      "size_bytes": 9400,
+      "sha256": "cbf3c556ab593b61b05c4eea2572d5a107a54d6adcdad0656504b0f6ad290eef",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/sensitivity_total_journey_min.png",
+      "size_bytes": 59465,
+      "sha256": "03e0b351b7bd8a8ef62a5511564f740d4042229a04fad973acb96984023da547",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/figures/shap_summary.png",
+      "size_bytes": 157356,
+      "sha256": "3a21a9784cb3482f261eaf484dbfed06ac3da3052589943ecf723c54f3285650",
+      "modified_at": "2026-05-11T12:31:41"
+    },
+    {
+      "path": "reports/help.html",
+      "size_bytes": 7007,
+      "sha256": "8f89aad68b1d7947f0c0090220c46ba8a0a26d2edbf84b312ff5abe83331dfd4",
+      "modified_at": "2026-05-11T12:32:43"
+    },
+    {
+      "path": "reports/index.html",
+      "size_bytes": 7668,
+      "sha256": "29e28edd1a1bcb12412ee73531735c4cd9871375f05de8a32d5412cbe296f93b",
+      "modified_at": "2026-05-11T12:32:43"
+    },
+    {
+      "path": "reports/model_performance.html",
+      "size_bytes": 2128,
+      "sha256": "c411be86d452c4a9648d20fef161100dee678b99387f9ad54d29bfc0a080904e",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "reports/postcode_app.html",
+      "size_bytes": 62223031,
+      "sha256": "145a4678bcae9851b2a034b3181e6999089b692304f94410ebdd773cae6149e7",
+      "modified_at": "2026-05-11T12:32:43"
+    },
+    {
+      "path": "reports/postcode_lookup.html",
+      "size_bytes": 62223031,
+      "sha256": "0f58f690bbdb1bbd84d24355ff40aed90d48335bf92d713c495415b00fa5fe72",
+      "modified_at": "2026-05-11T12:32:31"
+    },
+    {
+      "path": "reports/strategic_framework_definitions.html",
+      "size_bytes": 3804,
+      "sha256": "3725038a5bca05e44fa2fd2c212a3a2c11ebca544c6ad2e1551bfbecbe1b22e1",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "reports/tables/analysis_kpis.html",
+      "size_bytes": 970,
+      "sha256": "09a9112dfe03c229eb1f9b83f372679cd807dbb7b2a7c51e65d6a19d26a1922b",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "reports/tables/analysis_table.html",
+      "size_bytes": 98565,
+      "sha256": "0b54c085e8b6e83ab6dca8ea396694189a550e0dc89e83b3291fa5d03e106844",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "reports/tables/district_analysis_export.html",
+      "size_bytes": 59805,
+      "sha256": "f5a86cfb3a51ea60234c9820725e6c5c20db64f14fb13ab8418fa056c3399215",
+      "modified_at": "2026-05-11T12:32:05"
+    },
+    {
+      "path": "reports/tables/intervention_strategy_distribution.html",
+      "size_bytes": 1319,
+      "sha256": "4e0185ab76b3b71292e35392532ea180c63fd5b14172e7474420b05861768ef5",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "reports/tables/intervention_strategy_framework.html",
+      "size_bytes": 1559,
+      "sha256": "6779396e6afe06748bc9bd486d9dca0e8607abbf4ed51b46bea7cd310902e0f0",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "reports/tables/need_tier_definitions.html",
+      "size_bytes": 1550,
+      "sha256": "63e458cb558f5931d090dcaea61138cf2d1080b505264967d771281cebf3d049",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "reports/tables/performance_tier_distribution.html",
+      "size_bytes": 1106,
+      "sha256": "2d39e3d38c90f6aca231f12c7737d8b20ed834a5f8f549992da7054860dbae05",
+      "modified_at": "2026-05-11T12:31:45"
+    },
+    {
+      "path": "reports/tables/priority_action_matrix_categories.html",
+      "size_bytes": 2094,
+      "sha256": "e96644178e3325a81ab8f5c049bf5f81d0c64ad2edb68de8f72b9368d0524ca2",
+      "modified_at": "2026-05-11T12:31:29"
+    },
+    {
+      "path": "reports/tables/quick_wins.html",
+      "size_bytes": 1489,
+      "sha256": "020e27a8aaadfdf8052e41d36fbddcd967739a5ff6a62384d287c09484e82087",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "reports/tables/sensitivity_summary.html",
+      "size_bytes": 1068,
+      "sha256": "2747b60760446129a8d4521fbf7e52fa1764cb8102ec970d2b549cd9eaf1487b",
+      "modified_at": "2026-05-11T12:31:49"
+    },
+    {
+      "path": "reports/tables/targeted_support_needed.html",
+      "size_bytes": 1510,
+      "sha256": "c47062268ab12e0cc53fedbadbce194204b78ac555781419eef312908583ef42",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "reports/tables/urgent_action_required.html",
+      "size_bytes": 1584,
+      "sha256": "08a64ac68f9e7c95916a118cde2b07156c6e40ccb2e72bccad9442643c244f47",
+      "modified_at": "2026-05-11T12:32:04"
+    },
+    {
+      "path": "run_manifest.json",
+      "size_bytes": 2099,
+      "sha256": "8962edc4395d75a3d61cf1fdff143a6f929cfe4bd47fa9e5033b40168f62c793",
+      "modified_at": "2026-05-11T12:24:23"
+    },
+    {
+      "path": "stage_run_manifest.json",
+      "size_bytes": 115,
+      "sha256": "fa6ef0fffa48f29d4b6ac870f93132ab7d11985aec6184dbf68dedd817673f34",
+      "modified_at": "2026-05-11T12:24:23"
+    }
+  ]
+}

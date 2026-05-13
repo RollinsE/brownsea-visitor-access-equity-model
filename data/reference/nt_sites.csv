@@ -1,0 +1,490 @@
+site_id,site_name,lat,lon,website,site_type,active
+2_willow_road,2 Willow Road,51.5571646,-0.1691747,https://www.nationaltrust.org.uk/visit/london/2-willow-road,attraction;museum,True
+575_wandsworth_road,575 Wandsworth Road,51.4697018,-0.1406549,https://www.nationaltrust.org.uk/575-wandsworth-road#Overview,attraction,True
+a_la_ronde,A la Ronde,50.6416828,-3.4088263,https://www.nationaltrust.org.uk/a-la-ronde/,attraction,True
+abbotsham_cliffs,Abbotsham Cliffs,51.0260006,-4.269251,,nature_reserve,True
+abel_heath_open_access_land,Abel Heath - Open Access Land,52.7989323,1.2247396,,nature_reserve,True
+aberconwy_house,Aberconwy House,53.2815602,-3.8285022,,attraction,True
+aberdulais_tin_works_and_waterfall,Aberdulais Tin Works and Waterfall,51.6807065,-3.7777502,https://www.nationaltrust.org.uk/aberdulais-tinworks-and-waterfall/,attraction,True
+acorn_bank,Acorn Bank,54.6475491,-2.5945981,https://www.nationaltrust.org.uk/acorn-bank,museum,True
+agglestone_rock,Agglestone Rock,50.6451367,-1.9679797,,attraction,True
+aira_force,Aira Force,54.5765825,-2.929574,https://www.nationaltrust.org.uk/aira-force-and-ullswater,attraction,True
+alexander_keiller_museum,Alexander Keiller Museum,51.4290264,-1.8582668,,museum,True
+alfriston_clergy_house,Alfriston Clergy House,50.8061415,0.1578023,https://www.nationaltrust.org.uk/alfriston-clergy-house/,attraction,True
+allan_bank,Allan Bank,54.4601722,-3.0297802,https://www.nationaltrust.org.uk/allan-bank-and-grasmere,manor,True
+alport_height,Alport Height,53.0608347,-1.5466504,,attraction,True
+apollo_belvedere,Apollo Belvedere,51.8427331,-0.9362632,,attraction,True
+arlington_court,Arlington Court,51.1471854,-3.9873155,https://www.nationaltrust.org.uk/visit/devon/arlington-court-and-the-national-trust-carriage-museum,attraction,True
+ascott_house,Ascott House,51.8978355,-0.7021761,https://www.nationaltrust.org.uk/ascott,park,True
+ashdown_house,Ashdown House,51.5363051,-1.594771,,house,True
+ashdown_park,Ashdown Park,51.5380989,-1.5926126,https://www.nationaltrust.org.uk/visit/oxfordshire-buckinghamshire-berkshire/ashdown,park,True
+attingham_park,Attingham Park,52.6896165,-2.6654838,,attraction,True
+avebury_manor,Avebury Manor,51.428956,-1.859111,,building,True
+avebury_manor_garden,Avebury Manor Garden,51.428639,-1.8594187,,garden,True
+badbury_hill,Badbury Hill,51.6492049,-1.6227889,https://www.nationaltrust.org.uk/badbury,attraction,True
+badbury_rings,Badbury Rings,50.8263834,-2.0523396,https://www.nationaltrust.org.uk/visit/dorset/badbury-rings,archaeological_site,True
+baddesley_clinton,Baddesley Clinton,52.3410068,-1.7085974,https://www.nationaltrust.org.uk/visit/warwickshire/baddesley-clinton,attraction,True
+barrington_court,Barrington Court,50.9607725,-2.8583542,,attraction,True
+basildon_park,Basildon Park,51.499087,-1.1215271,,yes,True
+bateman_s,Bateman's,50.9893067,0.3794281,https://www.nationaltrust.org.uk/batemans/,attraction,True
+belton_house,Belton House,52.9430835,-0.6177401,https://www.nationaltrust.org.uk/visit/nottinghamshire-lincolnshire/belton-estate,attraction,True
+beningbrough_hall_gardens,Beningbrough Hall & Gardens,54.0221006,-1.2112642,https://www.nationaltrust.org.uk/beningbrough-hall/,attraction,True
+benthall_hall,Benthall Hall,52.6202332,-2.5065174,https://www.nationaltrust.org.uk/benthall-hall/,attraction,True
+berrington_hall,Berrington Hall,52.2688826,-2.7205177,https://www.nationaltrust.org.uk/visit/worcestershire-herefordshire/berrington-hall,attraction,True
+berrington_park,Berrington Park,52.267635,-2.7194671,,park,True
+biddulph_grange,Biddulph Grange,53.1299449,-2.1620428,,attraction,True
+biddulph_grange_gardens,Biddulph Grange Gardens,53.1296492,-2.1603895,https://www.nationaltrust.org.uk/biddulph-grange-garden/,attraction,True
+big_mose_bunkhouse,Big Mose bunkhouse,52.5078455,-2.3589895,,hostel,True
+biggin_dale_nnr,Biggin Dale NNR,53.125533,-1.7811542,,nature_reserve,True
+birmingham_back_to_backs,Birmingham Back To Backs,52.4743237,-1.8972429,https://www.nationaltrust.org.uk/birmingham-back-to-backs,,True
+blackhill_common,Blackhill Common,50.9590667,-1.5788005,https://www.nationaltrust.org.uk/new-forest-northern-commons,,True
+blaise_hamlet,Blaise Hamlet,51.507156,-2.6356477,https://www.nationaltrust.org.uk/visit/bath-bristol/blaise-hamlet,museum,True
+blakes_wood,Blakes Wood,51.7316182,0.565767,,nature_reserve,True
+blickling_hall,Blickling Hall,52.8117148,1.2316476,,attraction,True
+blickling_park,Blickling Park,52.8150675,1.219082,,park,True
+boarstall_duck_decoy,Boarstall Duck Decoy,51.830778,-1.0965076,,attraction,True
+boarstall_tower,Boarstall Tower,51.8233611,-1.0956278,,attraction,True
+bodiam_castle,Bodiam Castle,51.0022526,0.5435315,https://www.nationaltrust.org.uk/bodiam-castle/,attraction,True
+bodnant_garden,Bodnant Garden,53.2311727,-3.8006174,,attraction,True
+bourne_mill,Bourne Mill,51.8770855,0.9123464,https://www.nationaltrust.org.uk/bourne-mill,attraction,True
+box_hill,Box Hill,51.2494295,-0.3082735,https://www.nationaltrust.org.uk/box-hill/,locality,True
+bradley_manor,Bradley Manor,50.5261577,-3.6259138,,attraction,True
+brickyard_quarry_disused,Brickyard Quarry (disused),54.4000762,-0.5036417,,attraction,True
+brockham_big_field,Brockham Big Field,51.237266,-0.2868002,,park,True
+brockhampton_park,Brockhampton Park,52.1918795,-2.4598116,,park,True
+brown_s_cascade,Brown's Cascade,52.0293125,-1.0082575,,attraction,True
+buckden_pike_and_the_polish_memorial_upper_wharfdale,"Buckden Pike and the Polish Memorial, Upper Wharfdale",54.1873466,-2.0775364,,yes,True
+bucket_hill,Bucket Hill,50.8493896,-4.554035,,nature_reserve,True
+buckingham_chantry_chapel,Buckingham Chantry Chapel,52.0003223,-0.9880039,https://www.nationaltrust.org.uk/buckingham-chantry-chapel,building,True
+buckland_abbey,Buckland Abbey,50.4813044,-4.1335276,https://www.nationaltrust.org.uk/visit/devon/buckland-abbey,attraction,True
+budlake_old_post_office,Budlake Old Post Office,50.7889038,-3.448256,,museum,True
+burrough_farm,Burrough Farm,51.0393407,-4.2004882,,nature_reserve,True
+burrow_mump,Burrow Mump,51.0703813,-2.915844,,attraction,True
+buscot_house,Buscot House,51.66972,-1.6499299,https://www.nationaltrust.org.uk/buscot-park/,attraction,True
+cadbury_camp,Cadbury Camp,51.4486002,-2.7870098,,archaeological_site,True
+caerllan,Caerllan,52.1911753,-4.3966757,,chalet,True
+calke_abbey,Calke Abbey,52.7997811,-1.4559112,https://www.nationaltrust.org.uk/calke-abbey,museum,True
+calke_park,Calke Park,52.8032647,-1.460287,,park,True
+canons_ashby_house,Canons Ashby House,52.1506877,-1.1587162,,attraction,True
+captain_cook_s_monument,Captain Cook's Monument,52.0307847,-1.0142642,,attraction,True
+captain_grenville_s_column,Captain Grenville's Column,52.0306791,-1.0149967,,attraction,True
+carlyle_s_house,Carlyle's House,51.4841139,-0.1697922,https://www.nationaltrust.org.uk/carlyles-house,museum,True
+carne_and_pendower_beach,Carne and Pendower Beach,50.2060623,-4.9403332,https://www.nationaltrust.org.uk/visit/cornwall/carne-and-pendower,,True
+carriage_house,Carriage House,51.1467385,-3.9832718,,museum,True
+castle_drogo,Castle Drogo,50.6958893,-3.8109415,https://www.nationaltrust.org.uk/visit/devon/castle-drogo,attraction,True
+castlefield_viaduct_urban_park,Castlefield Viaduct Urban Park,53.4748347,-2.2571686,https://www.nationaltrust.org.uk/castlefield-viaduct,attraction,True
+cerne_abbas_giant,Cerne Abbas Giant,50.8136714,-2.4747184,https://www.nationaltrust.org.uk/cerne-giant,attraction,True
+charlecote_park,Charlecote Park,52.2051088,-1.6245944,https://www.nationaltrust.org.uk/charlecote-park/,park,True
+chartwell,Chartwell,51.244358,0.0832977,https://www.nationaltrust.org.uk/visit/kent/chartwell,attraction,True
+chastleton_house,Chastleton House,51.9596916,-1.6401677,https://www.nationaltrust.org.uk/visit/oxfordshire-buckinghamshire-berkshire/chastleton,attraction,True
+chedworth_roman_villa,Chedworth Roman Villa,51.8198823,-1.9244752,https://www.nationaltrust.org.uk/chedworth-roman-villa,archaeological_site,True
+chedworth_roman_villa_museum,Chedworth Roman Villa museum,51.8198649,-1.9245256,,museum,True
+cherryburn_thomas_bewick_museum,Cherryburn - Thomas Bewick Museum,54.9582463,-1.884642,https://www.nationaltrust.org.uk/cherryburn,museum,True
+chirk_castle,Chirk Castle,52.9350385,-3.0896084,,castle,True
+church_house,Church House,50.576647,-3.8114831,,museum,True
+cissbury_ring,Cissbury Ring,50.8605199,-0.3832534,https://www.nationaltrust.org.uk/cissbury-ring/,archaeological_site,True
+city_mill,City Mill,51.0611447,-1.307734,https://www.nationaltrust.org.uk/winchester-city-mill/,museum,True
+claife_viewing_station,Claife Viewing Station,54.3510765,-2.9424009,https://www.nationaltrust.org.uk/claife-viewing-station-and-windermere-west-shore,building,True
+clandon_park,Clandon Park,51.2511806,-0.5068763,https://www.nationaltrust.org.uk/visit/surrey/clandon-park,attraction,True
+claydon_house,Claydon House,51.9218684,-0.955478,,attraction,True
+cley_hill,Cley Hill,51.2046578,-2.2319293,,archaeological_site,True
+clouds_hill,Clouds Hill,50.7180449,-2.2512653,https://www.nationaltrust.org.uk/clouds-hill/,attraction,True
+clumber_park,Clumber Park,53.2644236,-1.0627449,,garden,True
+clyston_mill,Clyston Mill,50.7659781,-3.4470707,https://www.nationaltrust.org.uk/clyston-mill,attraction,True
+coaley_peak,Coaley Peak,51.7061651,-2.3015488,,nature_reserve,True
+colby_walled_garden,Colby Walled Garden,51.7410983,-4.6697555,,garden,True
+colby_woodland_garden,Colby Woodland Garden,51.7391719,-4.6704433,,garden,True
+coleton_fishacre,Coleton Fishacre,50.3470857,-3.5342988,https://www.nationaltrust.org.uk/coleton-fishacre/,,True
+compton_castle,Compton Castle,50.4724931,-3.6002655,,attraction,True
+conwy_suspension_bridge,Conwy Suspension Bridge,53.2804429,-3.823797,,bridge,True
+cookham_dean_common,Cookham Dean Common,51.5503669,-0.7539955,,common,True
+copt_hall_marshes,Copt Hall Marshes,51.7902804,0.8767567,https://www.nationaltrust.org.uk/copt-hall-marshes,attraction,True
+corfe_castle,Corfe Castle,50.6401909,-2.0594553,https://www.nationaltrust.org.uk/corfecastle,attraction,True
+cotehele_house,Cotehele House,50.4959884,-4.2257396,,attraction,True
+cotehele_house_and_mill,Cotehele House and Mill,50.4945986,-4.2302127,https://www.nationaltrust.org.uk/visit/cornwall/cotehele-mill,attraction,True
+coughton_court,Coughton Court,52.2435735,-1.8796652,https://www.nationaltrust.org.uk/visit/warwickshire/coughton-court,attraction,True
+cragside,Cragside,55.3136251,-1.8854355,https://www.nationaltrust.org.uk/visit/north-east/cragside,attraction,True
+crickley_hill_country_park,Crickley Hill Country Park,51.8469994,-2.1027151,,archaeological_site,True
+croft_castle,Croft Castle,52.2843769,-2.8085033,https://www.nationaltrust.org.uk/croftcastle,attraction,True
+croft_castle_and_parkland,Croft Castle and Parkland,52.2881264,-2.8090658,,park,True
+crook_hall_gardens,Crook Hall Gardens,54.7826146,-1.5743791,,attraction,True
+crook_hill_circular_ethel_high_peak,"Crook Hill Circular (Ethel), High Peak",53.3890389,-1.7316621,,yes,True
+croome_court,Croome Court,52.0996416,-2.1692303,,attraction,True
+cwmmau_farmhouse,Cwmmau Farmhouse,52.153562,-3.058696,https://www.nationaltrust.org.uk/visit/worcestershire-herefordshire/herefordshire-countryside,attraction,True
+dapdune_wharf,Dapdune Wharf,51.2428702,-0.5790244,https://www.nationaltrust.org.uk/river-wey-and-godalming-navigations-and-dapdune-wharf,museum,True
+darrow_wood_national_trust,Darrow Wood (National Trust),52.4565879,1.3322521,https://www.nationaltrust.org.uk/visit/norfolk/darrow-wood,park,True
+dolaucothi_gold_mines,Dolaucothi Gold Mines,52.0446345,-3.9498969,,attraction,True
+dolebury_hill_fort,Dolebury Hill Fort,51.3269614,-2.7905841,,archaeological_site,True
+dolebury_warren_inner_wall,Dolebury Warren inner wall,51.3265391,-2.787049,,archaeological_site,True
+dora_s_field,Dora's Field,54.4473662,-2.9828056,,attraction,True
+doric_temple,Doric Temple,50.9906206,-0.6111721,,attraction,True
+dorney_wood,Dorney Wood,51.5544394,-0.6482035,,house,True
+dream_garden_nt,Dream Garden (NT),51.1827449,-3.4455111,,garden,True
+drovers_estate,Drovers Estate,50.9229172,-0.7551378,https://www.nationaltrust.org.uk/drovers-estate,,True
+dudmaston_hall,Dudmaston Hall,52.4964811,-2.375231,https://www.nationaltrust.org.uk/dudmaston,museum,True
+duffield_castle,Duffield Castle,52.9927375,-1.4899658,https://www.nationaltrust.org.uk/duffield-castle/,archaeological_site,True
+dunham_massey_park,Dunham Massey Park,53.3806578,-2.395287,https://www.nationaltrust.org.uk/visit/cheshire-greater-manchester/dunham-massey,attraction,True
+dunsland_parkland,Dunsland Parkland,50.8254999,-4.2563113,,nature_reserve,True
+dunstable_downs,Dunstable Downs,51.8675136,-0.5439539,https://www.nationaltrust.org.uk/dunstable-downs-chilterns-gateway-and-whipsnade-estate/,park,True
+dunstall_castle,Dunstall castle,52.0842983,-2.1683194,,attraction,True
+dunster_castle,Dunster Castle,51.1816623,-3.4437207,https://www.nationaltrust.org.uk/dunstercastle/,attraction,True
+dyffryn_gardens,Dyffryn Gardens,51.4438315,-3.3018856,https://www.nationaltrust.org.uk/dyffryn-gardens,park,True
+dyrham_park,Dyrham Park,51.4800877,-2.3698497,https://www.nationaltrust.org.uk/dyrham-park,attraction,True
+east_garden,East Garden,51.6363843,-2.3173132,,garden,True
+east_pool_mine,East Pool Mine,50.2310198,-5.2621043,https://www.nationaltrust.org.uk/east-pool-mine,museum,True
+east_riddlesden_hall,East Riddlesden Hall,53.874748,-1.881369,https://www.nationaltrust.org.uk/visit/yorkshire/east-riddlesden-hall,attraction,True
+eastbury_manor_house,Eastbury Manor House,51.5343068,0.0994317,https://www.nationaltrust.org.uk/visit/london/eastbury-manor-house,museum,True
+ecton_copper_mine,Ecton Copper Mine,53.124737,-1.8533066,,yes,True
+eggardon_hill_fort,Eggardon Hill Fort,50.750427,-2.6513397,https://www.nationaltrust.org.uk/eggardon-hill/,archaeological_site,True
+elgar_s_birthplace_museum,Elgar's Birthplace Museum,52.1990035,-2.2827118,,museum,True
+emmetts_garden,Emmetts Garden,51.2516311,0.1162631,https://www.nationaltrust.org.uk/emmetts-garden/,attraction,True
+erddig_hall,Erddig Hall,53.0271479,-3.0065449,https://www.nationaltrust.org.uk/erddig,museum,True
+eyam_hall,Eyam Hall,53.2849008,-1.6766258,https://www.eyamhall.co.uk/,attraction,True
+family_amble_nw_hants,"Family Amble, NW Hants",51.3617713,-1.3667842,,yes,True
+fan_bay_sound_mirrors,Fan Bay Sound Mirrors,51.1359741,1.3609172,,attraction,True
+fane_of_pastoral_poetry,Fane of Pastoral Poetry,52.0372696,-1.0141423,,attraction,True
+farnborough_hall,Farnborough Hall,52.1413393,-1.3720417,,attraction,True
+felbrigg_hall,Felbrigg Hall,52.9074439,1.2601018,,house,True
+fell_foot,Fell Foot,54.2738075,-2.9536818,https://www.nationaltrust.org.uk/fell-foot,attraction,True
+fell_foot_active_base,Fell Foot Active Base,54.2763482,-2.9517061,,sports_centre,True
+fenton_house,Fenton House,51.5588821,-0.1796818,https://www.nationaltrust.org.uk/visit/london/fenton-house-and-garden,museum,True
+ferry_lane,Ferry Lane,50.3859702,-4.2244021,https://www.nationaltrust.org.uk/antony,yes,True
+finch_foundry_nt,Finch Foundry (NT),50.7304443,-3.925902,,museum,True
+flatford_mill,Flatford Mill,51.958828,1.021697,https://www.nationaltrust.org.uk/visit/suffolk/flatford,attraction,True
+fleece_inn,Fleece Inn,52.0920229,-1.8653416,https://thefleeceinn.co.uk/,attraction,True
+folly,Folly,51.6358061,-2.3207926,,folly,True
+fontmell_and_melbury_downs_sac,Fontmell and Melbury Downs SAC,50.967766,-2.1543238,,nature_reserve,True
+footprint,Footprint,54.3889001,-2.9118003,https://www.nationaltrust.org.uk/visit/lake-district/windermere-and-footprint,,True
+fountains_abbey,Fountains Abbey,54.1095785,-1.5811179,https://www.nationaltrust.org.uk/fountains-abbey-and-studley-royal-water-garden,ruins,True
+fountains_abbey_and_studley_royal,Fountains Abbey and Studley Royal,54.1176913,-1.5748748,,attraction,True
+fountains_hall,Fountains Hall,54.1097819,-1.5864491,,manor,True
+fox_talbot_museum,Fox Talbot Museum,51.4146233,-2.1201441,https://www.nationaltrust.org.uk/lacock-abbey-fox-talbot-museum-and-village,museum,True
+foxbury,Foxbury,50.9515142,-1.5720318,https://www.nationaltrust.org.uk/foxbury,,True
+frenchay_moor,Frenchay Moor,51.4972416,-2.5162956,,park,True
+frensham_common,Frensham Common,51.1609624,-0.7827746,,nature_reserve,True
+fyne_court,Fyne Court,51.083203,-3.1117234,,garden,True
+gawthorpe_hall,Gawthorpe Hall,53.8027522,-2.2948019,https://www.nationaltrust.org.uk/visit/liverpool-lancashire/gawthorpe-hall,museum,True
+george_stephenson_s_birthplace,George Stephenson's Birthplace,54.9793401,-1.8049531,https://www.nationaltrust.org.uk/george-stephensons-birthplace/,museum,True
+gibside,Gibside,54.9226029,-1.7253527,https://www.nationaltrust.org.uk/gibside,attraction,True
+gibson_mill,Gibson Mill,53.7651239,-2.042369,https://www.nationaltrust.org.uk/visit/yorkshire/hardcastle-crags,attraction,True
+gladiator,Gladiator,52.035686,-1.0152849,,attraction,True
+glastonbury_tor,Glastonbury Tor,51.1441713,-2.7001151,,park,True
+glendurgan_garden,Glendurgan Garden,50.1072401,-5.1170359,https://www.nationaltrust.org.uk/visit/cornwall/glendurgan-garden,garden,True
+goddards_garden,Goddards Garden,53.9402004,-1.1033032,https://www.nationaltrust.org.uk/goddards/,attraction,True
+godolphin_count_house,Godolphin Count House,50.1378947,-5.3587062,https://www.nationaltrust.org.uk/godolphin,attraction,True
+godolphin_estate,Godolphin Estate,50.1374578,-5.358973,,yes,True
+golden_cap,Golden Cap,50.726382,-2.8412028,https://www.nationaltrust.org.uk/golden-cap/,,True
+gothic_cross,Gothic Cross,52.0294055,-1.0153891,,attraction,True
+grantham_house,Grantham House,52.9150279,-0.6399474,https://www.nationaltrust.org.uk/grantham-house/,,True
+great_chalfield_manor,Great Chalfield Manor,51.3673589,-2.2024517,,attraction,True
+great_work_mine,Great Work Mine,50.1280677,-5.3658267,,yes,True
+grecian_urn,Grecian Urn,52.0366602,-1.0140736,,attraction,True
+green_court,Green Court,52.1513635,-1.1582119,,attraction,True
+greenway_house,Greenway House,50.3818786,-3.5877824,https://www.britainsfinest.co.uk/gardens/greenway,attraction,True
+greyfriars_garden,Greyfriars Garden,52.1905409,-2.2183373,,garden,True
+greyfriars_house_and_garden,Greyfriars House And Garden,52.1904772,-2.2186294,https://www.nationaltrust.org.uk/visit/worcestershire-herefordshire/greyfriars-house-and-garden,,True
+greys_court_national_trust,Greys Court (National Trust),51.5449194,-0.955764,,attraction,True
+guildhall_of_corpus_christi,Guildhall of Corpus Christi,52.1087908,0.7966197,,museum,True
+gumber_bothy,Gumber Bothy,50.8981782,-0.6346149,,hostel,True
+gunby_estate_hall_and_gardens,Gunby Estate Hall and Gardens,53.179317,0.1940967,https://www.nationaltrust.org.uk/visit/nottinghamshire-lincolnshire/gunby-estate-hall-and-gardens,park,True
+hafod_y_bwch_commemorative_woodland,Hafod y Bwch Commemorative Woodland,53.0097741,-3.0248768,,park,True
+ham_house,Ham House,51.4442287,-0.3140515,https://www.nationaltrust.org.uk/visit/london/ham-house-and-garden,attraction,True
+hanbury_hall,Hanbury Hall,52.2718248,-2.0832571,,attraction,True
+hardwick_hall,Hardwick Hall,53.1683036,-1.308913,https://www.nationaltrust.org.uk/visit/peak-district-derbyshire/hardwick,attraction,True
+hare_hill,Hare Hill,53.2878349,-2.1882531,,park,True
+harewoods,Harewoods,51.1944286,-0.1041352,https://www.nationaltrust.org.uk/visit/surrey/harewoods,nature_reserve,True
+hatchlands_park,Hatchlands Park,51.2577227,-0.4717619,https://www.nationaltrust.org.uk/hatchlands-park,attraction,True
+hatfield_forest,Hatfield Forest,51.8566694,0.231957,,park,True
+headley_heath,Headley Heath,51.2660727,-0.2804851,https://www.nationaltrust.org.uk/visit/surrey/headley-heath,nature_reserve,True
+heald_brow,Heald Brow,54.1593912,-2.8153619,,nature_reserve,True
+heathwaite,Heathwaite,54.1837567,-2.8467173,,nature_reserve,True
+helsby_hillfort,Helsby Hillfort,53.2732937,-2.7624438,,archaeological_site,True
+henman_bunkhouse,Henman Bunkhouse,51.1959764,-0.3718136,,hostel,True
+hercules_antaeus,Hercules & Antaeus,52.0349258,-1.0165754,,attraction,True
+hidcote_manor_garden,Hidcote Manor Garden,52.0835307,-1.7464063,,garden,True
+high_and_low_bar,High and low Bar,50.0826893,-5.2940785,,fitness_station,True
+hill_top,Hill Top,54.3517341,-2.9705608,https://www.nationaltrust.org.uk/hill-top/,attraction,True
+hindhead_commons_and_the_devil_s_punch_bowl,Hindhead Commons and the Devil's Punch Bowl,51.1142343,-0.7289162,https://www.nationaltrust.org.uk/hindhead-and-devils-punchbowl/,attraction,True
+hinton_ampner,Hinton Ampner,51.0436074,-1.1507311,https://www.nationaltrust.org.uk/hinton-ampner/,attraction,True
+hinton_ampner_gardens,Hinton Ampner Gardens,51.043155,-1.1506677,,garden,True
+hod_hill,Hod Hill,50.8951101,-2.2048907,https://www.pastscape.org.uk/hob.aspx?hob_id=206122,archaeological_site,True
+holeslack_farmhouse,Holeslack Farmhouse,54.2888836,-2.7818189,,chalet,True
+holmwood_common,Holmwood Common,51.2006149,-0.3195901,https://www.nationaltrust.org.uk/holmwood-common,nature_reserve,True
+holy_austin_rock_houses,Holy Austin Rock Houses,52.4500865,-2.2420959,https://www.nationaltrust.org.uk/visit/shropshire-staffordshire/kinver-edge-and-the-rock-houses,attraction,True
+home_farm,Home Farm,52.1449829,-0.0424385,,attraction,True
+horsey_windpump,Horsey Windpump,52.7410804,1.6390155,https://www.nationaltrust.org.uk/visit/norfolk/horsey-windpump,attraction,True
+horton_court,Horton Court,51.5636576,-2.3386555,,attraction,True
+houghton_mill,Houghton Mill,52.3309103,-0.1206233,,attraction,True
+housesteads_roman_fort,Housesteads Roman Fort,55.0133115,-2.3302691,https://www.nationaltrust.org.uk/hadrians-wall/,attraction,True
+hughenden_manor,Hughenden Manor,51.6502966,-0.7566829,,attraction,True
+hughenden_park,Hughenden Park,51.6494289,-0.7532201,,park,True
+ickworth_house,Ickworth House,52.2202815,0.6568784,https://www.nationaltrust.org.uk/visit/suffolk/ickworth-estate,attraction,True
+ightham_mote,Ightham Mote,51.2584847,0.2696516,,attraction,True
+ilam_hall_bunkhouse,Ilam Hall Bunkhouse,53.0527961,-1.8059868,,bunkhouse,True
+jack_scout,Jack Scout,54.1563678,-2.8282865,,nature_reserve,True
+john_lennon_s_childhood_home,John Lennon's Childhood Home,53.3772587,-2.8813612,,attraction,True
+kedleston_hall,Kedleston Hall,52.9591593,-1.5359107,https://www.nationaltrust.org.uk/kedleston-hall,attraction,True
+kedleston_park,Kedleston Park,52.9606031,-1.535801,,park,True
+killerton_house,Killerton House,50.7914686,-3.457732,https://www.nationaltrust.org.uk/killerton/,attraction,True
+killerton_park,Killerton Park,50.7943416,-3.4611897,,attraction,True
+kinder_scout_national_nature_reserve,Kinder Scout National Nature Reserve,53.3853522,-1.8806509,,nature_reserve,True
+king_alfred_s_tower,King Alfred's Tower,51.1148701,-2.3650256,,attraction,True
+kingston_lacy,Kingston Lacy,50.8109247,-2.0317657,https://www.nationaltrust.org.uk/kingston-lacy/,manor,True
+kingston_lacy_estate,Kingston Lacy Estate,50.8104402,-2.0287571,,park,True
+knightshayes,Knightshayes,50.926407,-3.4807333,,building,True
+knightshayes_court,Knightshayes Court,50.9268584,-3.4810207,,attraction,True
+knole_house,Knole House,51.2663376,0.2053765,https://www.nationaltrust.org.uk/knole/,attraction,True
+lamb_house,Lamb House,50.9499191,0.7327185,https://www.nationaltrust.org.uk/visit/sussex/lamb-house,attraction,True
+lambert_s_castle,Lambert's Castle,50.7849882,-2.8955144,https://www.nationaltrust.org.uk/visit/dorset/lamberts-and-coneys-castle,,True
+lambert_s_meadow,Lambert's meadow,54.1704861,-2.8123862,,nature_reserve,True
+langdon_hill,Langdon Hill,50.7330606,-2.8354498,https://www.nationaltrust.org.uk/article-1356403764234/,attraction,True
+lanhydrock_house,Lanhydrock House,50.4408468,-4.6976468,https://www.nationaltrust.org.uk/visit/cornwall/lanhydrock,attraction,True
+lantern_pike_circular_ethel_high_peak,"Lantern Pike Circular (Ethel), High Peak",53.3883072,-1.9584887,,yes,True
+lee_hills,Lee Hills,52.8402574,-2.6690544,,nature_reserve,True
+leith_hill_tower,Leith Hill Tower,51.1763592,-0.3713068,https://www.nationaltrust.org.uk/visit/surrey/leith-hill,attraction,True
+levant_mine,Levant Mine,50.1526677,-5.6834046,,mine,True
+levant_mine_and_beam_engine,Levant Mine and Beam Engine,50.1521099,-5.6854128,https://www.nationaltrust.org.uk/levant-mine-and-beam-engine,museum,True
+little_moreton_hall,Little Moreton Hall,53.1271185,-2.251786,,attraction,True
+lode_water_mill,Lode water mill,52.2403306,0.2399304,,attraction,True
+longshaw,Longshaw,53.3156446,-1.6045878,https://www.nationaltrust.org.uk/visit/peak-district-derbyshire/longshaw-burbage-and-the-eastern-moors,,True
+longshaw_estate,Longshaw Estate,53.3112416,-1.612692,,nature_reserve,True
+lost_lad_and_back_tor_ethels_high_peak,"Lost Lad and Back Tor (Ethels), High Peak",53.403979,-1.7194662,,yes,True
+lyme_hall,Lyme Hall,53.3381056,-2.054672,https://historicengland.org.uk/listing/the-list/list-entry/1231685,attraction,True
+lyme_park,Lyme Park,53.339287,-2.057348,https://www.nationaltrust.org.uk/lyme-park/,park,True
+lyveden,Lyveden,52.4594321,-0.5549827,,attraction,True
+maidenhead_and_cookham_commons,Maidenhead and Cookham Commons,51.5453838,-0.7414999,https://www.nationaltrust.org.uk/maidenhead-and-cookham-commons,attraction,True
+margery_hill_and_high_stones_ethels_high_peak,"Margery Hill and High Stones (Ethels), High Peak",53.4434958,-1.7324708,,yes,True
+marquess_urn,Marquess Urn,52.0293107,-1.013166,,attraction,True
+marsden_moor_estate_exhibition,Marsden Moor Estate Exhibition,53.6030796,-1.9290128,https://www.nationaltrust.org.uk/visit/yorkshire/marsden-moor,museum,True
+melford_hall,Melford Hall,52.0835868,0.7217936,https://www.nationaltrust.org.uk/visit/suffolk/melford-hall,,True
+mompesson_house,Mompesson House,51.0668156,-1.7982826,https://www.nationaltrust.org.uk/mompesson-house/,attraction,True
+monk_s_house,Monk's House,50.8386941,0.0165605,https://www.nationaltrust.org.uk/monks-house/,attraction,True
+monkey_bar,Monkey Bar,50.0721388,-5.2948242,,fitness_station,True
+montacute_house,Montacute House,50.9517225,-2.7140021,https://www.nationaltrust.org.uk/montacute-house/,manor,True
+morven_park,Morven Park,51.702075,-0.172285,https://www.nationaltrust.org.uk/morven-park,park,True
+moseley_old_hall,Moseley Old Hall,52.6374482,-2.1023726,https://www.nationaltrust.org.uk/visit/shropshire-staffordshire/moseley-old-hall,attraction,True
+mottisfont_abbey,Mottisfont Abbey,51.0410416,-1.5348934,,attraction,True
+mount_famine_south_head_and_brown_knoll_ethels_high_peak,"Mount Famine, South Head and Brown Knoll (Ethels), High Peak",53.3689844,-1.9022874,,yes,True
+mr_straw_s_house,Mr Straw's House,53.3151713,-1.1154461,https://www.nationaltrust.org.uk/visit/nottinghamshire-lincolnshire/mr-straws-house,museum,True
+muse_of_pastoral_poetry,Muse of Pastoral Poetry,52.0374264,-1.0138493,,folly,True
+nt_nymans_gardens,NT Nymans Gardens,51.0503264,-0.1964953,https://www.nationaltrust.org.uk/visit/sussex/nymans,attraction,True
+national_trust,National Trust,52.0056655,-1.8629729,https://www.nationaltrust.org.uk/snowshill-manor,yes,True
+national_trust,National Trust,55.581571,-1.653711,https://www.nationaltrust.org.uk/,,True
+national_trust_claremont_landscape_gardens,National Trust - Claremont Landscape Gardens,51.3562751,-0.3782793,,attraction,True
+national_trust_purbeck,National Trust - Purbeck,50.596304,-2.0131087,,nature_reserve,True
+national_trust_winkworth_arboretum,National Trust - Winkworth Arboretum,51.1644055,-0.5808767,https://www.nationaltrust.org.uk/winkworth-arboretum,attraction,True
+national_trust_scotney_castle_estate,National Trust Scotney Castle Estate,51.0931676,0.4104817,,park,True
+national_trust_standen_house_and_garden,National Trust Standen House and Garden,51.1029027,-0.0164443,,attraction,True
+national_trust_stoneywell,National Trust Stoneywell,52.7016408,-1.2628833,,attraction,True
+national_trust_white_cliffs_of_dover,National Trust White Cliffs of Dover,51.1315733,1.3374504,,attraction,True
+nether_alderley_mill,Nether Alderley Mill,53.2829011,-2.2362988,,watermill,True
+new_house_farm_national_nature_reserve,New House Farm National Nature Reserve,54.0742381,-2.1055122,,nature_reserve,True
+newark_park,Newark Park,51.636372,-2.3176932,https://www.nationaltrust.org.uk/newark-park/,attraction,True
+newtimber_hill,Newtimber Hill,50.895982,-0.1892542,,nature_reserve,True
+north_town_moor,North Town Moor,51.5328471,-0.7194514,,park,True
+nuffield_place_national_trust,Nuffield Place (National Trust),51.5851844,-1.0210451,https://www.nationaltrust.org.uk/nuffield-place,attraction,True
+nunnington_hall,Nunnington Hall,54.2068382,-0.973738,,attraction,True
+nymans_gardens,Nymans Gardens,51.0507003,-0.197702,,attraction,True
+old_market_cross,Old Market Cross,51.8810658,-5.2655921,,memorial,True
+old_school_house,Old School House,54.3587056,-1.0439346,,attraction,True
+old_soar_manor,Old Soar Manor,51.2630761,0.3199716,https://www.nationaltrust.org.uk/old-soar-manor/,attraction,True
+orford_ness_national_nature_reserve_national_trust,Orford Ness National Nature Reserve (National Trust),52.0863637,1.5622296,https://www.nationaltrust.org.uk/orford-ness/,attraction,True
+ormesby_hall,Ormesby Hall,54.5432308,-1.182584,https://www.nationaltrust.org.uk/visit/north-east/ormesby-hall,attraction,True
+osterley_house,Osterley House,51.4893882,-0.3519712,,attraction,True
+osterley_park,Osterley Park,51.4894378,-0.3509349,,park,True
+outward_hound_nw_hants,"Outward Hound, NW Hants",51.3624193,-1.3688219,,yes,True
+overbeck_s_museum_and_gardens,Overbeck's Museum and Gardens,50.2227885,-3.7842955,https://www.nationaltrust.org.uk/overbecks/,attraction,True
+oxburgh_hall,Oxburgh Hall,52.5810295,0.5704259,https://www.nationaltrust.org.uk/oxburghhall/,attraction,True
+packwood_house,Packwood House,52.3479422,-1.7465873,,attraction,True
+palladian_bridge,Palladian Bridge,52.0289985,-1.0102176,,folly,True
+park_pay,Park & Pay,52.8195531,1.2335491,https://www.nationaltrust.org.uk/outdoors,,True
+paycocke_s,Paycocke's,51.870487,0.6827302,,building,True
+paycocke_s_house_and_garden,Paycocke's House and Garden,51.8700717,0.6830444,https://www.nationaltrust.org.uk/paycockes-house-and-garden,attraction,True
+pebble_alcove,Pebble Alcove,52.0274488,-1.0121947,,attraction,True
+peckover_house_gardens,Peckover House & Gardens,52.665151,0.1544621,https://www.nationaltrust.org.uk/peckover-house-and-garden,museum,True
+penrhyn_castle,Penrhyn Castle,53.2258386,-4.0946108,,museum,True
+penrhyn_castle_railway_museum,Penrhyn Castle Railway Museum,53.2260815,-4.0945684,,museum,True
+petworth_house,Petworth House,50.988217,-0.6109661,https://www.nationaltrust.org.uk/visit/sussex/petworth,attraction,True
+pheasant_park_basildon_park,"Pheasant Park, Basildon Park",51.500331,-1.1258519,https://nt.global.ssl.fastly.net/binaries/content/assets/website/national/regions/oxfordshire-buckinghamshire-berkshire/places/basildon-park/pdf/nat567_basildonpark_map_a4_lr.pdf,yes,True
+pilsdon_pen,Pilsdon Pen,50.8068369,-2.8337116,https://www.nationaltrust.org.uk/visit/dorset/pilsdon-pen,,True
+pinkneys_green,Pinkneys Green,51.535076,-0.7613489,,common,True
+pitstone_windmill,Pitstone Windmill,51.8317599,-0.6298901,https://www.nationaltrust.org.uk/pitstone-windmill,windmill,True
+plas_yn_rhiw,Plas yn Rhiw,52.822631,-4.6191067,https://www.nationaltrust.org.uk/plas-yn-rhiw,museum,True
+pleasure_grounds,Pleasure grounds,50.991667,-0.6117812,,park,True
+polesden_lacey,Polesden Lacey,51.2574761,-0.3734675,,attraction,True
+polesden_lacey_estate,Polesden Lacey Estate,51.2575975,-0.3717162,https://www.nationaltrust.org.uk/polesden-lacey#Facilities%20and%20access,attraction,True
+porth_y_swnt,Porth Y Swnt,52.8045946,-4.7125252,,museum,True
+powis_castle,Powis Castle,52.6499237,-3.1608778,,castle,True
+priest_s_house,Priest's House,51.0211631,-2.8151535,https://www.nationaltrust.org.uk/priests-house-muchelney/,building,True
+prior_park,Prior Park,51.3666175,-2.3445083,https://www.nationaltrust.org.uk/prior-park/,attraction,True
+pullham_rockword,Pullham rockword,51.8443779,-0.9352872,,attraction,True
+pulpit_hill_nature_reserve,Pulpit Hill Nature Reserve,51.7362645,-0.7950009,,nature_reserve,True
+quarry_bank_apprentice_house,Quarry Bank Apprentice House,53.345667,-2.2471403,,attraction,True
+quarry_bank_mill,Quarry Bank Mill,53.3436072,-2.2501842,,attraction,True
+quebec_house,Quebec House,51.2671842,0.0759591,https://www.nationaltrust.org.uk/quebec-house/,museum,True
+queen_s_temple,Queen's Temple,52.0335333,-1.0141878,,attraction,True
+ramsey_abbey_gatehouse_national_trust,Ramsey Abbey Gatehouse (National Trust),52.4483893,-0.1028016,,monument,True
+rayleigh_mount,Rayleigh Mount,51.5883164,0.6044112,,park,True
+red_house,Red House,51.4554056,0.1303699,https://www.nationaltrust.org.uk/visit/london/red-house,museum,True
+revetment_walls,Revetment Walls,53.3378092,-2.0555223,https://historicengland.org.uk/listing/the-list/list-entry/1277276,heritage,True
+rhododendron_wood,Rhododendron Wood,51.1723207,-0.3845337,https://www.nationaltrust.org.uk/leith-hill-tower-and-countryside,,True
+rievaulx_terrace,Rievaulx Terrace,54.255006,-1.1131977,,attraction,True
+riley_graves,Riley Graves,53.2839319,-1.6586592,,memorial,True
+roman_baths,Roman Baths,51.5117732,-0.1157806,,attraction,True
+rufford_old_hall,Rufford Old Hall,53.6386538,-2.8137835,,attraction,True
+runnymede,Runnymede,51.4411176,-0.5544319,https://www.nationaltrust.org.uk/runnymede/,park,True
+runnymede_and_ankerwycke,Runnymede And Ankerwycke,51.4485887,-0.567896,https://www.nationaltrust.org.uk/runnymede-and-ankerwycke,,True
+samson_the_philistine,Samson & the Philistine,52.0372147,-1.0135843,,attraction,True
+sandham_memorial_chapel,Sandham Memorial Chapel,51.3446363,-1.3361997,https://www.nationaltrust.org.uk/sandham-memorial-chapel/,,True
+sandilands_national_trust,Sandilands National Trust,53.290226,0.3021225,https://www.nationaltrust.org.uk/visit/nottinghamshire-lincolnshire/sandilands,nature_reserve,True
+sandscale_haws_nature_reserve,Sandscale Haws Nature Reserve,54.1625997,-3.2412826,https://www.nationaltrust.org.uk/sandscale-haws-national-nature-reserve,nature_reserve,True
+saxon_deities,Saxon Deities,52.0331119,-1.0121417,,attraction,True
+scotney_castle,Scotney Castle,51.0928543,0.4081705,https://www.nationaltrust.org.uk/scotney-castle/,castle,True
+season_s_fountain,Season's Fountain,52.0313673,-1.0141288,,attraction,True
+seaton_delaval_hall,Seaton Delaval Hall,55.0824127,-1.496829,,attraction,True
+selborne_common,Selborne Common,51.0946,-0.9507079,,common,True
+servants_house,Servants' House,50.9882903,-0.6102572,,attraction,True
+shalford_mill,Shalford Mill,51.2191189,-0.5680614,,attraction,True
+shaw_s_corner,Shaw's Corner,51.8357818,-0.2686068,https://www.nationaltrust.org.uk/visit/essex-bedfordshire-hertfordshire/shaws-corner,museum,True
+sheffield_park,Sheffield Park,50.9987747,0.0229474,https://www.nationaltrust.org.uk/sheffield-park-and-garden/,attraction,True
+sheringham_park,Sheringham Park,52.928348,1.1739934,,park,True
+shugborough_estate,Shugborough Estate,52.7946979,-2.0138748,,park,True
+shugborough_hall,Shugborough Hall,52.8000725,-2.012956,https://www.nationaltrust.org.uk/shugborough-estate,attraction,True
+shugborough_servants_quarters,Shugborough Servants' Quarters,52.7996788,-2.0137276,,museum,True
+shute_barton,Shute Barton,50.7714843,-3.0615774,https://www.nationaltrust.org.uk/visit/devon/shute-barton,manor,True
+sissinghurst_castle_and_garden,Sissinghurst Castle and Garden,51.1155469,0.5823751,https://www.nationaltrust.org.uk/visit/kent/sissinghurst-castle-garden,attraction,True
+sit_up_plank,Sit-up Plank,50.0735516,-5.2933289,,fitness_station,True
+sizergh_garden,Sizergh Garden,54.2848144,-2.7713943,,garden,True
+skittle_alley_swing,Skittle Alley & Swing,52.0271484,-1.0244748,,attraction,True
+slindon_estate,Slindon Estate,50.8933062,-0.6249027,https://www.nationaltrust.org.uk/slindon-estate,,True
+smallhythe_place,Smallhythe Place,51.038123,0.6993977,https://www.nationaltrust.org.uk/smallhythe-place/,yes,True
+snowshill_manor_and_garden,Snowshill Manor and Garden,52.0029831,-1.8615932,https://www.nationaltrust.org.uk/snowshill-manor-and-garden,attraction,True
+soane_s_glasshouse,Soane's glasshouse,52.1442804,-0.0452439,,glasshouse,True
+souter_lighthouse,Souter Lighthouse,54.970442,-1.3644471,https://www.nationaltrust.org.uk/souter-lighthouse-and-the-leas,museum,True
+southwell_workhouse,Southwell Workhouse,53.0807197,-0.9395153,,workhouse,True
+southwick_hill,Southwick Hill,50.8561792,-0.2431126,,nature_reserve,True
+speke_hall,Speke Hall,53.3368143,-2.8742305,,attraction,True
+spyway_dinosaur_footprints,Spyway Dinosaur Footprints,50.6021493,-2.0202029,https://dorset-nl.org.uk/location/spyway/,archaeological_site,True
+spyway_sea_saunter_spyway,"Spyway sea saunter, Spyway",50.5990957,-2.0055698,,yes,True
+st_cuthberts_cave,St Cuthberts Cave,55.610752,-1.9076369,,archaeological_site,True
+st_john_s_jerusalem,St John's Jerusalem,51.410442,0.2402388,,attraction,True
+st_michael_s_tower,St. Michael's Tower,51.1447094,-2.6986986,https://www.nationaltrust.org.uk/glastonbury-tor,attraction,True
+stable_ruins,Stable ruins,53.1015491,-0.1938999,,ruins,True
+stainsby_mill,Stainsby Mill,53.1830983,-1.3196599,,museum,True
+standen,Standen,51.1028931,-0.0166015,https://www.nationaltrust.org.uk/visit/sussex/standen-house-and-garden,museum,True
+stane_street,Stane Street,50.8908043,-0.6563092,,roman_road,True
+stane_street,Stane Street,50.8944025,-0.6482591,,roman_road,True
+stane_street,Stane Street,50.89735,-0.6418118,,roman_road,True
+stane_street,Stane Street,50.9001182,-0.6357398,,roman_road,True
+stane_street,Stane Street,50.9028674,-0.6297663,,roman_road,True
+statue_of_queen_caroline,Statue of Queen Caroline,52.0265328,-1.0222918,,attraction,True
+statue_of_roman_wrestlers,Statue of Roman wrestlers,52.0267439,-1.0235833,,attraction,True
+staunton_harold_church,Staunton Harold Church,52.7841056,-1.4381837,https://www.nationaltrust.org.uk/staunton-harold-church/,,True
+steam_yacht_gondola,Steam Yacht Gondola,54.3633664,-3.0663984,https://www.nationaltrust.org.uk/steam-yacht-gondola,attraction,True
+stembridge_tower_mill,Stembridge Tower Mill,51.0711428,-2.8108768,https://www.nationaltrust.org.uk/stembridge-tower-mill,,True
+stepping_beam,Stepping Beam,50.0771077,-5.2914345,,fitness_station,True
+stoke_sub_hamdon_priory,Stoke-sub-Hamdon Priory,50.9540844,-2.7512191,https://www.nationaltrust.org.uk/stoke-sub-hamdon-priory/,,True
+stoneacre,Stoneacre,51.2521578,0.5776018,https://www.nationaltrust.org.uk/stoneacre/,attraction,True
+stonehenge_landscape,Stonehenge Landscape,51.1816132,-1.819835,https://www.nationaltrust.org.uk/stonehenge-landscape,attraction,True
+stourhead_gardens,Stourhead Gardens,51.1046699,-2.3234658,https://www.nationaltrust.org.uk/stourhead/,attraction,True
+stourhead_park,Stourhead Park,51.1079404,-2.3307721,,garden,True
+stowe_landscape_gardens,Stowe Landscape Gardens,52.0310303,-1.0169684,https://www.nationaltrust.org.uk/stowe/,garden,True
+studland_bay,Studland Bay,50.6627061,-1.9486527,https://www.nationaltrust.org.uk/studland-bay,,True
+sudbury_hall,Sudbury Hall,52.8861502,-1.7652067,https://www.nationaltrust.org.uk/sudbury-hall-and-museum-of-childhood/,manor,True
+sunnycroft,Sunnycroft,52.6954421,-2.5167795,https://www.nationaltrust.org.uk/visit/shropshire-staffordshire/sunnycroft,museum,True
+sunnycroft_gardens,Sunnycroft Gardens,52.695131,-2.5162778,,attraction,True
+sutton_hoo_archeological_site,Sutton Hoo Archeological Site,52.0894263,1.3386678,,archaeological_site,True
+sutton_house,Sutton House,51.5484761,-0.0504604,https://www.nationaltrust.org.uk/sutton-house,attraction,True
+sutton_lane_meadows,Sutton Lane Meadows,51.498409,-2.0793622,https://www.nationaltrust.org.uk/visit/wiltshire/sutton-lane-meadows,nature_reserve,True
+tall_pavilion,Tall Pavilion,51.8221697,-2.4110717,,yes,True
+tattershall_castle,Tattershall Castle,53.1013685,-0.193388,https://www.nationaltrust.org.uk/tattershall-castle,museum,True
+tatton_park,Tatton Park,53.3246345,-2.379376,https://www.tattonpark.org.uk/,park,True
+terra_degli_etruschi,Terra degli Etruschi,51.8427119,-0.9327857,,attraction,True
+terrace_wall_and_steps_in_front_of_the_orangery,Terrace wall and steps in front of the Orangery,53.3380552,-2.0537326,https://historicengland.org.uk/listing/the-list/list-entry/1231934,heritage,True
+the_assembly_rooms,The Assembly Rooms,51.386257,-2.3625557,https://www.nationaltrust.org.uk/bath-assembly-rooms,attraction,True
+the_avenue,The Avenue,51.1773677,-1.8037278,,footway,True
+the_bakehouse,The Bakehouse,50.6766567,-2.0462802,,chalet,True
+the_cage,The Cage,53.3445341,-2.051911,https://historicengland.org.uk/listing/the-list/list-entry/1277283,attraction,True
+the_captain_s_quarter,The Captain's Quarter,50.1422375,-5.0136745,,chalet,True
+the_charterhouse,The Charterhouse,52.4010508,-1.494732,https://www.nationaltrust.org.uk/visit/warwickshire/coventry-charterhouse,,True
+the_children_s_country_house_at_sudbury,The Children's Country House at Sudbury,52.8859571,-1.7648149,https://www.nationaltrust.org.uk/the-childrens-country-house-at-sudbury,museum,True
+the_coombes,The Coombes,51.5423945,-1.6725336,https://www.nationaltrust.org.uk/visit/wiltshire/the-coombes-hinton-parva,nature_reserve,True
+the_courts_garden,The Courts Garden,51.3544599,-2.2010384,https://www.nationaltrust.org.uk/courts-garden/,attraction,True
+the_flashes_churt_common,"The Flashes, Churt Common",51.1516666,-0.7651971,,nature_reserve,True
+the_four_continents,The Four Continents,51.840364,-0.9283077,,attraction,True
+the_grotto,The Grotto,52.1016335,-2.1779947,,attraction,True
+the_hardmans_house,The Hardmans' House,53.3997802,-2.9736539,https://www.nationaltrust.org.uk/visit/liverpool-lancashire/the-hardmans-house,museum,True
+the_kennels,The Kennels,53.3411619,-2.0482419,https://historicengland.org.uk/listing/the-list/list-entry/1277269,heritage,True
+the_kymin,The Kymin,51.8087253,-2.686826,,park,True
+the_lieutenant_s_quarter,The Lieutenant’s Quarter,50.1423836,-5.0135055,,chalet,True
+the_major_s_quarter,The Major’s Quarter,50.14232,-5.013594,,chalet,True
+the_meat_safe,The Meat Safe,53.3385483,-2.0539521,https://historicengland.org.uk/listing/the-list/list-entry/1231929,heritage,True
+the_old_brick_works_pinkneys_green,"The Old Brick Works, Pinkneys Green",51.5389632,-0.7564123,,nature_reserve,True
+the_old_manor,The Old Manor,52.9783876,-1.8149255,https://www.nationaltrust.org.uk/old-manor,attraction,True
+the_old_rectory,The Old Rectory,51.5785944,-4.2868452,,holiday_cottage,True
+the_orangery,The Orangery,53.3383253,-2.05373,https://historicengland.org.uk/listing/the-list/list-entry/1277341,heritage,True
+the_path_of_virtue_stowe,"The Path of Virtue, Stowe",52.0280514,-1.0101561,https://nt.global.ssl.fastly.net/binaries/content/assets/website/national/regions/oxfordshire-buckinghamshire-berkshire/places/stowe-gardens/pdf/2022-bhh-map-updated-october.pdf,yes,True
+the_pheasant_house,The Pheasant House,53.3411297,-2.048961,https://historicengland.org.uk/listing/the-list/list-entry/1277275,heritage,True
+the_power_house,The Power House,51.843151,-0.9363341,,attraction,True
+the_round_house,The Round House,51.8091456,-2.6864919,,attraction,True
+the_stables,The Stables,53.3391377,-2.052714,https://historicengland.org.uk/listing/the-list/list-entry/1232013,heritage,True
+the_vyne,The Vyne,51.3068884,-1.0886087,https://www.nationaltrust.org.uk/vyne/,attraction,True
+the_vyne_estate,The Vyne Estate,51.3008219,-1.0893587,https://www.nationaltrust.org.uk/visit/hampshire/the-vyne,park,True
+the_walled_garden,The Walled Garden,52.7919194,-2.0140763,,garden,True
+the_watch_house,The Watch House,50.2205998,-4.8024432,,building,True
+the_weir,The Weir,52.0718453,-2.823618,,park,True
+the_workhouse,The Workhouse,53.0810865,-0.9393064,,building,True
+thorington_hall,Thorington Hall,51.9811254,0.9300534,,chalet,True
+tiffy_s,Tiffy's,50.1421258,-5.0139132,,chalet,True
+tintinhull_garden,Tintinhull Garden,50.9750154,-2.7107851,,garden,True
+townend,Townend,54.4124568,-2.9150505,https://www.nationaltrust.org.uk/townend,attraction,True
+treasurer_s_house,Treasurer's House,50.9686985,-2.7679629,https://www.nationaltrust.org.uk/treasurers-house-martock/,,True
+treasurer_s_house,Treasurer's House,53.9629726,-1.08076,https://www.nationaltrust.org.uk/treasurers-house-york,attraction,True
+treasurer_s_house_garden,Treasurer's House Garden,53.962844,-1.0810397,,garden,True
+tredegar_house,Tredegar House,51.5615226,-3.0280775,,attraction,True
+tredegar_house_museum,Tredegar House Museum,51.5613372,-3.0280302,https://www.nationaltrust.org.uk/tredegar-house,museum,True
+trelissick_garden,Trelissick Garden,50.2159417,-5.0322296,,garden,True
+trengwainton_gardens,Trengwainton Gardens,50.1267275,-5.5717548,https://www.nationaltrust.org.uk/visit/cornwall/trengwainton-garden,attraction,True
+trerice,Trerice,50.386445,-5.0388768,https://www.nationaltrust.org.uk/trerice,attraction,True
+tudor_merchant_s_house,Tudor Merchant's House,51.6716935,-4.6980275,https://www.nationaltrust.org.uk/tudor-merchants-house,museum,True
+tyntesfield,Tyntesfield,51.437635,-2.7079606,https://www.nationaltrust.org.uk/tyntesfield,park,True
+t_mawr_wybrnant_museum,Tŷ Mawr Wybrnant Museum,53.0547334,-3.8365895,https://www.nationaltrust.org.uk/ty-mawr-wybrnant,museum,True
+uppark_house,Uppark House,50.9524396,-0.8911576,https://www.nationaltrust.org.uk/uppark/,attraction,True
+upton_house,Upton House,52.1083651,-1.4614335,https://www.nationaltrust.org.uk/uptonhouse,attraction,True
+venus_and_adonis,Venus and Adonis,51.842841,-0.9348587,,attraction,True
+waddesdon_manor,Waddesdon Manor,51.8425006,-0.9375014,https://waddesdon.org.uk/,attraction,True
+walled_garden,Walled Garden,51.041441,-1.5386745,,garden,True
+walled_garden,Walled Garden,51.0442956,-1.1510879,,garden,True
+walled_garden,Walled Garden,52.2699147,-2.718941,,garden,True
+walled_garden,Walled Garden,53.2259416,-4.0981329,,garden,True
+walled_garden_rose_garden,Walled Garden/Rose Garden,51.4215994,0.100793,,garden,True
+wallington_hall,Wallington Hall,55.152137,-1.956418,https://www.nationaltrust.org.uk/wallington,attraction,True
+washington_old_hall,Washington Old Hall,54.9027565,-1.5164912,https://www.nationaltrust.org.uk/washington-old-hall,museum,True
+waterfall_swallet,Waterfall Swallet,53.2900023,-1.7032367,,yes,True
+watermill,Watermill,51.1803261,-3.444904,https://www.nationaltrust.org.uk/visit/somerset/dunster-castle-and-watermill,building,True
+wellhead,Wellhead,53.3381216,-2.0547709,https://historicengland.org.uk/listing/the-list/list-entry/1231916,heritage,True
+wellington_monument,Wellington Monument,50.9461909,-3.2260668,,park,True
+west_wycombe_house,West Wycombe House,51.6414022,-0.8029586,,manor,True
+westbury_court_garden,Westbury Court Garden,51.8226301,-2.4100415,,attraction,True
+whipsnade_tree_cathedral,Whipsnade Tree Cathedral,51.8532101,-0.5375908,,attraction,True
+white_cliffs_of_dover,White Cliffs of Dover,51.1373278,1.36143,,attraction,True
+white_cliffs_of_dover,White Cliffs of Dover,51.1459406,1.3819748,,attraction,True
+white_mill,White Mill,50.8051063,-2.0610982,https://www.nationaltrust.org.uk/white-mill,attraction,True
+wicken_fen,Wicken Fen,52.3069619,0.2895177,,attraction,True
+wightwick_manor,Wightwick Manor,52.5836736,-2.1942419,https://www.nationaltrust.org.uk/visit/birmingham-west-midlands/wightwick-manor-and-gardens,attraction,True
+wightwick_manor_gardens,Wightwick Manor Gardens,52.5836303,-2.195204,,garden,True
+willington_dovecote,Willington Dovecote,52.1369484,-0.3845832,,attraction,True
+willington_stables,Willington Stables,52.1364127,-0.3852889,,attraction,True
+wimpole_estate,Wimpole Estate,52.1288055,-0.0496309,,park,True
+wimpole_hall,Wimpole Hall,52.1411634,-0.0497627,,castle,True
+winster_market_house,Winster Market House,53.1416201,-1.6401723,https://www.nationaltrust.org.uk/winster-market-house/,attraction,True
+winter_hill,Winter Hill,51.5675668,-0.7438811,,nature_reserve,True
+witley_millford_common,Witley & Millford Common,51.1598013,-0.6664878,https://www.nationaltrust.org.uk/witley-and-milford-commons,,True
+witley_common,Witley Common,51.1557725,-0.674183,,nature_reserve,True
+wolf_s_cove_model_village,Wolf's Cove Model Village,52.003141,-1.8609729,,attraction,True
+woolsthorpe_manor_isaac_newton_s_birthplace,Woolsthorpe Manor (Isaac Newton's Birthplace),52.809263,-0.6305808,,museum,True
+wordsworth_house,Wordsworth House,54.6638085,-3.3680587,,yes,True
+wordworth_house,Wordworth House,54.663638,-3.3680432,https://www.nationaltrust.org.uk/wordsworth-house/,attraction,True
+working_farm,Working Farm,52.7943099,-2.0145264,,museum,True
+wray_castle,Wray Castle,54.4006169,-2.9643423,https://www.nationaltrust.org.uk/wray-castle,castle,True
+yha_langdale,YHA Langdale,54.4384959,-3.0216047,,hostel,True

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Performance Tier Distribution</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 24px; color: #222; }
+h1 { margin-bottom: 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #2c3e50; color: white; position: sticky; top: 0; }
+tr:nth-child(even) { background: #f8f8f8; }
+.small { color: #666; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+<h1>Performance Tier Distribution</h1>
+<div class="small">Rows: 3</div>
+<table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Performance Tier</th>
+      <th>Districts</th>
+      <th>% of Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Low (&lt;4)</td>
+      <td>26</td>
+      <td>54.2</td>
+    </tr>
+    <tr>
+      <td>Medium (4-7)</td>
+      <td>12</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <td>High (≥7)</td>
+      <td>10</td>
+      <td>20.8</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

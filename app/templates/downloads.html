@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brownsea Reports & Downloads</title>
+  <style>
+    :root { --bg:#f7fafc; --card:#fff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --brand:#0f4c5c; --brand2:#2c7a7b; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,sans-serif; color:var(--ink); background:var(--bg); }
+    header { background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:28px 24px; }
+    main { max-width:1100px; margin:0 auto; padding:24px; }
+    a { color:#0f4c5c; }
+    header a { color:#fff; }
+    .links { display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin-top:18px; box-shadow:0 4px 12px rgba(0,0,0,.04); }
+    .section-title { margin:0 0 12px; font-size:15px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+    .item { display:grid; grid-template-columns: minmax(220px, 1fr) 2fr auto; gap:16px; align-items:start; padding:12px 0; border-top:1px dashed var(--line); }
+    .item:first-of-type { border-top:0; }
+    .name { font-weight:700; }
+    .description, .size, .release { color:var(--muted); font-size:13px; }
+    .button { display:inline-block; padding:8px 12px; border-radius:10px; background:#111827; color:#fff; text-decoration:none; white-space:nowrap; }
+    @media (max-width:760px){ .item { grid-template-columns:1fr; } .button { width:max-content; } }
+  </style>
+</head>
+<body>
+<header>
+  <h1 style="margin:0;">Reports & Downloads</h1>
+  <p style="max-width:780px; margin:8px 0 0;">Open or download the released reports, plots, app files, and audit outputs.</p>
+  <div class="links">
+    <a href="/">Back to postcode lookup</a>
+    <a href="/help">Help</a>
+    <a href="/reports/index.html">Reports index</a>
+  </div>
+</header>
+<main>
+  <div class="card release">Release source: {{ release_base }}</div>
+  {% for section in sections %}
+  <div class="card">
+    <div class="section-title">{{ section.title }}</div>
+    {% for item in section['items'] %}
+    <div class="item">
+      <div>
+        <div class="name">{{ item.name }}</div>
+        {% if item.size %}<div class="size">{{ item.size }}</div>{% endif %}
+      </div>
+      <div class="description">{{ item.description }}</div>
+      <div><a class="button" href="{{ item.url }}">Open / Download</a></div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</main>
+</body>
+</html>

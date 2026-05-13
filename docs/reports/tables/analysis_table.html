@@ -1,0 +1,3407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Strategic Analysis Table</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 24px; color: #222; }
+h1 { margin-bottom: 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #2c3e50; color: white; position: sticky; top: 0; }
+tr:nth-child(even) { background: #f8f8f8; }
+.small { color: #666; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+<h1>Strategic Analysis Table</h1>
+<div class="small">Rows: 48</div>
+<table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>District</th>
+      <th>total_journey_min</th>
+      <th>nearest_competitor_drive_min</th>
+      <th>imd_decile_mean</th>
+      <th>geo_barriers_decile</th>
+      <th>wider_barriers_decile</th>
+      <th>income_decile</th>
+      <th>avg_fsm%</th>
+      <th>pop%_most_deprived</th>
+      <th>pop%_moderately_deprived</th>
+      <th>pop%_least_deprived</th>
+      <th>Population</th>
+      <th>Authority_Name</th>
+      <th>Region_Name</th>
+      <th>Post_Town</th>
+      <th>lsoa_count</th>
+      <th>nearest_ferry_terminal</th>
+      <th>competitor_context</th>
+      <th>Visits</th>
+      <th>visits_per_1000</th>
+      <th>predicted_visit_rate</th>
+      <th>performance_gap</th>
+      <th>visits_gap_raw</th>
+      <th>visits_gap</th>
+      <th>composite_need_score</th>
+      <th>impact_score</th>
+      <th>need_tier</th>
+      <th>visit_tier</th>
+      <th>priority_zone</th>
+      <th>intervention_type</th>
+      <th>deprivation_tier</th>
+      <th>fsm_tier</th>
+      <th>visit_rate_tier</th>
+      <th>composite_need_tier</th>
+      <th>intersection_segment</th>
+      <th>performance_ratio</th>
+      <th>fragility_score</th>
+      <th>fragility_tier</th>
+      <th>fragility_alert</th>
+      <th>gap_score</th>
+      <th>need_inverse_score</th>
+      <th>population_score</th>
+      <th>accessibility_score_norm</th>
+      <th>growth_potential_score</th>
+      <th>growth_potential_tier</th>
+      <th>risk_score</th>
+      <th>risk_flags</th>
+      <th>risk_tier</th>
+      <th>safe_zone_lower_1rmse</th>
+      <th>safe_zone_upper_1rmse</th>
+      <th>safe_zone_lower_2rmse</th>
+      <th>safe_zone_upper_2rmse</th>
+      <th>safe_zone_status</th>
+      <th>needs_intervention</th>
+      <th>high_potential_flag</th>
+      <th>underperformance_confidence</th>
+      <th>sensitivity_total_journey_min_delta</th>
+      <th>sensitivity_total_journey_min_new_pred</th>
+      <th>sensitivity_total_journey_min_impact</th>
+      <th>sensitivity_geo_barriers_decile_delta</th>
+      <th>sensitivity_geo_barriers_decile_new_pred</th>
+      <th>sensitivity_geo_barriers_decile_impact</th>
+      <th>sensitivity_income_decile_delta</th>
+      <th>sensitivity_income_decile_new_pred</th>
+      <th>sensitivity_income_decile_impact</th>
+      <th>shap_narrative</th>
+      <th>shap_error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BH1</td>
+      <td>35.9</td>
+      <td>33.5</td>
+      <td>4.09</td>
+      <td>8.564735</td>
+      <td>2.670111</td>
+      <td>4.914654</td>
+      <td>26.348071</td>
+      <td>68.243923</td>
+      <td>20.068896</td>
+      <td>11.687181</td>
+      <td>51672.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>28</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Brownsea Island: 13Km]</td>
+      <td>49.0</td>
+      <td>0.948289</td>
+      <td>2.753879</td>
+      <td>1.805590</td>
+      <td>9.051711</td>
+      <td>9.051711</td>
+      <td>55.675168</td>
+      <td>66.127750</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>High FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + High FSM + Low Visit Rate</td>
+      <td>0.344347</td>
+      <td>-51.507823</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>27.081079</td>
+      <td>1.510075</td>
+      <td>72.229134</td>
+      <td>0</td>
+      <td>29.371583</td>
+      <td>Medium</td>
+      <td>40</td>
+      <td>HighNeedLowVisits;ExtremeDeprivation</td>
+      <td>Medium Risk</td>
+      <td>2.003879</td>
+      <td>3.503879</td>
+      <td>1.253879</td>
+      <td>4.253879</td>
+      <td>Severe Underperformance</td>
+      <td>True</td>
+      <td>False</td>
+      <td>1.203727</td>
+      <td>-15.0</td>
+      <td>2.955883</td>
+      <td>0.202004</td>
+      <td>2.0</td>
+      <td>1.335114</td>
+      <td>-1.418765</td>
+      <td>2.0</td>
+      <td>1.596122</td>
+      <td>-1.157757</td>
+      <td>Engagement status: Below expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH10</td>
+      <td>36.1</td>
+      <td>23.3</td>
+      <td>5.36</td>
+      <td>6.409396</td>
+      <td>3.804135</td>
+      <td>5.002703</td>
+      <td>21.102021</td>
+      <td>41.742135</td>
+      <td>35.149218</td>
+      <td>23.108647</td>
+      <td>35887.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>21</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 17Km; Kingston Lacy: 17Km; White Mill: 18Km; Brownsea Island: 13Km]</td>
+      <td>103.0</td>
+      <td>2.870120</td>
+      <td>3.555327</td>
+      <td>0.685207</td>
+      <td>7.129880</td>
+      <td>7.129880</td>
+      <td>35.550101</td>
+      <td>46.274710</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.807273</td>
+      <td>13.683197</td>
+      <td>Moderate Over-performance</td>
+      <td>False</td>
+      <td>10.277051</td>
+      <td>37.111518</td>
+      <td>50.164246</td>
+      <td>0</td>
+      <td>30.097564</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.805327</td>
+      <td>4.305327</td>
+      <td>2.055327</td>
+      <td>5.055327</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.456805</td>
+      <td>-15.0</td>
+      <td>5.256760</td>
+      <td>1.701433</td>
+      <td>2.0</td>
+      <td>2.694218</td>
+      <td>-0.861109</td>
+      <td>2.0</td>
+      <td>3.134866</td>
+      <td>-0.420461</td>
+      <td>Engagement status: Below expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH11</td>
+      <td>31.8</td>
+      <td>19.1</td>
+      <td>4.05</td>
+      <td>5.240573</td>
+      <td>3.834566</td>
+      <td>4.131098</td>
+      <td>30.699497</td>
+      <td>65.480867</td>
+      <td>21.789835</td>
+      <td>12.729297</td>
+      <td>32327.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>20</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 15Km; Kingston Lacy: 15Km; White Mill: 17Km; Badbury Rings: 17Km; Brownsea Island: 13Km]</td>
+      <td>131.0</td>
+      <td>4.052340</td>
+      <td>4.240793</td>
+      <td>0.188453</td>
+      <td>5.947660</td>
+      <td>5.947660</td>
+      <td>55.046456</td>
+      <td>56.375499</td>
+      <td>High Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>High Deprivation</td>
+      <td>High FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + High FSM + Medium Visit Rate</td>
+      <td>0.955562</td>
+      <td>34.565760</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>2.826503</td>
+      <td>2.622272</td>
+      <td>45.187939</td>
+      <td>0</td>
+      <td>3.864308</td>
+      <td>Low</td>
+      <td>10</td>
+      <td>ExtremeDeprivation</td>
+      <td>Minimal Risk</td>
+      <td>3.490793</td>
+      <td>4.990793</td>
+      <td>2.740793</td>
+      <td>5.740793</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.125635</td>
+      <td>-15.0</td>
+      <td>6.579554</td>
+      <td>2.338761</td>
+      <td>2.0</td>
+      <td>3.589462</td>
+      <td>-0.651331</td>
+      <td>2.0</td>
+      <td>3.842095</td>
+      <td>-0.398698</td>
+      <td>Engagement status: In line with expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH12</td>
+      <td>29.7</td>
+      <td>25.5</td>
+      <td>5.77</td>
+      <td>6.427671</td>
+      <td>4.887989</td>
+      <td>5.065885</td>
+      <td>24.519548</td>
+      <td>39.318097</td>
+      <td>33.684603</td>
+      <td>26.997300</td>
+      <td>45549.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>27</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 22Km; Kingston Lacy: 22Km; The Bakehouse: 28Km; Brownsea Island: 9Km]</td>
+      <td>311.0</td>
+      <td>6.827812</td>
+      <td>4.161511</td>
+      <td>-2.666301</td>
+      <td>3.172188</td>
+      <td>3.172188</td>
+      <td>34.878532</td>
+      <td>33.931537</td>
+      <td>High Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>High Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + Medium FSM + Medium Visit Rate</td>
+      <td>1.640705</td>
+      <td>131.050131</td>
+      <td>Extreme Over-performance</td>
+      <td>True</td>
+      <td>-39.990418</td>
+      <td>38.299530</td>
+      <td>63.670166</td>
+      <td>0</td>
+      <td>2.761738</td>
+      <td>Low</td>
+      <td>40</td>
+      <td>UnderperformingPrediction;FragileOverperformance</td>
+      <td>Medium Risk</td>
+      <td>3.411511</td>
+      <td>4.911511</td>
+      <td>2.661511</td>
+      <td>5.661511</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>7.198225</td>
+      <td>3.036714</td>
+      <td>2.0</td>
+      <td>4.401149</td>
+      <td>0.239638</td>
+      <td>2.0</td>
+      <td>4.935364</td>
+      <td>0.773853</td>
+      <td>Engagement status: Above expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context [Less typical visitor pattern]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH13</td>
+      <td>30.4</td>
+      <td>30.8</td>
+      <td>8.12</td>
+      <td>3.736308</td>
+      <td>6.438130</td>
+      <td>8.620039</td>
+      <td>14.813333</td>
+      <td>9.105463</td>
+      <td>33.766927</td>
+      <td>57.127610</td>
+      <td>14991.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>9</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 24Km; Corfe Castle: 28Km; The Bakehouse: 30Km; Brownsea Island: 10Km]</td>
+      <td>114.0</td>
+      <td>7.604563</td>
+      <td>5.985031</td>
+      <td>-1.619532</td>
+      <td>2.395437</td>
+      <td>2.395437</td>
+      <td>10.817824</td>
+      <td>14.758789</td>
+      <td>Low Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>High Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Low FSM + High Visit Rate</td>
+      <td>1.270597</td>
+      <td>4.491959</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>-24.290495</td>
+      <td>80.863161</td>
+      <td>20.955004</td>
+      <td>0</td>
+      <td>21.042689</td>
+      <td>Low</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>5.235031</td>
+      <td>6.735031</td>
+      <td>4.485031</td>
+      <td>7.485031</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>9.373507</td>
+      <td>3.388476</td>
+      <td>2.0</td>
+      <td>5.902255</td>
+      <td>-0.082776</td>
+      <td>2.0</td>
+      <td>6.383180</td>
+      <td>0.398149</td>
+      <td>Engagement status: Above expected | Main barriers: local income context, drive time to nearest NT site [Kingston Lacy Estate: 24Km; Corfe Castle: 28Km; The Bakehouse: 30Km; Brownsea Island: 10Km] | Positive factors: Brownsea journey time, deprivation level</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH14</td>
+      <td>26.1</td>
+      <td>26.4</td>
+      <td>7.52</td>
+      <td>6.097614</td>
+      <td>5.643628</td>
+      <td>6.867381</td>
+      <td>13.340000</td>
+      <td>9.894252</td>
+      <td>41.027657</td>
+      <td>49.078091</td>
+      <td>36880.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>20</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 21Km; Kingston Lacy: 21Km; The Bakehouse: 27Km; Brownsea Island: 7Km]</td>
+      <td>358.0</td>
+      <td>9.707158</td>
+      <td>5.894002</td>
+      <td>-3.813156</td>
+      <td>0.292842</td>
+      <td>0.292842</td>
+      <td>10.927976</td>
+      <td>8.528108</td>
+      <td>Low Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>High Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Low FSM + High Visit Rate</td>
+      <td>1.646955</td>
+      <td>35.443079</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>-57.191489</td>
+      <td>80.668302</td>
+      <td>51.552300</td>
+      <td>0</td>
+      <td>10.785479</td>
+      <td>Low</td>
+      <td>25</td>
+      <td>UnderperformingPrediction</td>
+      <td>Low Risk</td>
+      <td>5.144002</td>
+      <td>6.644002</td>
+      <td>4.394002</td>
+      <td>7.394002</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>8.909890</td>
+      <td>3.015887</td>
+      <td>2.0</td>
+      <td>5.817240</td>
+      <td>-0.076763</td>
+      <td>2.0</td>
+      <td>6.405343</td>
+      <td>0.511341</td>
+      <td>Engagement status: Above expected | Main barriers: geographic access barriers, drive time to nearest NT site [Kingston Lacy Estate: 21Km; Kingston Lacy: 21Km; The Bakehouse: 27Km; Brownsea Island: 7Km] | Positive factors: Brownsea journey time, deprivation level</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH15</td>
+      <td>19.1</td>
+      <td>18.8</td>
+      <td>5.76</td>
+      <td>6.347534</td>
+      <td>5.754944</td>
+      <td>5.230666</td>
+      <td>24.643472</td>
+      <td>29.245561</td>
+      <td>47.950854</td>
+      <td>22.803585</td>
+      <td>47532.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>29</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 18Km; Kingston Lacy: 18Km; Brownsea Island: 4Km]</td>
+      <td>457.0</td>
+      <td>9.614575</td>
+      <td>6.000943</td>
+      <td>-3.613633</td>
+      <td>0.385425</td>
+      <td>0.385425</td>
+      <td>27.864934</td>
+      <td>20.661728</td>
+      <td>High Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>High Visit Rate</td>
+      <td>High Need</td>
+      <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
+      <td>1.602177</td>
+      <td>86.361613</td>
+      <td>Extreme Over-performance</td>
+      <td>True</td>
+      <td>-54.198945</td>
+      <td>50.706655</td>
+      <td>66.442081</td>
+      <td>0</td>
+      <td>1.451998</td>
+      <td>Low</td>
+      <td>40</td>
+      <td>UnderperformingPrediction;FragileOverperformance</td>
+      <td>Medium Risk</td>
+      <td>5.250943</td>
+      <td>6.750943</td>
+      <td>4.500943</td>
+      <td>7.500943</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>10.149179</td>
+      <td>4.148236</td>
+      <td>2.0</td>
+      <td>6.457117</td>
+      <td>0.456174</td>
+      <td>2.0</td>
+      <td>7.200106</td>
+      <td>1.199163</td>
+      <td>Engagement status: Above expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context [Less typical visitor pattern]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH16</td>
+      <td>27.3</td>
+      <td>11.5</td>
+      <td>5.51</td>
+      <td>2.601035</td>
+      <td>7.557470</td>
+      <td>5.543380</td>
+      <td>17.501971</td>
+      <td>34.297330</td>
+      <td>31.151252</td>
+      <td>34.551418</td>
+      <td>21646.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>13</td>
+      <td>Poole Quay</td>
+      <td>[White Mill: 10Km; Kingston Lacy Estate: 14Km; Kingston Lacy: 14Km; The Bakehouse: 20Km; Brownsea Island: 8Km]</td>
+      <td>195.0</td>
+      <td>9.008593</td>
+      <td>11.255023</td>
+      <td>2.246430</td>
+      <td>0.991407</td>
+      <td>0.991407</td>
+      <td>29.258722</td>
+      <td>23.455327</td>
+      <td>High Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>High Visit Rate</td>
+      <td>High Need</td>
+      <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
+      <td>0.800406</td>
+      <td>-6.898558</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>33.693008</td>
+      <td>48.241030</td>
+      <td>30.257622</td>
+      <td>0</td>
+      <td>44.301624</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>10.505023</td>
+      <td>12.005023</td>
+      <td>9.755023</td>
+      <td>12.755023</td>
+      <td>Severe Underperformance</td>
+      <td>True</td>
+      <td>False</td>
+      <td>1.497620</td>
+      <td>-15.0</td>
+      <td>12.784575</td>
+      <td>1.529552</td>
+      <td>2.0</td>
+      <td>7.924896</td>
+      <td>-3.330128</td>
+      <td>2.0</td>
+      <td>8.671094</td>
+      <td>-2.583929</td>
+      <td>Engagement status: Below expected | Main barriers: deprivation level, high deprivation | Positive factors: Brownsea journey time, geographic access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH17</td>
+      <td>26.5</td>
+      <td>15.7</td>
+      <td>6.71</td>
+      <td>4.987370</td>
+      <td>5.854965</td>
+      <td>5.999325</td>
+      <td>17.439159</td>
+      <td>27.308017</td>
+      <td>22.781997</td>
+      <td>49.909986</td>
+      <td>35550.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>23</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 13Km; Kingston Lacy: 13Km; White Mill: 14Km; The Bakehouse: 24Km; Brownsea Island: 8Km]</td>
+      <td>266.0</td>
+      <td>7.482419</td>
+      <td>6.580697</td>
+      <td>-0.901722</td>
+      <td>2.517581</td>
+      <td>2.517581</td>
+      <td>24.347360</td>
+      <td>24.595894</td>
+      <td>Medium Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Low Deprivation</td>
+      <td>Medium FSM</td>
+      <td>High Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Medium FSM + High Visit Rate</td>
+      <td>1.137025</td>
+      <td>-6.492774</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>-13.524454</td>
+      <td>56.929279</td>
+      <td>49.693174</td>
+      <td>0</td>
+      <td>25.434887</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>5.830697</td>
+      <td>7.330697</td>
+      <td>5.080697</td>
+      <td>8.080697</td>
+      <td>Moderate Overperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>9.769237</td>
+      <td>3.188540</td>
+      <td>2.0</td>
+      <td>6.119068</td>
+      <td>-0.461629</td>
+      <td>2.0</td>
+      <td>6.679713</td>
+      <td>0.099017</td>
+      <td>Engagement status: Above expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, drive time to nearest NT site [Kingston Lacy Estate: 13Km; Kingston Lacy: 13Km; White Mill: 14Km; The Bakehouse: 24Km; Brownsea Island: 8Km]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH18</td>
+      <td>31.1</td>
+      <td>16.2</td>
+      <td>8.20</td>
+      <td>3.903245</td>
+      <td>7.451278</td>
+      <td>7.764787</td>
+      <td>14.692857</td>
+      <td>21.075051</td>
+      <td>6.040568</td>
+      <td>72.884381</td>
+      <td>24650.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>16</td>
+      <td>Poole Quay</td>
+      <td>[White Mill: 11Km; Kingston Lacy Estate: 11Km; Kingston Lacy: 11Km; Badbury Rings: 14Km; The Bakehouse: 25Km; Brownsea Island: 10Km]</td>
+      <td>221.0</td>
+      <td>8.965517</td>
+      <td>7.373104</td>
+      <td>-1.592413</td>
+      <td>1.034483</td>
+      <td>1.034483</td>
+      <td>19.160393</td>
+      <td>16.515723</td>
+      <td>Medium Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>High Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Low FSM + High Visit Rate</td>
+      <td>1.215976</td>
+      <td>0.000000</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>-23.883755</td>
+      <td>66.105075</td>
+      <td>34.456730</td>
+      <td>0</td>
+      <td>18.062529</td>
+      <td>Low</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>6.623104</td>
+      <td>8.123104</td>
+      <td>5.873104</td>
+      <td>8.873104</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>10.535260</td>
+      <td>3.162156</td>
+      <td>2.0</td>
+      <td>6.685913</td>
+      <td>-0.687191</td>
+      <td>2.0</td>
+      <td>7.221865</td>
+      <td>-0.151239</td>
+      <td>Engagement status: Above expected | Main barriers: local income context | Positive factors: Brownsea journey time, deprivation level</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH19</td>
+      <td>12.5</td>
+      <td>4.4</td>
+      <td>5.75</td>
+      <td>2.370813</td>
+      <td>5.955263</td>
+      <td>5.882775</td>
+      <td>19.187981</td>
+      <td>9.465710</td>
+      <td>90.534290</td>
+      <td>0.000000</td>
+      <td>12540.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>9</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Agglestone Rock: 4Km; Studland Bay: 5Km; Spyway sea saunter, Spyway: 5Km; National Trust - Purbeck: 6Km; Spyway Dinosaur Footprints: 6Km; Brownsea Island: 9Km]</td>
+      <td>92.0</td>
+      <td>7.336523</td>
+      <td>14.003872</td>
+      <td>6.667349</td>
+      <td>2.663477</td>
+      <td>2.663477</td>
+      <td>12.382391</td>
+      <td>16.658104</td>
+      <td>Low Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>High Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
+      <td>0.523892</td>
+      <td>-39.062026</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>100.000000</td>
+      <td>78.095427</td>
+      <td>17.528900</td>
+      <td>0</td>
+      <td>100.000000</td>
+      <td>Very High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>13.253872</td>
+      <td>14.753872</td>
+      <td>12.503872</td>
+      <td>15.503872</td>
+      <td>Severe Underperformance</td>
+      <td>True</td>
+      <td>False</td>
+      <td>3.000000</td>
+      <td>-15.0</td>
+      <td>16.705930</td>
+      <td>2.702058</td>
+      <td>2.0</td>
+      <td>10.057635</td>
+      <td>-3.946237</td>
+      <td>2.0</td>
+      <td>11.086151</td>
+      <td>-2.917721</td>
+      <td>Engagement status: Below expected | Main barriers: deprivation level, wider access barriers | Positive factors: Brownsea journey time, geographic access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH2</td>
+      <td>34.6</td>
+      <td>31.2</td>
+      <td>4.71</td>
+      <td>7.787182</td>
+      <td>2.679735</td>
+      <td>4.991705</td>
+      <td>4.180000</td>
+      <td>41.620581</td>
+      <td>49.298835</td>
+      <td>9.080585</td>
+      <td>20252.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>12</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 26Km; Kingston Lacy: 26Km; The Bakehouse: 32Km; Brownsea Island: 13Km]</td>
+      <td>25.0</td>
+      <td>1.234446</td>
+      <td>3.105292</td>
+      <td>1.870846</td>
+      <td>8.765554</td>
+      <td>8.765554</td>
+      <td>30.388406</td>
+      <td>47.568547</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.397530</td>
+      <td>-44.018397</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>28.059827</td>
+      <td>46.242607</td>
+      <td>28.309034</td>
+      <td>0</td>
+      <td>38.733562</td>
+      <td>Medium</td>
+      <td>30</td>
+      <td>HighNeedLowVisits</td>
+      <td>Medium Risk</td>
+      <td>2.355292</td>
+      <td>3.855292</td>
+      <td>1.605292</td>
+      <td>4.605292</td>
+      <td>Severe Underperformance</td>
+      <td>True</td>
+      <td>False</td>
+      <td>1.247231</td>
+      <td>-15.0</td>
+      <td>3.767672</td>
+      <td>0.662379</td>
+      <td>2.0</td>
+      <td>1.824657</td>
+      <td>-1.280636</td>
+      <td>2.0</td>
+      <td>2.117698</td>
+      <td>-0.987594</td>
+      <td>Engagement status: Below expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH20</td>
+      <td>35.2</td>
+      <td>18.4</td>
+      <td>5.80</td>
+      <td>1.515860</td>
+      <td>7.516407</td>
+      <td>6.241557</td>
+      <td>17.166594</td>
+      <td>5.004102</td>
+      <td>84.187859</td>
+      <td>10.808039</td>
+      <td>29256.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>18</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Corfe Castle: 14Km; Clouds Hill: 15Km; The Bakehouse: 16Km; White Mill: 22Km; Agglestone Rock: 23Km; Brownsea Island: 28Km]</td>
+      <td>240.0</td>
+      <td>8.203445</td>
+      <td>8.866864</td>
+      <td>0.663418</td>
+      <td>1.796555</td>
+      <td>1.796555</td>
+      <td>8.652849</td>
+      <td>11.446658</td>
+      <td>Low Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>High Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
+      <td>0.925180</td>
+      <td>7.614825</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>9.950256</td>
+      <td>84.693024</td>
+      <td>40.895176</td>
+      <td>0</td>
+      <td>53.240185</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>8.116864</td>
+      <td>9.616864</td>
+      <td>7.366864</td>
+      <td>10.366864</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.442279</td>
+      <td>-15.0</td>
+      <td>12.019094</td>
+      <td>3.152231</td>
+      <td>2.0</td>
+      <td>6.908933</td>
+      <td>-1.957931</td>
+      <td>2.0</td>
+      <td>7.512460</td>
+      <td>-1.354404</td>
+      <td>Engagement status: In line with expected | Main barriers: deprivation level, lower deprivation | Positive factors: Brownsea journey time, geographic access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH21</td>
+      <td>37.7</td>
+      <td>9.6</td>
+      <td>7.80</td>
+      <td>2.272900</td>
+      <td>7.372175</td>
+      <td>7.763528</td>
+      <td>12.286933</td>
+      <td>12.131844</td>
+      <td>25.333035</td>
+      <td>62.535121</td>
+      <td>71539.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>45</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 7Km; Kingston Lacy: 7Km; Badbury Rings: 9Km; White Mill: 9Km; The Bakehouse: 37Km; Brownsea Island: 17Km]</td>
+      <td>642.0</td>
+      <td>8.974126</td>
+      <td>6.208685</td>
+      <td>-2.765441</td>
+      <td>1.025874</td>
+      <td>1.025874</td>
+      <td>12.178371</td>
+      <td>11.602482</td>
+      <td>Low Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>High Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Low FSM + High Visit Rate</td>
+      <td>1.445415</td>
+      <td>18.868719</td>
+      <td>Moderate Over-performance</td>
+      <td>False</td>
+      <td>-41.477380</td>
+      <td>78.456341</td>
+      <td>100.000000</td>
+      <td>0</td>
+      <td>38.102243</td>
+      <td>Medium</td>
+      <td>25</td>
+      <td>UnderperformingPrediction</td>
+      <td>Low Risk</td>
+      <td>5.458685</td>
+      <td>6.958685</td>
+      <td>4.708685</td>
+      <td>7.708685</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>10.723610</td>
+      <td>4.514925</td>
+      <td>2.0</td>
+      <td>6.620073</td>
+      <td>0.411389</td>
+      <td>2.0</td>
+      <td>7.209603</td>
+      <td>1.000918</td>
+      <td>Engagement status: Above expected | Main barriers: local income context | Positive factors: Brownsea journey time, geographic access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH22</td>
+      <td>40.3</td>
+      <td>16.5</td>
+      <td>7.36</td>
+      <td>2.847282</td>
+      <td>6.311485</td>
+      <td>7.467918</td>
+      <td>20.639392</td>
+      <td>10.679771</td>
+      <td>41.154428</td>
+      <td>48.165801</td>
+      <td>30422.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>20</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 15Km; Kingston Lacy: 15Km; Badbury Rings: 17Km; White Mill: 17Km; Brownsea Island: 21Km]</td>
+      <td>217.0</td>
+      <td>7.132996</td>
+      <td>5.033281</td>
+      <td>-2.099715</td>
+      <td>2.867004</td>
+      <td>2.867004</td>
+      <td>13.667657</td>
+      <td>18.168373</td>
+      <td>Low Need</td>
+      <td>High Visit Rate</td>
+      <td>Maintain</td>
+      <td>Model District</td>
+      <td>Low Deprivation</td>
+      <td>Medium FSM</td>
+      <td>High Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Medium FSM + High Visit Rate</td>
+      <td>1.417166</td>
+      <td>16.545586</td>
+      <td>Moderate Over-performance</td>
+      <td>False</td>
+      <td>-31.492506</td>
+      <td>75.821778</td>
+      <td>42.525056</td>
+      <td>0</td>
+      <td>21.570922</td>
+      <td>Low</td>
+      <td>25</td>
+      <td>UnderperformingPrediction</td>
+      <td>Low Risk</td>
+      <td>4.283281</td>
+      <td>5.783281</td>
+      <td>3.533281</td>
+      <td>6.533281</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>8.901658</td>
+      <td>3.868377</td>
+      <td>2.0</td>
+      <td>5.243997</td>
+      <td>0.210716</td>
+      <td>2.0</td>
+      <td>5.702289</td>
+      <td>0.669009</td>
+      <td>Engagement status: Above expected | Main barriers: local income context | Positive factors: Brownsea journey time, geographic access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH23</td>
+      <td>52.1</td>
+      <td>36.7</td>
+      <td>7.05</td>
+      <td>3.602276</td>
+      <td>5.351632</td>
+      <td>6.719471</td>
+      <td>18.529569</td>
+      <td>17.950836</td>
+      <td>39.245358</td>
+      <td>42.803806</td>
+      <td>60532.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>38</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 28Km; Kingston Lacy: 28Km; The Bakehouse: 52Km; Brownsea Island: 24Km]</td>
+      <td>266.0</td>
+      <td>4.394370</td>
+      <td>2.771285</td>
+      <td>-1.623085</td>
+      <td>5.605630</td>
+      <td>5.605630</td>
+      <td>18.124456</td>
+      <td>29.504009</td>
+      <td>Medium Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Low Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Medium FSM + Medium Visit Rate</td>
+      <td>1.585679</td>
+      <td>30.403849</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>-24.343782</td>
+      <td>67.937657</td>
+      <td>84.613987</td>
+      <td>0</td>
+      <td>37.658340</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.021285</td>
+      <td>3.521285</td>
+      <td>1.271285</td>
+      <td>4.271285</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>5.301656</td>
+      <td>2.530371</td>
+      <td>2.0</td>
+      <td>2.915538</td>
+      <td>0.144253</td>
+      <td>2.0</td>
+      <td>3.189537</td>
+      <td>0.418252</td>
+      <td>Engagement status: Above expected | Main barriers: drive time to nearest NT site [Kingston Lacy Estate: 28Km; Kingston Lacy: 28Km; The Bakehouse: 52Km; Brownsea Island: 24Km], wider access barriers | Positive factors: geographic access barriers, deprivation level</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH24</td>
+      <td>50.3</td>
+      <td>25.9</td>
+      <td>7.56</td>
+      <td>2.225542</td>
+      <td>7.904984</td>
+      <td>7.319738</td>
+      <td>15.661577</td>
+      <td>0.000000</td>
+      <td>50.581147</td>
+      <td>49.418853</td>
+      <td>28048.0</td>
+      <td>New Forest</td>
+      <td>South East</td>
+      <td>Unknown</td>
+      <td>17</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Badbury Rings: 27Km; White Mill: 27Km; Foxbury: 28Km; Brownsea Island: 30Km]</td>
+      <td>115.0</td>
+      <td>4.100114</td>
+      <td>5.147505</td>
+      <td>1.047391</td>
+      <td>5.899886</td>
+      <td>5.899886</td>
+      <td>4.698473</td>
+      <td>20.988589</td>
+      <td>Low Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Low Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Medium FSM + Medium Visit Rate</td>
+      <td>0.796525</td>
+      <td>-34.495039</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>15.709254</td>
+      <td>91.688355</td>
+      <td>39.206587</td>
+      <td>0</td>
+      <td>60.342166</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>4.397505</td>
+      <td>5.897505</td>
+      <td>3.647505</td>
+      <td>6.647505</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.698260</td>
+      <td>-15.0</td>
+      <td>7.224721</td>
+      <td>2.077216</td>
+      <td>2.0</td>
+      <td>3.873804</td>
+      <td>-1.273701</td>
+      <td>2.0</td>
+      <td>4.272551</td>
+      <td>-0.874954</td>
+      <td>Engagement status: Below expected | Main barriers: local income context, drive time to nearest NT site [Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Badbury Rings: 27Km; White Mill: 27Km; Foxbury: 28Km; Brownsea Island: 30Km] | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH25</td>
+      <td>60.9</td>
+      <td>29.8</td>
+      <td>7.22</td>
+      <td>3.586370</td>
+      <td>8.587665</td>
+      <td>7.187391</td>
+      <td>18.773718</td>
+      <td>15.579563</td>
+      <td>31.166525</td>
+      <td>53.253912</td>
+      <td>27029.0</td>
+      <td>New Forest</td>
+      <td>South East</td>
+      <td>Unknown</td>
+      <td>17</td>
+      <td>Poole Quay</td>
+      <td>[Foxbury: 32Km; Blackhill Common: 33Km; Kingston Lacy Estate: 41Km; Brownsea Island: 31Km]</td>
+      <td>75.0</td>
+      <td>2.774797</td>
+      <td>3.599001</td>
+      <td>0.824203</td>
+      <td>7.225203</td>
+      <td>7.225203</td>
+      <td>16.537809</td>
+      <td>33.252074</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Low Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.770991</td>
+      <td>-36.594875</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>12.361785</td>
+      <td>70.744451</td>
+      <td>37.782189</td>
+      <td>0</td>
+      <td>45.787286</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.849001</td>
+      <td>4.349001</td>
+      <td>2.099001</td>
+      <td>5.099001</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.549469</td>
+      <td>-15.0</td>
+      <td>4.859395</td>
+      <td>1.260394</td>
+      <td>2.0</td>
+      <td>2.412976</td>
+      <td>-1.186025</td>
+      <td>2.0</td>
+      <td>2.679022</td>
+      <td>-0.919979</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, drive time to nearest NT site [Foxbury: 32Km; Blackhill Common: 33Km; Kingston Lacy Estate: 41Km; Brownsea Island: 31Km] | Positive factors: wider access barriers, geographic access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH3</td>
+      <td>34.4</td>
+      <td>29.8</td>
+      <td>6.38</td>
+      <td>7.565952</td>
+      <td>3.392349</td>
+      <td>6.262400</td>
+      <td>14.270000</td>
+      <td>15.216711</td>
+      <td>42.168675</td>
+      <td>42.614614</td>
+      <td>12782.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>7</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 20Km; Kingston Lacy: 20Km; The Bakehouse: 32Km; Brownsea Island: 13Km]</td>
+      <td>32.0</td>
+      <td>2.503521</td>
+      <td>3.682445</td>
+      <td>1.178924</td>
+      <td>7.496479</td>
+      <td>7.496479</td>
+      <td>14.932698</td>
+      <td>32.942327</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.679853</td>
+      <td>-44.089944</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>17.682055</td>
+      <td>73.583909</td>
+      <td>17.867177</td>
+      <td>0</td>
+      <td>43.400727</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.932445</td>
+      <td>4.432445</td>
+      <td>2.182445</td>
+      <td>5.182445</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.785950</td>
+      <td>-15.0</td>
+      <td>4.562060</td>
+      <td>0.879615</td>
+      <td>2.0</td>
+      <td>2.405059</td>
+      <td>-1.277386</td>
+      <td>2.0</td>
+      <td>2.676839</td>
+      <td>-1.005606</td>
+      <td>Engagement status: Below expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, deprivation level</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH31</td>
+      <td>51.3</td>
+      <td>23.5</td>
+      <td>7.66</td>
+      <td>1.651787</td>
+      <td>8.066234</td>
+      <td>7.874873</td>
+      <td>9.004156</td>
+      <td>19.313006</td>
+      <td>12.175125</td>
+      <td>68.511870</td>
+      <td>18661.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>12</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 19Km; Kingston Lacy: 19Km; Badbury Rings: 21Km; White Mill: 21Km; Fontmell and Melbury Downs SAC: 29Km; Brownsea Island: 29Km]</td>
+      <td>109.0</td>
+      <td>5.841059</td>
+      <td>5.201508</td>
+      <td>-0.639550</td>
+      <td>4.158941</td>
+      <td>4.158941</td>
+      <td>16.220351</td>
+      <td>23.831069</td>
+      <td>Medium Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Low FSM + Medium Visit Rate</td>
+      <td>1.122955</td>
+      <td>-7.649917</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>-9.592276</td>
+      <td>71.306038</td>
+      <td>26.085072</td>
+      <td>0</td>
+      <td>27.254645</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>4.451508</td>
+      <td>5.951508</td>
+      <td>3.701508</td>
+      <td>6.701508</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>7.808414</td>
+      <td>2.606906</td>
+      <td>2.0</td>
+      <td>4.304364</td>
+      <td>-0.897144</td>
+      <td>2.0</td>
+      <td>4.714085</td>
+      <td>-0.487424</td>
+      <td>Engagement status: Above expected | Main barriers: local income context, drive time to nearest NT site [Kingston Lacy Estate: 19Km; Kingston Lacy: 19Km; Badbury Rings: 21Km; White Mill: 21Km; Fontmell and Melbury Downs SAC: 29Km; Brownsea Island: 29Km] | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH4</td>
+      <td>31.1</td>
+      <td>31.3</td>
+      <td>6.50</td>
+      <td>6.202721</td>
+      <td>3.702689</td>
+      <td>6.185183</td>
+      <td>0.000000</td>
+      <td>19.614417</td>
+      <td>41.517828</td>
+      <td>38.867754</td>
+      <td>15509.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>10</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 26Km; Kingston Lacy: 26Km; The Bakehouse: 32Km; Brownsea Island: 10Km]</td>
+      <td>85.0</td>
+      <td>5.480689</td>
+      <td>4.357505</td>
+      <td>-1.123183</td>
+      <td>4.519311</td>
+      <td>4.519311</td>
+      <td>13.730092</td>
+      <td>23.168999</td>
+      <td>Low Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Low FSM + Medium Visit Rate</td>
+      <td>1.257758</td>
+      <td>3.436115</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>-16.846024</td>
+      <td>75.711330</td>
+      <td>21.679084</td>
+      <td>0</td>
+      <td>23.308443</td>
+      <td>Low</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>3.607505</td>
+      <td>5.107505</td>
+      <td>2.857505</td>
+      <td>5.857505</td>
+      <td>Moderate Overperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>6.323408</td>
+      <td>1.965903</td>
+      <td>2.0</td>
+      <td>3.763354</td>
+      <td>-0.594151</td>
+      <td>2.0</td>
+      <td>4.218587</td>
+      <td>-0.138919</td>
+      <td>Engagement status: Above expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, FSM and poverty context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH5</td>
+      <td>38.1</td>
+      <td>34.5</td>
+      <td>4.04</td>
+      <td>7.900658</td>
+      <td>2.670353</td>
+      <td>4.224848</td>
+      <td>12.805000</td>
+      <td>53.676005</td>
+      <td>37.028015</td>
+      <td>9.295981</td>
+      <td>20525.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>12</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Brownsea Island: 14Km]</td>
+      <td>52.0</td>
+      <td>2.533496</td>
+      <td>2.769317</td>
+      <td>0.235821</td>
+      <td>7.466504</td>
+      <td>7.466504</td>
+      <td>41.414703</td>
+      <td>51.389805</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.914845</td>
+      <td>28.831850</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>3.536958</td>
+      <td>26.736978</td>
+      <td>28.690644</td>
+      <td>0</td>
+      <td>11.731829</td>
+      <td>Low</td>
+      <td>10</td>
+      <td>ExtremeDeprivation</td>
+      <td>Minimal Risk</td>
+      <td>2.019317</td>
+      <td>3.519317</td>
+      <td>1.269317</td>
+      <td>4.269317</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.157214</td>
+      <td>-15.0</td>
+      <td>3.638940</td>
+      <td>0.869623</td>
+      <td>2.0</td>
+      <td>1.817937</td>
+      <td>-0.951380</td>
+      <td>2.0</td>
+      <td>1.950097</td>
+      <td>-0.819220</td>
+      <td>Engagement status: In line with expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH6</td>
+      <td>42.8</td>
+      <td>36.9</td>
+      <td>6.49</td>
+      <td>6.946594</td>
+      <td>3.956116</td>
+      <td>6.279673</td>
+      <td>13.764000</td>
+      <td>20.951562</td>
+      <td>42.976338</td>
+      <td>36.072100</td>
+      <td>31401.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>19</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 34Km; Kingston Lacy: 34Km; Brownsea Island: 17Km]</td>
+      <td>130.0</td>
+      <td>4.139996</td>
+      <td>2.775385</td>
+      <td>-1.364611</td>
+      <td>5.860004</td>
+      <td>5.860004</td>
+      <td>18.795293</td>
+      <td>30.736719</td>
+      <td>Medium Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Low FSM + Medium Visit Rate</td>
+      <td>1.491684</td>
+      <td>22.673767</td>
+      <td>Moderate Over-performance</td>
+      <td>False</td>
+      <td>-20.467070</td>
+      <td>66.750939</td>
+      <td>43.893541</td>
+      <td>0</td>
+      <td>24.225041</td>
+      <td>Low</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.025385</td>
+      <td>3.525385</td>
+      <td>1.275385</td>
+      <td>4.275385</td>
+      <td>Moderate Overperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>4.560720</td>
+      <td>1.785336</td>
+      <td>2.0</td>
+      <td>2.434873</td>
+      <td>-0.340512</td>
+      <td>2.0</td>
+      <td>2.767544</td>
+      <td>-0.007840</td>
+      <td>Engagement status: Above expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, deprivation level</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH7</td>
+      <td>39.6</td>
+      <td>34.2</td>
+      <td>5.38</td>
+      <td>7.229039</td>
+      <td>4.141569</td>
+      <td>5.507753</td>
+      <td>20.432709</td>
+      <td>49.806185</td>
+      <td>22.431954</td>
+      <td>27.761861</td>
+      <td>23734.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>13</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Brownsea Island: 16Km]</td>
+      <td>60.0</td>
+      <td>2.528019</td>
+      <td>3.372060</td>
+      <td>0.844041</td>
+      <td>7.471981</td>
+      <td>7.471981</td>
+      <td>40.994142</td>
+      <td>51.111843</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.749696</td>
+      <td>5.574915</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>12.659325</td>
+      <td>27.480955</td>
+      <td>33.176309</td>
+      <td>0</td>
+      <td>19.842961</td>
+      <td>Low</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.622060</td>
+      <td>4.122060</td>
+      <td>1.872060</td>
+      <td>4.872060</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.562694</td>
+      <td>-15.0</td>
+      <td>4.214508</td>
+      <td>0.842448</td>
+      <td>2.0</td>
+      <td>2.125032</td>
+      <td>-1.247028</td>
+      <td>2.0</td>
+      <td>2.432915</td>
+      <td>-0.939145</td>
+      <td>Engagement status: Below expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH8</td>
+      <td>39.3</td>
+      <td>29.9</td>
+      <td>4.98</td>
+      <td>7.717480</td>
+      <td>3.014431</td>
+      <td>5.095464</td>
+      <td>17.386135</td>
+      <td>46.632446</td>
+      <td>44.634017</td>
+      <td>8.733537</td>
+      <td>54743.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>28</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 22Km; Kingston Lacy: 22Km; The Bakehouse: 34Km; Brownsea Island: 16Km]</td>
+      <td>88.0</td>
+      <td>1.607511</td>
+      <td>2.931331</td>
+      <td>1.323820</td>
+      <td>8.392489</td>
+      <td>8.392489</td>
+      <td>37.858553</td>
+      <td>51.678453</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.548390</td>
+      <td>-22.773758</td>
+      <td>Under-performing</td>
+      <td>False</td>
+      <td>19.855268</td>
+      <td>33.027844</td>
+      <td>76.521897</td>
+      <td>0</td>
+      <td>44.011436</td>
+      <td>Medium</td>
+      <td>30</td>
+      <td>HighNeedLowVisits</td>
+      <td>Medium Risk</td>
+      <td>2.181331</td>
+      <td>3.681331</td>
+      <td>1.431331</td>
+      <td>4.431331</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.882547</td>
+      <td>-15.0</td>
+      <td>3.458139</td>
+      <td>0.526808</td>
+      <td>2.0</td>
+      <td>1.676229</td>
+      <td>-1.255102</td>
+      <td>2.0</td>
+      <td>1.953808</td>
+      <td>-0.977523</td>
+      <td>Engagement status: Below expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BH9</td>
+      <td>37.0</td>
+      <td>24.4</td>
+      <td>6.55</td>
+      <td>7.356936</td>
+      <td>3.691682</td>
+      <td>5.736307</td>
+      <td>20.450631</td>
+      <td>17.818912</td>
+      <td>43.583854</td>
+      <td>38.597235</td>
+      <td>44840.0</td>
+      <td>Bournemouth, Christchurch and Poole</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>25</td>
+      <td>Poole Quay</td>
+      <td>[Kingston Lacy Estate: 20Km; Kingston Lacy: 20Km; White Mill: 22Km; Brownsea Island: 14Km]</td>
+      <td>154.0</td>
+      <td>3.434434</td>
+      <td>3.770183</td>
+      <td>0.335749</td>
+      <td>6.565566</td>
+      <td>6.565566</td>
+      <td>18.608427</td>
+      <td>32.722599</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Low Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.910946</td>
+      <td>-25.085180</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>5.035721</td>
+      <td>67.081507</td>
+      <td>62.679098</td>
+      <td>0</td>
+      <td>48.262806</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>3.020183</td>
+      <td>4.520183</td>
+      <td>2.270183</td>
+      <td>5.270183</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.223833</td>
+      <td>-15.0</td>
+      <td>4.996177</td>
+      <td>1.225994</td>
+      <td>2.0</td>
+      <td>2.650957</td>
+      <td>-1.119225</td>
+      <td>2.0</td>
+      <td>2.989894</td>
+      <td>-0.780288</td>
+      <td>Engagement status: In line with expected | Main barriers: geographic access barriers, wider access barriers | Positive factors: Brownsea journey time, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT1</td>
+      <td>43.1</td>
+      <td>14.2</td>
+      <td>6.59</td>
+      <td>4.935366</td>
+      <td>6.459718</td>
+      <td>6.364596</td>
+      <td>15.663508</td>
+      <td>16.989329</td>
+      <td>51.432927</td>
+      <td>31.577744</td>
+      <td>26240.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>16</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Cerne Abbas Giant: 14Km; Clouds Hill: 19Km; Eggardon Hill Fort: 23Km; Hod Hill: 35Km; The Bakehouse: 37Km; Brownsea Island: 50Km]</td>
+      <td>108.0</td>
+      <td>4.115854</td>
+      <td>3.616748</td>
+      <td>-0.499106</td>
+      <td>5.884146</td>
+      <td>5.884146</td>
+      <td>16.591583</td>
+      <td>29.266547</td>
+      <td>Medium Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Moderate Deprivation + Medium FSM + Medium Visit Rate</td>
+      <td>1.137999</td>
+      <td>32.369382</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>-7.485822</td>
+      <td>70.649325</td>
+      <td>36.679294</td>
+      <td>0</td>
+      <td>32.255213</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.866748</td>
+      <td>4.366748</td>
+      <td>2.116748</td>
+      <td>5.116748</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>6.982619</td>
+      <td>3.365871</td>
+      <td>2.0</td>
+      <td>3.704143</td>
+      <td>0.087395</td>
+      <td>2.0</td>
+      <td>4.111080</td>
+      <td>0.494332</td>
+      <td>Engagement status: Above expected | Main barriers: geographic access barriers | Positive factors: Brownsea journey time, drive time to nearest NT site [Cerne Abbas Giant: 14Km; Clouds Hill: 19Km; Eggardon Hill Fort: 23Km; Hod Hill: 35Km; The Bakehouse: 37Km; Brownsea Island: 50Km]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT10</td>
+      <td>63.8</td>
+      <td>19.8</td>
+      <td>5.52</td>
+      <td>1.057332</td>
+      <td>6.316862</td>
+      <td>6.678290</td>
+      <td>20.729824</td>
+      <td>19.770493</td>
+      <td>70.355380</td>
+      <td>9.874127</td>
+      <td>22483.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>12</td>
+      <td>Poole Quay</td>
+      <td>[Hod Hill: 14Km; Cerne Abbas Giant: 21Km; Fontmell and Melbury Downs SAC: 21Km; Stourhead Gardens: 28Km; Stourhead Park: 28Km; Brownsea Island: 45Km]</td>
+      <td>75.0</td>
+      <td>3.335854</td>
+      <td>3.158486</td>
+      <td>-0.177368</td>
+      <td>6.664146</td>
+      <td>6.664146</td>
+      <td>20.058293</td>
+      <td>34.033244</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>1.056156</td>
+      <td>22.849636</td>
+      <td>Moderate Over-performance</td>
+      <td>False</td>
+      <td>-2.660242</td>
+      <td>64.516681</td>
+      <td>31.427613</td>
+      <td>0</td>
+      <td>29.996333</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.408486</td>
+      <td>3.908486</td>
+      <td>1.658486</td>
+      <td>4.658486</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>4.740136</td>
+      <td>1.581650</td>
+      <td>2.0</td>
+      <td>2.613633</td>
+      <td>-0.544853</td>
+      <td>2.0</td>
+      <td>2.874422</td>
+      <td>-0.284064</td>
+      <td>Engagement status: In line with expected | Main barriers: Brownsea journey time, deprivation level | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT11</td>
+      <td>46.3</td>
+      <td>14.0</td>
+      <td>5.90</td>
+      <td>1.918834</td>
+      <td>7.208059</td>
+      <td>6.671149</td>
+      <td>13.365363</td>
+      <td>4.984327</td>
+      <td>90.809026</td>
+      <td>4.206647</td>
+      <td>41791.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>22</td>
+      <td>Poole Quay</td>
+      <td>[Hod Hill: 10Km; Badbury Rings: 12Km; White Mill: 15Km; Kingston Lacy: 15Km; Kingston Lacy Estate: 15Km; Brownsea Island: 27Km]</td>
+      <td>288.0</td>
+      <td>6.891436</td>
+      <td>5.252526</td>
+      <td>-1.638910</td>
+      <td>3.108564</td>
+      <td>3.108564</td>
+      <td>7.498638</td>
+      <td>14.574739</td>
+      <td>Low Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Moderate Deprivation</td>
+      <td>Low FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Low FSM + Medium Visit Rate</td>
+      <td>1.312023</td>
+      <td>52.611524</td>
+      <td>Extreme Over-performance</td>
+      <td>True</td>
+      <td>-24.581130</td>
+      <td>86.734835</td>
+      <td>58.417087</td>
+      <td>0</td>
+      <td>38.253915</td>
+      <td>Medium</td>
+      <td>15</td>
+      <td>FragileOverperformance</td>
+      <td>Low Risk</td>
+      <td>4.502526</td>
+      <td>6.002526</td>
+      <td>3.752526</td>
+      <td>6.752526</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>9.117490</td>
+      <td>3.864963</td>
+      <td>2.0</td>
+      <td>5.034722</td>
+      <td>-0.217805</td>
+      <td>2.0</td>
+      <td>5.469576</td>
+      <td>0.217050</td>
+      <td>Engagement status: Above expected | Main barriers: local income context, deprivation level | Positive factors: geographic access barriers, Brownsea journey time [Less typical visitor pattern]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT2</td>
+      <td>43.5</td>
+      <td>8.2</td>
+      <td>5.86</td>
+      <td>1.231223</td>
+      <td>6.914222</td>
+      <td>7.224527</td>
+      <td>14.942159</td>
+      <td>5.269602</td>
+      <td>90.917495</td>
+      <td>3.812903</td>
+      <td>40022.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>20</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Cerne Abbas Giant: 9Km; Clouds Hill: 20Km; Eggardon Hill Fort: 25Km; Langdon Hill: 34Km; Hod Hill: 36Km; Brownsea Island: 51Km]</td>
+      <td>188.0</td>
+      <td>4.697416</td>
+      <td>5.463927</td>
+      <td>0.766511</td>
+      <td>5.302584</td>
+      <td>5.302584</td>
+      <td>8.171369</td>
+      <td>21.627709</td>
+      <td>Low Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Moderate Deprivation</td>
+      <td>Low FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Low FSM + Medium Visit Rate</td>
+      <td>0.859714</td>
+      <td>0.000000</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>11.496486</td>
+      <td>85.544767</td>
+      <td>55.944310</td>
+      <td>0</td>
+      <td>60.398582</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>4.713927</td>
+      <td>6.213927</td>
+      <td>3.963927</td>
+      <td>6.963927</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.511007</td>
+      <td>-15.0</td>
+      <td>9.162229</td>
+      <td>3.698302</td>
+      <td>2.0</td>
+      <td>4.979584</td>
+      <td>-0.484343</td>
+      <td>2.0</td>
+      <td>5.469849</td>
+      <td>0.005921</td>
+      <td>Engagement status: Below expected | Main barriers: local income context, deprivation level | Positive factors: geographic access barriers, Brownsea journey time</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT3</td>
+      <td>48.9</td>
+      <td>20.0</td>
+      <td>5.97</td>
+      <td>2.569030</td>
+      <td>6.385742</td>
+      <td>6.305556</td>
+      <td>26.035339</td>
+      <td>22.854446</td>
+      <td>48.787047</td>
+      <td>28.358508</td>
+      <td>34956.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>19</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Cerne Abbas Giant: 22Km; Eggardon Hill Fort: 27Km; Clouds Hill: 28Km; Langdon Hill: 37Km; Golden Cap: 37Km; Brownsea Island: 59Km]</td>
+      <td>108.0</td>
+      <td>3.089598</td>
+      <td>4.337328</td>
+      <td>1.247730</td>
+      <td>6.910402</td>
+      <td>6.910402</td>
+      <td>23.808714</td>
+      <td>37.397304</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Moderate Deprivation</td>
+      <td>High FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Moderate Deprivation + High FSM + Low Visit Rate</td>
+      <td>0.712328</td>
+      <td>-17.143689</td>
+      <td>Under-performing</td>
+      <td>False</td>
+      <td>18.714032</td>
+      <td>57.882149</td>
+      <td>48.862858</td>
+      <td>0</td>
+      <td>46.879381</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>3.587328</td>
+      <td>5.087328</td>
+      <td>2.837328</td>
+      <td>5.837328</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.831820</td>
+      <td>-15.0</td>
+      <td>6.413831</td>
+      <td>2.076503</td>
+      <td>2.0</td>
+      <td>3.364868</td>
+      <td>-0.972460</td>
+      <td>2.0</td>
+      <td>3.780719</td>
+      <td>-0.556609</td>
+      <td>Engagement status: Below expected | Main barriers: FSM and poverty context, deprivation level | Positive factors: geographic access barriers, Brownsea journey time</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT4</td>
+      <td>55.1</td>
+      <td>26.3</td>
+      <td>5.04</td>
+      <td>4.074545</td>
+      <td>5.135298</td>
+      <td>5.365506</td>
+      <td>26.167742</td>
+      <td>47.623174</td>
+      <td>31.257109</td>
+      <td>21.119717</td>
+      <td>55389.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>32</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Cerne Abbas Giant: 26Km; Eggardon Hill Fort: 31Km; Clouds Hill: 31Km; Corfe Castle: 39Km; Langdon Hill: 40Km; Brownsea Island: 53Km]</td>
+      <td>81.0</td>
+      <td>1.462384</td>
+      <td>2.985852</td>
+      <td>1.523467</td>
+      <td>8.537616</td>
+      <td>8.537616</td>
+      <td>41.186545</td>
+      <td>54.443428</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>High FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + High FSM + Low Visit Rate</td>
+      <td>0.489771</td>
+      <td>-31.028604</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>22.849674</td>
+      <td>27.140593</td>
+      <td>77.424901</td>
+      <td>0</td>
+      <td>43.000576</td>
+      <td>Medium</td>
+      <td>30</td>
+      <td>HighNeedLowVisits</td>
+      <td>Medium Risk</td>
+      <td>2.235852</td>
+      <td>3.735852</td>
+      <td>1.485852</td>
+      <td>4.485852</td>
+      <td>Severe Underperformance</td>
+      <td>True</td>
+      <td>False</td>
+      <td>1.015645</td>
+      <td>-15.0</td>
+      <td>3.799223</td>
+      <td>0.813371</td>
+      <td>2.0</td>
+      <td>1.844348</td>
+      <td>-1.141503</td>
+      <td>2.0</td>
+      <td>2.168524</td>
+      <td>-0.817327</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, wider access barriers | Positive factors: local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT5</td>
+      <td>67.9</td>
+      <td>40.6</td>
+      <td>3.97</td>
+      <td>2.277811</td>
+      <td>4.040835</td>
+      <td>4.674749</td>
+      <td>30.410000</td>
+      <td>67.722564</td>
+      <td>32.277436</td>
+      <td>0.000000</td>
+      <td>13322.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>7</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Cerne Abbas Giant: 36Km; Eggardon Hill Fort: 36Km; Clouds Hill: 41Km; Corfe Castle: 47Km; Spyway Dinosaur Footprints: 54Km; Brownsea Island: 61Km]</td>
+      <td>26.0</td>
+      <td>1.951659</td>
+      <td>2.910665</td>
+      <td>0.959006</td>
+      <td>8.048341</td>
+      <td>8.048341</td>
+      <td>56.528795</td>
+      <td>63.715180</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>High Deprivation</td>
+      <td>High FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>High Deprivation + High FSM + Low Visit Rate</td>
+      <td>0.670520</td>
+      <td>-5.574915</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>14.383626</td>
+      <td>0.000000</td>
+      <td>18.622010</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>Low</td>
+      <td>40</td>
+      <td>HighNeedLowVisits;ExtremeDeprivation</td>
+      <td>Medium Risk</td>
+      <td>2.160665</td>
+      <td>3.660665</td>
+      <td>1.410665</td>
+      <td>4.410665</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.639338</td>
+      <td>-15.0</td>
+      <td>2.718685</td>
+      <td>-0.191980</td>
+      <td>2.0</td>
+      <td>1.442229</td>
+      <td>-1.468437</td>
+      <td>2.0</td>
+      <td>1.750138</td>
+      <td>-1.160527</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, wider access barriers | Positive factors: geographic access barriers, local income context</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT6</td>
+      <td>67.6</td>
+      <td>14.4</td>
+      <td>5.57</td>
+      <td>2.135175</td>
+      <td>6.249204</td>
+      <td>6.247553</td>
+      <td>18.533769</td>
+      <td>26.805494</td>
+      <td>58.984170</td>
+      <td>14.210336</td>
+      <td>24827.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>14</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Langdon Hill: 7Km; Golden Cap: 7Km; Eggardon Hill Fort: 11Km; Pilsdon Pen: 14Km; Lambert's Castle: 20Km; Brownsea Island: 77Km]</td>
+      <td>74.0</td>
+      <td>2.980626</td>
+      <td>2.449683</td>
+      <td>-0.530943</td>
+      <td>7.019374</td>
+      <td>7.019374</td>
+      <td>24.323976</td>
+      <td>38.084906</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>1.216740</td>
+      <td>41.528355</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>-7.963332</td>
+      <td>56.970644</td>
+      <td>34.704147</td>
+      <td>0</td>
+      <td>23.480982</td>
+      <td>Low</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>1.699683</td>
+      <td>3.199683</td>
+      <td>0.949683</td>
+      <td>3.949683</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>4.066081</td>
+      <td>1.616398</td>
+      <td>2.0</td>
+      <td>2.210013</td>
+      <td>-0.239670</td>
+      <td>2.0</td>
+      <td>2.502853</td>
+      <td>0.053170</td>
+      <td>Engagement status: Above expected | Main barriers: Brownsea journey time, deprivation level | Positive factors: geographic access barriers, drive time to nearest NT site [Langdon Hill: 7Km; Golden Cap: 7Km; Eggardon Hill Fort: 11Km; Pilsdon Pen: 14Km; Lambert's Castle: 20Km; Brownsea Island: 77Km]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT7</td>
+      <td>80.5</td>
+      <td>9.6</td>
+      <td>5.99</td>
+      <td>2.291220</td>
+      <td>5.878127</td>
+      <td>6.515569</td>
+      <td>21.640000</td>
+      <td>26.301685</td>
+      <td>54.338948</td>
+      <td>19.359367</td>
+      <td>7836.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>4</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Langdon Hill: 6Km; Golden Cap: 8Km; Lambert's Castle: 11Km; Shute Barton: 16Km; Pilsdon Pen: 17Km; Brownsea Island: 87Km]</td>
+      <td>12.0</td>
+      <td>1.531394</td>
+      <td>1.189703</td>
+      <td>-0.341690</td>
+      <td>8.468606</td>
+      <td>8.468606</td>
+      <td>24.903179</td>
+      <td>42.838045</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>1.287206</td>
+      <td>49.724874</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>-5.124828</td>
+      <td>55.946029</td>
+      <td>10.953466</td>
+      <td>0</td>
+      <td>15.838315</td>
+      <td>Low</td>
+      <td>15</td>
+      <td>SmallPopulation</td>
+      <td>Low Risk</td>
+      <td>0.439703</td>
+      <td>1.939703</td>
+      <td>-0.310297</td>
+      <td>2.689703</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>2.700352</td>
+      <td>1.510648</td>
+      <td>2.0</td>
+      <td>1.173037</td>
+      <td>-0.016666</td>
+      <td>2.0</td>
+      <td>1.375651</td>
+      <td>0.185947</td>
+      <td>Engagement status: Above expected | Main barriers: Brownsea journey time, wider access barriers | Positive factors: geographic access barriers, drive time to nearest NT site [Langdon Hill: 6Km; Golden Cap: 8Km; Lambert's Castle: 11Km; Shute Barton: 16Km; Pilsdon Pen: 17Km; Brownsea Island: 87Km]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT8</td>
+      <td>71.5</td>
+      <td>8.9</td>
+      <td>4.75</td>
+      <td>1.565163</td>
+      <td>7.083450</td>
+      <td>6.524173</td>
+      <td>20.868859</td>
+      <td>24.110146</td>
+      <td>75.889854</td>
+      <td>0.000000</td>
+      <td>14272.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>8</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Pilsdon Pen: 8Km; Lambert's Castle: 14Km; Langdon Hill: 17Km; Eggardon Hill Fort: 17Km; Golden Cap: 17Km; Brownsea Island: 85Km]</td>
+      <td>26.0</td>
+      <td>1.821749</td>
+      <td>2.478293</td>
+      <td>0.656544</td>
+      <td>8.178251</td>
+      <td>8.178251</td>
+      <td>23.137760</td>
+      <td>40.731185</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.735082</td>
+      <td>-14.496915</td>
+      <td>Under-performing</td>
+      <td>False</td>
+      <td>9.847148</td>
+      <td>59.069073</td>
+      <td>19.949957</td>
+      <td>0</td>
+      <td>30.838395</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>1.728293</td>
+      <td>3.228293</td>
+      <td>0.978293</td>
+      <td>3.978293</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.437696</td>
+      <td>-15.0</td>
+      <td>3.624135</td>
+      <td>1.145843</td>
+      <td>2.0</td>
+      <td>1.872641</td>
+      <td>-0.605652</td>
+      <td>2.0</td>
+      <td>2.128207</td>
+      <td>-0.350085</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, deprivation level | Positive factors: geographic access barriers, drive time to nearest NT site [Pilsdon Pen: 8Km; Lambert's Castle: 14Km; Langdon Hill: 17Km; Eggardon Hill Fort: 17Km; Golden Cap: 17Km; Brownsea Island: 85Km]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DT9</td>
+      <td>61.5</td>
+      <td>14.8</td>
+      <td>6.17</td>
+      <td>1.693538</td>
+      <td>7.749176</td>
+      <td>7.096354</td>
+      <td>13.682402</td>
+      <td>4.065888</td>
+      <td>77.330705</td>
+      <td>18.603407</td>
+      <td>35515.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>20</td>
+      <td>Sandbanks Jetty</td>
+      <td>[Cerne Abbas Giant: 16Km; Montacute House: 17Km; Stoke-sub-Hamdon Priory: 22Km; Tintinhull Garden: 22Km; Treasurer's House: 23Km; Brownsea Island: 71Km]</td>
+      <td>89.0</td>
+      <td>2.505983</td>
+      <td>3.594560</td>
+      <td>1.088576</td>
+      <td>7.494017</td>
+      <td>7.494017</td>
+      <td>6.950842</td>
+      <td>27.347639</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Moderate Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.697160</td>
+      <td>-18.907940</td>
+      <td>Under-performing</td>
+      <td>False</td>
+      <td>16.326974</td>
+      <td>87.703892</td>
+      <td>49.644250</td>
+      <td>0</td>
+      <td>62.426567</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.844560</td>
+      <td>4.344560</td>
+      <td>2.094560</td>
+      <td>5.094560</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.725718</td>
+      <td>-15.0</td>
+      <td>5.513808</td>
+      <td>1.919248</td>
+      <td>2.0</td>
+      <td>2.718660</td>
+      <td>-0.875900</td>
+      <td>2.0</td>
+      <td>3.023130</td>
+      <td>-0.571429</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP1</td>
+      <td>73.4</td>
+      <td>6.7</td>
+      <td>6.65</td>
+      <td>5.772622</td>
+      <td>9.343271</td>
+      <td>6.565228</td>
+      <td>10.316074</td>
+      <td>22.860653</td>
+      <td>33.318878</td>
+      <td>43.820468</td>
+      <td>27672.0</td>
+      <td>Wiltshire</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>17</td>
+      <td>Poole Quay</td>
+      <td>[Mompesson House: 3Km; The Avenue: 15Km; Stonehenge Landscape: 16Km; Walled Garden: 26Km; Mottisfont Abbey: 27Km; Brownsea Island: 65Km]</td>
+      <td>62.0</td>
+      <td>2.240532</td>
+      <td>2.104386</td>
+      <td>-0.136146</td>
+      <td>7.759468</td>
+      <td>7.759468</td>
+      <td>19.097280</td>
+      <td>36.646500</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Low FSM + Low Visit Rate</td>
+      <td>1.064696</td>
+      <td>-12.441020</td>
+      <td>Under-performing</td>
+      <td>False</td>
+      <td>-2.041976</td>
+      <td>66.216723</td>
+      <td>38.680999</td>
+      <td>0</td>
+      <td>34.090461</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>1.354386</td>
+      <td>2.854386</td>
+      <td>0.604386</td>
+      <td>3.604386</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>2.883807</td>
+      <td>0.779421</td>
+      <td>2.0</td>
+      <td>1.407862</td>
+      <td>-0.696524</td>
+      <td>2.0</td>
+      <td>1.568376</td>
+      <td>-0.536011</td>
+      <td>Engagement status: In line with expected | Main barriers: Brownsea journey time, geographic access barriers | Positive factors: wider access barriers, drive time to nearest NT site [Mompesson House: 3Km; The Avenue: 15Km; Stonehenge Landscape: 16Km; Walled Garden: 26Km; Mottisfont Abbey: 27Km; Brownsea Island: 65Km]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP10</td>
+      <td>93.3</td>
+      <td>21.0</td>
+      <td>6.80</td>
+      <td>4.193221</td>
+      <td>7.715828</td>
+      <td>6.207591</td>
+      <td>29.992933</td>
+      <td>27.536027</td>
+      <td>24.314328</td>
+      <td>48.149645</td>
+      <td>49477.0</td>
+      <td>Test Valley</td>
+      <td>South East</td>
+      <td>Unknown</td>
+      <td>31</td>
+      <td>Poole Quay</td>
+      <td>[Outward Hound, NW Hants: 23Km; Family Amble, NW Hants: 23Km; Sandham Memorial Chapel: 23Km; Mottisfont Abbey: 24Km; Walled Garden: 24Km; Brownsea Island: 85Km]</td>
+      <td>40.0</td>
+      <td>0.808456</td>
+      <td>0.623481</td>
+      <td>-0.184976</td>
+      <td>9.191544</td>
+      <td>9.191544</td>
+      <td>28.273099</td>
+      <td>47.365800</td>
+      <td>High Need</td>
+      <td>Low Visit Rate</td>
+      <td>Urgent Action</td>
+      <td>Crisis Intervention</td>
+      <td>Low Deprivation</td>
+      <td>High FSM</td>
+      <td>Low Visit Rate</td>
+      <td>High Need</td>
+      <td>Low Deprivation + High FSM + Low Visit Rate</td>
+      <td>1.296682</td>
+      <td>6.637172</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>-2.774352</td>
+      <td>49.984607</td>
+      <td>69.160877</td>
+      <td>0</td>
+      <td>35.914619</td>
+      <td>Medium</td>
+      <td>30</td>
+      <td>HighNeedLowVisits</td>
+      <td>Medium Risk</td>
+      <td>-0.126519</td>
+      <td>1.373481</td>
+      <td>-0.876519</td>
+      <td>2.123481</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>1.392569</td>
+      <td>0.769088</td>
+      <td>2.0</td>
+      <td>0.453001</td>
+      <td>-0.170480</td>
+      <td>2.0</td>
+      <td>0.590929</td>
+      <td>-0.032551</td>
+      <td>Engagement status: Above expected | Main barriers: Brownsea journey time, geographic access barriers | Positive factors: wider access barriers, deprivation level</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP11</td>
+      <td>96.5</td>
+      <td>17.8</td>
+      <td>6.68</td>
+      <td>2.107355</td>
+      <td>7.795345</td>
+      <td>7.195390</td>
+      <td>17.192497</td>
+      <td>12.076271</td>
+      <td>53.876802</td>
+      <td>34.046926</td>
+      <td>63248.0</td>
+      <td>Test Valley</td>
+      <td>South East</td>
+      <td>Unknown</td>
+      <td>35</td>
+      <td>Poole Quay</td>
+      <td>[Outward Hound, NW Hants: 20Km; Family Amble, NW Hants: 20Km; Sandham Memorial Chapel: 21Km; Walled Garden: 26Km; Mottisfont Abbey: 27Km; Brownsea Island: 88Km]</td>
+      <td>41.0</td>
+      <td>0.648242</td>
+      <td>0.868461</td>
+      <td>0.220219</td>
+      <td>9.351758</td>
+      <td>9.351758</td>
+      <td>13.611139</td>
+      <td>37.583072</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.746426</td>
+      <td>-13.177463</td>
+      <td>Under-performing</td>
+      <td>False</td>
+      <td>3.302953</td>
+      <td>75.921760</td>
+      <td>88.410517</td>
+      <td>0</td>
+      <td>61.787566</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>0.118461</td>
+      <td>1.618461</td>
+      <td>-0.631539</td>
+      <td>2.368461</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.146813</td>
+      <td>-15.0</td>
+      <td>1.628003</td>
+      <td>0.759542</td>
+      <td>2.0</td>
+      <td>0.517168</td>
+      <td>-0.351293</td>
+      <td>2.0</td>
+      <td>0.635341</td>
+      <td>-0.233121</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP2</td>
+      <td>73.6</td>
+      <td>3.9</td>
+      <td>6.09</td>
+      <td>3.988774</td>
+      <td>9.050543</td>
+      <td>6.170772</td>
+      <td>20.388470</td>
+      <td>17.097251</td>
+      <td>61.515524</td>
+      <td>21.387225</td>
+      <td>39907.0</td>
+      <td>Wiltshire</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>23</td>
+      <td>Poole Quay</td>
+      <td>[Mompesson House: 2Km; Stonehenge Landscape: 15Km; The Avenue: 16Km; Walled Garden: 28Km; Mottisfont Abbey: 29Km; Brownsea Island: 67Km]</td>
+      <td>71.0</td>
+      <td>1.779136</td>
+      <td>2.326587</td>
+      <td>0.547450</td>
+      <td>8.220864</td>
+      <td>8.220864</td>
+      <td>18.084617</td>
+      <td>37.321822</td>
+      <td>Medium Need</td>
+      <td>Low Visit Rate</td>
+      <td>High Priority</td>
+      <td>Targeted Support</td>
+      <td>Moderate Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
+      <td>0.764698</td>
+      <td>-11.052062</td>
+      <td>Under-performing</td>
+      <td>False</td>
+      <td>8.210912</td>
+      <td>68.008133</td>
+      <td>55.783559</td>
+      <td>0</td>
+      <td>48.281982</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>1.576587</td>
+      <td>3.076587</td>
+      <td>0.826587</td>
+      <td>3.826587</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.364967</td>
+      <td>-15.0</td>
+      <td>3.189609</td>
+      <td>0.863022</td>
+      <td>2.0</td>
+      <td>1.559532</td>
+      <td>-0.767055</td>
+      <td>2.0</td>
+      <td>1.825796</td>
+      <td>-0.500791</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, geographic access barriers | Positive factors: wider access barriers, drive time to nearest NT site [Mompesson House: 2Km; Stonehenge Landscape: 15Km; The Avenue: 16Km; Walled Garden: 28Km; Mottisfont Abbey: 29Km; Brownsea Island: 67Km]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP3</td>
+      <td>86.7</td>
+      <td>19.3</td>
+      <td>5.72</td>
+      <td>2.049932</td>
+      <td>7.904011</td>
+      <td>7.258044</td>
+      <td>13.196531</td>
+      <td>0.000000</td>
+      <td>100.000000</td>
+      <td>0.000000</td>
+      <td>22190.0</td>
+      <td>Wiltshire</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>13</td>
+      <td>Poole Quay</td>
+      <td>[Mompesson House: 17Km; Stonehenge Landscape: 19Km; The Avenue: 20Km; Cley Hill: 27Km; Fontmell and Melbury Downs SAC: 36Km; Brownsea Island: 74Km]</td>
+      <td>30.0</td>
+      <td>1.351960</td>
+      <td>1.531477</td>
+      <td>0.179516</td>
+      <td>8.648040</td>
+      <td>8.648040</td>
+      <td>3.958959</td>
+      <td>28.715390</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Moderate Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.882782</td>
+      <td>2.683206</td>
+      <td>Stable</td>
+      <td>False</td>
+      <td>2.692469</td>
+      <td>92.996562</td>
+      <td>31.018046</td>
+      <td>0</td>
+      <td>49.432828</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>0.781477</td>
+      <td>2.281477</td>
+      <td>0.031477</td>
+      <td>3.031477</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.119678</td>
+      <td>-15.0</td>
+      <td>2.259428</td>
+      <td>0.727951</td>
+      <td>2.0</td>
+      <td>0.962757</td>
+      <td>-0.568720</td>
+      <td>2.0</td>
+      <td>1.117417</td>
+      <td>-0.414060</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP4</td>
+      <td>86.7</td>
+      <td>7.8</td>
+      <td>7.12</td>
+      <td>2.189449</td>
+      <td>7.576293</td>
+      <td>7.308627</td>
+      <td>13.256057</td>
+      <td>4.883417</td>
+      <td>56.070719</td>
+      <td>39.045864</td>
+      <td>55883.0</td>
+      <td>Wiltshire</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>32</td>
+      <td>Poole Quay</td>
+      <td>[The Avenue: 5Km; Stonehenge Landscape: 5Km; Mompesson House: 13Km; Walled Garden: 30Km; Mottisfont Abbey: 31Km; Brownsea Island: 76Km]</td>
+      <td>55.0</td>
+      <td>0.984199</td>
+      <td>1.955478</td>
+      <td>0.971279</td>
+      <td>9.015801</td>
+      <td>9.015801</td>
+      <td>7.395209</td>
+      <td>32.224049</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.503304</td>
+      <td>-58.609088</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>14.567697</td>
+      <td>86.917802</td>
+      <td>78.115434</td>
+      <td>0</td>
+      <td>71.533470</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>1.205478</td>
+      <td>2.705478</td>
+      <td>0.455478</td>
+      <td>3.455478</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.647519</td>
+      <td>-15.0</td>
+      <td>2.329980</td>
+      <td>0.374502</td>
+      <td>2.0</td>
+      <td>0.985805</td>
+      <td>-0.969673</td>
+      <td>2.0</td>
+      <td>1.149013</td>
+      <td>-0.806465</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP5</td>
+      <td>71.0</td>
+      <td>16.3</td>
+      <td>6.65</td>
+      <td>1.670194</td>
+      <td>8.761107</td>
+      <td>8.074238</td>
+      <td>12.834993</td>
+      <td>4.934901</td>
+      <td>64.920911</td>
+      <td>30.144188</td>
+      <td>44317.0</td>
+      <td>Wiltshire</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>26</td>
+      <td>Poole Quay</td>
+      <td>[Mompesson House: 10Km; Blackhill Common: 23Km; Foxbury: 27Km; Mottisfont Abbey: 32Km; Walled Garden: 32Km; Brownsea Island: 51Km]</td>
+      <td>78.0</td>
+      <td>1.760047</td>
+      <td>2.891783</td>
+      <td>1.131736</td>
+      <td>8.239953</td>
+      <td>8.239953</td>
+      <td>7.304929</td>
+      <td>29.833309</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Moderate Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.608637</td>
+      <td>-29.204710</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>16.974308</td>
+      <td>87.077509</td>
+      <td>61.948028</td>
+      <td>0</td>
+      <td>67.126845</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>2.141783</td>
+      <td>3.641783</td>
+      <td>1.391783</td>
+      <td>4.391783</td>
+      <td>Moderate Underperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.754491</td>
+      <td>-15.0</td>
+      <td>3.959027</td>
+      <td>1.067243</td>
+      <td>2.0</td>
+      <td>1.947686</td>
+      <td>-0.944098</td>
+      <td>2.0</td>
+      <td>2.191278</td>
+      <td>-0.700505</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP6</td>
+      <td>58.7</td>
+      <td>25.1</td>
+      <td>6.74</td>
+      <td>1.546794</td>
+      <td>8.030612</td>
+      <td>7.505308</td>
+      <td>14.596462</td>
+      <td>11.270872</td>
+      <td>56.519274</td>
+      <td>32.209854</td>
+      <td>19404.0</td>
+      <td>New Forest</td>
+      <td>South East</td>
+      <td>Unknown</td>
+      <td>12</td>
+      <td>Poole Quay</td>
+      <td>[Mompesson House: 20Km; Blackhill Common: 21Km; Foxbury: 28Km; Kingston Lacy Estate: 30Km; Badbury Rings: 32Km; Brownsea Island: 40Km]</td>
+      <td>53.0</td>
+      <td>2.731396</td>
+      <td>4.237435</td>
+      <td>1.506039</td>
+      <td>7.268604</td>
+      <td>7.268604</td>
+      <td>12.268549</td>
+      <td>30.393797</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Moderate Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.644587</td>
+      <td>-25.023106</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>22.588274</td>
+      <td>78.296815</td>
+      <td>27.123667</td>
+      <td>0</td>
+      <td>52.770312</td>
+      <td>High</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>3.487435</td>
+      <td>4.987435</td>
+      <td>2.737435</td>
+      <td>5.737435</td>
+      <td>Severe Underperformance</td>
+      <td>True</td>
+      <td>False</td>
+      <td>1.004026</td>
+      <td>-15.0</td>
+      <td>5.843714</td>
+      <td>1.606280</td>
+      <td>2.0</td>
+      <td>2.935399</td>
+      <td>-1.302036</td>
+      <td>2.0</td>
+      <td>3.257900</td>
+      <td>-0.979534</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP7</td>
+      <td>57.9</td>
+      <td>8.5</td>
+      <td>6.08</td>
+      <td>1.987850</td>
+      <td>7.534310</td>
+      <td>7.302057</td>
+      <td>14.875522</td>
+      <td>9.132690</td>
+      <td>62.490899</td>
+      <td>28.376411</td>
+      <td>21976.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>12</td>
+      <td>Poole Quay</td>
+      <td>[Fontmell and Melbury Downs SAC: 6Km; Hod Hill: 14Km; Stourhead Gardens: 25Km; Stourhead Park: 25Km; King Alfred's Tower: 29Km; Brownsea Island: 43Km]</td>
+      <td>101.0</td>
+      <td>4.595923</td>
+      <td>3.490052</td>
+      <td>-1.105870</td>
+      <td>5.404077</td>
+      <td>5.404077</td>
+      <td>10.855540</td>
+      <td>23.811109</td>
+      <td>Low Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Moderate Deprivation</td>
+      <td>Low FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Low Need</td>
+      <td>Moderate Deprivation + Low FSM + Medium Visit Rate</td>
+      <td>1.316864</td>
+      <td>53.174552</td>
+      <td>Extreme Over-performance</td>
+      <td>True</td>
+      <td>-16.586359</td>
+      <td>80.796442</td>
+      <td>30.718909</td>
+      <td>0</td>
+      <td>29.748187</td>
+      <td>Medium</td>
+      <td>15</td>
+      <td>FragileOverperformance</td>
+      <td>Low Risk</td>
+      <td>2.740052</td>
+      <td>4.240052</td>
+      <td>1.990052</td>
+      <td>4.990052</td>
+      <td>Moderate Overperformance</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>6.359752</td>
+      <td>2.869699</td>
+      <td>2.0</td>
+      <td>3.309755</td>
+      <td>-0.180298</td>
+      <td>2.0</td>
+      <td>3.646184</td>
+      <td>0.156131</td>
+      <td>Engagement status: Above expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers [Less typical visitor pattern]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP8</td>
+      <td>70.1</td>
+      <td>17.9</td>
+      <td>6.49</td>
+      <td>2.504580</td>
+      <td>7.590203</td>
+      <td>6.797700</td>
+      <td>15.227174</td>
+      <td>27.791853</td>
+      <td>25.440135</td>
+      <td>46.768011</td>
+      <td>15393.0</td>
+      <td>Dorset</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>8</td>
+      <td>Poole Quay</td>
+      <td>[Stourhead Gardens: 13Km; Stourhead Park: 13Km; Fontmell and Melbury Downs SAC: 14Km; King Alfred's Tower: 17Km; Hod Hill: 22Km; Brownsea Island: 52Km]</td>
+      <td>71.0</td>
+      <td>4.612486</td>
+      <td>2.583244</td>
+      <td>-2.029242</td>
+      <td>5.387514</td>
+      <td>5.387514</td>
+      <td>24.022450</td>
+      <td>32.978256</td>
+      <td>Medium Need</td>
+      <td>Medium Visit Rate</td>
+      <td>Monitor</td>
+      <td>Sustain &amp; Optimize</td>
+      <td>Low Deprivation</td>
+      <td>Medium FSM</td>
+      <td>Medium Visit Rate</td>
+      <td>Medium Need</td>
+      <td>Low Deprivation + Medium FSM + Medium Visit Rate</td>
+      <td>1.785540</td>
+      <td>46.840081</td>
+      <td>Significant Over-performance</td>
+      <td>False</td>
+      <td>-30.435516</td>
+      <td>57.504048</td>
+      <td>21.516935</td>
+      <td>0</td>
+      <td>4.030973</td>
+      <td>Low</td>
+      <td>25</td>
+      <td>UnderperformingPrediction</td>
+      <td>Low Risk</td>
+      <td>1.833244</td>
+      <td>3.333244</td>
+      <td>1.083244</td>
+      <td>4.083244</td>
+      <td>Severe Overperformance</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.000000</td>
+      <td>-15.0</td>
+      <td>3.885774</td>
+      <td>1.302530</td>
+      <td>2.0</td>
+      <td>2.334412</td>
+      <td>-0.248832</td>
+      <td>2.0</td>
+      <td>2.526436</td>
+      <td>-0.056808</td>
+      <td>Engagement status: Above expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, wider access barriers</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SP9</td>
+      <td>97.1</td>
+      <td>15.1</td>
+      <td>6.53</td>
+      <td>2.307712</td>
+      <td>6.276549</td>
+      <td>7.087800</td>
+      <td>9.641635</td>
+      <td>10.233881</td>
+      <td>51.226296</td>
+      <td>38.539823</td>
+      <td>15820.0</td>
+      <td>Wiltshire</td>
+      <td>South West</td>
+      <td>Unknown</td>
+      <td>9</td>
+      <td>Poole Quay</td>
+      <td>[The Avenue: 17Km; Stonehenge Landscape: 18Km; Walled Garden: 28Km; Mottisfont Abbey: 28Km; Mompesson House: 34Km; Brownsea Island: 89Km]</td>
+      <td>10.0</td>
+      <td>0.632111</td>
+      <td>0.796079</td>
+      <td>0.163968</td>
+      <td>9.367889</td>
+      <td>9.367889</td>
+      <td>10.056207</td>
+      <td>35.143011</td>
+      <td>Low Need</td>
+      <td>Low Visit Rate</td>
+      <td>Growth Opportunity</td>
+      <td>Growth &amp; Awareness</td>
+      <td>Low Deprivation</td>
+      <td>Low FSM</td>
+      <td>Low Visit Rate</td>
+      <td>Low Need</td>
+      <td>Low Deprivation + Low FSM + Low Visit Rate</td>
+      <td>0.794031</td>
+      <td>-34.700132</td>
+      <td>Severe Under-performance</td>
+      <td>False</td>
+      <td>2.459266</td>
+      <td>82.210469</td>
+      <td>22.113812</td>
+      <td>0</td>
+      <td>39.845193</td>
+      <td>Medium</td>
+      <td>0</td>
+      <td></td>
+      <td>Minimal Risk</td>
+      <td>0.046079</td>
+      <td>1.546079</td>
+      <td>-0.703921</td>
+      <td>2.296079</td>
+      <td>Within Safe Zone</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.109312</td>
+      <td>-15.0</td>
+      <td>1.448566</td>
+      <td>0.652487</td>
+      <td>2.0</td>
+      <td>0.416566</td>
+      <td>-0.379513</td>
+      <td>2.0</td>
+      <td>0.524039</td>
+      <td>-0.272040</td>
+      <td>Engagement status: Below expected | Main barriers: Brownsea journey time, local income context | Positive factors: geographic access barriers, drive time to nearest NT site [The Avenue: 17Km; Stonehenge Landscape: 18Km; Walled Garden: 28Km; Mottisfont Abbey: 28Km; Mompesson House: 34Km; Brownsea Island: 89Km]</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

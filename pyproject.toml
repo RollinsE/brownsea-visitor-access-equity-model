@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brownsea-pipeline-pro"
+version = "1.0.1"
+description = "Brownsea Island Visitor Analysis Pipeline"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+py-modules = ["pipeline", "cli"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

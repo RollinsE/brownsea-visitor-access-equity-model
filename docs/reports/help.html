@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brownsea Help & Definitions</title>
+<style>
+:root { --bg:#f7fafc; --card:#fff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --brand:#0f4c5c; --brand2:#2c7a7b; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:Arial,sans-serif; color:var(--ink); background:var(--bg); }
+header { background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:28px 24px; }
+main { max-width:1160px; margin:0 auto; padding:24px; }
+a { color:#0f4c5c; } header a { color:#fff; }
+.links { display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin-top:18px; box-shadow:0 4px 12px rgba(0,0,0,.04); }
+h1 { margin:0; } h2 { margin:0 0 12px; font-size:18px; color:#374151; }
+p { line-height:1.5; }
+.table-grid { display:grid; grid-template-columns:repeat(2,minmax(280px,1fr)); gap:18px; align-items:start; }
+.table-card { margin-top:0; }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+th { text-align:left; color:#374151; background:#f3f4f6; }
+th, td { padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+td:first-child { width:34%; }
+.priority td:first-child { width:24%; }
+.priority td:nth-child(2) { width:27%; }
+.full-width { margin-top:18px; }
+@media (max-width:820px) { .table-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Help & Definitions</h1>
+  <p style="max-width:820px; margin:8px 0 0;">This tool estimates Brownsea Island access and engagement context from mainland visitor-origin postcodes. It is intended for planning and decision support, not live journey planning.</p>
+  <div class="links"><a href="postcode_app.html">Postcode lookup</a><a href="downloads.html">Reports & Downloads</a><a href="index.html">Reports index</a></div>
+</header>
+<main>
+  <div class="table-grid">
+    
+<section class="card table-card">
+  <h2>Access definitions</h2>
+  <table>
+    <tbody>
+      <tr><td><strong>Departure terminal</strong></td><td>The selected mainland departure point used for the Brownsea journey estimate.</td></tr>
+<tr><td><strong>Journey to departure terminal</strong></td><td>Estimated travel time from the postcode area to the selected departure terminal.</td></tr>
+<tr><td><strong>Ferry crossing time</strong></td><td>Fixed Brownsea passenger ferry crossing allowance used in the estimate.</td></tr>
+<tr><td><strong>Total Brownsea journey</strong></td><td>Journey to departure terminal plus Brownsea ferry crossing time.</td></tr>
+<tr><td><strong>Accessibility score</strong></td><td>A 0 to 100 planning score based on estimated Brownsea journey time. Higher is better.</td></tr>
+<tr><td><strong>Nearest competing NT site</strong></td><td>The nearest comparison National Trust site by estimated travel time. Brownsea is excluded from this comparison.</td></tr>
+<tr><td><strong>Brownsea journey minus nearest NT drive</strong></td><td>Difference between estimated Brownsea journey time and the nearest comparison NT site drive time. Positive values mean Brownsea takes longer.</td></tr>
+    </tbody>
+  </table>
+</section>
+    
+<section class="card table-card">
+  <h2>Accessibility score guide</h2>
+  <table>
+    <tbody>
+      <tr><td><strong>80 to 100</strong></td><td>Strong access</td></tr>
+<tr><td><strong>60 to 79</strong></td><td>Good access</td></tr>
+<tr><td><strong>40 to 59</strong></td><td>Moderate access</td></tr>
+<tr><td><strong>20 to 39</strong></td><td>Weak access</td></tr>
+<tr><td><strong>0 to 19</strong></td><td>Very weak access</td></tr>
+    </tbody>
+  </table>
+</section>
+  </div>
+
+  <div class="table-grid full-width">
+    
+<section class="card table-card">
+  <h2>Engagement and model terms</h2>
+  <table>
+    <tbody>
+      <tr><td><strong>Observed visits per 1,000</strong></td><td>Current observed Brownsea visit rate for the postcode district, shown per 1,000 residents.</td></tr>
+<tr><td><strong>Model expected visits per 1,000</strong></td><td>The visit rate the model expects for a district with similar characteristics.</td></tr>
+<tr><td><strong>Performance against expectation</strong></td><td>Difference between observed and expected visits, shown as visits per 1,000.</td></tr>
+    </tbody>
+  </table>
+</section>
+    
+<section class="card table-card">
+  <h2>Need tier definitions</h2>
+  <table>
+    <tbody>
+      <tr><td><strong>High Need</strong></td><td>Areas with severe socioeconomic challenges.</td></tr>
+<tr><td><strong>Medium Need</strong></td><td>Areas with moderate socioeconomic challenges.</td></tr>
+<tr><td><strong>Low Need</strong></td><td>Areas with relatively lower socioeconomic challenges.</td></tr>
+    </tbody>
+  </table>
+</section>
+  </div>
+
+  <div class="table-grid full-width">
+    
+<section class="card table-card">
+  <h2>Deprivation categories</h2>
+  <table>
+    <tbody>
+      <tr><td><strong>Most Deprived</strong></td><td>Districts with higher deprivation levels. These areas may face stronger access and affordability barriers.</td></tr>
+<tr><td><strong>Moderately Deprived</strong></td><td>Districts with mixed or moderate deprivation levels. These areas may need monitoring or targeted support depending on engagement.</td></tr>
+<tr><td><strong>Least Deprived</strong></td><td>Districts with lower deprivation levels. These areas generally face fewer socioeconomic barriers, though access barriers may still exist.</td></tr>
+    </tbody>
+  </table>
+</section>
+    <section class="card table-card">
+      <h2>Intervention strategy framework</h2>
+      <table><tbody><tr><td><strong>Crisis Intervention</strong></td><td>Highest</td></tr>
+<tr><td><strong>Targeted Support</strong></td><td>High</td></tr>
+<tr><td><strong>Growth &amp; Awareness</strong></td><td>Medium</td></tr>
+<tr><td><strong>Model District</strong></td><td>Benchmark</td></tr>
+<tr><td><strong>Sustain &amp; Optimise</strong></td><td>Ongoing</td></tr></tbody></table>
+    </section>
+  </div>
+
+  <section class="card full-width">
+    <h2>Priority action matrix</h2>
+    <table class="priority">
+      <thead><tr><th>Priority zone</th><th>Visit rate range</th><th>Description</th></tr></thead>
+      <tbody><tr><td><strong>Urgent Action</strong></td><td>Less than 4 visits per 1,000</td><td>High-need areas with critically low engagement.</td></tr>
+<tr><td><strong>High Priority</strong></td><td>Less than 4 visits per 1,000</td><td>Medium-need areas with low engagement.</td></tr>
+<tr><td><strong>Monitor</strong></td><td>4.0 to 6.9 visits per 1,000</td><td>Medium-need areas with moderate engagement.</td></tr>
+<tr><td><strong>Growth Opportunity</strong></td><td>Less than 4 visits per 1,000</td><td>Lower-need areas with growth potential.</td></tr>
+<tr><td><strong>Maintain</strong></td><td>7 or more visits per 1,000</td><td>Areas with good engagement meeting expectations.</td></tr></tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>

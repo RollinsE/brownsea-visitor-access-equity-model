@@ -1,0 +1,6 @@
+{
+  "best_model": "HybridEnsemble",
+  "best_mae": 0.12273028231483421,
+  "best_r2": 0.7587695306919872,
+  "models_evaluated": 9
+}

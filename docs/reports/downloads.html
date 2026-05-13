@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brownsea Reports & Downloads</title>
+<style>
+:root { --bg:#f7fafc; --card:#fff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --brand:#0f4c5c; --brand2:#2c7a7b; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:Arial,sans-serif; color:var(--ink); background:var(--bg); }
+header { background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:28px 24px; }
+main { max-width:1100px; margin:0 auto; padding:24px; }
+a { color:#0f4c5c; } header a { color:#fff; }
+.links { display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin-top:18px; box-shadow:0 4px 12px rgba(0,0,0,.04); }
+.item { display:grid; grid-template-columns:minmax(220px,1fr) 2fr auto; gap:16px; align-items:start; padding:12px 0; border-top:1px dashed var(--line); }
+.item:first-child { border-top:0; }
+.name { font-weight:700; } .description { color:var(--muted); font-size:13px; }
+.button { display:inline-block; padding:8px 12px; border-radius:10px; background:#111827; color:#fff; text-decoration:none; white-space:nowrap; }
+@media (max-width:760px){ .item { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1 style="margin:0;">Reports & Downloads</h1>
+  <p style="max-width:780px; margin:8px 0 0;">Open or download the released reports, app files, and audit outputs.</p>
+  <div class="links"><a href="postcode_app.html">Back to postcode lookup</a><a href="help.html">Help</a><a href="index.html">Reports index</a></div>
+</header>
+<main><div class="card"><div class="item"><div class="name">Postcode app report</div><div class="description">Static postcode lookup report.</div><div><a class="button" href="postcode_app.html">Open / Download</a></div></div>
+<div class="item"><div class="name">Postcode lookup CSV</div><div class="description">Spreadsheet-friendly postcode lookup results.</div><div><a class="button" href="../artifacts/postcode_lookup.csv">Open / Download</a></div></div>
+<div class="item"><div class="name">Postcode lookup JSON</div><div class="description">Machine-readable postcode lookup results used by the app.</div><div><a class="button" href="../artifacts/postcode_lookup.json">Open / Download</a></div></div>
+<div class="item"><div class="name">Model performance CSV</div><div class="description">Model ranking and performance metrics.</div><div><a class="button" href="../artifacts/model_performance.csv">Open / Download</a></div></div>
+<div class="item"><div class="name">Model performance summary</div><div class="description">Short machine-readable model performance summary.</div><div><a class="button" href="../artifacts/model_performance_summary.json">Open / Download</a></div></div>
+<div class="item"><div class="name">Three-way analysis CSV</div><div class="description">District-level analysis table used by the postcode lookup.</div><div><a class="button" href="../artifacts/three_way_intersection_analysis_v2.csv">Open / Download</a></div></div>
+<div class="item"><div class="name">Run manifest</div><div class="description">Pipeline run metadata.</div><div><a class="button" href="../run_manifest.json">Open / Download</a></div></div>
+<div class="item"><div class="name">Stage run manifest</div><div class="description">Stage execution metadata.</div><div><a class="button" href="../stage_run_manifest.json">Open / Download</a></div></div></div></main>
+</body>
+</html>

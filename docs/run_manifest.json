@@ -1,0 +1,54 @@
+{
+  "runtime": "colab",
+  "data_directory": "/content/brownsea_pipeline/data",
+  "output_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420",
+  "artifact_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420/artifacts",
+  "report_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420/reports",
+  "checkpoint_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420/checkpoints",
+  "selected_features": [
+    "total_journey_min",
+    "nearest_competitor_drive_min",
+    "imd_decile_mean",
+    "geo_barriers_decile",
+    "wider_barriers_decile",
+    "income_decile",
+    "avg_fsm%",
+    "pop%_most_deprived",
+    "pop%_moderately_deprived",
+    "pop%_least_deprived"
+  ],
+  "input_files": {
+    "school_info": "/content/brownsea_pipeline/data/2024-2025_england_school_information.csv",
+    "school_census": "/content/brownsea_pipeline/data/2024-2025_england_census.csv",
+    "imd_decile": "/content/brownsea_pipeline/data/File_7_IoD2025_All_Ranks_Scores_Deciles_Population_Denominators.csv",
+    "lad_names": "/content/brownsea_pipeline/data/Local_Authority_Districts_May_2024_Boundaries_UK_BFC_8116196853881618041.csv",
+    "lad_regions": "/content/brownsea_pipeline/data/Local_Authority_District_to_Region_(April_2025)_Lookup_in_EN_v2.csv",
+    "membership": "/content/brownsea_pipeline/data/BI visiting members information by post code 2025.csv",
+    "ons_data": "/content/brownsea_pipeline/data/ONSPD_August_2025.csv",
+    "district_place_names": "/content/brownsea_pipeline/data/district_place_names.csv"
+  },
+  "reference_files": {
+    "nt_sites": "/content/brownsea_pipeline/data/reference/nt_sites.csv"
+  },
+  "routing": {
+    "profile": "driving-car",
+    "competitor_shortlist_size": 5,
+    "cache_version": "v1"
+  },
+  "generated_at": "20260511_122423",
+  "output_root": "/content/drive/MyDrive/brownsea/outputs",
+  "run_id": "20260511_122420",
+  "release_name": "latest",
+  "stage_plan": {
+    "from_stage": 1,
+    "to_stage": 5,
+    "stages": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "resume_build": null
+}

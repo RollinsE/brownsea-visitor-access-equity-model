@@ -1,0 +1,12 @@
+{
+  "from_stage": 1,
+  "to_stage": 5,
+  "stages": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "resume_build": null
+}
