@@ -4,6 +4,7 @@
 A postcode-level decision-support tool for Brownsea Island that highlights access, equity, and outreach opportunities. It combines journey modelling, deprivation and local context, ML-based expected visit rates, National Trust comparisons, reports, and a staff-facing web app.
 
 **Live app:** https://rollinse.github.io/brownsea-visitor-access-equity-model/
+---
 
 ## Overview
 
