@@ -1,419 +1,144 @@
-# Brownsea Island Visitor Analysis Pipeline
+````markdown
+# Brownsea Visitor Access & Equity Model
 
-A professional Python pipeline for Brownsea Island membership analysis that runs cleanly in Colab and produces browser-friendly postcode lookup outputs.
+A postcode-level decision-support tool for Brownsea Island that highlights access, equity, and outreach opportunities. It combines journey modelling, deprivation and local context, ML-based expected visit rates, National Trust comparisons, reports, and a staff-facing web app.
 
-## What this pipeline does
+**Live app:** https://rollinse.github.io/brownsea-visitor-access-equity-model/
 
-It processes the required raw inputs through five stages:
+## Overview
 
-1. Stage 1: data pipeline and feature engineering
-2. Stage 2: model training, tuning, and hybrid ensemble selection
-3. Stage 3: strategic framework definitions
-4. Stage 4: strategic analysis and reporting artifacts
-5. Stage 5: postcode lookup artifacts for BH / DT / SP postcodes
+This project analyses visitor access to Brownsea Island across BH, DT, and SP postcode areas. It combines local socioeconomic context, journey estimates, National Trust competitor comparisons, and machine learning outputs to identify areas where engagement may be lower than expected.
 
-The pipeline uses a fixed selected feature set and a controlled model-training workflow.
+The project includes a reproducible data pipeline, release QA tooling, and two app delivery options:
+
+1. a static staff-facing app for GitHub Pages
+2. a Flask app for local or hosted use
+
+The GitHub Pages app allows non-technical users to search a postcode, view Brownsea access context, compare nearby National Trust alternatives, and download reports.
+
+## Key features
+
+- End-to-end data pipeline for Brownsea visitor access analysis
+- Feature engineering from postcode, deprivation, education, population, and journey-time data
+- Machine learning workflow for expected visit-rate modelling
+- National Trust competitor comparison
+- Shared ORS route cache across builds
+- Stage-specific reruns and release promotion
+- Release QA, smoke testing, and freeze checks
+- Static GitHub Pages app for non-technical users
+- Flask app option for local demos or hosted deployment
+- Reports, plots, downloads, and help definitions
+
+## Pipeline stages
+
+The pipeline runs in five stages:
+
+1. **Data pipeline and feature engineering**
+2. **Model training, tuning, and ensemble selection**
+3. **Strategic framework definitions**
+4. **Strategic analysis and reporting artifacts**
+5. **Postcode lookup artifacts for BH, DT, and SP postcodes**
+
+The workflow validates required inputs and feature contracts before training and prediction.
 
 ## Repository layout
 
 ```text
 brownsea_pipeline/
-├── src/
-├── requirements/
-├── tests/
-├── pipeline.py
+├── app/                 # Flask app templates and server
+├── data/reference/      # Public reference data
+├── docs/                # Static staff app for GitHub Pages
+├── notebooks/           # Colab/helper notebooks
+├── requirements/        # Dependency files
+├── scripts/             # QA, release, export, and utility scripts
+├── src/                 # Pipeline and app source code
+├── tests/               # Regression and smoke tests
 ├── cli.py
-├── Makefile
-├── Dockerfile
+├── pipeline.py
+├── run_postcode_app.py
 └── README.md
-```
-
-## Colab quick start
-
-### 1. Put the repo and your data in the Colab runtime
-
-Expected data folder:
-
-```text
-/content/brownsea_pipeline/data/
-```
-
-### 2. Install dependencies
-
-```python
-!pip install -r requirements/colab.txt
-```
-
-### 3. Set your ORS key
-
-```python
-import os
-os.environ["ORS_API_KEY"] = "YOUR_KEY_HERE"
-```
-
-### 4. Run the pipeline
-
-```python
-!python cli.py --mode colab --output-dir /content/outputs
-```
-
-## Local / production run
-
-```bash
-python cli.py --mode local --output-dir ./outputs
-python cli.py --mode production --output-dir ./outputs
-```
+````
 
 ## Outputs
 
-The pipeline writes to a structured output directory:
+Pipeline runs are written to timestamped build folders:
 
 ```text
 outputs/
-├── logs/
-├── checkpoints/
-├── artifacts/
-└── reports/
+├── builds/<run_id>/
+│   ├── artifacts/
+│   ├── checkpoints/
+│   ├── reports/
+│   └── run_manifest.json
+├── cache/
+│   └── route_cache/
+├── releases/
+│   └── latest/
+└── release_pointer.json
 ```
 
-Important artifacts:
+Each build keeps its own artifacts, reports, checkpoints, and manifest. The ORS route cache is shared across builds so route work is not repeated unnecessarily.
 
-- `artifacts/ml_ready_district_data.csv`
-- `artifacts/postcode_lookup.csv`
-- `artifacts/postcode_lookup.parquet`
-- `reports/postcode_lookup.html`
-- `run_manifest.json`
-
-## Postcode lookup output
-
-The postcode lookup artifact is designed for non-technical users. A user can enter a BH / DT / SP postcode and get:
-
-- matched postcode and district
-- authority and region
-- LSOA deprivation context and FSM context
-- Brownsea departure terminal
-- drive time to departure terminal
-- Brownsea crossing time
-- total Brownsea journey time
-- nearest competing NT site and time comparison
-- district visit rate
-- district predicted visit rate
-- priority zone
-- intervention type
-- strategic narrative
-
-## Hard validation rules
-
-The pipeline now fails fast if:
-
-- required source files are missing
-- the ORS API key is missing
-- Stage 2 selected features are missing
-- prediction inputs do not match the trained feature contract
-
-This is deliberate. Silent zero-filling of missing modeling features is not allowed.
-
-
-## Editable install
-
-```bash
-cd brownsea_pipeline_pro
-pip install -e .
-```
-
-
-## Web UI MVP
-
-The pipeline now generates a static postcode search app:
-
-- `reports/postcode_app.html`
-- `artifacts/postcode_lookup.json`
-- `artifacts/postcode_lookup.csv`
-
-This app is backed by precomputed lookup data and is intended for non-technical users.
-
-
-## National Trust competitor reference
-
-The pipeline now uses `data/reference/nt_sites.csv` as the maintained competitor reference for routing and postcode lookup. Brownsea remains the target anchor; competitors are loaded from this CSV rather than hardcoded in Python.
-
-
-## Run the postcode web app
-
-After the pipeline has generated `outputs/artifacts/postcode_lookup.json`, run:
-
-```bash
-python run_postcode_app.py --lookup outputs/artifacts/postcode_lookup.json --outputs-root outputs --port 8000
-```
-
-Then open `http://localhost:8000/`.
-
-
-## Route cache
-
-The pipeline persists ORS routing results under the shared cache directory `outputs/cache/route_cache/` using separate Brownsea and competitor cache files. Timestamped builds remain separate under `outputs/builds/<run_id>/`, while ORS route results are reused across builds. Route caches are invalidated only for compatibility changes such as route scope, ORS profile, or cache schema version.
-
-
-## Build and release workflow
-
-The pipeline now writes each run into a timestamped build directory under `outputs/builds/<run_id>/`.
-
-To promote a successful run to a stable app/data release, use:
-
-```bash
-python cli.py --mode colab --data-dir "/content/drive/MyDrive/brownsea/data" --output-dir "/content/drive/MyDrive/brownsea/outputs" --promote-release
-```
-
-This updates `outputs/releases/latest/`, which is the default place the lightweight app reads from.
-
-Run the app against the latest release with:
-
-```bash
-python run_postcode_app.py --outputs-root "/content/drive/MyDrive/brownsea/outputs" --port 8000
-```
-
-## Controlled reruns and notebook viewing
-
-Pipeline execution is file-first. Run the CLI to generate artifacts, then use the
-separate notebook viewer to display saved outputs.
-
-### Stage-specific reruns
-
-All stage-specific reruns write to a fresh build directory and load upstream
-inputs from a previous build supplied with `--resume-build`.
-
-Examples:
-
-```bash
-# Rerun Stage 5 only from a previous full build
-python cli.py --only-stage 5 --resume-build outputs/builds/<run_id>
-
-# Rerun Stage 4 and Stage 5 from a previous build
-python cli.py --from-stage 4 --to-stage 5 --resume-build outputs/builds/<run_id>
-
-# Rerun Stage 2 onward using Stage 1 artifacts from a previous build
-python cli.py --from-stage 2 --resume-build outputs/builds/<run_id>
-```
-
-Stage 4 reruns require a model bundle checkpoint. New runs save this at:
+Typical release artifacts include:
 
 ```text
-outputs/builds/<run_id>/checkpoints/model_bundle.joblib
+artifacts/postcode_lookup.csv
+artifacts/postcode_shards/
+artifacts/model_performance.csv
+artifacts/model_performance_summary.json
+artifacts/three_way_intersection_analysis_v2.csv
+reports/index.html
+reports/postcode_lookup.html
+reports/model_performance.html
+release_manifest.json
+run_manifest.json
 ```
 
-### Notebook viewing after a run
+## Web app
 
-Open:
+The web app supports postcode lookup for BH, DT, and SP postcodes.
 
-```text
-notebooks/01_view_saved_outputs.ipynb
-```
+A user can view:
 
-or call the helper directly:
+* matched postcode and postcode district
+* local authority and region
+* deprivation and local context
+* Brownsea departure terminal
+* estimated journey to departure terminal
+* Brownsea ferry crossing allowance
+* total Brownsea journey time
+* nearest competing National Trust site
+* observed and model-expected visit rates
+* district-level assessment
+* reports and downloads
 
-```python
-from src.notebook_viewer import display_saved_outputs
+The app is intended for planning and decision support, not live journey planning.
 
-display_saved_outputs('/content/drive/MyDrive/brownsea/outputs', release_name='latest')
-```
+## Static app for GitHub Pages
 
-This keeps `!python cli.py` clean and avoids mixing pipeline execution with
-notebook rendering.
+The static app is the free staff-facing version of the tool. It does not require Python, Colab, or a running server.
 
-## Release-candidate QA without rerunning the pipeline
-
-After one full successful run and release promotion, validate the promoted release without rerunning any pipeline stage:
-
-```bash
-python scripts/qa_release.py outputs --release-name latest
-```
-
-or:
-
-```bash
-make qa-release OUTPUT_DIR=outputs RELEASE_NAME=latest
-```
-
-The QA command checks that the release has the app-critical postcode lookup files, reports, run manifest, and strategic analysis artifacts. It also reports recommended files for reruns and auditability, such as the model bundle checkpoint and model performance outputs.
-
-To write or refresh the auditable release manifest manually:
-
-```bash
-python scripts/qa_release.py outputs --release-name latest --write-manifest
-```
-
-A promoted release created by `python cli.py --promote-release` automatically writes:
-
-```text
-outputs/releases/latest/release_manifest.json
-```
-
-This manifest records the source build, run id, route cache path, QA status, and file hashes for the release contents.
-
-## App smoke test and Colab launch
-
-Before opening the Flask app, smoke-test the promoted release without rerunning the pipeline:
-
-```bash
-python scripts/smoke_app.py outputs --release-name latest
-```
-
-In Colab with Drive outputs:
-
-```python
-!python scripts/smoke_app.py /content/drive/MyDrive/brownsea/outputs --release-name latest
-```
-
-Expected result:
-
-```text
-App smoke test: PASS
-```
-
-To launch the app in Colab, use the helper notebook:
-
-```text
-notebooks/02_launch_app_colab.ipynb
-```
-
-or run this in a Colab cell:
-
-```python
-from src.colab_app import launch_postcode_app
-
-launch_postcode_app(
-    outputs_root="/content/drive/MyDrive/brownsea/outputs",
-    port=8000,
-    open_mode="window",
-)
-```
-
-If the browser blocks the popup, run:
-
-```python
-from google.colab import output
-output.serve_kernel_port_as_iframe(8000, height=900)
-```
-
-The direct Flask URLs printed by the server, such as `127.0.0.1:8000`, are internal to the Colab runtime. Use the Colab proxy window or iframe instead.
-
-## Freeze and project doctor checks
-
-Once release QA and the app smoke test pass, freeze the release candidate without rerunning the pipeline:
-
-```bash
-python scripts/freeze_release.py outputs --release-name latest
-```
-
-In Colab with Drive outputs:
-
-```python
-!python scripts/freeze_release.py /content/drive/MyDrive/brownsea/outputs --release-name latest
-```
-
-This writes:
-
-```text
-outputs/releases/latest/release_lock.json
-```
-
-The lock records file hashes for the release candidate. It does not make Google Drive read-only, but it lets you check whether anything has changed since freeze:
-
-```bash
-python scripts/freeze_release.py outputs --release-name latest --check
-```
-
-Use the project doctor for a quick status view without rerunning the pipeline:
-
-```bash
-python scripts/doctor.py outputs --release-name latest
-```
-
-In Colab:
-
-```python
-!python scripts/doctor.py /content/drive/MyDrive/brownsea/outputs --release-name latest
-```
-
-The doctor reports release QA status, freeze status, release pointer status, and shared route-cache counts.
-
-Recommended final release-candidate sequence:
-
-```python
-!python scripts/qa_release.py /content/drive/MyDrive/brownsea/outputs --release-name latest
-!python scripts/smoke_app.py /content/drive/MyDrive/brownsea/outputs --release-name latest
-!python scripts/freeze_release.py /content/drive/MyDrive/brownsea/outputs --release-name latest
-!python scripts/doctor.py /content/drive/MyDrive/brownsea/outputs --release-name latest
-```
-
----
-
-## Portfolio and deployment options
-
-This repository supports two app delivery modes:
-
-1. **Static staff app for GitHub Pages** - free, no server required.
-2. **Flask app** - useful for local demos, internal servers, or later cloud deployment.
-
-### What should not be committed
-
-The repo is configured to ignore private/runtime files such as:
-
-- `.env` and API keys
-- `outputs/`
-- raw/intermediate/private data folders
-- model checkpoints such as `*.joblib`
-- route caches and logs
-
-Before pushing to GitHub, check:
-
-```bash
-git status
-```
-
-Do not commit private visitor/member data or ORS API keys.
-
-## Export the free static staff app
-
-After a release has passed QA, export a GitHub Pages-ready static app to `docs/`:
+After a release has passed QA, export the static app to `docs/`:
 
 ```bash
 python scripts/export_static_staff_app.py outputs --release-name latest --target docs
 ```
 
-In Colab, use your Drive outputs path:
+In Colab:
 
 ```python
 !python scripts/export_static_staff_app.py /content/drive/MyDrive/brownsea/outputs --release-name latest --target docs
 ```
 
-This writes:
-
-```text
-docs/
-  index.html
-  downloads.html
-  reports/
-  artifacts/
-  reports.zip
-  README_STAFF_APP.md
-```
-
-Commit the `docs/` folder, then enable GitHub Pages in the repository settings:
+Then publish from GitHub Pages:
 
 ```text
 Settings > Pages > Deploy from a branch > main > /docs
 ```
 
-Staff can then use the GitHub Pages URL as the web app. They do not need Python, Colab, or the pipeline.
+## Flask app
 
-Shortcut:
-
-```bash
-make export-static-app OUTPUT_DIR=outputs RELEASE_NAME=latest
-```
-
-## Run the Flask app locally
+The Flask app can be used locally, in Colab, or on a server.
 
 Install the lightweight app dependencies:
 
@@ -421,7 +146,7 @@ Install the lightweight app dependencies:
 pip install -r requirements/app.txt
 ```
 
-Run the Flask app against a completed outputs folder:
+Run the app against a completed outputs folder:
 
 ```bash
 python run_postcode_app.py --outputs-root outputs --port 8000
@@ -433,49 +158,165 @@ Then open:
 http://localhost:8000
 ```
 
-Shortcut:
+In Colab, launch the app through the Colab port proxy after starting the server.
 
-```bash
-make run-app OUTPUT_DIR=outputs
+## Colab quick start
+
+Mount Google Drive, install dependencies, set the ORS API key, and run the pipeline:
+
+```python
+from google.colab import drive
+drive.mount("/content/drive")
 ```
 
-## Run the Flask app with Docker
-
-Build the lightweight app image:
-
-```bash
-docker build -f Dockerfile.app -t brownsea-postcode-app:latest .
+```python
+%cd /content/brownsea_pipeline
+!pip install -r requirements/colab.txt
 ```
 
-Run it with a completed outputs folder mounted read-only:
-
-```bash
-docker run --rm -p 8000:8000 \
-  -v "$PWD/outputs:/app/outputs:ro" \
-  -e BROWNSEA_OUTPUTS_ROOT=/app/outputs \
-  brownsea-postcode-app:latest
+```python
+import os
+os.environ["ORS_API_KEY"] = "YOUR_KEY_HERE"
 ```
 
-Then open:
+## Run the full pipeline
+
+The main pipeline entrypoint is `cli.py`.
+
+For Colab with Google Drive outputs:
+
+```python
+!python cli.py --mode colab \
+  --data-dir /content/brownsea_pipeline/data \
+  --output-dir /content/drive/MyDrive/brownsea/outputs \
+  --promote-release
+```
+
+For a local run:
+
+```bash
+python cli.py --mode local \
+  --data-dir data \
+  --output-dir outputs \
+  --promote-release
+```
+
+A successful run creates a timestamped build under `outputs/builds/`. When `--promote-release` is used, the completed build is promoted to:
 
 ```text
-http://localhost:8000
+outputs/releases/latest/
 ```
 
-Shortcut:
+The app and release QA tools read from this promoted release.
 
-```bash
-make docker-build-app
-make docker-run-app OUTPUT_DIR=outputs
-```
+## Release QA
 
-## Recommended final portfolio workflow
+After a successful promoted run, validate the release without rerunning the pipeline:
 
 ```bash
 python scripts/qa_release.py outputs --release-name latest
 python scripts/smoke_app.py outputs --release-name latest
 python scripts/freeze_release.py outputs --release-name latest
-python scripts/export_static_staff_app.py outputs --release-name latest --target docs
+python scripts/doctor.py outputs --release-name latest
 ```
 
-Then commit and push the repository, including `docs/`, but excluding private data and runtime outputs.
+In Colab:
+
+```python
+!python scripts/qa_release.py /content/drive/MyDrive/brownsea/outputs --release-name latest
+!python scripts/smoke_app.py /content/drive/MyDrive/brownsea/outputs --release-name latest
+!python scripts/freeze_release.py /content/drive/MyDrive/brownsea/outputs --release-name latest
+!python scripts/doctor.py /content/drive/MyDrive/brownsea/outputs --release-name latest
+```
+
+The QA scripts check release completeness, app readiness, release freeze status, and shared route-cache status without rerunning the main pipeline.
+
+## Stage-specific reruns
+
+Stage reruns write to a fresh build directory and load upstream inputs from a previous build or release.
+
+```bash
+python cli.py --only-stage 5 --resume-build outputs/releases/latest
+python cli.py --from-stage 4 --to-stage 5 --resume-build outputs/releases/latest
+python cli.py --from-stage 2 --resume-build outputs/builds/<run_id>
+```
+
+Stage 4 reruns require a model bundle checkpoint:
+
+```text
+outputs/builds/<run_id>/checkpoints/model_bundle.joblib
+```
+
+## Notebook viewing
+
+Pipeline execution is file-first. The CLI saves reports, figures, CSVs, and app artifacts rather than trying to display notebook output during execution.
+
+To view saved outputs after a run, open:
+
+```text
+notebooks/01_view_saved_outputs.ipynb
+```
+
+or call:
+
+```python
+from src.notebook_viewer import display_saved_outputs
+
+display_saved_outputs("/content/drive/MyDrive/brownsea/outputs", release_name="latest")
+```
+
+## Colab app launch
+
+To launch the Flask app in Colab, use:
+
+```python
+from src.colab_app import launch_postcode_app
+
+launch_postcode_app(
+    outputs_root="/content/drive/MyDrive/brownsea/outputs",
+    port=8000,
+    open_mode="window",
+)
+```
+
+If the browser blocks the popup, use:
+
+```python
+from google.colab import output
+output.serve_kernel_port_as_iframe(8000, height=900)
+```
+
+The direct Flask URLs printed by the server, such as `127.0.0.1:8000`, are internal to the Colab runtime. Use the Colab proxy window or iframe instead.
+
+## Data and privacy
+
+Private visitor/member data, raw postcode datasets, route caches, model checkpoints, and runtime outputs are excluded from the public repository.
+
+Do not commit:
+
+```text
+.env
+outputs/
+private visitor/member files
+raw/intermediate data
+route caches
+model checkpoints
+logs
+```
+
+The public repository includes code, tests, documentation, public reference data, and the exported static app.
+
+## Testing
+
+Run the test suite with:
+
+```bash
+pytest
+```
+
+## Project status
+
+This repository is structured for portfolio demonstration, reproducible analysis, and staff-facing access through either GitHub Pages or Flask.
+
+```
+```
