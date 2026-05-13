@@ -79,3 +79,6 @@ route_cache/
 
 # Exclude member visit map outputs from public repo
 docs/reports/figures/map_member_visits_distribution.*
+
+# Exclude large full lookup export from public repo
+docs/artifacts/postcode_lookup.json
