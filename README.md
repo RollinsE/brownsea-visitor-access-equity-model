@@ -1,9 +1,9 @@
-````markdown
 # Brownsea Visitor Access & Equity Model
 
 A postcode-level decision-support tool for Brownsea Island that highlights access, equity, and outreach opportunities. It combines journey modelling, deprivation and local context, ML-based expected visit rates, National Trust comparisons, reports, and a staff-facing web app.
 
 **Live app:** https://rollinse.github.io/brownsea-visitor-access-equity-model/
+
 ---
 
 ## Overview
@@ -12,23 +12,23 @@ This project analyses visitor access to Brownsea Island across BH, DT, and SP po
 
 The project includes a reproducible data pipeline, release QA tooling, and two app delivery options:
 
-1. a static staff-facing app for GitHub Pages
-2. a Flask app for local or hosted use
+1. A static staff-facing app for GitHub Pages
+2. A Flask app for local or hosted use
 
 The GitHub Pages app allows non-technical users to search a postcode, view Brownsea access context, compare nearby National Trust alternatives, and download reports.
 
 ## Key features
 
-- End-to-end data pipeline for Brownsea visitor access analysis
-- Feature engineering from postcode, deprivation, education, population, and journey-time data
-- Machine learning workflow for expected visit-rate modelling
-- National Trust competitor comparison
-- Shared ORS route cache across builds
-- Stage-specific reruns and release promotion
-- Release QA, smoke testing, and freeze checks
-- Static GitHub Pages app for non-technical users
-- Flask app option for local demos or hosted deployment
-- Reports, plots, downloads, and help definitions
+* End-to-end data pipeline for Brownsea visitor access analysis
+* Feature engineering from postcode, deprivation, education, population, and journey-time data
+* Machine learning workflow for expected visit-rate modelling
+* National Trust competitor comparison
+* Shared ORS route cache across builds
+* Stage-specific reruns and release promotion
+* Release QA, smoke testing, and freeze checks
+* Static GitHub Pages app for non-technical users
+* Flask app option for local demos or hosted deployment
+* Reports, plots, downloads, and help definitions
 
 ## Pipeline stages
 
@@ -58,7 +58,7 @@ brownsea_pipeline/
 ├── pipeline.py
 ├── run_postcode_app.py
 └── README.md
-````
+```
 
 ## Outputs
 
