@@ -307,6 +307,12 @@ logs
 
 The public repository includes code, tests, documentation, public reference data, and the exported static app.
 
+## Data availability
+
+This repository does not include the full raw datasets used to run the pipeline. Some source datasets are publicly available from UK government or open data portals, while visitor/member data is private and excluded.
+
+The public repository includes the code, tests, documentation, public reference data, and exported static app artifacts needed to demonstrate the project. Users who want to reproduce the full pipeline should obtain the required source datasets from their official providers and place them in the expected `data/` structure.
+
 ## Testing
 
 Run the test suite with:
