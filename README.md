@@ -315,6 +315,10 @@ Run the test suite with:
 pytest
 ```
 
+## License
+
+This project code is licensed under the MIT License. Private/raw datasets are not included in this repository and are not covered by this license.
+
 ## Project status
 
 This repository is structured for portfolio demonstration, reproducible analysis, and staff-facing access through either GitHub Pages or Flask.
