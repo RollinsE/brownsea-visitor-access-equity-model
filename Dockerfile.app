@@ -11,6 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ /app/app/
 COPY src/__init__.py /app/src/__init__.py
 COPY src/release_manager.py /app/src/release_manager.py
+COPY src/help_page.py /app/src/help_page.py
+COPY src/agent/ /app/src/agent/
 COPY run_postcode_app.py /app/run_postcode_app.py
 
 ENV PYTHONPATH=/app

@@ -161,6 +161,36 @@ http://localhost:8000
 
 In Colab, launch the app through the Colab port proxy after starting the server.
 
+## AI assistant (optional)
+
+The Flask app can answer plain-English questions such as "Which districts need urgent action and are under 40 minutes from Brownsea?". An LLM agent chooses from a small set of read-only tools over the artifacts the pipeline already publishes, then writes an answer from what the tools return. It does not change the dataset, the features or the model, and it never sees visitor or member records.
+
+| Tool | Reads |
+|---|---|
+| `lookup_postcode` | `postcode_lookup.json` |
+| `get_district`, `query_districts`, `aggregate_districts` | `three_way_intersection_analysis_v2.csv` |
+| `get_model_performance` | `model_performance.csv`, `model_performance_summary.json` |
+| `get_definitions` | the three framework tables in `reports/tables/` |
+
+Counts, totals and averages are computed in Python by the tools, not by the LLM.
+
+Setup:
+
+```bash
+pip install -r requirements/app.txt
+export ANTHROPIC_API_KEY=...            # the assistant stays off when this is unset
+python run_postcode_app.py              # "Ask about the analysis" appears on the home page
+```
+
+Try it without the web app, or check it against answers computed from the data:
+
+```bash
+python -m src.agent --show-tools "How many districts are in each priority zone?"
+python scripts/eval_agent.py
+```
+
+Settings: `BROWNSEA_AGENT_MODEL` (default `claude-sonnet-5-5`), `BROWNSEA_AGENT_RATE_PER_MIN` (default 10 questions per client per minute), `BROWNSEA_AGENT_ENABLED=0` to switch it off. The static GitHub Pages app has no server to hold an API key, so the assistant is available in the Flask app only. Questions and the tool results needed to answer them are sent to the Anthropic API.
+
 ## Colab quick start
 
 Mount Google Drive, install dependencies, set the ORS API key, and run the pipeline:

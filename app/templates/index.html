@@ -27,6 +27,12 @@
     .notfound { background:#fff7ed; border-color:#fed7aa; }
     .small { color:var(--muted); font-size:13px; }
     .note { margin-bottom:12px; line-height:1.4; }
+    .ask-row { display:flex; gap:10px; flex-wrap:wrap; }
+    .ask-row input { border-color:#cbd5e1; }
+    .turn { margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); }
+    .turn .q { font-weight:600; }
+    .turn .a { margin-top:6px; line-height:1.5; white-space:pre-wrap; }
+    .turn .used { margin-top:6px; }
   </style>
 </head>
 <body>
@@ -47,6 +53,17 @@
 </header>
 <main>
   <div class="card small">Records loaded: {{ '{:,}'.format(record_count) }}</div>
+  {% if agent_enabled %}
+  <div class="card" id="ask-card">
+    <div class="section-title">Ask about the analysis</div>
+    <div class="small note">Ask a question in plain English, for example "Which districts need urgent action and are under 40 minutes from Brownsea?". Answers are written by an AI assistant using only the published district and postcode results. Check important figures against the reports.</div>
+    <div class="ask-row">
+      <input id="question" maxlength="1000" placeholder="Ask a question about districts, postcodes or the model" />
+      <button id="ask-button" onclick="askQuestion()">Ask</button>
+    </div>
+    <div id="conversation"></div>
+  </div>
+  {% endif %}
   <div id="result"></div>
 </main>
 <script>
@@ -256,6 +273,52 @@ async function searchPostcode(){
     ])}`;
 }
 document.getElementById('query').addEventListener('keydown', e => { if (e.key === 'Enter') searchPostcode(); });
+
+const askHistory = [];
+function describeToolCall(call){
+  const names = {
+    lookup_postcode: 'Postcode lookup', get_district: 'District record', query_districts: 'District filter',
+    aggregate_districts: 'District totals', get_model_performance: 'Model performance', get_definitions: 'Framework definitions'
+  };
+  return names[call.name] || call.name;
+}
+async function askQuestion(){
+  const input = document.getElementById('question');
+  const button = document.getElementById('ask-button');
+  const question = (input.value || '').trim();
+  if(!question) return;
+  const turn = document.createElement('div');
+  turn.className = 'turn';
+  const q = document.createElement('div'); q.className = 'q'; q.textContent = question;
+  const a = document.createElement('div'); a.className = 'a small'; a.textContent = 'Working on it…';
+  turn.append(q, a);
+  document.getElementById('conversation').prepend(turn);
+  input.value = ''; button.disabled = true;
+  try {
+    const res = await fetch('/api/ask', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({question, history: askHistory})
+    });
+    const payload = await res.json();
+    if(!res.ok){ a.textContent = payload.error || 'The assistant could not answer.'; return; }
+    a.className = 'a';
+    a.textContent = payload.answer;
+    if(payload.tool_calls && payload.tool_calls.length){
+      const used = document.createElement('div');
+      used.className = 'small used';
+      used.textContent = 'Data used: ' + [...new Set(payload.tool_calls.map(describeToolCall))].join(', ');
+      turn.append(used);
+    }
+    askHistory.push({role: 'user', content: question}, {role: 'assistant', content: payload.answer});
+  } catch (err) {
+    a.textContent = 'The assistant could not be reached. Please try again.';
+  } finally {
+    button.disabled = false;
+  }
+}
+const questionInput = document.getElementById('question');
+if(questionInput) questionInput.addEventListener('keydown', e => { if (e.key === 'Enter') askQuestion(); });
 </script>
 </body>
 </html>
