@@ -8,6 +8,8 @@ A postcode-level decision-support tool for Brownsea Island that highlights acces
 
 The first link runs on a free hosting plan and goes to sleep when nobody is using it, so the first load can take about a minute.
 
+**About this version.** This is a public, data-safe copy of a tool I built for the National Trust. It runs on the same code as the original, but it contains no visitor or member records. Everything shown here is summarised at postcode-district level, so no individual or household can be identified. Shared with the National Trust's agreement.
+
 ---
 
 ## Overview
@@ -365,6 +367,8 @@ output.serve_kernel_port_as_iframe(8000, height=900)
 The direct Flask URLs printed by the server, such as `127.0.0.1:8000`, are internal to the Colab runtime. Use the Colab proxy window or iframe instead.
 
 ## Data and privacy
+
+The original tool was built using private visitor and member data. None of that data is in this repository or in either live app. The public version only includes the summarised outputs of the analysis, public reference data, and the code. The AI assistant reads those same summarised outputs and has no access to anything else.
 
 Private visitor/member data, raw postcode datasets, route caches, model checkpoints, and runtime outputs are excluded from the public repository.
 
