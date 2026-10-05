@@ -193,6 +193,8 @@ On Windows Command Prompt use `set GEMINI_API_KEY=...` instead of `export`.
 
 Settings: `BROWNSEA_AGENT_MODEL` (default `gemini-3.8-flash`), `BROWNSEA_AGENT_RATE_PER_MIN` (default 10 questions per client per minute), `BROWNSEA_AGENT_ENABLED=0` to switch it off. The static GitHub Pages app has no server to hold an API key, so the assistant is available in the Flask app only.
 
+Gemini's free limits are per model and can be small (20 requests a day on `gemini-3.8-flash` at the time of writing; your own limits are shown at https://ai.dev/rate-limit). When a model is over its limit or too busy, the assistant moves to the next one in `BROWNSEA_AGENT_FALLBACK_MODELS` (default `gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite`). Each question uses two or more requests.
+
 The assistant uses Google's Gemini API by default, called over HTTPS with no extra package. Questions and the tool results needed to answer them are sent to Google; on Gemini's free tier, Google may use that content to improve its products. To use Anthropic instead, `pip install anthropic`, set `ANTHROPIC_API_KEY` and set `BROWNSEA_AGENT_PROVIDER=anthropic`.
 
 ## Colab quick start

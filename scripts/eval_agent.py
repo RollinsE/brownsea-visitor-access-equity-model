@@ -66,7 +66,7 @@ def main() -> int:
     cases = build_cases(rows)
     cases[-1] = (cases[-1][0], str(store.model_performance.get("summary", {}).get("best_model", "")))
 
-    print(f"Using {agent.llm.name} model {agent.llm.model}\n")
+    print(f"Using {agent.llm.name}, starting with model {agent.llm.model}\n")
     passed = 0
     for number, (question, expected) in enumerate(cases):
         if number:
@@ -75,10 +75,13 @@ def main() -> int:
             result = agent.ask(question)
         except LLMError as exc:
             print(f"ERROR {question}\n      {exc}")
+            if exc.status == 429 and not getattr(agent.llm, "has_available_model", lambda: True)():
+                print("\nStopping: every configured model has reached its free limit for now.")
+                break
             continue
         ok = bool(result.tool_calls) and re.search(rf"(?<![\w.]){re.escape(expected)}(?![\w.]*\d)", result.answer, re.IGNORECASE) is not None
         passed += ok
-        print(f"{'PASS' if ok else 'FAIL'}  {question}\n      expected: {expected} | tools: {[c['name'] for c in result.tool_calls]}")
+        print(f"{'PASS' if ok else 'FAIL'}  {question}\n      expected: {expected} | model: {result.model} | tools: {[c['name'] for c in result.tool_calls]}")
         if not ok:
             print(f"      answer: {result.answer}")
     print(f"\n{passed}/{len(cases)} passed")

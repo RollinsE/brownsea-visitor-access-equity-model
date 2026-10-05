@@ -14,7 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from src.agent.llm import AgentUnavailable, default_llm
+from src.agent.llm import AgentUnavailable, LLMError, default_llm
 from src.agent.prompts import build_system_prompt
 from src.agent.tools import TOOL_SCHEMAS, ArtifactStore
 
@@ -29,9 +29,10 @@ class AgentResult:
     tool_calls: list[dict[str, Any]] = field(default_factory=list)
     steps: int = 0
     complete: bool = True
+    model: str = ""
 
     def to_dict(self) -> dict[str, Any]:
-        return {"answer": self.answer, "tool_calls": self.tool_calls, "steps": self.steps, "complete": self.complete}
+        return {"answer": self.answer, "tool_calls": self.tool_calls, "steps": self.steps, "complete": self.complete, "model": self.model}
 
 
 def clean_history(history: Any) -> list[dict[str, str]]:
@@ -73,14 +74,27 @@ class EquityAgent:
         if len(question) > MAX_QUESTION_CHARS:
             raise ValueError(f"question must be at most {MAX_QUESTION_CHARS} characters")
 
-        messages = self.llm.start(clean_history(history), question)
+        turns = clean_history(history)
+        while True:
+            try:
+                return self._answer(question, turns)
+            except LLMError as exc:
+                # Over a limit or model busy: start the question again on the next
+                # model, if the provider has one. Tool calls are local, so repeating
+                # them costs nothing.
+                can_switch = getattr(self.llm, "has_available_model", lambda: False)()
+                if exc.status not in (404, 429, 503) or not can_switch:
+                    raise
+
+    def _answer(self, question: str, turns: list[dict[str, str]]) -> AgentResult:
+        messages = self.llm.start(turns, question)
         tool_calls: list[dict[str, Any]] = []
 
         for step in range(1, self.max_steps + 1):
             reply = self.llm.send(self.system_prompt, messages, TOOL_SCHEMAS)
             if not reply.tool_requests:
                 answer = reply.text or "I could not produce an answer to that. Please try rephrasing the question."
-                return AgentResult(answer=answer, tool_calls=tool_calls, steps=step, complete=bool(reply.text))
+                return AgentResult(answer=answer, tool_calls=tool_calls, steps=step, complete=bool(reply.text), model=reply.model)
 
             results = []
             for request in reply.tool_requests:

@@ -261,6 +261,11 @@ def test_provider_is_chosen_from_environment(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "a-key")
     llm = default_llm()
     assert isinstance(llm, GeminiLLM) and llm.model == "gemini-3.8-flash"
+    assert llm.models[1:] == ["gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.5-flash", "gemini-3.5-flash-lite"]
+
+    monkeypatch.setenv("BROWNSEA_AGENT_FALLBACK_MODELS", "")
+    assert default_llm().models == ["gemini-3.8-flash"]
+    monkeypatch.delenv("BROWNSEA_AGENT_FALLBACK_MODELS")
 
     monkeypatch.setenv("BROWNSEA_AGENT_MODEL", "gemini-3.5-flash-lite")
     assert default_llm().model == "gemini-3.5-flash-lite"
@@ -318,16 +323,78 @@ def test_gemini_tool_declarations_are_valid_for_the_api():
             check(declaration["parameters"])
 
 
-def test_gemini_retries_rate_limit_then_reports_other_errors(tmp_path):
-    store = _store(tmp_path)
-    transport = FakeGemini([LLMError("slow down", status=429), _gemini_text("ok")])
-    llm = GeminiLLM(api_key="k", transport=transport, retry_wait=0)
-    assert EquityAgent(store, llm=llm).ask("hello").answer == "ok"
-    assert len(transport.calls) == 2
+DAILY_QUOTA = LLMError("Quota exceeded, limit: 20. Please retry in 17h14m4.7s.", status=429)
+BUSY = LLMError("This model is currently experiencing high demand.", status=503)
 
-    failing = GeminiLLM(api_key="k", transport=FakeGemini([LLMError("bad key", status=400)]), retry_wait=0)
+
+def _gemini(responses: list, **kwargs):
+    waits: list[float] = []
+    transport = FakeGemini(responses)
+    kwargs.setdefault("fallback_models", ["model-b"])
+    llm = GeminiLLM(api_key="k", model="model-a", transport=transport, sleep=waits.append, **kwargs)
+    return llm, transport, waits
+
+
+def _models_called(transport: FakeGemini) -> list[str]:
+    return [call["url"].split("/models/")[1].split(":")[0] for call in transport.calls]
+
+
+def test_gemini_waits_briefly_for_a_per_minute_limit(tmp_path):
+    llm, transport, waits = _gemini([LLMError("Please retry in 12.5s.", status=429), _gemini_text("ok")])
+    result = EquityAgent(_store(tmp_path), llm=llm).ask("hello")
+    assert result.answer == "ok" and result.model == "model-a"
+    assert waits == [12.5] and _models_called(transport) == ["model-a", "model-a"]
+
+
+def test_gemini_switches_model_on_daily_quota_without_waiting(tmp_path):
+    llm, transport, waits = _gemini([DAILY_QUOTA, _gemini_text("first"), _gemini_text("second")])
+    agent = EquityAgent(_store(tmp_path), llm=llm)
+
+    first = agent.ask("hello")
+    assert first.answer == "first" and first.model == "model-b"
+    assert waits == []  # a 17-hour wait is never slept through
+
+    assert agent.ask("again").model == "model-b"  # the exhausted model is not tried again
+    assert _models_called(transport) == ["model-a", "model-b", "model-b"]
+
+
+def test_gemini_restarts_question_on_fallback_when_model_fails_mid_answer(tmp_path):
+    llm, transport, waits = _gemini([
+        _gemini_call("get_district", {"district": "BH1"}),
+        BUSY, BUSY,  # model-a fails after its tool call, even after one quick retry
+        _gemini_call("get_district", {"district": "BH1"}),
+        _gemini_text("BH1 is Urgent Action."),
+    ])
+    result = EquityAgent(_store(tmp_path), llm=llm).ask("Tell me about BH1")
+
+    assert result.answer == "BH1 is Urgent Action." and result.model == "model-b"
+    assert waits == [5.0]
+    assert _models_called(transport) == ["model-a", "model-a", "model-a", "model-b", "model-b"]
+    restarted = transport.calls[3]["body"]["contents"]
+    assert len(restarted) == 1 and restarted[0]["role"] == "user"  # fresh conversation, no mixed signatures
+
+
+def test_gemini_reports_clearly_when_every_model_is_exhausted(tmp_path):
+    llm, transport, waits = _gemini([DAILY_QUOTA, DAILY_QUOTA])
+    agent = EquityAgent(_store(tmp_path), llm=llm)
+    with pytest.raises(LLMError):
+        agent.ask("hello")
+    assert not llm.has_available_model()
+    with pytest.raises(LLMError) as raised:
+        agent.ask("again")
+    assert raised.value.status == 429 and "over its limit" in str(raised.value)
+    assert len(transport.calls) == 2  # no further requests are sent
+
+
+def test_gemini_skips_unknown_model_names_and_reports_other_errors(tmp_path):
+    store = _store(tmp_path)
+    llm, transport, _ = _gemini([LLMError("model not found", status=404), _gemini_text("ok")])
+    assert EquityAgent(store, llm=llm).ask("hello").model == "model-b"
+
+    failing, transport, _ = _gemini([LLMError("API key not valid", status=400)])
     with pytest.raises(LLMError):
         EquityAgent(store, llm=failing).ask("hello")
+    assert len(transport.calls) == 1
 
 
 def test_gemini_empty_reply_gives_a_clear_message(tmp_path):
@@ -381,9 +448,9 @@ def test_api_ask_works_with_gemini_and_reports_usage_limit(tmp_path, monkeypatch
     transport = FakeGemini([
         _gemini_call("get_district", {"district": "BH1"}),
         _gemini_text("BH1 is an Urgent Action district."),
-        LLMError("quota", status=429),
+        LLMError("Quota exceeded. Please retry in 17h1m2s.", status=429),
     ])
-    llm = GeminiLLM(api_key="k", transport=transport, retries=0)
+    llm = GeminiLLM(api_key="k", transport=transport, fallback_models=[])
     http = _app(tmp_path, monkeypatch, llm).test_client()
 
     body = http.post("/api/ask", json={"question": "Tell me about BH1"}).get_json()
