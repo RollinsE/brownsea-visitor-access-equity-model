@@ -1,8 +1,12 @@
 # Brownsea Visitor Access & Equity Model
 
-A postcode-level decision-support tool for Brownsea Island that highlights access, equity, and outreach opportunities. It combines journey modelling, deprivation and local context, ML-based expected visit rates, National Trust comparisons, reports, and a staff-facing web app.
+A postcode-level decision-support tool for Brownsea Island that highlights access, equity, and outreach opportunities. It combines journey modelling, deprivation and local context, ML-based expected visit rates, National Trust comparisons, reports, and a staff-facing web app. The hosted version also has an AI assistant that answers plain-English questions about the results.
 
-**Live app:** https://rollinse.github.io/brownsea-visitor-access-equity-model/
+**Live app with AI assistant:** https://brownsea-visitor-access.onrender.com
+
+**Static version (no assistant):** https://rollinse.github.io/brownsea-visitor-access-equity-model/
+
+The first link runs on a free hosting plan and goes to sleep when nobody is using it, so the first load can take about a minute.
 
 ---
 
@@ -13,7 +17,7 @@ This project analyses visitor access to Brownsea Island across BH, DT, and SP po
 The project includes a reproducible data pipeline, release QA tooling, and two app delivery options:
 
 1. A static staff-facing app for GitHub Pages
-2. A Flask app for local or hosted use
+2. A Flask app, hosted on Render, which adds the AI assistant
 
 The GitHub Pages app allows non-technical users to search a postcode, view Brownsea access context, compare nearby National Trust alternatives, and download reports.
 
@@ -27,7 +31,8 @@ The GitHub Pages app allows non-technical users to search a postcode, view Brown
 * Stage-specific reruns and release promotion
 * Release QA, smoke testing, and freeze checks
 * Static GitHub Pages app for non-technical users
-* Flask app option for local demos or hosted deployment
+* Flask app for local demos and the hosted version
+* AI assistant (Google Gemini) that answers questions using read-only tools over the published results
 * Reports, plots, downloads, and help definitions
 
 ## Pipeline stages
@@ -53,9 +58,11 @@ brownsea_pipeline/
 ├── requirements/        # Dependency files
 ├── scripts/             # QA, release, export, and utility scripts
 ├── src/                 # Pipeline and app source code
+│   └── agent/           # AI assistant: tools, prompt, and LLM connections
 ├── tests/               # Regression and smoke tests
 ├── cli.py
 ├── pipeline.py
+├── render.yaml          # Hosting config for Render
 ├── run_postcode_app.py
 └── README.md
 ```
@@ -147,7 +154,13 @@ Install the lightweight app dependencies:
 pip install -r requirements/app.txt
 ```
 
-Run the app against a completed outputs folder:
+Run the app:
+
+```bash
+python run_postcode_app.py --port 8000
+```
+
+If there is no `outputs/` folder, the app uses the release already published in `docs/`, so it works straight after cloning. To run it against your own pipeline outputs:
 
 ```bash
 python run_postcode_app.py --outputs-root outputs --port 8000
@@ -161,45 +174,67 @@ http://localhost:8000
 
 In Colab, launch the app through the Colab port proxy after starting the server.
 
-## AI assistant (optional)
+## AI assistant
 
-The Flask app can answer plain-English questions such as "Which districts need urgent action and are under 40 minutes from Brownsea?". An LLM agent chooses from a small set of read-only tools over the artifacts the pipeline already publishes, then writes an answer from what the tools return. It does not change the dataset, the features or the model, and it never sees visitor or member records.
+The Flask app has an "Ask about the analysis" box. You can type a question such as "Which districts need urgent action and are under 40 minutes from Brownsea?" and get a short written answer.
+
+![The assistant answering a question about urgent action districts](assets/assistant.png)
+
+### How it works
+
+The assistant is an LLM agent. It does not answer from memory. For each question it picks from a small set of read-only tools, the tools look up the published results, and the model writes its answer from what they return.
 
 | Tool | Reads |
 |---|---|
-| `lookup_postcode` | `postcode_lookup.json` |
+| `lookup_postcode` | the postcode lookup |
 | `get_district`, `query_districts`, `aggregate_districts` | `three_way_intersection_analysis_v2.csv` |
 | `get_model_performance` | `model_performance.csv`, `model_performance_summary.json` |
-| `get_definitions` | the three framework tables in `reports/tables/` |
+| `get_definitions` | the framework tables in `reports/tables/` |
 
-Counts, totals and averages are computed in Python by the tools, not by the LLM.
+A few design choices:
 
-Setup:
+* Counts, totals and averages are worked out in Python by the tools, not by the model.
+* The tools only read. Nothing in the dataset, the features or the trained model is changed.
+* The assistant never sees visitor or member records, only the published postcode and district outputs.
+* Each answer lists which data it used.
+
+### Running it yourself
+
+The assistant uses Google's Gemini API. You need a free key from https://aistudio.google.com/apikey. Without a key the app still runs, just without the question box.
 
 ```bash
 pip install -r requirements/app.txt
-export GEMINI_API_KEY=...               # free key from https://aistudio.google.com/apikey; the assistant stays off when unset
-python run_postcode_app.py              # "Ask about the analysis" appears on the home page
+export GEMINI_API_KEY=your-key
+python run_postcode_app.py
 ```
 
-Try it without the web app, or check it against answers computed from the data:
+On Windows, set the key with `$env:GEMINI_API_KEY="your-key"` in PowerShell or `set GEMINI_API_KEY=your-key` in Command Prompt.
+
+You can also ask a question from the command line, or run the check that compares the assistant's answers with values calculated directly from the data:
 
 ```bash
 python -m src.agent --show-tools "How many districts are in each priority zone?"
 python scripts/eval_agent.py
 ```
 
-On Windows Command Prompt use `set GEMINI_API_KEY=...` instead of `export`.
+### Limits and settings
 
-Settings: `BROWNSEA_AGENT_MODEL` (default `gemini-3.8-flash`), `BROWNSEA_AGENT_RATE_PER_MIN` (default 10 questions per client per minute), `BROWNSEA_AGENT_ENABLED=0` to switch it off. The static GitHub Pages app has no server to hold an API key, so the assistant is available in the Flask app only.
+Gemini's free limits are set per model and can be low. When I set this up, `gemini-3.8-flash` allowed 20 requests a day, and each question uses at least two. If a model is over its limit or too busy, the assistant moves on to the next model in the list.
 
-Gemini's free limits are per model and can be small (20 requests a day on `gemini-3.8-flash` at the time of writing; your own limits are shown at https://ai.dev/rate-limit). When a model is over its limit or too busy, the assistant moves to the next one in `BROWNSEA_AGENT_FALLBACK_MODELS` (default `gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite`). Each question uses two or more requests.
+| Setting | Default | Purpose |
+|---|---|---|
+| `BROWNSEA_AGENT_MODEL` | `gemini-3.8-flash` | First model to try |
+| `BROWNSEA_AGENT_FALLBACK_MODELS` | `gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite` | Models to fall back to, in order |
+| `BROWNSEA_AGENT_RATE_PER_MIN` | `10` | Questions allowed per client per minute |
+| `BROWNSEA_AGENT_ENABLED` | `1` | Set to `0` to switch the assistant off |
 
-The assistant uses Google's Gemini API by default, called over HTTPS with no extra package. Questions and the tool results needed to answer them are sent to Google; on Gemini's free tier, Google may use that content to improve its products. To use Anthropic instead, `pip install anthropic`, set `ANTHROPIC_API_KEY` and set `BROWNSEA_AGENT_PROVIDER=anthropic`.
+Questions and the results needed to answer them are sent to Google. On the free tier, Google may use that content to improve its products.
 
-### Hosting the Flask app
+The static GitHub Pages app cannot include the assistant, because it has no server to keep the API key private.
 
-`render.yaml` deploys the Flask app, including the assistant, on Render's free plan: in Render choose **New > Blueprint**, pick this repository and enter `GEMINI_API_KEY` when asked. With no `outputs/` folder present, the app serves the release published in `docs/`. On the free plan the service sleeps after 15 minutes without visitors and takes about a minute to wake.
+### Hosting
+
+The hosted version runs on Render's free plan. `render.yaml` holds the setup: in Render choose **New > Blueprint**, pick this repository, and enter `GEMINI_API_KEY` when asked. Every push to `main` redeploys it.
 
 ## Colab quick start
 
