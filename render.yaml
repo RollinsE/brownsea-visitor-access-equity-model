@@ -1,0 +1,14 @@
+# One-click hosting of the Flask app (with the AI assistant) on Render's free plan.
+# In Render: New > Blueprint > pick this repository. You will be asked for GEMINI_API_KEY.
+services:
+  - type: web
+    name: brownsea-visitor-access
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements/app.txt
+    # One worker keeps memory low (the app holds about 190 MB); threads let several people use it at once.
+    startCommand: gunicorn app.gunicorn_app:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false

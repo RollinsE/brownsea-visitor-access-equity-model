@@ -197,6 +197,10 @@ Gemini's free limits are per model and can be small (20 requests a day on `gemin
 
 The assistant uses Google's Gemini API by default, called over HTTPS with no extra package. Questions and the tool results needed to answer them are sent to Google; on Gemini's free tier, Google may use that content to improve its products. To use Anthropic instead, `pip install anthropic`, set `ANTHROPIC_API_KEY` and set `BROWNSEA_AGENT_PROVIDER=anthropic`.
 
+### Hosting the Flask app
+
+`render.yaml` deploys the Flask app, including the assistant, on Render's free plan: in Render choose **New > Blueprint**, pick this repository and enter `GEMINI_API_KEY` when asked. With no `outputs/` folder present, the app serves the release published in `docs/`. On the free plan the service sleeps after 15 minutes without visitors and takes about a minute to wake.
+
 ## Colab quick start
 
 Mount Google Drive, install dependencies, set the ORS API key, and run the pipeline:

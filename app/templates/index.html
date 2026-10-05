@@ -31,7 +31,12 @@
     .ask-row input { border-color:#cbd5e1; }
     .turn { margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); }
     .turn .q { font-weight:600; }
-    .turn .a { margin-top:6px; line-height:1.5; white-space:pre-wrap; }
+    .turn .a { margin-top:6px; line-height:1.5; }
+    .turn .a p { margin:0 0 8px; }
+    .turn .a .a-h { font-weight:700; margin:10px 0 4px; }
+    .turn .a .a-li { display:flex; gap:8px; margin:2px 0; }
+    .turn .a .a-li > span:first-child { color:var(--muted); flex:none; min-width:10px; }
+    .turn .a code { background:#f1f5f9; padding:1px 4px; border-radius:4px; font-size:.95em; }
     .turn .used { margin-top:6px; }
   </style>
 </head>
@@ -282,6 +287,41 @@ function describeToolCall(call){
   };
   return names[call.name] || call.name;
 }
+function escapeHtml(text){
+  return String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function inlineMarkup(escaped){
+  return escaped
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/__([^_]+?)__/g, '<strong>$1</strong>')
+    .replace(/(^|[\s(])\*([^*\s][^*]*?)\*(?=[\s).,;:!?]|$)/g, '$1<em>$2</em>')
+    .replace(/\*\*/g, '');
+}
+// The assistant writes light Markdown. The text is escaped first, so only the
+// few tags added here (bold, italic, code, headings, bullets) can reach the page.
+function renderAnswer(text){
+  const html = [];
+  let paragraph = [];
+  const flush = () => { if(paragraph.length){ html.push(`<p>${paragraph.join(' ')}</p>`); paragraph = []; } };
+  String(text || '').replace(/\r/g, '').split('\n').forEach(raw => {
+    const line = raw.replace(/\s+$/, '');
+    if(!line.trim() || /^\s*([-*_])\1{2,}\s*$/.test(line)){ flush(); return; }
+    const heading = line.match(/^\s*#{1,6}\s+(.*)$/);
+    if(heading){ flush(); html.push(`<div class="a-h">${inlineMarkup(escapeHtml(heading[1].replace(/\s*#+\s*$/, '')))}</div>`); return; }
+    const item = line.match(/^(\s*)(?:([-*•])|(\d+)[.)])\s+(.*)$/);
+    if(item){
+      flush();
+      const depth = Math.min(Math.floor(item[1].replace(/\t/g, '  ').length / 2), 3);
+      const marker = item[3] ? `${item[3]}.` : '•';
+      html.push(`<div class="a-li" style="margin-left:${depth * 18}px"><span>${marker}</span><span>${inlineMarkup(escapeHtml(item[4]))}</span></div>`);
+      return;
+    }
+    paragraph.push(inlineMarkup(escapeHtml(line.trim())));
+  });
+  flush();
+  return html.join('');
+}
 async function askQuestion(){
   const input = document.getElementById('question');
   const button = document.getElementById('ask-button');
@@ -303,7 +343,7 @@ async function askQuestion(){
     const payload = await res.json();
     if(!res.ok){ a.textContent = payload.error || 'The assistant could not answer.'; return; }
     a.className = 'a';
-    a.textContent = payload.answer;
+    a.innerHTML = renderAnswer(payload.answer);
     if(payload.tool_calls && payload.tool_calls.length){
       const used = document.createElement('div');
       used.className = 'small used';
