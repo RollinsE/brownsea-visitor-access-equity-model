@@ -161,6 +161,42 @@ http://localhost:8000
 
 In Colab, launch the app through the Colab port proxy after starting the server.
 
+## AI assistant (optional)
+
+The Flask app can answer plain-English questions such as "Which districts need urgent action and are under 40 minutes from Brownsea?". An LLM agent chooses from a small set of read-only tools over the artifacts the pipeline already publishes, then writes an answer from what the tools return. It does not change the dataset, the features or the model, and it never sees visitor or member records.
+
+| Tool | Reads |
+|---|---|
+| `lookup_postcode` | `postcode_lookup.json` |
+| `get_district`, `query_districts`, `aggregate_districts` | `three_way_intersection_analysis_v2.csv` |
+| `get_model_performance` | `model_performance.csv`, `model_performance_summary.json` |
+| `get_definitions` | the three framework tables in `reports/tables/` |
+
+Counts, totals and averages are computed in Python by the tools, not by the LLM.
+
+Setup:
+
+```bash
+pip install -r requirements/app.txt
+export GEMINI_API_KEY=...               # free key from https://aistudio.google.com/apikey; the assistant stays off when unset
+python run_postcode_app.py              # "Ask about the analysis" appears on the home page
+```
+
+Try it without the web app, or check it against answers computed from the data:
+
+```bash
+python -m src.agent --show-tools "How many districts are in each priority zone?"
+python scripts/eval_agent.py
+```
+
+On Windows Command Prompt use `set GEMINI_API_KEY=...` instead of `export`.
+
+Settings: `BROWNSEA_AGENT_MODEL` (default `gemini-3.8-flash`), `BROWNSEA_AGENT_RATE_PER_MIN` (default 10 questions per client per minute), `BROWNSEA_AGENT_ENABLED=0` to switch it off. The static GitHub Pages app has no server to hold an API key, so the assistant is available in the Flask app only.
+
+Gemini's free limits are per model and can be small (20 requests a day on `gemini-3.8-flash` at the time of writing; your own limits are shown at https://ai.dev/rate-limit). When a model is over its limit or too busy, the assistant moves to the next one in `BROWNSEA_AGENT_FALLBACK_MODELS` (default `gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite`). Each question uses two or more requests.
+
+The assistant uses Google's Gemini API by default, called over HTTPS with no extra package. Questions and the tool results needed to answer them are sent to Google; on Gemini's free tier, Google may use that content to improve its products. To use Anthropic instead, `pip install anthropic`, set `ANTHROPIC_API_KEY` and set `BROWNSEA_AGENT_PROVIDER=anthropic`.
+
 ## Colab quick start
 
 Mount Google Drive, install dependencies, set the ORS API key, and run the pipeline:
