@@ -478,3 +478,24 @@ def test_api_ask_rate_limit(tmp_path, monkeypatch):
     http = _app(tmp_path, monkeypatch, _claude([_text("one"), _text("two")])).test_client()
     assert http.post("/api/ask", json={"question": "a"}).status_code == 200
     assert http.post("/api/ask", json={"question": "b"}).status_code == 429
+
+
+def test_app_falls_back_to_published_docs_when_no_outputs(tmp_path, monkeypatch):
+    pytest.importorskip("flask")
+    import app.server as server
+
+    if not (server.PUBLISHED_DOCS_DIR / "artifacts" / "postcode_lookup.csv").exists():
+        pytest.skip("published artifacts not present")
+    llm = _claude([_text("Nine districts are Urgent Action.")])
+    http = server.create_app(outputs_root=str(tmp_path / "no-outputs-here"), agent_llm=llm).test_client()
+
+    health = http.get("/health").get_json()
+    assert health["records"] > 40000 and health["assistant"] is True
+
+    row = http.get("/api/lookup?postcode=bh2 5np").get_json()["result"]
+    assert row["district"] == "BH2" and row["chain_ferry_used"] is False
+    assert isinstance(row["total_brownsea_journey_min"], float)
+
+    assert http.get("/reports/index.html").status_code == 200
+    assert http.get("/artifacts/postcode_lookup.csv").status_code == 200
+    assert http.post("/api/ask", json={"question": "How many urgent?"}).get_json()["answer"].startswith("Nine")

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import io
 import json
 import os
@@ -121,8 +122,32 @@ def sanitize_lookup_row(row: dict[str, Any]) -> dict[str, Any]:
     return clean
 
 
+# The copy of the release that is published in the repository for GitHub Pages.
+PUBLISHED_DOCS_DIR = Path(__file__).resolve().parent.parent / 'docs'
+
+
+def _csv_value(value: Any) -> Any:
+    text = '' if value is None else str(value).strip()
+    if text == '' or text.lower() == 'nan':
+        return None
+    if text in ('True', 'False'):
+        return text == 'True'
+    try:
+        return float(text)
+    except ValueError:
+        return text
+
+
+def _read_lookup_rows(lookup_path: Path) -> list[dict[str, Any]]:
+    """Read the postcode lookup from JSON, or from the published CSV."""
+    if lookup_path.suffix.lower() == '.csv':
+        with lookup_path.open(newline='', encoding='utf-8') as handle:
+            return [{key: _csv_value(val) for key, val in row.items()} for row in csv.DictReader(handle)]
+    return json.loads(lookup_path.read_text(encoding='utf-8'))
+
+
 def load_lookup(lookup_path: Path) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
-    data = json.loads(lookup_path.read_text(encoding='utf-8'))
+    data = _read_lookup_rows(lookup_path)
     safe_data = [sanitize_lookup_row(row) for row in data]
     index: dict[str, dict[str, Any]] = {}
     for row in safe_data:
@@ -310,7 +335,12 @@ def create_app(lookup_path: str | None = None, outputs_root: str | None = None, 
     else:
         resolved = find_latest_release_lookup(outputs_dir)
         if resolved is None:
-            raise FileNotFoundError(f"Could not find postcode lookup artifact under {outputs_dir}")
+            # No pipeline outputs on this machine: serve the release published in docs/.
+            published = PUBLISHED_DOCS_DIR / 'artifacts' / 'postcode_lookup.csv'
+            if not published.exists():
+                raise FileNotFoundError(f"Could not find postcode lookup artifact under {outputs_dir}")
+            resolved = published
+            lookup_path = str(published)
         lookup_file = resolved
 
     release_base = _release_base_for_lookup(lookup_file)
