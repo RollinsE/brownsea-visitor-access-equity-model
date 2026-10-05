@@ -1,6 +1,6 @@
 """Check the live assistant against answers computed directly from the data.
 
-Needs ANTHROPIC_API_KEY, so it is a manual check rather than part of `make test`:
+Needs GEMINI_API_KEY (or ANTHROPIC_API_KEY), so it is a manual check rather than part of `make test`:
 
     python scripts/eval_agent.py
     python scripts/eval_agent.py --artifacts outputs/releases/latest/artifacts
@@ -15,11 +15,12 @@ import argparse
 import csv
 import re
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from src.agent import AgentUnavailable, ArtifactStore, EquityAgent  # noqa: E402
+from src.agent import AgentUnavailable, ArtifactStore, EquityAgent, LLMError  # noqa: E402
 from src.agent.tools import DISTRICT_TABLE  # noqa: E402
 
 
@@ -49,6 +50,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--artifacts", default="docs/artifacts")
     parser.add_argument("--reports", default="docs/reports")
+    parser.add_argument("--pause", type=float, default=6.0, help="Seconds to wait between questions (free tiers limit requests per minute)")
     args = parser.parse_args()
 
     artifacts = Path(args.artifacts)
@@ -64,9 +66,16 @@ def main() -> int:
     cases = build_cases(rows)
     cases[-1] = (cases[-1][0], str(store.model_performance.get("summary", {}).get("best_model", "")))
 
+    print(f"Using {agent.llm.name} model {agent.llm.model}\n")
     passed = 0
-    for question, expected in cases:
-        result = agent.ask(question)
+    for number, (question, expected) in enumerate(cases):
+        if number:
+            time.sleep(args.pause)
+        try:
+            result = agent.ask(question)
+        except LLMError as exc:
+            print(f"ERROR {question}\n      {exc}")
+            continue
         ok = bool(result.tool_calls) and re.search(rf"(?<![\w.]){re.escape(expected)}(?![\w.]*\d)", result.answer, re.IGNORECASE) is not None
         passed += ok
         print(f"{'PASS' if ok else 'FAIL'}  {question}\n      expected: {expected} | tools: {[c['name'] for c in result.tool_calls]}")

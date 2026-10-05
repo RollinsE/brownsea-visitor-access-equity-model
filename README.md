@@ -178,7 +178,7 @@ Setup:
 
 ```bash
 pip install -r requirements/app.txt
-export ANTHROPIC_API_KEY=...            # the assistant stays off when this is unset
+export GEMINI_API_KEY=...               # free key from https://aistudio.google.com/apikey; the assistant stays off when unset
 python run_postcode_app.py              # "Ask about the analysis" appears on the home page
 ```
 
@@ -189,7 +189,11 @@ python -m src.agent --show-tools "How many districts are in each priority zone?"
 python scripts/eval_agent.py
 ```
 
-Settings: `BROWNSEA_AGENT_MODEL` (default `claude-sonnet-5-5`), `BROWNSEA_AGENT_RATE_PER_MIN` (default 10 questions per client per minute), `BROWNSEA_AGENT_ENABLED=0` to switch it off. The static GitHub Pages app has no server to hold an API key, so the assistant is available in the Flask app only. Questions and the tool results needed to answer them are sent to the Anthropic API.
+On Windows Command Prompt use `set GEMINI_API_KEY=...` instead of `export`.
+
+Settings: `BROWNSEA_AGENT_MODEL` (default `gemini-3.8-flash`), `BROWNSEA_AGENT_RATE_PER_MIN` (default 10 questions per client per minute), `BROWNSEA_AGENT_ENABLED=0` to switch it off. The static GitHub Pages app has no server to hold an API key, so the assistant is available in the Flask app only.
+
+The assistant uses Google's Gemini API by default, called over HTTPS with no extra package. Questions and the tool results needed to answer them are sent to Google; on Gemini's free tier, Google may use that content to improve its products. To use Anthropic instead, `pip install anthropic`, set `ANTHROPIC_API_KEY` and set `BROWNSEA_AGENT_PROVIDER=anthropic`.
 
 ## Colab quick start
 

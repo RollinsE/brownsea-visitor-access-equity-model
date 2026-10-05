@@ -14,7 +14,8 @@ import json
 import sys
 from pathlib import Path
 
-from src.agent.agent import AgentUnavailable, EquityAgent
+from src.agent.agent import EquityAgent
+from src.agent.llm import AgentUnavailable, LLMError
 from src.agent.tools import DISTRICT_TABLE, ArtifactStore
 
 
@@ -42,7 +43,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Agent unavailable: {exc}", file=sys.stderr)
         return 1
 
-    result = agent.ask(args.question)
+    try:
+        result = agent.ask(args.question)
+    except LLMError as exc:
+        print(f"The LLM request failed: {exc}", file=sys.stderr)
+        return 1
     print(result.answer)
     if args.show_tools:
         print("\nTool calls:")

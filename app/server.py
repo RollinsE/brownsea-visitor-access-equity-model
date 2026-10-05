@@ -260,11 +260,12 @@ def _reports_bundle_bytes(release_base: Path | None, reports_dir: Path, artifact
     buffer.seek(0)
     return buffer
 
-def _build_agent(artifacts_dir: Path, reports_dir: Path, lookup_index: dict[str, dict[str, Any]], client: Any = None) -> tuple[Any, str]:
+def _build_agent(artifacts_dir: Path, reports_dir: Path, lookup_index: dict[str, dict[str, Any]], llm: Any = None) -> tuple[Any, str]:
     """Return (agent, reason). The agent is None when the assistant cannot run.
 
-    The assistant is optional: without an API key, the anthropic package or the
-    district analysis table, the rest of the app works exactly as before.
+    The assistant is optional: without an API key (GEMINI_API_KEY or
+    ANTHROPIC_API_KEY) or the district analysis table, the rest of the app
+    works exactly as before.
     """
     if os.getenv('BROWNSEA_AGENT_ENABLED', '1').strip().lower() in ('0', 'false', 'no'):
         return None, 'The assistant is switched off.'
@@ -276,7 +277,7 @@ def _build_agent(artifacts_dir: Path, reports_dir: Path, lookup_index: dict[str,
         store = ArtifactStore.from_paths(
             artifacts_dir, reports_dir, lookup_index=lookup_index, narrative_cleaner=_plain_narrative,
         )
-        return EquityAgent(store, client=client), ''
+        return EquityAgent(store, llm=llm), ''
     except AgentUnavailable as exc:
         return None, f'The assistant is not configured: {exc}'
 
@@ -299,7 +300,7 @@ class _RateLimiter:
         return True
 
 
-def create_app(lookup_path: str | None = None, outputs_root: str | None = None, agent_client: Any = None) -> Any:
+def create_app(lookup_path: str | None = None, outputs_root: str | None = None, agent_llm: Any = None) -> Any:
     from flask import Flask, abort, jsonify, render_template, request, send_file, send_from_directory
 
     app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -322,7 +323,7 @@ def create_app(lookup_path: str | None = None, outputs_root: str | None = None, 
         artifacts_dir = base_dir / 'artifacts'
 
     rows, lookup_index = load_lookup(lookup_file)
-    agent, agent_problem = _build_agent(artifacts_dir, reports_dir, lookup_index, client=agent_client)
+    agent, agent_problem = _build_agent(artifacts_dir, reports_dir, lookup_index, llm=agent_llm)
     ask_limiter = _RateLimiter(int(os.getenv('BROWNSEA_AGENT_RATE_PER_MIN', '10')))
 
     @app.get('/')
@@ -369,8 +370,10 @@ def create_app(lookup_path: str | None = None, outputs_root: str | None = None, 
             result = agent.ask(question, history=payload.get('history'))
         except ValueError as exc:
             return jsonify({'error': str(exc)}), 400
-        except Exception:
+        except Exception as exc:
             app.logger.exception('Assistant request failed')
+            if getattr(exc, 'status', None) == 429:
+                return jsonify({'error': 'The assistant has reached its usage limit for now. Please try again later.'}), 503
             return jsonify({'error': 'The assistant could not answer just now. Please try again.'}), 502
         return jsonify(result.to_dict())
 
@@ -380,7 +383,7 @@ def create_app(lookup_path: str | None = None, outputs_root: str | None = None, 
 
     @app.get('/health')
     def health():
-        return jsonify({'status': 'ok', 'records': len(rows), 'lookup_path': str(lookup_file), 'assistant': agent is not None})
+        return jsonify({'status': 'ok', 'records': len(rows), 'lookup_path': str(lookup_file), 'assistant': agent is not None, 'assistant_provider': getattr(getattr(agent, 'llm', None), 'name', None)})
 
     @app.get('/reports/<path:filename>')
     def reports(filename: str):

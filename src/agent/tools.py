@@ -377,7 +377,7 @@ class ArtifactStore:
 
 def _matches(cell: Any, op: str, target: Any) -> bool:
     if op == "in":
-        options = target if isinstance(target, list) else [target]
+        options = target if isinstance(target, list) else [part.strip() for part in str(target).split("|")]
         return any(_matches(cell, "eq", option) for option in options)
     if cell is None:
         return False
@@ -426,7 +426,7 @@ _FILTERS_SCHEMA = {
         "properties": {
             "column": {"type": "string"},
             "op": {"type": "string", "enum": list(OPERATORS)},
-            "value": {"description": "Number, text, boolean, or a list when op is 'in'."},
+            "value": {"type": "string", "description": "The value to compare with, written as text (e.g. '40', 'Urgent Action', 'true'). For op 'in', separate the options with | (e.g. 'DT1|SP1')."},
         },
         "required": ["column", "op", "value"],
     },

@@ -1,5 +1,6 @@
 # Minimal requirements for serving the postcode lookup Flask app
 Flask>=3.0,<4.0
 gunicorn>=21.2,<22.0
-# Optional: only used by the 'Ask about the analysis' assistant when ANTHROPIC_API_KEY is set
-anthropic>=0.40
+# The 'Ask about the analysis' assistant uses Gemini by default, which needs no extra package.
+# Only needed if you use Anthropic instead (ANTHROPIC_API_KEY):
+# anthropic>=0.40

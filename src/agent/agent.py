@@ -6,26 +6,21 @@ The loop is the whole "agent":
 1. send the question, the system prompt and the tool descriptions to the LLM
 2. if the LLM asks for a tool, run it and send the result back
 3. repeat until the LLM writes a final answer (or the step limit is reached)
+
+Which LLM is used (Gemini or Anthropic) is decided in llm.py.
 """
 from __future__ import annotations
 
-import json
-import os
 from dataclasses import dataclass, field
 from typing import Any
 
+from src.agent.llm import AgentUnavailable, default_llm
 from src.agent.prompts import build_system_prompt
 from src.agent.tools import TOOL_SCHEMAS, ArtifactStore
 
-DEFAULT_MODEL = "claude-sonnet-5-5"
 MAX_QUESTION_CHARS = 1000
 MAX_HISTORY_TURNS = 6
 MAX_HISTORY_CHARS = 4000
-MAX_TOOL_RESULT_CHARS = 20000
-
-
-class AgentUnavailable(RuntimeError):
-    """The agent cannot run (missing API key, SDK or data)."""
 
 
 @dataclass
@@ -37,17 +32,6 @@ class AgentResult:
 
     def to_dict(self) -> dict[str, Any]:
         return {"answer": self.answer, "tool_calls": self.tool_calls, "steps": self.steps, "complete": self.complete}
-
-
-def default_client() -> Any:
-    """Create the Anthropic client, with clear errors when it cannot be created."""
-    if not os.getenv("ANTHROPIC_API_KEY"):
-        raise AgentUnavailable("ANTHROPIC_API_KEY is not set.")
-    try:
-        import anthropic
-    except ImportError as exc:
-        raise AgentUnavailable("The 'anthropic' package is not installed (pip install anthropic).") from exc
-    return anthropic.Anthropic()
 
 
 def clean_history(history: Any) -> list[dict[str, str]]:
@@ -73,26 +57,13 @@ def clean_history(history: Any) -> list[dict[str, str]]:
     return merged
 
 
-def _block_value(block: Any, key: str) -> Any:
-    return block.get(key) if isinstance(block, dict) else getattr(block, key, None)
-
-
 class EquityAgent:
-    def __init__(
-        self,
-        store: ArtifactStore,
-        client: Any = None,
-        model: str | None = None,
-        max_steps: int = 6,
-        max_tokens: int = 1500,
-    ) -> None:
+    def __init__(self, store: ArtifactStore, llm: Any = None, model: str | None = None, max_steps: int = 6) -> None:
         if not store.has_districts:
             raise AgentUnavailable("District analysis table not found in this release.")
         self.store = store
-        self.client = client if client is not None else default_client()
-        self.model = model or os.getenv("BROWNSEA_AGENT_MODEL") or DEFAULT_MODEL
+        self.llm = llm if llm is not None else default_llm(model)
         self.max_steps = max_steps
-        self.max_tokens = max_tokens
         self.system_prompt = build_system_prompt(store)
 
     def ask(self, question: str, history: Any = None) -> AgentResult:
@@ -102,34 +73,21 @@ class EquityAgent:
         if len(question) > MAX_QUESTION_CHARS:
             raise ValueError(f"question must be at most {MAX_QUESTION_CHARS} characters")
 
-        messages: list[dict[str, Any]] = clean_history(history)
-        messages.append({"role": "user", "content": question})
+        messages = self.llm.start(clean_history(history), question)
         tool_calls: list[dict[str, Any]] = []
 
         for step in range(1, self.max_steps + 1):
-            response = self.client.messages.create(
-                model=self.model,
-                max_tokens=self.max_tokens,
-                system=self.system_prompt,
-                tools=TOOL_SCHEMAS,
-                messages=messages,
-            )
-            text, requests, assistant_content = self._read_response(response)
-            if not requests:
-                return AgentResult(answer=text, tool_calls=tool_calls, steps=step)
+            reply = self.llm.send(self.system_prompt, messages, TOOL_SCHEMAS)
+            if not reply.tool_requests:
+                answer = reply.text or "I could not produce an answer to that. Please try rephrasing the question."
+                return AgentResult(answer=answer, tool_calls=tool_calls, steps=step, complete=bool(reply.text))
 
-            messages.append({"role": "assistant", "content": assistant_content})
             results = []
-            for request in requests:
+            for request in reply.tool_requests:
                 output = self.store.run_tool(request["name"], request["input"])
                 tool_calls.append({"name": request["name"], "input": request["input"]})
-                results.append({
-                    "type": "tool_result",
-                    "tool_use_id": request["id"],
-                    "content": json.dumps(output, ensure_ascii=False, default=str)[:MAX_TOOL_RESULT_CHARS],
-                    "is_error": "error" in output,
-                })
-            messages.append({"role": "user", "content": results})
+                results.append((request, output))
+            self.llm.add_tool_results(messages, reply, results)
 
         return AgentResult(
             answer="I could not finish answering that within the step limit. Try a narrower question.",
@@ -137,25 +95,3 @@ class EquityAgent:
             steps=self.max_steps,
             complete=False,
         )
-
-    @staticmethod
-    def _read_response(response: Any) -> tuple[str, list[dict[str, Any]], list[dict[str, Any]]]:
-        """Split a model response into its text, its tool requests and a replayable copy."""
-        texts: list[str] = []
-        requests: list[dict[str, Any]] = []
-        content: list[dict[str, Any]] = []
-        for block in _block_value(response, "content") or []:
-            kind = _block_value(block, "type")
-            if kind == "text":
-                text = _block_value(block, "text") or ""
-                texts.append(text)
-                content.append({"type": "text", "text": text})
-            elif kind == "tool_use":
-                request = {
-                    "id": _block_value(block, "id"),
-                    "name": _block_value(block, "name"),
-                    "input": _block_value(block, "input") or {},
-                }
-                requests.append(request)
-                content.append({"type": "tool_use", **request})
-        return "\n".join(part for part in texts if part).strip(), requests, content

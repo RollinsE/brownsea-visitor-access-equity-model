@@ -7,8 +7,12 @@ from types import SimpleNamespace
 
 import pytest
 
-from src.agent import AgentUnavailable, ArtifactStore, EquityAgent
+from src.agent import AgentUnavailable, AnthropicLLM, ArtifactStore, EquityAgent, GeminiLLM, LLMError, default_llm
 from src.agent.agent import clean_history
+from src.agent.llm import gemini_tools
+from src.agent.tools import TOOL_SCHEMAS
+
+KEY_VARS = ("GEMINI_API_KEY", "GOOGLE_API_KEY", "ANTHROPIC_API_KEY", "BROWNSEA_AGENT_PROVIDER", "BROWNSEA_AGENT_MODEL")
 
 DISTRICTS = [
     # District, priority_zone, need_tier, visits_per_1000, predicted_visit_rate, total_journey_min, Population, needs_intervention
@@ -72,6 +76,40 @@ def _text(text: str):
     return SimpleNamespace(content=[SimpleNamespace(type="text", text=text)], stop_reason="end_turn")
 
 
+def _claude(responses: list) -> AnthropicLLM:
+    return AnthropicLLM(client=FakeClient(responses), model="test-model")
+
+
+class FakeGemini:
+    """Stands in for the Gemini HTTPS endpoint; replays scripted JSON responses."""
+
+    def __init__(self, responses: list) -> None:
+        self._responses = list(responses)
+        self.calls: list[dict] = []
+
+    def __call__(self, url: str, headers: dict, body: dict) -> dict:
+        self.calls.append({"url": url, "headers": headers, "body": json.loads(json.dumps(body))})
+        response = self._responses.pop(0)
+        if isinstance(response, Exception):
+            raise response
+        return response
+
+
+def _gemini_call(name: str, arguments: dict, **extra) -> dict:
+    return {"candidates": [{"content": {"role": "model", "parts": [
+        {"functionCall": {"name": name, "args": arguments, **extra}, "thoughtSignature": "sig-abc"},
+    ]}}]}
+
+
+def _gemini_text(text: str) -> dict:
+    return {"candidates": [{"content": {"role": "model", "parts": [{"text": "hidden", "thought": True}, {"text": text}]}}]}
+
+
+def _no_keys(monkeypatch) -> None:
+    for name in KEY_VARS:
+        monkeypatch.delenv(name, raising=False)
+
+
 # ---------------------------------------------------------------------- tools
 def test_query_districts_filters_sorts_and_counts(tmp_path):
     store = _store(tmp_path)
@@ -91,6 +129,9 @@ def test_query_districts_supports_boolean_in_and_contains(tmp_path):
     store = _store(tmp_path)
     assert store.query_districts(filters=[{"column": "needs_intervention", "op": "eq", "value": True}])["matched"] == 2
     assert store.query_districts(filters=[{"column": "District", "op": "in", "value": ["DT1", "SP1"]}])["matched"] == 2
+    assert store.query_districts(filters=[{"column": "District", "op": "in", "value": "DT1 | SP1"}])["matched"] == 2
+    assert store.query_districts(filters=[{"column": "needs_intervention", "op": "eq", "value": "true"}])["matched"] == 2
+    assert store.query_districts(filters=[{"column": "total_journey_min", "op": "lt", "value": "40"}])["matched"] == 2
     assert store.query_districts(filters=[{"column": "need_tier", "op": "contains", "value": "need"}])["matched"] == 4
 
 
@@ -161,11 +202,12 @@ def test_tools_match_published_district_table():
 # ----------------------------------------------------------------- agent loop
 def test_agent_runs_tool_then_answers(tmp_path):
     store = _store(tmp_path)
-    client = FakeClient([
+    llm = _claude([
         _tool_use("query_districts", {"filters": [{"column": "priority_zone", "op": "eq", "value": "Urgent Action"}]}),
         _text("Two districts need urgent action: BH1 and BH2."),
     ])
-    result = EquityAgent(store, client=client, model="test-model").ask("Which districts need urgent action?")
+    client = llm.client
+    result = EquityAgent(store, llm=llm).ask("Which districts need urgent action?")
 
     assert result.answer == "Two districts need urgent action: BH1 and BH2."
     assert result.complete and result.steps == 2
@@ -181,35 +223,118 @@ def test_agent_runs_tool_then_answers(tmp_path):
 
 def test_agent_reports_tool_errors_back_to_the_model(tmp_path):
     store = _store(tmp_path)
-    client = FakeClient([_tool_use("get_district", {"district": "ZZ9"}), _text("I could not find that district.")])
-    EquityAgent(store, client=client).ask("Tell me about ZZ9")
+    llm = _claude([_tool_use("get_district", {"district": "ZZ9"}), _text("I could not find that district.")])
+    client = llm.client
+    EquityAgent(store, llm=llm).ask("Tell me about ZZ9")
     tool_result = client.calls[1]["messages"][-1]["content"][0]
     assert tool_result["is_error"] is True
 
 
 def test_agent_stops_at_step_limit(tmp_path):
     store = _store(tmp_path)
-    client = FakeClient([_tool_use("get_model_performance", {}, f"call_{i}") for i in range(3)])
-    result = EquityAgent(store, client=client, max_steps=3).ask("loop forever")
+    llm = _claude([_tool_use("get_model_performance", {}, f"call_{i}") for i in range(3)])
+    result = EquityAgent(store, llm=llm, max_steps=3).ask("loop forever")
     assert result.complete is False
     assert len(result.tool_calls) == 3
 
 
 def test_agent_validates_question_and_needs_data(tmp_path):
     store = _store(tmp_path)
-    agent = EquityAgent(store, client=FakeClient([]))
+    agent = EquityAgent(store, llm=_claude([]))
     with pytest.raises(ValueError):
         agent.ask("   ")
     with pytest.raises(ValueError):
         agent.ask("x" * 1001)
     with pytest.raises(AgentUnavailable):
-        EquityAgent(ArtifactStore(), client=FakeClient([]))
+        EquityAgent(ArtifactStore(), llm=_claude([]))
 
 
 def test_agent_unavailable_without_api_key(tmp_path, monkeypatch):
-    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    _no_keys(monkeypatch)
     with pytest.raises(AgentUnavailable):
         EquityAgent(_store(tmp_path))
+
+
+def test_provider_is_chosen_from_environment(monkeypatch):
+    _no_keys(monkeypatch)
+    monkeypatch.setenv("GEMINI_API_KEY", "g-key")
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "a-key")
+    llm = default_llm()
+    assert isinstance(llm, GeminiLLM) and llm.model == "gemini-3.8-flash"
+
+    monkeypatch.setenv("BROWNSEA_AGENT_MODEL", "gemini-3.5-flash-lite")
+    assert default_llm().model == "gemini-3.5-flash-lite"
+
+    monkeypatch.setenv("BROWNSEA_AGENT_PROVIDER", "nonsense")
+    with pytest.raises(AgentUnavailable):
+        default_llm()
+
+
+# --------------------------------------------------------------------- Gemini
+def test_gemini_agent_runs_tool_then_answers(tmp_path):
+    store = _store(tmp_path)
+    transport = FakeGemini([
+        _gemini_call("query_districts", {"filters": [{"column": "priority_zone", "op": "eq", "value": "Urgent Action"}]}, id="fc_1"),
+        _gemini_text("Two districts need urgent action: BH1 and BH2."),
+    ])
+    llm = GeminiLLM(api_key="test-key", model="gemini-test", transport=transport)
+    result = EquityAgent(store, llm=llm).ask("Which districts need urgent action?", history=[
+        {"role": "user", "content": "hello"}, {"role": "assistant", "content": "hi"},
+    ])
+
+    assert result.answer == "Two districts need urgent action: BH1 and BH2."
+    assert result.tool_calls == [{"name": "query_districts", "input": {"filters": [{"column": "priority_zone", "op": "eq", "value": "Urgent Action"}]}}]
+
+    first, second = transport.calls
+    assert first["url"].endswith("/models/gemini-test:generateContent")
+    assert first["headers"]["x-goog-api-key"] == "test-key"
+    assert "test-key" not in first["url"]
+    assert "priority_zone" in first["body"]["systemInstruction"]["parts"][0]["text"]
+    assert [m["role"] for m in first["body"]["contents"]] == ["user", "model", "user"]
+
+    replayed, tool_turn = second["body"]["contents"][-2:]
+    assert replayed["role"] == "model"
+    assert replayed["parts"][0]["thoughtSignature"] == "sig-abc"  # must be sent back untouched
+    response = tool_turn["parts"][0]["functionResponse"]
+    assert tool_turn["role"] == "user" and response["name"] == "query_districts" and response["id"] == "fc_1"
+    assert response["response"]["matched"] == 2
+
+
+def test_gemini_tool_declarations_are_valid_for_the_api():
+    declarations = gemini_tools(TOOL_SCHEMAS)[0]["functionDeclarations"]
+    assert {d["name"] for d in declarations} == {t["name"] for t in TOOL_SCHEMAS}
+    by_name = {d["name"]: d for d in declarations}
+    assert "parameters" not in by_name["get_model_performance"]  # no empty object schemas
+
+    def check(schema):
+        assert "type" in schema, schema  # Gemini needs a type on every schema node
+        for child in (schema.get("properties") or {}).values():
+            check(child)
+        if "items" in schema:
+            check(schema["items"])
+
+    for declaration in declarations:
+        if "parameters" in declaration:
+            check(declaration["parameters"])
+
+
+def test_gemini_retries_rate_limit_then_reports_other_errors(tmp_path):
+    store = _store(tmp_path)
+    transport = FakeGemini([LLMError("slow down", status=429), _gemini_text("ok")])
+    llm = GeminiLLM(api_key="k", transport=transport, retry_wait=0)
+    assert EquityAgent(store, llm=llm).ask("hello").answer == "ok"
+    assert len(transport.calls) == 2
+
+    failing = GeminiLLM(api_key="k", transport=FakeGemini([LLMError("bad key", status=400)]), retry_wait=0)
+    with pytest.raises(LLMError):
+        EquityAgent(store, llm=failing).ask("hello")
+
+
+def test_gemini_empty_reply_gives_a_clear_message(tmp_path):
+    store = _store(tmp_path)
+    transport = FakeGemini([{"candidates": [{"finishReason": "MAX_TOKENS", "content": {"role": "model"}}]}])
+    result = EquityAgent(store, llm=GeminiLLM(api_key="k", transport=transport)).ask("hello")
+    assert result.complete is False and "rephrasing" in result.answer
 
 
 def test_clean_history_keeps_alternating_recent_text_turns():
@@ -226,17 +351,18 @@ def test_clean_history_keeps_alternating_recent_text_turns():
 
 
 # ------------------------------------------------------------------ Flask API
-def _app(tmp_path, monkeypatch, client=None):
+def _app(tmp_path, monkeypatch, llm=None):
     pytest.importorskip("flask")
     from app.server import create_app
 
     artifacts, _ = _write_release(tmp_path)
-    return create_app(lookup_path=str(artifacts / "postcode_lookup.json"), agent_client=client)
+    return create_app(lookup_path=str(artifacts / "postcode_lookup.json"), agent_llm=llm)
 
 
 def test_api_ask_returns_answer_and_tool_calls(tmp_path, monkeypatch):
-    client = FakeClient([_tool_use("get_district", {"district": "BH1"}), _text("BH1 is an Urgent Action district.")])
-    app = _app(tmp_path, monkeypatch, client)
+    llm = _claude([_tool_use("get_district", {"district": "BH1"}), _text("BH1 is an Urgent Action district.")])
+    client = llm.client
+    app = _app(tmp_path, monkeypatch, llm)
     http = app.test_client()
 
     response = http.post("/api/ask", json={"question": "Tell me about BH1"})
@@ -251,8 +377,26 @@ def test_api_ask_returns_answer_and_tool_calls(tmp_path, monkeypatch):
     assert http.get("/health").get_json()["assistant"] is True
 
 
+def test_api_ask_works_with_gemini_and_reports_usage_limit(tmp_path, monkeypatch):
+    transport = FakeGemini([
+        _gemini_call("get_district", {"district": "BH1"}),
+        _gemini_text("BH1 is an Urgent Action district."),
+        LLMError("quota", status=429),
+    ])
+    llm = GeminiLLM(api_key="k", transport=transport, retries=0)
+    http = _app(tmp_path, monkeypatch, llm).test_client()
+
+    body = http.post("/api/ask", json={"question": "Tell me about BH1"}).get_json()
+    assert body["answer"] == "BH1 is an Urgent Action district."
+    assert "id" not in transport.calls[1]["body"]["contents"][-1]["parts"][0]["functionResponse"]
+    assert http.get("/health").get_json()["assistant_provider"] == "gemini"
+
+    limited = http.post("/api/ask", json={"question": "again"})
+    assert limited.status_code == 503 and "usage limit" in limited.get_json()["error"]
+
+
 def test_api_ask_is_off_without_key_and_app_still_works(tmp_path, monkeypatch):
-    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    _no_keys(monkeypatch)
     app = _app(tmp_path, monkeypatch)
     http = app.test_client()
 
@@ -264,7 +408,6 @@ def test_api_ask_is_off_without_key_and_app_still_works(tmp_path, monkeypatch):
 
 def test_api_ask_rate_limit(tmp_path, monkeypatch):
     monkeypatch.setenv("BROWNSEA_AGENT_RATE_PER_MIN", "1")
-    client = FakeClient([_text("one"), _text("two")])
-    http = _app(tmp_path, monkeypatch, client).test_client()
+    http = _app(tmp_path, monkeypatch, _claude([_text("one"), _text("two")])).test_client()
     assert http.post("/api/ask", json={"question": "a"}).status_code == 200
     assert http.post("/api/ask", json={"question": "b"}).status_code == 429
