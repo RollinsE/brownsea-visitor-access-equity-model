@@ -25,4 +25,4 @@ Shard files exported: 48
 4. Select branch `main` and folder `/docs`.
 5. Save and use the GitHub Pages URL.
 
-Generated at: 2026-05-11T12:40:51.002504+00:00
+Generated at: 2026-10-06T12:38:42.513224+00:00

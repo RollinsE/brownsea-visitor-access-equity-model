@@ -1,6 +1,11 @@
 {
-  "best_model": "HybridEnsemble",
-  "best_mae": 0.12273028231483421,
-  "best_r2": 0.7587695306919872,
-  "models_evaluated": 9
+  "best_model": "Ridge Regression",
+  "best_mae": 1.1600586370092794,
+  "best_r2": 0.6744153195694835,
+  "models_evaluated": 17,
+  "districts_used": 48,
+  "baseline_mae": 2.365874231703309,
+  "best_rmse": 1.5347260713577748,
+  "skill_vs_baseline": 0.509670200780666,
+  "error_unit": "visits per 1,000 residents, on out-of-fold predictions"
 }

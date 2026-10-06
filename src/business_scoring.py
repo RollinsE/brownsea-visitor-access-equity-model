@@ -82,12 +82,22 @@ def calculate_growth_potential_scores(data: pd.DataFrame) -> pd.DataFrame:
 
 
 def calculate_safe_zone_benchmarks(data: pd.DataFrame, model_rmse: float = None) -> pd.DataFrame:
-    """Add safe zone bands based on ModelConstants buffer."""
-    buffer = ModelConstants.SAFE_ZONE_BUFFER
-    LOG.info(f"Calculating safe zone benchmarks (Fixed Buffer: ±{buffer})")
+    """Add safe zone bands around the model's expected visit rate.
+
+    The bands are one and two RMSE wide, using the model's out-of-fold RMSE.
+    If no RMSE is supplied, the fixed ModelConstants buffer is used as the
+    outer band.
+    """
+    if model_rmse is not None and np.isfinite(model_rmse) and model_rmse > 0:
+        buffer = 2 * float(model_rmse)
+        LOG.info(f"Calculating safe zone benchmarks (model RMSE: {model_rmse:.3f}; bands ±{buffer / 2:.3f} and ±{buffer:.3f})")
+    else:
+        buffer = ModelConstants.SAFE_ZONE_BUFFER
+        LOG.info(f"Calculating safe zone benchmarks (Fixed Buffer: ±{buffer})")
 
     data = data.copy()
 
+    data['safe_zone_band_width'] = buffer / 2
     data['safe_zone_lower_1rmse'] = data['predicted_visit_rate'] - (buffer / 2)
     data['safe_zone_upper_1rmse'] = data['predicted_visit_rate'] + (buffer / 2)
     data['safe_zone_lower_2rmse'] = data['predicted_visit_rate'] - buffer
@@ -192,10 +202,16 @@ def identify_quick_wins(data: pd.DataFrame, top_n: int = 10) -> pd.DataFrame:
                 axis=1
             )
 
+            # Record whether the gap is larger than the model's typical error, so
+            # small gaps are not over-read.
+            if 'safe_zone_band_width' in quick_wins.columns:
+                quick_wins['gap_beyond_model_error'] = quick_wins['performance_gap'] > quick_wins['safe_zone_band_width']
+
             LOG.info(f"Identified {len(quick_wins)} quick win districts")
-            return quick_wins[['District', 'Post_Town', 'Authority_Name', 'visits_per_1000',
-                             'predicted_visit_rate', 'performance_gap', 'composite_need_score',
-                             'quick_win_score', 'quick_win_rationale']]
+            columns = ['District', 'Post_Town', 'Authority_Name', 'visits_per_1000',
+                       'predicted_visit_rate', 'performance_gap', 'gap_beyond_model_error',
+                       'composite_need_score', 'quick_win_score', 'quick_win_rationale']
+            return quick_wins[[c for c in columns if c in quick_wins.columns]]
 
     LOG.warning("Could not identify quick wins")
     return pd.DataFrame()
@@ -216,7 +232,12 @@ def calculate_early_warnings(data: pd.DataFrame) -> pd.DataFrame:
     data.loc[risk1_mask, 'risk_flags'] += 'HighNeedLowVisits;'
 
     if 'performance_gap' in data.columns:
-        risk2_mask = data['performance_gap'] < -2
+        # performance_gap is expected minus observed, so a district visiting less than
+        # expected has a positive gap. Use the model's error band when it is available.
+        if 'safe_zone_band_width' in data.columns:
+            risk2_mask = data['performance_gap'] > data['safe_zone_band_width']
+        else:
+            risk2_mask = data['performance_gap'] > 2
         data.loc[risk2_mask, 'risk_score'] += 25
         data.loc[risk2_mask, 'risk_flags'] += 'UnderperformingPrediction;'
 

@@ -17,11 +17,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
-from src.help_page import write_help_html
-
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+from src.help_page import write_help_html  # noqa: E402
 
 SELECTED_ARTIFACTS = [
     "postcode_lookup.csv",
@@ -65,6 +65,7 @@ STATIC_LOOKUP_FIELDS = [
     "district_visits_per_1000",
     "district_predicted_visit_rate",
     "district_model_gap_per_1000",
+    "district_expected_band_per_1000",
     "alternative_brownsea_departure_terminal",
 ]
 
@@ -376,13 +377,16 @@ function section(title, items, note=''){
 function isBrownseaDestinationPostcode(q){ return q === 'BH137EE'; }
 function destinationPostcodeCard(){ return `<div class="card notfound"><h2 style="margin:0 0 8px;">Brownsea Island destination postcode</h2><p style="margin:0 0 10px;">BH13 7EE is Brownsea Island's destination postcode. This tool estimates visitor access from mainland origin postcodes.</p><div class="small">Please enter a visitor origin postcode instead, for example a BH, DT, or SP residential postcode.</div></div>`; }
 function modelGap(row){ const explicit = numberValue(row.district_model_gap_per_1000); if(explicit !== null) return explicit; const predicted = numberValue(row.district_predicted_visit_rate); const observed = numberValue(row.district_visits_per_1000); if(predicted === null || observed === null) return null; return predicted - observed; }
-function performanceAgainstExpectation(row){ const gap = modelGap(row); if(gap === null) return 'Not available'; const absGap = Math.abs(gap).toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1}); if(Math.abs(gap) < 0.05) return 'In line with expected'; if(gap > 0) return `${absGap} visits per 1,000 below expected`; return `${absGap} visits per 1,000 above expected`; }
+function expectedBand(row){ const band = numberValue(row.district_expected_band_per_1000); return (band !== null && band > 0) ? band : 0.25; }
+function performanceAgainstExpectation(row){ const gap = modelGap(row); if(gap === null) return 'Not available'; const absGap = Math.abs(gap).toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1}); if(Math.abs(gap) < 0.05) return 'In line with expected'; const note = Math.abs(gap) <= expectedBand(row) ? ' (within the normal range for the model)' : '';
+  if(gap > 0) return `${absGap} visits per 1,000 below expected${note}`; return `${absGap} visits per 1,000 above expected${note}`; }
 function accessPosition(row){ if(isBrownseaSite(row.nearest_nt_site_name)) return 'No competing NT site identified'; const gap = numberValue(row.brownsea_vs_nearest_nt_gap_min); if(gap === null) return 'Not available'; const absGap = Math.abs(gap).toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1}); if(Math.abs(gap) < 0.05) return 'Brownsea journey is broadly similar to the nearest competing NT site'; if(gap > 0) return `Brownsea journey is ${absGap} minutes longer than the nearest competing NT site`; return `Brownsea journey is ${absGap} minutes shorter than the nearest competing NT site`; }
 function boolValue(v){ if(v===true) return true; if(v===false || v===null || v===undefined) return false; return /^(true|1|yes)$/i.test(String(v)); }
 function travelNote(row){ if(boolValue(row.chain_ferry_used)) { const allowance = fmtMinutes(row.chain_ferry_allowance_min); return `Includes a Sandbanks chain ferry allowance of ${allowance} minutes before the Brownsea ferry crossing. Live traffic and ferry waiting times are not included.`; } return 'Journey times are planning estimates and do not include live traffic or live ferry waiting times.'; }
 function needLevel(row){ const decile = numberValue(row.imd_decile); if(decile === null) return 'Not available'; if(decile <= 3) return 'High local need'; if(decile <= 6) return 'Moderate local need'; return 'Lower local need'; }
 function suggestedNextAction(row){ const zone = fmtCategory(row.priority_zone).toLowerCase(); const intervention = fmtCategory(row.intervention_type).toLowerCase(); if(zone.includes('urgent') || intervention.includes('crisis')) return 'Prioritise outreach and access support'; if(zone.includes('high') || intervention.includes('targeted')) return 'Use targeted outreach and monitor response'; if(zone.includes('growth')) return 'Test awareness and conversion activity'; if(zone.includes('monitor')) return 'Monitor engagement before intervention'; if(zone.includes('maintain') || intervention.includes('model')) return 'Maintain current engagement approach'; return 'Review alongside local operational context'; }
-function assessmentReason(row){ const gap = modelGap(row); const need = needLevel(row).toLowerCase(); const accessGap = numberValue(row.brownsea_vs_nearest_nt_gap_min); if(gap !== null && gap > 0.25 && need.includes('high')) return 'Low observed engagement relative to expectation in a high-need district'; if(gap !== null && gap > 0.25) return 'Observed engagement is below model expectation'; if(gap !== null && gap < -0.25) return 'Observed engagement is above model expectation'; if(accessGap !== null && accessGap > 1) return 'Brownsea journey is slower than the nearest competing NT site'; return 'Observed engagement is broadly in line with model expectation'; }
+function assessmentReason(row){ const gap = modelGap(row); const need = needLevel(row).toLowerCase(); const accessGap = numberValue(row.brownsea_vs_nearest_nt_gap_min); if(gap !== null && gap > expectedBand(row) && need.includes('high')) return 'Low observed engagement relative to expectation in a high-need district'; if(gap !== null && gap > expectedBand(row)) return 'Observed engagement is below model expectation'; if(gap !== null && gap < -expectedBand(row)) return 'Observed engagement is above model expectation';
+  if(gap !== null) return 'Observed engagement is broadly in line with model expectation'; if(accessGap !== null && accessGap > 1) return 'Brownsea journey is slower than the nearest competing NT site'; return 'Observed engagement is broadly in line with model expectation'; }
 function patternNote(row){ if(row.pattern_note && rawText(row.pattern_note) !== 'Not available') return rawText(row.pattern_note); const raw = rawText(row.shap_narrative); if(/fragility|model sensitivity|less typical/i.test(raw)) return 'Visitor pattern is less typical than similar districts'; return 'Not available'; }
 function cleanNarrative(text){
   let raw = rawText(text);
@@ -392,7 +396,7 @@ function cleanNarrative(text){
   raw = raw.replace(/(?<!Engagement )\bStatus\s*:/gi, 'Engagement status:');
   const replacements = [
     [/\bExceeding Target\b/gi, 'Above expected'], [/\bBelow Target\b/gi, 'Below expected'], [/\bOn Target\b/gi, 'In line with expected'],
-    [/\bPrimary Barriers\s*:/gi, 'Main barriers:'], [/\bPositive Drivers\s*:/gi, 'Positive factors:'],
+    [/\bPrimary Barriers\s*:/gi, 'Lowers the expected rate:'], [/\bPositive Drivers\s*:/gi, 'Raises the expected rate:'],
     [/\bDrive Time to Competitor NT Site\b/gi, 'drive time to nearest NT site'], [/\bDrive Time\b/gi, 'drive time'], [/\bTravel Time\b/gi, 'journey time'],
     [/\bFerry Duration\b/gi, 'ferry crossing time'], [/\bLocal Income Levels\b/gi, 'local income context'], [/\bOverall Deprivation\b/gi, 'deprivation level'],
     [/\bGeographic Isolation\b/gi, 'geographic access barriers'], [/\bSystemic Barriers\b/gi, 'wider access barriers'], [/\bLogistical Accessibility\b/gi, 'accessibility'],

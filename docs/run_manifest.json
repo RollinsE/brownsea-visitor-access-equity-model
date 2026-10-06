@@ -1,10 +1,10 @@
 {
   "runtime": "colab",
   "data_directory": "/content/brownsea_pipeline/data",
-  "output_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420",
-  "artifact_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420/artifacts",
-  "report_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420/reports",
-  "checkpoint_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20260511_122420/checkpoints",
+  "output_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20261006_123000",
+  "artifact_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20261006_123000/artifacts",
+  "report_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20261006_123000/reports",
+  "checkpoint_dir": "/content/drive/MyDrive/brownsea/outputs/builds/20261006_123000/checkpoints",
   "selected_features": [
     "total_journey_min",
     "nearest_competitor_drive_min",
@@ -35,20 +35,19 @@
     "competitor_shortlist_size": 5,
     "cache_version": "v1"
   },
-  "generated_at": "20260511_122423",
+  "generated_at": "20261006_123002",
   "output_root": "/content/drive/MyDrive/brownsea/outputs",
-  "run_id": "20260511_122420",
-  "release_name": "latest",
+  "run_id": "20261006_123000",
+  "release_name": null,
   "stage_plan": {
-    "from_stage": 1,
+    "from_stage": 2,
     "to_stage": 5,
     "stages": [
-      1,
       2,
       3,
       4,
       5
     ]
   },
-  "resume_build": null
+  "resume_build": "/content/drive/MyDrive/brownsea/outputs/builds/20261006_061507"
 }

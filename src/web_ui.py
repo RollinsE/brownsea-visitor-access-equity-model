@@ -32,8 +32,8 @@ def _normalise_engagement_text(raw: str) -> str:
         (r"\bBelow Target\b", "Below expected"),
         (r"\bExceeding Target\b", "Above expected"),
         (r"\bOn Target\b", "In line with expected"),
-        (r"\bPrimary Barriers\s*:", "Main barriers:"),
-        (r"\bPositive Drivers\s*:", "Positive factors:"),
+        (r"\bPrimary Barriers\s*:", "Lowers the expected rate:"),
+        (r"\bPositive Drivers\s*:", "Raises the expected rate:"),
         (r"\bDrive Time to Competitor NT Site\b", "drive time to nearest NT site"),
         (r"\bBrownsea journey time\b", "Brownsea journey time"),
         (r"\bDrive Time\b", "drive time"),
@@ -285,13 +285,15 @@ function modelGap(row){{
   if(predicted === null || observed === null) return null;
   return predicted - observed;
 }}
+function expectedBand(row){{ const band = numberValue(row.district_expected_band_per_1000); return (band !== null && band > 0) ? band : 0.25; }}
 function performanceAgainstExpectation(row){{
   const gap = modelGap(row);
   if(gap === null) return 'Not available';
   const absGap = Math.abs(gap).toLocaleString(undefined, {{minimumFractionDigits: 1, maximumFractionDigits: 1}});
   if(Math.abs(gap) < 0.05) return 'In line with expected';
-  if(gap > 0) return `${{absGap}} visits per 1,000 below expected`;
-  return `${{absGap}} visits per 1,000 above expected`;
+  const note = Math.abs(gap) <= expectedBand(row) ? ' (within the normal range for the model)' : '';
+  if(gap > 0) return `${{absGap}} visits per 1,000 below expected${{note}}`;
+  return `${{absGap}} visits per 1,000 above expected${{note}}`;
 }}
 function accessPosition(row){{
   if(isBrownseaSite(row.nearest_nt_site_name)) return 'No competing NT site identified';
@@ -335,9 +337,10 @@ function assessmentReason(row){{
   const gap = modelGap(row);
   const need = needLevel(row).toLowerCase();
   const accessGap = numberValue(row.brownsea_vs_nearest_nt_gap_min);
-  if(gap !== null && gap > 0.25 && need.includes('high')) return 'Low observed engagement relative to expectation in a high-need district';
-  if(gap !== null && gap > 0.25) return 'Observed engagement is below model expectation';
-  if(gap !== null && gap < -0.25) return 'Observed engagement is above model expectation';
+  if(gap !== null && gap > expectedBand(row) && need.includes('high')) return 'Low observed engagement relative to expectation in a high-need district';
+  if(gap !== null && gap > expectedBand(row)) return 'Observed engagement is below model expectation';
+  if(gap !== null && gap < -expectedBand(row)) return 'Observed engagement is above model expectation';
+  if(gap !== null) return 'Observed engagement is broadly in line with model expectation';
   if(accessGap !== null && accessGap > 1) return 'Brownsea journey is slower than the nearest competing NT site';
   return 'Observed engagement is broadly in line with model expectation';
 }}
@@ -360,8 +363,8 @@ function cleanNarrative(text){{
     [/\bExceeding Target\b/gi, 'Above expected'],
     [/\bBelow Target\b/gi, 'Below expected'],
     [/\bOn Target\b/gi, 'In line with expected'],
-    [/\bPrimary Barriers\s*:/gi, 'Main barriers:'],
-    [/\bPositive Drivers\s*:/gi, 'Positive factors:'],
+    [/\bPrimary Barriers\s*:/gi, 'Lowers the expected rate:'],
+    [/\bPositive Drivers\s*:/gi, 'Raises the expected rate:'],
     [/\bDrive Time to Competitor NT Site\b/gi, 'drive time to nearest NT site'],
     [/\bDrive Time\b/gi, 'drive time'],
     [/\bTravel Time\b/gi, 'journey time'],

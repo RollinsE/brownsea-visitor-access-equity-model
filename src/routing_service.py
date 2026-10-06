@@ -26,7 +26,8 @@ from src.utils import calculate_haversine_distance
 LOG = logging.getLogger("Brownsea_Equity_Analysis")
 
 
-TARGET_PREFIXES = tuple(GeographicConstants.BCP_DORSET_POSTCODES)
+# Districts that get real routes: the study area plus any extra training areas.
+TARGET_PREFIXES = tuple(GeographicConstants.BCP_DORSET_POSTCODES) + tuple(GeographicConstants.EXTRA_TRAINING_AREAS)
 
 
 def _route_cache_key(start_coords, end_coords, route_scope: str) -> str:
@@ -87,37 +88,83 @@ def _sandbanks_chain_ferry_option(client, district_coords, cache, district_name:
     }
 
 
+# Route requests that failed in this run, so problems are reported instead of passing silently.
+ROUTE_FAILURES = {'count': 0, 'first_error': '', 'quota_exhausted': False}
+
+
+def reset_route_failures() -> None:
+    ROUTE_FAILURES.update({'count': 0, 'first_error': '', 'quota_exhausted': False})
+
+
+def _is_rate_limit(exc: Exception) -> bool:
+    text = f"{type(exc).__name__} {exc}".lower()
+    return any(marker in text for marker in ('429', 'rate limit', 'too many', 'overquerylimit', 'timeout'))
+
+
+def _is_quota_exhausted(exc: Exception) -> bool:
+    text = str(exc).lower()
+    return 'quota' in text or 'daily' in text or '403' in text
+
+
+def _record_route_failure(exc: Exception, district_name, target_name) -> None:
+    ROUTE_FAILURES['count'] += 1
+    if not ROUTE_FAILURES['first_error']:
+        ROUTE_FAILURES['first_error'] = f"{type(exc).__name__}: {exc}"[:300]
+    if ROUTE_FAILURES['count'] <= 5:
+        LOG.warning(f"Route request failed for {district_name} to {target_name}: {type(exc).__name__}: {str(exc)[:200]}")
+
+
 def get_driving_time(client, start_coords, end_coords, cache, district_name, target_name, route_scope):
-    """Get driving time between two points using OpenRouteService with caching."""
+    """Get driving time between two points using OpenRouteService with caching.
+
+    A request that hits the per-minute rate limit is retried after a pause. Once the
+    daily quota is exhausted no further requests are sent in this run. Failures are
+    counted and reported; they are never cached, so a rerun only requests what is missing.
+    """
     cache_key = _route_cache_key(start_coords, end_coords, route_scope)
     if cache_key in cache:
         cached = cache[cache_key]
         return cached['duration'], cached['distance']
 
-    try:
-        routes = client.directions(
-            coordinates=[start_coords, end_coords],
-            profile=RoutingConstants.PROFILE,
-            format='geojson',
-            validate=False,
-            options={"avoid_features": ["ferries"]},
-            radiuses=[2000, 2000],
-        )
-        if routes and 'features' in routes and routes['features']:
-            feature = routes['features'][0]
-            if 'properties' in feature and 'segments' in feature['properties']:
-                segment = feature['properties']['segments'][0]
-                duration = segment['duration'] / 60
-                distance = segment['distance'] / 1000
-                cache[cache_key] = {
-                    'duration': duration,
-                    'distance': distance,
-                    'timestamp': datetime.now().isoformat(),
-                }
-                time.sleep(RoutingConstants.REQUEST_DELAY)
-                return duration, distance
-    except Exception as exc:
-        LOG.debug(f"Routing failed for {district_name} to {target_name}: {exc}")
+    if ROUTE_FAILURES['quota_exhausted']:
+        ROUTE_FAILURES['count'] += 1
+        return None, None
+
+    for attempt in range(RoutingConstants.RATE_LIMIT_RETRIES + 1):
+        try:
+            routes = client.directions(
+                coordinates=[start_coords, end_coords],
+                profile=RoutingConstants.PROFILE,
+                format='geojson',
+                validate=False,
+                options={"avoid_features": ["ferries"]},
+                radiuses=[2000, 2000],
+            )
+            time.sleep(RoutingConstants.REQUEST_DELAY)
+            if routes and 'features' in routes and routes['features']:
+                feature = routes['features'][0]
+                if 'properties' in feature and 'segments' in feature['properties']:
+                    segment = feature['properties']['segments'][0]
+                    duration = segment['duration'] / 60
+                    distance = segment['distance'] / 1000
+                    cache[cache_key] = {
+                        'duration': duration,
+                        'distance': distance,
+                        'timestamp': datetime.now().isoformat(),
+                    }
+                    return duration, distance
+            return None, None
+        except Exception as exc:
+            if _is_quota_exhausted(exc):
+                ROUTE_FAILURES['quota_exhausted'] = True
+                _record_route_failure(exc, district_name, target_name)
+                return None, None
+            if _is_rate_limit(exc) and attempt < RoutingConstants.RATE_LIMIT_RETRIES:
+                time.sleep(RoutingConstants.RATE_LIMIT_WAIT * (attempt + 1))
+                continue
+            _record_route_failure(exc, district_name, target_name)
+            time.sleep(RoutingConstants.REQUEST_DELAY)
+            return None, None
     return None, None
 
 
@@ -303,7 +350,8 @@ def calculate_ors_ferry_metrics(district_features: pd.DataFrame,
     else:
         target_mask = district_features.index.astype(str).str.startswith(TARGET_PREFIXES, na=False)
     target_districts = district_features[target_mask].copy()
-    LOG.info(f"Found {len(target_districts)} target districts in BH/DT/SP areas")
+    reset_route_failures()
+    LOG.info(f"Found {len(target_districts)} districts to route in {'/'.join(TARGET_PREFIXES)} areas")
 
     district_features['total_journey_min'] = FerryConstants.MAX_ACCEPTABLE_TIME
     district_features['accessibility_score'] = 0
@@ -322,8 +370,8 @@ def calculate_ors_ferry_metrics(district_features: pd.DataFrame,
 
     try:
         import openrouteservice
-        client = openrouteservice.Client(key=RoutingConstants.ORS_API_KEY)
-        LOG.info("OpenRouteService client initialized")
+        client = openrouteservice.Client(key=RoutingConstants.ORS_API_KEY, base_url=RoutingConstants.BASE_URL)
+        LOG.info(f"OpenRouteService client initialized ({RoutingConstants.BASE_URL})")
     except Exception as exc:
         LOG.error(f"Failed to initialize ORS client: {exc}")
         return district_features
@@ -506,4 +554,21 @@ def calculate_ors_ferry_metrics(district_features: pd.DataFrame,
     LOG.info(f"Routes calculated for {successful_routes} districts")
     LOG.info(f"Barrier adjustments applied to {barrier_success} districts")
     LOG.info(f"Competitor shortlist routing succeeded for {competitor_successful} districts")
+
+    summary = (
+        f"Routing summary: {successful_routes} of {len(target_districts)} districts have a Brownsea journey time, "
+        f"{competitor_successful} have a nearest competing site."
+    )
+    print(summary)
+    if ROUTE_FAILURES['count']:
+        reason = (
+            "The OpenRouteService daily quota looks exhausted. Rerun this stage tomorrow; routes already fetched are kept."
+            if ROUTE_FAILURES['quota_exhausted'] else
+            "Rerun this stage to fetch the missing routes; routes already fetched are kept."
+        )
+        message = (
+            f"{ROUTE_FAILURES['count']} route requests failed. First error: {ROUTE_FAILURES['first_error']}. {reason}"
+        )
+        LOG.warning(message)
+        print("WARNING: " + message)
     return district_features

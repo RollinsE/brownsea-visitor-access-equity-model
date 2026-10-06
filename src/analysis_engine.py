@@ -207,7 +207,7 @@ def add_model_predictions(analysis_df: pd.DataFrame, model_info,
 
     if 'oof_predictions' in model_info:
         LOG.info("Applying unbiased OOF predictions to prevent in-sample memorization")
-        pred_series = model_info['oof_predictions'].loc[common_indices]
+        pred_series = model_info['oof_predictions'].reindex(common_indices)
     else:
         LOG.warning("OOF predictions missing. Falling back to biased in-sample predictions.")
         from src.model_training import predict_rates
@@ -339,8 +339,14 @@ def generate_shap_narratives(data: pd.DataFrame, model_info, X: pd.DataFrame,
                 actual = data.loc[idx, 'visits_per_1000']
                 predicted = data.loc[idx, 'predicted_visit_rate']
 
-                lower_bound = predicted * (1 - tolerance)
-                upper_bound = predicted * (1 + tolerance)
+                # "In line" means within the model's error band, the same band as the
+                # safe zone. Without a band, a fixed percentage of the expected rate is used.
+                band = data.loc[idx, 'safe_zone_band_width'] if 'safe_zone_band_width' in data.columns else np.nan
+                if pd.notna(band) and band > 0:
+                    lower_bound, upper_bound = predicted - band, predicted + band
+                else:
+                    lower_bound = predicted * (1 - tolerance)
+                    upper_bound = predicted * (1 + tolerance)
                 status = "Below expected" if actual < lower_bound else ("Above expected" if actual > upper_bound else "In line with expected")
 
                 drivers, barriers = [], []
@@ -367,8 +373,8 @@ def generate_shap_narratives(data: pd.DataFrame, model_info, X: pd.DataFrame,
                 top_barriers = [desc for _, desc in barriers[:2]]
 
                 narrative_parts = [f"Engagement status: {status}"]
-                if top_barriers: narrative_parts.append(f"Main barriers: {', '.join(top_barriers)}")
-                if top_drivers: narrative_parts.append(f"Positive factors: {', '.join(top_drivers)}")
+                if top_barriers: narrative_parts.append(f"Lowers the expected rate: {', '.join(top_barriers)}")
+                if top_drivers: narrative_parts.append(f"Raises the expected rate: {', '.join(top_drivers)}")
 
                 narrative = " | ".join(narrative_parts)
                 if 'fragility_score' in data.columns:
@@ -476,10 +482,12 @@ def create_executive_summary_dashboard(data: pd.DataFrame, quick_wins: pd.DataFr
             sections.append(('targeted_support_needed', 'Targeted Support Needed', targeted_display, len(targeted)))
 
     if quick_wins is not None and not quick_wins.empty:
-        display_cols = ['District', 'Authority_Name', 'visits_per_1000', 'predicted_visit_rate', 'performance_gap']
+        display_cols = ['District', 'Authority_Name', 'visits_per_1000', 'predicted_visit_rate', 'performance_gap', 'gap_beyond_model_error']
         available_cols = [c for c in display_cols if c in quick_wins.columns]
         qw_display = quick_wins.head(5)[available_cols].copy().round(2)
-        qw_display.rename(columns={'visits_per_1000': 'Current Visits/1k', 'predicted_visit_rate': 'Target Visits/1k', 'performance_gap': 'Growth Gap'}, inplace=True)
+        qw_display.rename(columns={'visits_per_1000': 'Current Visits/1k', 'predicted_visit_rate': 'Expected Visits/1k', 'performance_gap': 'Gap to Expected', 'gap_beyond_model_error': 'Gap Beyond Model Error'}, inplace=True)
+        if 'Gap Beyond Model Error' in qw_display.columns:
+            qw_display['Gap Beyond Model Error'] = qw_display['Gap Beyond Model Error'].map({True: 'Yes', False: 'No'})
         sections.append(('quick_wins', 'Quick Wins', qw_display, len(quick_wins)))
 
     if config and sections:
@@ -532,7 +540,7 @@ def create_sensitivity_dashboard(data: pd.DataFrame, config: dict):
         top_districts = data.nlargest(5, impact_col)[['District', 'Authority_Name', impact_col]]
         if not top_districts.empty and top_districts[impact_col].max() > 0:
             top_districts = top_districts[top_districts[impact_col] > 0].sort_values(by=impact_col, ascending=True)
-            fig = px.bar(top_districts, x=impact_col, y='District', orientation='h', title=f'ROI: Top 5 Districts for {strategy_name}', labels={impact_col: 'Predicted Increase in Visits per 1000', 'District': ''}, hover_data=['Authority_Name'], color=impact_col, color_continuous_scale='Teal')
+            fig = px.bar(top_districts, x=impact_col, y='District', orientation='h', title=f'What-if: top 5 districts for {strategy_name}', labels={impact_col: 'Change in model estimate (visits per 1,000)', 'District': ''}, hover_data=['Authority_Name'], color=impact_col, color_continuous_scale='Teal')
             fig.update_layout(height=300, margin=dict(l=20, r=20, t=50, b=20), coloraxis_showscale=False, paper_bgcolor="white", plot_bgcolor="white")
             fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
             paths = save_plotly_bundle(fig, f'sensitivity_{feature_raw}', config)
@@ -619,10 +627,12 @@ def analyze_three_way_intersection(ml_dataset, final_model_info, X, used_log_tra
 
     analysis_df = calculate_fragility_score(analysis_df)
     analysis_df = calculate_growth_potential_scores(analysis_df)
-    analysis_df = calculate_early_warnings(analysis_df)
 
-    model_rmse = final_model_info['mae'] if final_model_info is not None and 'mae' in final_model_info else None
+    # The safe zone is built from the model's out-of-fold RMSE.
+    model_rmse = final_model_info.get('rmse') if isinstance(final_model_info, dict) else None
     analysis_df = calculate_safe_zone_benchmarks(analysis_df, model_rmse)
+    # Needs the safe zone columns for the under-performance flag.
+    analysis_df = calculate_early_warnings(analysis_df)
 
     for scenario in config.get('sensitivity_scenarios', []):
         analysis_df = perform_sensitivity_analysis(

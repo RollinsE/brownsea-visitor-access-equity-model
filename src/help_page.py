@@ -32,7 +32,7 @@ def _priority_rows() -> str:
         ("High Priority", "Less than 4 visits per 1,000", "Medium-need areas with low engagement."),
         ("Monitor", "4.0 to 6.9 visits per 1,000", "Medium-need areas with moderate engagement."),
         ("Growth Opportunity", "Less than 4 visits per 1,000", "Lower-need areas with growth potential."),
-        ("Maintain", "7 or more visits per 1,000", "Areas with good engagement meeting expectations."),
+        ("Maintain", "7 or more visits per 1,000", "Areas with good engagement."),
     ]
     return "\n".join(
         f"<tr><td><strong>{escape(zone)}</strong></td><td>{escape(rate)}</td><td>{escape(desc)}</td></tr>"
@@ -73,6 +73,10 @@ def build_help_html(*, home_href: str = "/", downloads_href: str = "/downloads",
         ("Observed visits per 1,000", "Current observed Brownsea visit rate for the postcode district, shown per 1,000 residents."),
         ("Model expected visits per 1,000", "The visit rate the model expects for a district with similar characteristics."),
         ("Performance against expectation", "Difference between observed and expected visits, shown as visits per 1,000."),
+        ("Within the normal range for the model", "The difference is smaller than the model's typical error, so it should not be read as a district doing better or worse than expected."),
+        ("Engagement status", "In line with expected when observed visits are within the model's typical error of the expected rate. Below or above expected when the difference is larger than that."),
+        ("Lowers / raises the expected rate", "The district characteristics that pull the model's expected rate down or push it up most. They describe how the estimate was reached. They are not evidence of what stops or helps people visiting."),
+        ("Priority zone and action type", "Set from local need and observed visits only. The model's expected rate is not used."),
     ]
     need_rows = [
         ("High Need", "Areas with severe socioeconomic challenges."),

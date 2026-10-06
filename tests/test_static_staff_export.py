@@ -94,3 +94,14 @@ def test_export_static_staff_app_fails_without_lookup_json(tmp_path: Path):
         assert "postcode_lookup.json" in str(exc)
     else:
         raise AssertionError("Expected missing lookup JSON to fail")
+
+
+def test_expected_band_reaches_the_static_lookup():
+    from pathlib import Path
+
+    from scripts.export_static_staff_app import STATIC_LOOKUP_FIELDS
+
+    assert "district_expected_band_per_1000" in STATIC_LOOKUP_FIELDS
+    template = (Path(__file__).resolve().parents[1] / "app" / "templates" / "index.html").read_text(encoding="utf-8")
+    assert "expectedBand(row)" in template
+    assert "gap > 0.25" not in template
