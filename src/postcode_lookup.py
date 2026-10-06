@@ -302,7 +302,7 @@ def build_postcode_lookup_artifacts(
     target_postcodes = target_postcodes.rename(columns={'Authority_Name': 'authority_name', 'Region_Name': 'region_name'})
 
     district_cols = [
-        col for col in ['District', 'visits_per_1000', 'predicted_visit_rate', 'performance_gap', 'priority_zone', 'intervention_type', 'shap_narrative', 'need_tier', 'visit_tier', 'composite_need_score']
+        col for col in ['District', 'visits_per_1000', 'predicted_visit_rate', 'performance_gap', 'priority_zone', 'intervention_type', 'shap_narrative', 'need_tier', 'visit_tier', 'composite_need_score', 'safe_zone_band_width']
         if col in analysis_df.columns
     ]
     district_context = analysis_df[district_cols].drop_duplicates(subset=['District'])
@@ -311,6 +311,7 @@ def build_postcode_lookup_artifacts(
         'visits_per_1000': 'district_visits_per_1000',
         'predicted_visit_rate': 'district_predicted_visit_rate',
         'performance_gap': 'district_model_gap_per_1000',
+        'safe_zone_band_width': 'district_expected_band_per_1000',
     })
     target_postcodes = target_postcodes.merge(district_context, on='district', how='left')
 

@@ -11,8 +11,10 @@ Staff are not data specialists, so answer in plain English.
 
 The analysis covers postcode districts in the BH, DT and SP areas. For each district a machine-learning \
 model estimates the expected Brownsea visit rate (visits per 1,000 residents) from deprivation, journey \
-time and nearby National Trust sites. Comparing observed with expected visits gives each district a \
-priority zone and a suggested intervention type.
+time and nearby National Trust sites. Each district's priority zone and suggested intervention type come \
+from local need and observed visits only; the model's expected rate is not used for them. The gap between \
+observed and expected visits is a separate signal, and a gap smaller than the model's typical error is not \
+meaningful.
 
 How to work:
 - Every number, district name and classification in your answer must come from a tool result in this \

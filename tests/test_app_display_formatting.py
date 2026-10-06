@@ -65,8 +65,8 @@ def test_postcode_app_html_uses_plain_language_for_model_narrative(tmp_path):
     assert "<strong>Summary:</strong>" in html
     assert "Pattern note" in html
     assert "Above expected" in html
-    assert "Main barriers" in html
-    assert "Positive factors" in html
+    assert "Lowers the expected rate" in html
+    assert "Raises the expected rate" in html
     assert "geographic access barriers" in html
     assert "wider access barriers" in html
     assert "journey time" in html

@@ -43,6 +43,14 @@ class InterventionConstants:
 
 class GeographicConstants:
     BCP_DORSET_POSTCODES = ['BH', 'DT', 'SP']
+    # Optional neighbouring postcode areas to route and train on as well, for example
+    # BROWNSEA_EXTRA_TRAINING_AREAS="SO,BA". Empty by default: the model is trained on
+    # BCP_DORSET_POSTCODES only, which gave the lowest error for the study area when tested.
+    EXTRA_TRAINING_AREAS = [
+        area.strip().upper()
+        for area in os.environ.get('BROWNSEA_EXTRA_TRAINING_AREAS', '').split(',')
+        if area.strip()
+    ]
     DORSET_POSTCODE_AREAS = ['BH', 'DT', 'SP']
     BI_LATITUDE = 50.68900
     BI_LONGITUDE = -1.95732
@@ -159,9 +167,14 @@ class VisualizationConstants:
 
 class RoutingConstants:
     ORS_API_KEY = os.environ.get('ORS_API_KEY', '').strip()
+    # OpenRouteService host. Override with ORS_BASE_URL for a self-hosted instance.
+    BASE_URL = os.environ.get('ORS_BASE_URL', 'https://api.heigit.org/openrouteservice').strip().rstrip('/')
     PROFILE = 'driving-car'
     MAX_REQUESTS_PER_DAY = 2000
-    REQUEST_DELAY = 1
+    # OpenRouteService's free plan allows 40 route requests a minute; 1.6s keeps under that.
+    REQUEST_DELAY = 1.6
+    RATE_LIMIT_RETRIES = 3
+    RATE_LIMIT_WAIT = 30
     COMPETITOR_SHORTLIST_SIZE = 5
     CACHE_DIR = 'route_cache'
     BROWNSEA_CACHE_FILE = 'route_cache/brownsea_routes.json'
@@ -246,7 +259,7 @@ PRIORITY_MATRIX_CATEGORIES = pd.DataFrame([
     {"Priority Zone": PriorityZones.HIGH_PRIORITY, "Need Criteria": f"Medium Need (Score ≥ {DeprivationConstants.MEDIUM_NEED_SCORE_THRESHOLD})", "Visit Rate Range": f"< {DeprivationConstants.LOW_VISIT_RATE_THRESHOLD} visits/1000", "Description": "Medium need areas with low engagement", "Strategic Focus": "Targeted outreach and retention programs"},
     {"Priority Zone": PriorityZones.MONITOR, "Need Criteria": f"Medium Need (Score {DeprivationConstants.MEDIUM_NEED_SCORE_THRESHOLD}-{DeprivationConstants.HIGH_NEED_SCORE_THRESHOLD-0.1})", "Visit Rate Range": f"{DeprivationConstants.LOW_VISIT_RATE_THRESHOLD}-{DeprivationConstants.MEDIUM_VISIT_RATE_THRESHOLD-0.1} visits/1000", "Description": "Medium-need areas with moderate engagement", "Strategic Focus": "Monitor performance and emerging needs"},
     {"Priority Zone": PriorityZones.GROWTH_OPPORTUNITY, "Need Criteria": f"Low Need (Score < {DeprivationConstants.MEDIUM_NEED_SCORE_THRESHOLD})", "Visit Rate Range": f"< {DeprivationConstants.LOW_VISIT_RATE_THRESHOLD} visits/1000", "Description": "Lower-need areas with growth potential", "Strategic Focus": "Expansion and awareness campaigns"},
-    {"Priority Zone": PriorityZones.MAINTAIN, "Need Criteria": "Any Need Level", "Visit Rate Range": f"≥ {DeprivationConstants.MEDIUM_VISIT_RATE_THRESHOLD} visits/1000", "Description": "Areas with good engagement meeting expectations", "Strategic Focus": "Sustain current performance and optimize"}
+    {"Priority Zone": PriorityZones.MAINTAIN, "Need Criteria": "Any Need Level", "Visit Rate Range": f"≥ {DeprivationConstants.MEDIUM_VISIT_RATE_THRESHOLD} visits/1000", "Description": "Areas with good engagement", "Strategic Focus": "Sustain current performance and optimize"}
 ]).set_index("Priority Zone")
 
 

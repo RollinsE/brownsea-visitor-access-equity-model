@@ -34,8 +34,8 @@ def _normalise_engagement_text(raw: str) -> str:
         (r"\bBelow Target\b", "Below expected"),
         (r"\bExceeding Target\b", "Above expected"),
         (r"\bOn Target\b", "In line with expected"),
-        (r"\bPrimary Barriers\s*:", "Main barriers:"),
-        (r"\bPositive Drivers\s*:", "Positive factors:"),
+        (r"\bPrimary Barriers\s*:", "Lowers the expected rate:"),
+        (r"\bPositive Drivers\s*:", "Raises the expected rate:"),
         (r"\bDrive Time to Competitor NT Site\b", "drive time to nearest NT site"),
         (r"\bBrownsea journey time\b", "Brownsea journey time"),
         (r"\bDrive Time\b", "drive time"),
@@ -290,7 +290,7 @@ def _build_agent(artifacts_dir: Path, reports_dir: Path, lookup_index: dict[str,
 
     The assistant is optional: without an API key (GEMINI_API_KEY or
     ANTHROPIC_API_KEY) or the district analysis table, the rest of the app
-    works exactly as before.
+    still works.
     """
     if os.getenv('BROWNSEA_AGENT_ENABLED', '1').strip().lower() in ('0', 'false', 'no'):
         return None, 'The assistant is switched off.'

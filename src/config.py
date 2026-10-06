@@ -75,6 +75,11 @@ BASE_CONFIG: Dict[str, Any] = {
         "optuna_trials": 30,
         "optuna_pruning": True,
         "eval_metric": "mae",
+        "training_scope": "study_area",
+        # Extra postcode areas to train on as well, e.g. ["SO"]. Scoring is always on the study area.
+        "extra_training_areas": [],
+        "tune": True,
+        "repeated_cv_repeats": 5,
     },
     "selected_features": [
         "total_journey_min",
@@ -107,16 +112,6 @@ BASE_CONFIG: Dict[str, Any] = {
             "feature": "total_journey_min",
             "delta": -15,
             "strategy_name": "Direct Transport Links (Train Station Shuttles & Fast Ferries)",
-        },
-        {
-            "feature": "geo_barriers_decile",
-            "delta": 2,
-            "strategy_name": "Community Transport Partnerships (Funded Minibus Excursions)",
-        },
-        {
-            "feature": "income_decile",
-            "delta": 2,
-            "strategy_name": "Inclusive Ticketing (Subsidized Family Passes & Travel Grants)",
         },
     ],
 }
