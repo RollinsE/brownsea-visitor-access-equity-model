@@ -163,8 +163,7 @@ def _diagnostics_html(diagnostics: dict | None) -> str:
         f"{diagnostics.get('districts_scored')} in the study area, out of {diagnostics.get('districts_in_dataset')} in the dataset.",
         f"Method: {diagnostics.get('cross_validation')}. Errors are in {diagnostics.get('error_unit')}.",
         f"Average observed rate: {diagnostics.get('mean_observed_rate', float('nan')):.2f}. "
-        f"Assuming the same rate everywhere gives a mean absolute error of {diagnostics.get('baseline_mae', float('nan')):.2f}; "
-        f"the selected model gives {diagnostics.get('best_mae', float('nan')):.2f}.",
+        f"Mean absolute error of the selected model: {diagnostics.get('best_mae', float('nan')):.2f}.",
     ]
     lines += list(diagnostics.get('notes', []))
     return '<h2>How to read this</h2><ul>' + ''.join(f'<li>{line}</li>' for line in lines) + '</ul>'
@@ -179,6 +178,9 @@ def save_model_performance_outputs(results_df: pd.DataFrame, config: dict, best_
     display_df = results_df.reset_index().copy()
     display_df = display_df.rename(columns={'index': 'Model'})
     display_df = display_df[~display_df['Mean MAE'].isna()]
+    if 'Type' in display_df.columns:
+        display_df = display_df[display_df['Type'] != 'Baseline']
+    display_df = display_df.drop(columns=['Role', 'Skill vs baseline'], errors='ignore')
     if display_df.empty:
         return {}
 
@@ -205,9 +207,7 @@ def save_model_performance_outputs(results_df: pd.DataFrame, config: dict, best_
     if diagnostics:
         summary.update({
             'districts_used': diagnostics.get('districts_used'),
-            'baseline_mae': diagnostics.get('baseline_mae'),
             'best_rmse': diagnostics.get('best_rmse'),
-            'skill_vs_baseline': diagnostics.get('skill_vs_baseline'),
             'error_unit': diagnostics.get('error_unit'),
         })
         (artifact_dir / 'model_diagnostics.json').write_text(json.dumps(diagnostics, indent=2, default=str), encoding='utf-8')

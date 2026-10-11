@@ -56,13 +56,11 @@ def test_export_static_staff_app_creates_github_pages_folder(tmp_path: Path):
     assert target.joinpath("index.html").exists()
     assert target.joinpath("downloads.html").exists()
     assert target.joinpath("help.html").exists()
-    assert target.joinpath("reports.zip").exists()
     assert target.joinpath("reports", "index.html").exists()
-    assert target.joinpath("artifacts", "postcode_lookup.json").exists()
+    assert not target.joinpath("artifacts", "postcode_lookup.json").exists()
     assert target.joinpath("artifacts", "postcode_shards", "BH15.json").exists()
     assert target.joinpath("artifacts", "postcode_shards_index.json").exists()
     assert target.joinpath("README_STAFF_APP.md").exists()
-    assert any(path.name == "reports.zip" for path in written)
 
     html = target.joinpath("index.html").read_text(encoding="utf-8")
     assert "Brownsea Visitor Access Tool" in html
@@ -105,3 +103,23 @@ def test_expected_band_reaches_the_static_lookup():
     template = (Path(__file__).resolve().parents[1] / "app" / "templates" / "index.html").read_text(encoding="utf-8")
     assert "expectedBand(row)" in template
     assert "gap > 0.25" not in template
+
+
+def test_report_index_only_links_to_published_files(tmp_path):
+    from scripts.export_static_staff_app import remove_missing_links
+
+    reports = tmp_path / "reports"
+    (reports / "figures").mkdir(parents=True)
+    (reports / "figures" / "kept.html").write_text("x", encoding="utf-8")
+    index = reports / "index.html"
+    index.write_text(
+        '<ul><li><a href="figures/kept.html">kept.html</a></li>'
+        '<li><a href="figures/gone.html">gone.html</a></li>'
+        '<li><a href="../artifacts/gone.json">gone.json</a></li></ul>',
+        encoding="utf-8",
+    )
+
+    assert remove_missing_links(index) == 2
+    html = index.read_text(encoding="utf-8")
+    assert "kept.html" in html
+    assert "gone" not in html

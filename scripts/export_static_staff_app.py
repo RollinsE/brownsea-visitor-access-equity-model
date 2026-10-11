@@ -12,10 +12,8 @@ import json
 import re
 import shutil
 import sys
-import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -25,7 +23,6 @@ from src.help_page import write_help_html  # noqa: E402
 
 SELECTED_ARTIFACTS = [
     "postcode_lookup.csv",
-    "postcode_lookup.json",
     "model_performance.csv",
     "model_performance_summary.json",
     "three_way_intersection_analysis_v2.csv",
@@ -68,6 +65,33 @@ STATIC_LOOKUP_FIELDS = [
     "district_expected_band_per_1000",
     "alternative_brownsea_departure_terminal",
 ]
+
+
+# Report files kept out of the public site.
+EXCLUDED_REPORT_FILES = [
+    "figures/map_member_visits_distribution.html",
+    "figures/map_member_visits_distribution.png",
+]
+
+_LINK_ITEM = re.compile(r'<li><a href="([^"#?]+)"[^>]*>.*?</a></li>|<div class="item">(?:(?!<div class="item">).)*?href="([^"#?]+)".*?</a></div></div>', re.S)
+
+
+def remove_missing_links(page: Path) -> int:
+    """Drop list entries on a report page whose target file is not part of the export."""
+    if not page.exists():
+        return 0
+    removed = 0
+
+    def keep_or_drop(match: re.Match) -> str:
+        nonlocal removed
+        href = match.group(1) or match.group(2)
+        if "://" in href or href.startswith("/") or (page.parent / href).exists():
+            return match.group(0)
+        removed += 1
+        return ""
+
+    page.write_text(_LINK_ITEM.sub(keep_or_drop, page.read_text(encoding="utf-8")), encoding="utf-8")
+    return removed
 
 
 def release_dir(outputs_root: Path, release_name: str) -> Path:
@@ -157,28 +181,6 @@ def write_postcode_shards(records: list[dict], target: Path) -> tuple[Path, Path
     return shards_dir, index_path, index
 
 
-def iter_bundle_files(target: Path) -> Iterable[tuple[Path, Path]]:
-    for root_name in ["reports", "artifacts"]:
-        root = target / root_name
-        if root.exists():
-            for file_path in sorted(p for p in root.rglob("*") if p.is_file()):
-                yield file_path, Path(root_name) / file_path.relative_to(root)
-    for file_name in SELECTED_ROOT_FILES:
-        file_path = target / file_name
-        if file_path.exists():
-            yield file_path, Path(file_name)
-
-
-def write_reports_zip(target: Path) -> Path:
-    zip_path = target / "reports.zip"
-    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-        for file_path, arcname in iter_bundle_files(target):
-            if file_path == zip_path:
-                continue
-            zf.write(file_path, arcname.as_posix())
-    return zip_path
-
-
 def file_size_label(path: Path) -> str:
     if not path.exists():
         return ""
@@ -197,10 +199,8 @@ def write_static_downloads_page(target: Path) -> Path:
 
     candidates = [
         ("Postcode lookup", "Open the staff postcode search app.", "index.html", target / "index.html"),
-        ("Reports ZIP", "Download the released reports and key audit files.", "reports.zip", target / "reports.zip"),
         ("Reports index", "Open the main report index.", "reports/index.html", target / "reports" / "index.html"),
         ("Postcode lookup CSV", "Spreadsheet-friendly postcode lookup results.", "artifacts/postcode_lookup.csv", target / "artifacts" / "postcode_lookup.csv"),
-        ("Postcode lookup JSON", "Full machine-readable postcode lookup data.", "artifacts/postcode_lookup.json", target / "artifacts" / "postcode_lookup.json"),
         ("Static postcode shards", "Small postcode-district lookup files used by the static app.", "artifacts/postcode_shards_index.json", target / "artifacts" / "postcode_shards_index.json"),
         ("Model performance CSV", "Model ranking and performance metrics.", "artifacts/model_performance.csv", target / "artifacts" / "model_performance.csv"),
         ("Model performance summary", "Short machine-readable model performance summary.", "artifacts/model_performance_summary.json", target / "artifacts" / "model_performance_summary.json"),
@@ -265,7 +265,6 @@ def static_postcode_app_html(
     help_page: str,
     reports_index: str,
     download_csv: str,
-    download_json: str,
 ) -> str:
     template = r'''<!DOCTYPE html>
 <html lang="en">
@@ -315,7 +314,6 @@ button:hover { opacity: .95; }
       <a href="__HELP_PAGE__">Help</a>
       <a href="__REPORTS_INDEX__">Reports index</a>
       <a href="__DOWNLOAD_CSV__">Download postcode CSV</a>
-      <a href="__DOWNLOAD_JSON__">Download postcode JSON</a>
     </div>
   </div>
 </header>
@@ -444,7 +442,6 @@ runHashSearch();
         .replace("__HELP_PAGE__", help_page)
         .replace("__REPORTS_INDEX__", reports_index)
         .replace("__DOWNLOAD_CSV__", download_csv)
-        .replace("__DOWNLOAD_JSON__", download_json)
     )
 
 
@@ -459,7 +456,6 @@ def write_static_postcode_app_html(
     help_page: str,
     reports_index: str,
     download_csv: str,
-    download_json: str,
 ) -> Path:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
@@ -472,7 +468,6 @@ def write_static_postcode_app_html(
             help_page=help_page,
             reports_index=reports_index,
             download_csv=download_csv,
-            download_json=download_json,
         ),
         encoding="utf-8",
     )
@@ -493,7 +488,6 @@ It can be published with GitHub Pages, Netlify, or any simple static web host. I
 - `reports/` - released HTML reports and plots
 - `artifacts/postcode_shards/` - small postcode-district lookup files used by the app
 - `artifacts/` - released CSV/JSON files
-- `reports.zip` - downloadable bundle of reports and key audit files
 
 The app loads only the small postcode-district shard needed for the user's search, rather than loading the full postcode lookup file on page open.
 
@@ -538,6 +532,8 @@ def export_static_staff_app(
 
     if copy_tree_if_exists(reports, target / "reports"):
         written.append(target / "reports")
+        for name in EXCLUDED_REPORT_FILES:
+            (target / "reports" / name).unlink(missing_ok=True)
 
     (target / "artifacts").mkdir(parents=True, exist_ok=True)
     for name in SELECTED_ARTIFACTS:
@@ -566,7 +562,6 @@ def export_static_staff_app(
             help_page="help.html",
             reports_index="reports/index.html",
             download_csv="artifacts/postcode_lookup.csv",
-            download_json="artifacts/postcode_lookup.json",
         )
     )
 
@@ -583,15 +578,14 @@ def export_static_staff_app(
                 help_page="../help.html",
                 reports_index="index.html",
                 download_csv="../artifacts/postcode_lookup.csv",
-                download_json="../artifacts/postcode_lookup.json",
             )
         )
 
-    zip_path = write_reports_zip(target)
-    written.append(zip_path)
     written.append(write_static_downloads_page(target))
     written.append(write_help_html(target / "help.html", home_href="index.html", downloads_href="downloads.html", reports_href="reports/index.html"))
     written.append(write_deploy_readme(target, release_name, shard_count=len(shard_index)))
+    for name in ["index.html", "downloads.html"]:
+        remove_missing_links(target / "reports" / name)
     (target / ".nojekyll").write_text("", encoding="utf-8")
     written.append(target / ".nojekyll")
     return written

@@ -363,7 +363,7 @@ def create_app(lookup_path: str | None = None, outputs_root: str | None = None, 
             record_count=len(rows),
             reports_index='/reports/index.html',
             download_csv='/artifacts/postcode_lookup.csv',
-            download_json='/artifacts/postcode_lookup.json',
+            download_json='/artifacts/postcode_lookup.json' if (artifacts_dir / 'postcode_lookup.json').exists() else '',
             downloads_page='/downloads',
             agent_enabled=agent is not None,
         )
@@ -404,7 +404,7 @@ def create_app(lookup_path: str | None = None, outputs_root: str | None = None, 
             app.logger.exception('Assistant request failed')
             if getattr(exc, 'status', None) == 429:
                 return jsonify({'error': 'The assistant has reached its usage limit for now. Please try again later.'}), 503
-            return jsonify({'error': 'The assistant could not answer just now. Please try again.'}), 502
+            return jsonify({'error': 'The assistant is busy just now. Please wait a minute and try again.'}), 502
         return jsonify(result.to_dict())
 
     @app.get('/help')

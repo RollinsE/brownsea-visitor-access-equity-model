@@ -53,7 +53,7 @@
     <a href="/help">Help</a>
     <a href="{{ reports_index }}">Reports index</a>
     <a href="{{ download_csv }}">Download postcode CSV</a>
-    <a href="{{ download_json }}">Download postcode JSON</a>
+    {% if download_json %}<a href="{{ download_json }}">Download postcode JSON</a>{% endif %}
   </div>
 </header>
 <main>
@@ -61,7 +61,7 @@
   {% if agent_enabled %}
   <div class="card" id="ask-card">
     <div class="section-title">Ask about the analysis</div>
-    <div class="small note">Ask a question in plain English, for example "Which districts need urgent action and are under 40 minutes from Brownsea?". Answers are written by an AI assistant using only the published district and postcode results. Check important figures against the reports.</div>
+    <div class="small note">Ask a question in plain English, for example "Which districts need urgent action and are under 40 minutes from Brownsea?". Answers are written by an AI assistant using only the published district and postcode results. Check important figures against the reports. An answer can take up to a minute, and the assistant has a daily limit, so if it cannot answer, wait a minute and try again.</div>
     <div class="ask-row">
       <input id="question" maxlength="1000" placeholder="Ask a question about districts, postcodes or the model" />
       <button id="ask-button" onclick="askQuestion()">Ask</button>
