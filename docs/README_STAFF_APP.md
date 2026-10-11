@@ -11,7 +11,6 @@ It can be published with GitHub Pages, Netlify, or any simple static web host. I
 - `reports/` - released HTML reports and plots
 - `artifacts/postcode_shards/` - small postcode-district lookup files used by the app
 - `artifacts/` - released CSV/JSON files
-- `reports.zip` - downloadable bundle of reports and key audit files
 
 The app loads only the small postcode-district shard needed for the user's search, rather than loading the full postcode lookup file on page open.
 
@@ -25,4 +24,4 @@ Shard files exported: 48
 4. Select branch `main` and folder `/docs`.
 5. Save and use the GitHub Pages URL.
 
-Generated at: 2026-10-06T12:38:42.513224+00:00
+Generated at: 2026-10-11T10:46:10.847359+00:00
