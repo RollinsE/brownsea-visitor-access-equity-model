@@ -18,7 +18,7 @@ from src.business_scoring import (
     calculate_early_warnings, identify_quick_wins, calculate_safe_zone_benchmarks
 )
 from src.utils import get_deprivation_tier, get_timestamp
-from src.reporting import save_dataframe_bundle, save_plotly_bundle, save_text_report
+from src.reporting import readable_table, save_dataframe_bundle, save_plotly_bundle, save_text_report
 
 LOG = logging.getLogger("Brownsea_Equity_Analysis")
 
@@ -496,7 +496,7 @@ def create_executive_summary_dashboard(data: pd.DataFrame, quick_wins: pd.DataFr
         for base_name, title, table_df, source_count in sections:
             paths = save_dataframe_bundle(table_df, base_name, config, title=title, index=False)
             html_parts.append(f'<h2>{title}</h2><p>Matching districts: {source_count:,}. Showing top {len(table_df):,}.</p>')
-            html_parts.append(table_df.to_html(index=False, border=0))
+            html_parts.append(readable_table(table_df).to_html(index=False, border=0))
             _print_saved(f'{title} watchlist', paths)
         html_parts.append('</body></html>')
         report_path = save_text_report(''.join(html_parts), 'executive_summary.html', config)
@@ -527,7 +527,7 @@ def create_sensitivity_dashboard(data: pd.DataFrame, config: dict):
             delta = data[delta_col].iloc[0] if not data.empty else 0
             avg_impact = data[impact_col].mean()
             if avg_impact > 0:
-                summary_data.append({'Intervention Strategy': strategy_name, 'Model Proxy (Delta)': f"{feature_raw} ({delta:+})", 'Avg Impact (Visits/1k)': avg_impact, 'Max Impact': data[impact_col].max()})
+                summary_data.append({'What-if scenario': strategy_name, 'Input changed': f"{feature_raw} ({delta:+})", 'Average change in model estimate (visits/1k)': avg_impact, 'Largest change': data[impact_col].max()})
 
     if summary_data:
         df_summary = pd.DataFrame(summary_data).round(2)

@@ -20,67 +20,67 @@ tr:nth-child(even) { background: #f8f8f8; }
   <thead>
     <tr style="text-align: right;">
       <th>District</th>
-      <th>total_journey_min</th>
-      <th>nearest_competitor_drive_min</th>
-      <th>imd_decile_mean</th>
-      <th>geo_barriers_decile</th>
-      <th>wider_barriers_decile</th>
-      <th>income_decile</th>
-      <th>avg_fsm%</th>
-      <th>pop%_most_deprived</th>
-      <th>pop%_moderately_deprived</th>
-      <th>pop%_least_deprived</th>
+      <th>Journey to Brownsea (min)</th>
+      <th>Drive to nearest NT site (min)</th>
+      <th>IMD decile</th>
+      <th>Geographical barriers decile</th>
+      <th>Wider barriers decile</th>
+      <th>Income decile</th>
+      <th>Free school meals (%)</th>
+      <th>Most deprived residents (%)</th>
+      <th>Moderately deprived residents (%)</th>
+      <th>Least deprived residents (%)</th>
       <th>Population</th>
-      <th>Authority_Name</th>
-      <th>Region_Name</th>
-      <th>Post_Town</th>
-      <th>lsoa_count</th>
-      <th>nearest_ferry_terminal</th>
-      <th>competitor_context</th>
+      <th>Local authority</th>
+      <th>Region</th>
+      <th>Post town</th>
+      <th>LSOAs</th>
+      <th>Nearest ferry terminal</th>
+      <th>Nearby NT sites</th>
       <th>Visits</th>
-      <th>visits_per_1000</th>
-      <th>predicted_visit_rate</th>
-      <th>performance_gap</th>
-      <th>visits_gap_raw</th>
-      <th>visits_gap</th>
-      <th>composite_need_score</th>
-      <th>impact_score</th>
-      <th>need_tier</th>
-      <th>visit_tier</th>
-      <th>priority_zone</th>
-      <th>intervention_type</th>
-      <th>deprivation_tier</th>
-      <th>fsm_tier</th>
-      <th>visit_rate_tier</th>
-      <th>composite_need_tier</th>
-      <th>intersection_segment</th>
-      <th>performance_ratio</th>
-      <th>fragility_score</th>
-      <th>fragility_tier</th>
-      <th>fragility_alert</th>
-      <th>gap_score</th>
-      <th>need_inverse_score</th>
-      <th>population_score</th>
-      <th>accessibility_score_norm</th>
-      <th>growth_potential_score</th>
-      <th>growth_potential_tier</th>
-      <th>safe_zone_band_width</th>
-      <th>safe_zone_lower_1rmse</th>
-      <th>safe_zone_upper_1rmse</th>
-      <th>safe_zone_lower_2rmse</th>
-      <th>safe_zone_upper_2rmse</th>
-      <th>safe_zone_status</th>
-      <th>needs_intervention</th>
-      <th>high_potential_flag</th>
-      <th>underperformance_confidence</th>
-      <th>risk_score</th>
-      <th>risk_flags</th>
-      <th>risk_tier</th>
-      <th>sensitivity_total_journey_min_delta</th>
-      <th>sensitivity_total_journey_min_new_pred</th>
-      <th>sensitivity_total_journey_min_impact</th>
-      <th>shap_narrative</th>
-      <th>shap_error</th>
+      <th>Visits per 1,000</th>
+      <th>Expected visits per 1,000</th>
+      <th>Gap to expected</th>
+      <th>Gap to target (signed)</th>
+      <th>Gap to target (10 per 1,000)</th>
+      <th>Need score</th>
+      <th>Impact score</th>
+      <th>Need tier</th>
+      <th>Visit tier</th>
+      <th>Priority zone</th>
+      <th>Intervention type</th>
+      <th>Deprivation tier</th>
+      <th>Free school meals tier</th>
+      <th>Visit rate tier</th>
+      <th>Need score tier</th>
+      <th>Segment</th>
+      <th>Observed / expected</th>
+      <th>Fragility score</th>
+      <th>Fragility tier</th>
+      <th>Fragility alert</th>
+      <th>Gap score</th>
+      <th>Low-need score</th>
+      <th>Population score</th>
+      <th>Accessibility score</th>
+      <th>Growth potential score</th>
+      <th>Growth potential tier</th>
+      <th>Model error band</th>
+      <th>Safe zone lower (1 RMSE)</th>
+      <th>Safe zone upper (1 RMSE)</th>
+      <th>Safe zone lower (2 RMSE)</th>
+      <th>Safe zone upper (2 RMSE)</th>
+      <th>Safe zone status</th>
+      <th>Needs intervention</th>
+      <th>High potential</th>
+      <th>Shortfall in RMSE</th>
+      <th>Risk score</th>
+      <th>Risk flags</th>
+      <th>Risk tier</th>
+      <th>What-if: journey change (min)</th>
+      <th>What-if: expected visits per 1,000</th>
+      <th>What-if: change in expected visits</th>
+      <th>Summary</th>
+      <th>Summary error</th>
     </tr>
   </thead>
   <tbody>
@@ -89,13 +89,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>35.9</td>
       <td>33.5</td>
       <td>4.09</td>
-      <td>8.564735</td>
-      <td>2.670111</td>
-      <td>4.914654</td>
-      <td>26.348071</td>
-      <td>68.243923</td>
-      <td>20.068896</td>
-      <td>11.687181</td>
+      <td>8.56</td>
+      <td>2.67</td>
+      <td>4.91</td>
+      <td>26.35</td>
+      <td>68.24</td>
+      <td>20.07</td>
+      <td>11.69</td>
       <td>51672.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -104,13 +104,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Brownsea Island: 13Km]</td>
       <td>49.0</td>
-      <td>0.948289</td>
-      <td>1.739855</td>
-      <td>0.791566</td>
-      <td>9.051711</td>
-      <td>9.051711</td>
-      <td>55.675168</td>
-      <td>66.127750</td>
+      <td>0.95</td>
+      <td>1.74</td>
+      <td>0.79</td>
+      <td>9.05</td>
+      <td>9.05</td>
+      <td>55.68</td>
+      <td>66.13</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -120,31 +120,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + High FSM + Low Visit Rate</td>
-      <td>0.545039</td>
-      <td>-41.829256</td>
+      <td>0.55</td>
+      <td>-41.83</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>20.486667</td>
-      <td>1.510075</td>
-      <td>72.229134</td>
+      <td>20.49</td>
+      <td>1.51</td>
+      <td>72.23</td>
       <td>0</td>
-      <td>41.338092</td>
+      <td>41.34</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.205129</td>
-      <td>3.274581</td>
-      <td>-1.329597</td>
-      <td>4.809307</td>
+      <td>1.53</td>
+      <td>0.21</td>
+      <td>3.27</td>
+      <td>-1.33</td>
+      <td>4.81</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.257885</td>
+      <td>0.26</td>
       <td>40</td>
       <td>HighNeedLowVisits;ExtremeDeprivation</td>
       <td>Medium Risk</td>
       <td>-15.0</td>
-      <td>2.506047</td>
-      <td>0.766192</td>
+      <td>2.51</td>
+      <td>0.77</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, deprivation level | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -153,13 +153,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>36.1</td>
       <td>23.3</td>
       <td>5.36</td>
-      <td>6.409396</td>
-      <td>3.804135</td>
-      <td>5.002703</td>
-      <td>21.102021</td>
-      <td>41.742135</td>
-      <td>35.149218</td>
-      <td>23.108647</td>
+      <td>6.41</td>
+      <td>3.80</td>
+      <td>5.00</td>
+      <td>21.10</td>
+      <td>41.74</td>
+      <td>35.15</td>
+      <td>23.11</td>
       <td>35887.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -168,13 +168,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 17Km; Kingston Lacy: 17Km; White Mill: 18Km; Brownsea Island: 13Km]</td>
       <td>103.0</td>
-      <td>2.870120</td>
-      <td>3.357251</td>
-      <td>0.487131</td>
-      <td>7.129880</td>
-      <td>7.129880</td>
-      <td>35.550101</td>
-      <td>46.274710</td>
+      <td>2.87</td>
+      <td>3.36</td>
+      <td>0.49</td>
+      <td>7.13</td>
+      <td>7.13</td>
+      <td>35.55</td>
+      <td>46.27</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -184,31 +184,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>0.854902</td>
-      <td>-8.758370</td>
+      <td>0.85</td>
+      <td>-8.76</td>
       <td>Stable</td>
       <td>False</td>
-      <td>12.607542</td>
-      <td>37.111518</td>
-      <td>50.164246</td>
+      <td>12.61</td>
+      <td>37.11</td>
+      <td>50.16</td>
       <td>0</td>
-      <td>46.290445</td>
+      <td>46.29</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>1.822525</td>
-      <td>4.891978</td>
-      <td>0.287799</td>
-      <td>6.426704</td>
+      <td>1.53</td>
+      <td>1.82</td>
+      <td>4.89</td>
+      <td>0.29</td>
+      <td>6.43</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.158703</td>
+      <td>0.16</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>5.577857</td>
-      <td>2.220606</td>
+      <td>5.58</td>
+      <td>2.22</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, wider access barriers | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -217,13 +217,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>31.8</td>
       <td>19.1</td>
       <td>4.05</td>
-      <td>5.240573</td>
-      <td>3.834566</td>
-      <td>4.131098</td>
-      <td>30.699497</td>
-      <td>65.480867</td>
-      <td>21.789835</td>
-      <td>12.729297</td>
+      <td>5.24</td>
+      <td>3.83</td>
+      <td>4.13</td>
+      <td>30.70</td>
+      <td>65.48</td>
+      <td>21.79</td>
+      <td>12.73</td>
       <td>32327.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -232,13 +232,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 15Km; Kingston Lacy: 15Km; White Mill: 17Km; Badbury Rings: 17Km; Brownsea Island: 13Km]</td>
       <td>131.0</td>
-      <td>4.052340</td>
-      <td>3.972174</td>
-      <td>-0.080167</td>
-      <td>5.947660</td>
-      <td>5.947660</td>
-      <td>55.046456</td>
-      <td>56.375499</td>
+      <td>4.05</td>
+      <td>3.97</td>
+      <td>-0.08</td>
+      <td>5.95</td>
+      <td>5.95</td>
+      <td>55.05</td>
+      <td>56.38</td>
       <td>High Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -248,31 +248,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + High FSM + Medium Visit Rate</td>
-      <td>1.020182</td>
-      <td>8.881601</td>
+      <td>1.02</td>
+      <td>8.88</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-2.074805</td>
-      <td>2.622272</td>
-      <td>45.187939</td>
+      <td>-2.07</td>
+      <td>2.62</td>
+      <td>45.19</td>
       <td>0</td>
-      <td>23.035584</td>
+      <td>23.04</td>
       <td>Low</td>
-      <td>1.534726</td>
-      <td>2.437448</td>
-      <td>5.506900</td>
-      <td>0.902721</td>
-      <td>7.041626</td>
+      <td>1.53</td>
+      <td>2.44</td>
+      <td>5.51</td>
+      <td>0.90</td>
+      <td>7.04</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>10</td>
       <td>ExtremeDeprivation</td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>5.704433</td>
-      <td>1.732260</td>
+      <td>5.70</td>
+      <td>1.73</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: deprivation level, wider access barriers | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -281,13 +281,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>29.7</td>
       <td>25.5</td>
       <td>5.77</td>
-      <td>6.427671</td>
-      <td>4.887989</td>
-      <td>5.065885</td>
-      <td>24.519548</td>
-      <td>39.318097</td>
-      <td>33.684603</td>
-      <td>26.997300</td>
+      <td>6.43</td>
+      <td>4.89</td>
+      <td>5.07</td>
+      <td>24.52</td>
+      <td>39.32</td>
+      <td>33.68</td>
+      <td>27.00</td>
       <td>45549.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -296,13 +296,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 22Km; Kingston Lacy: 22Km; The Bakehouse: 28Km; Brownsea Island: 9Km]</td>
       <td>311.0</td>
-      <td>6.827812</td>
-      <td>4.269537</td>
-      <td>-2.558275</td>
-      <td>3.172188</td>
-      <td>3.172188</td>
-      <td>34.878532</td>
-      <td>33.931537</td>
+      <td>6.83</td>
+      <td>4.27</td>
+      <td>-2.56</td>
+      <td>3.17</td>
+      <td>3.17</td>
+      <td>34.88</td>
+      <td>33.93</td>
       <td>High Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -312,31 +312,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + Medium FSM + Medium Visit Rate</td>
-      <td>1.599193</td>
-      <td>70.678018</td>
+      <td>1.60</td>
+      <td>70.68</td>
       <td>Extreme Over-performance</td>
       <td>True</td>
-      <td>-66.211214</td>
-      <td>38.299530</td>
-      <td>63.670166</td>
+      <td>-66.21</td>
+      <td>38.30</td>
+      <td>63.67</td>
       <td>0</td>
-      <td>11.679505</td>
+      <td>11.68</td>
       <td>Low</td>
-      <td>1.534726</td>
-      <td>2.734811</td>
-      <td>5.804263</td>
-      <td>1.200085</td>
-      <td>7.338989</td>
+      <td>1.53</td>
+      <td>2.73</td>
+      <td>5.80</td>
+      <td>1.20</td>
+      <td>7.34</td>
       <td>Moderate Overperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>15</td>
       <td>FragileOverperformance</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>8.011899</td>
-      <td>3.742362</td>
+      <td>8.01</td>
+      <td>3.74</td>
       <td>Engagement status: Above expected | Lowers the expected rate: geographic access barriers, wider access barriers | Raises the expected rate: Brownsea journey time, local income context [Less typical visitor pattern]</td>
       <td></td>
     </tr>
@@ -345,13 +345,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>30.4</td>
       <td>30.8</td>
       <td>8.12</td>
-      <td>3.736308</td>
-      <td>6.438130</td>
-      <td>8.620039</td>
-      <td>14.813333</td>
-      <td>9.105463</td>
-      <td>33.766927</td>
-      <td>57.127610</td>
+      <td>3.74</td>
+      <td>6.44</td>
+      <td>8.62</td>
+      <td>14.81</td>
+      <td>9.11</td>
+      <td>33.77</td>
+      <td>57.13</td>
       <td>14991.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -360,13 +360,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 24Km; Corfe Castle: 28Km; The Bakehouse: 30Km; Brownsea Island: 10Km]</td>
       <td>114.0</td>
-      <td>7.604563</td>
-      <td>6.120691</td>
-      <td>-1.483872</td>
-      <td>2.395437</td>
-      <td>2.395437</td>
-      <td>10.817824</td>
-      <td>14.758789</td>
+      <td>7.60</td>
+      <td>6.12</td>
+      <td>-1.48</td>
+      <td>2.40</td>
+      <td>2.40</td>
+      <td>10.82</td>
+      <td>14.76</td>
       <td>Low Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -376,31 +376,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Low FSM + High Visit Rate</td>
-      <td>1.242435</td>
-      <td>6.705492</td>
+      <td>1.24</td>
+      <td>6.71</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-38.404377</td>
-      <td>80.863161</td>
-      <td>20.955004</td>
+      <td>-38.40</td>
+      <td>80.86</td>
+      <td>20.96</td>
       <td>0</td>
-      <td>31.375193</td>
+      <td>31.38</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>4.585965</td>
-      <td>7.655417</td>
-      <td>3.051239</td>
-      <td>9.190143</td>
+      <td>1.53</td>
+      <td>4.59</td>
+      <td>7.66</td>
+      <td>3.05</td>
+      <td>9.19</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>11.383744</td>
-      <td>5.263053</td>
+      <td>11.38</td>
+      <td>5.26</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: local income context | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -409,13 +409,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>26.1</td>
       <td>26.4</td>
       <td>7.52</td>
-      <td>6.097614</td>
-      <td>5.643628</td>
-      <td>6.867381</td>
-      <td>13.340000</td>
-      <td>9.894252</td>
-      <td>41.027657</td>
-      <td>49.078091</td>
+      <td>6.10</td>
+      <td>5.64</td>
+      <td>6.87</td>
+      <td>13.34</td>
+      <td>9.89</td>
+      <td>41.03</td>
+      <td>49.08</td>
       <td>36880.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -424,13 +424,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 21Km; Kingston Lacy: 21Km; The Bakehouse: 27Km; Brownsea Island: 7Km]</td>
       <td>358.0</td>
-      <td>9.707158</td>
-      <td>5.814175</td>
-      <td>-3.892983</td>
-      <td>0.292842</td>
-      <td>0.292842</td>
-      <td>10.927976</td>
-      <td>8.528108</td>
+      <td>9.71</td>
+      <td>5.81</td>
+      <td>-3.89</td>
+      <td>0.29</td>
+      <td>0.29</td>
+      <td>10.93</td>
+      <td>8.53</td>
       <td>Low Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -440,31 +440,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Low FSM + High Visit Rate</td>
-      <td>1.669568</td>
-      <td>43.389373</td>
+      <td>1.67</td>
+      <td>43.39</td>
       <td>Significant Over-performance</td>
       <td>False</td>
-      <td>-100.755059</td>
-      <td>80.668302</td>
-      <td>51.552300</td>
+      <td>-100.76</td>
+      <td>80.67</td>
+      <td>51.55</td>
       <td>0</td>
-      <td>9.135026</td>
+      <td>9.14</td>
       <td>Low</td>
-      <td>1.534726</td>
-      <td>4.279449</td>
-      <td>7.348901</td>
-      <td>2.744723</td>
-      <td>8.883628</td>
+      <td>1.53</td>
+      <td>4.28</td>
+      <td>7.35</td>
+      <td>2.74</td>
+      <td>8.88</td>
       <td>Severe Overperformance</td>
       <td>False</td>
       <td>True</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>11.693958</td>
-      <td>5.879783</td>
+      <td>11.69</td>
+      <td>5.88</td>
       <td>Engagement status: Above expected | Lowers the expected rate: geographic access barriers, local income context | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -473,13 +473,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>19.1</td>
       <td>18.8</td>
       <td>5.76</td>
-      <td>6.347534</td>
-      <td>5.754944</td>
-      <td>5.230666</td>
-      <td>24.643472</td>
-      <td>29.245561</td>
-      <td>47.950854</td>
-      <td>22.803585</td>
+      <td>6.35</td>
+      <td>5.75</td>
+      <td>5.23</td>
+      <td>24.64</td>
+      <td>29.25</td>
+      <td>47.95</td>
+      <td>22.80</td>
       <td>47532.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -488,13 +488,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 18Km; Kingston Lacy: 18Km; Brownsea Island: 4Km]</td>
       <td>457.0</td>
-      <td>9.614575</td>
-      <td>6.055640</td>
-      <td>-3.558936</td>
-      <td>0.385425</td>
-      <td>0.385425</td>
-      <td>27.864934</td>
-      <td>20.661728</td>
+      <td>9.61</td>
+      <td>6.06</td>
+      <td>-3.56</td>
+      <td>0.39</td>
+      <td>0.39</td>
+      <td>27.86</td>
+      <td>20.66</td>
       <td>High Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -504,31 +504,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>High Need</td>
       <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
-      <td>1.587706</td>
-      <td>38.287468</td>
+      <td>1.59</td>
+      <td>38.29</td>
       <td>Significant Over-performance</td>
       <td>False</td>
-      <td>-92.109512</td>
-      <td>50.706655</td>
-      <td>66.442081</td>
+      <td>-92.11</td>
+      <td>50.71</td>
+      <td>66.44</td>
       <td>0</td>
-      <td>4.923693</td>
+      <td>4.92</td>
       <td>Low</td>
-      <td>1.534726</td>
-      <td>4.520914</td>
-      <td>7.590366</td>
-      <td>2.986188</td>
-      <td>9.125092</td>
+      <td>1.53</td>
+      <td>4.52</td>
+      <td>7.59</td>
+      <td>2.99</td>
+      <td>9.13</td>
       <td>Severe Overperformance</td>
       <td>False</td>
       <td>True</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>11.661890</td>
-      <td>5.606250</td>
+      <td>11.66</td>
+      <td>5.61</td>
       <td>Engagement status: Above expected | Lowers the expected rate: geographic access barriers, deprivation level | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -537,13 +537,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>27.3</td>
       <td>11.5</td>
       <td>5.51</td>
-      <td>2.601035</td>
-      <td>7.557470</td>
-      <td>5.543380</td>
-      <td>17.501971</td>
-      <td>34.297330</td>
-      <td>31.151252</td>
-      <td>34.551418</td>
+      <td>2.60</td>
+      <td>7.56</td>
+      <td>5.54</td>
+      <td>17.50</td>
+      <td>34.30</td>
+      <td>31.15</td>
+      <td>34.55</td>
       <td>21646.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -552,13 +552,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[White Mill: 10Km; Kingston Lacy Estate: 14Km; Kingston Lacy: 14Km; The Bakehouse: 20Km; Brownsea Island: 8Km]</td>
       <td>195.0</td>
-      <td>9.008593</td>
-      <td>7.688093</td>
-      <td>-1.320500</td>
-      <td>0.991407</td>
-      <td>0.991407</td>
-      <td>29.258722</td>
-      <td>23.455327</td>
+      <td>9.01</td>
+      <td>7.69</td>
+      <td>-1.32</td>
+      <td>0.99</td>
+      <td>0.99</td>
+      <td>29.26</td>
+      <td>23.46</td>
       <td>High Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -568,31 +568,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>High Need</td>
       <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
-      <td>1.171759</td>
-      <td>2.058949</td>
+      <td>1.17</td>
+      <td>2.06</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-34.176119</td>
-      <td>48.241030</td>
-      <td>30.257622</td>
+      <td>-34.18</td>
+      <td>48.24</td>
+      <td>30.26</td>
       <td>0</td>
-      <td>22.279423</td>
+      <td>22.28</td>
       <td>Low</td>
-      <td>1.534726</td>
-      <td>6.153367</td>
-      <td>9.222819</td>
-      <td>4.618641</td>
-      <td>10.757545</td>
+      <td>1.53</td>
+      <td>6.15</td>
+      <td>9.22</td>
+      <td>4.62</td>
+      <td>10.76</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>14.060393</td>
-      <td>6.372300</td>
+      <td>14.06</td>
+      <td>6.37</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: deprivation level, high deprivation | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -601,13 +601,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>26.5</td>
       <td>15.7</td>
       <td>6.71</td>
-      <td>4.987370</td>
-      <td>5.854965</td>
-      <td>5.999325</td>
-      <td>17.439159</td>
-      <td>27.308017</td>
-      <td>22.781997</td>
-      <td>49.909986</td>
+      <td>4.99</td>
+      <td>5.85</td>
+      <td>6.00</td>
+      <td>17.44</td>
+      <td>27.31</td>
+      <td>22.78</td>
+      <td>49.91</td>
       <td>35550.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -616,13 +616,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 13Km; Kingston Lacy: 13Km; White Mill: 14Km; The Bakehouse: 24Km; Brownsea Island: 8Km]</td>
       <td>266.0</td>
-      <td>7.482419</td>
-      <td>7.139843</td>
-      <td>-0.342576</td>
-      <td>2.517581</td>
-      <td>2.517581</td>
-      <td>24.347360</td>
-      <td>24.595894</td>
+      <td>7.48</td>
+      <td>7.14</td>
+      <td>-0.34</td>
+      <td>2.52</td>
+      <td>2.52</td>
+      <td>24.35</td>
+      <td>24.60</td>
       <td>Medium Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -632,31 +632,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Medium FSM + High Visit Rate</td>
-      <td>1.047981</td>
-      <td>-9.995057</td>
+      <td>1.05</td>
+      <td>-10.00</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-8.866285</td>
-      <td>56.929279</td>
-      <td>49.693174</td>
+      <td>-8.87</td>
+      <td>56.93</td>
+      <td>49.69</td>
       <td>0</td>
-      <td>43.941480</td>
+      <td>43.94</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>5.605117</td>
-      <td>8.674569</td>
-      <td>4.070391</td>
-      <td>10.209295</td>
+      <td>1.53</td>
+      <td>5.61</td>
+      <td>8.67</td>
+      <td>4.07</td>
+      <td>10.21</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>12.304691</td>
-      <td>5.164848</td>
+      <td>12.30</td>
+      <td>5.16</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, wider access barriers | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -665,13 +665,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>31.1</td>
       <td>16.2</td>
       <td>8.20</td>
-      <td>3.903245</td>
-      <td>7.451278</td>
-      <td>7.764787</td>
-      <td>14.692857</td>
-      <td>21.075051</td>
-      <td>6.040568</td>
-      <td>72.884381</td>
+      <td>3.90</td>
+      <td>7.45</td>
+      <td>7.76</td>
+      <td>14.69</td>
+      <td>21.08</td>
+      <td>6.04</td>
+      <td>72.88</td>
       <td>24650.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -680,13 +680,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[White Mill: 11Km; Kingston Lacy Estate: 11Km; Kingston Lacy: 11Km; Badbury Rings: 14Km; The Bakehouse: 25Km; Brownsea Island: 10Km]</td>
       <td>221.0</td>
-      <td>8.965517</td>
-      <td>8.162788</td>
-      <td>-0.802729</td>
-      <td>1.034483</td>
-      <td>1.034483</td>
-      <td>19.160393</td>
-      <td>16.515723</td>
+      <td>8.97</td>
+      <td>8.16</td>
+      <td>-0.80</td>
+      <td>1.03</td>
+      <td>1.03</td>
+      <td>19.16</td>
+      <td>16.52</td>
       <td>Medium Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -696,31 +696,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Low FSM + High Visit Rate</td>
-      <td>1.098340</td>
-      <td>-5.670007</td>
+      <td>1.10</td>
+      <td>-5.67</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-20.775587</td>
-      <td>66.105075</td>
-      <td>34.456730</td>
+      <td>-20.78</td>
+      <td>66.11</td>
+      <td>34.46</td>
       <td>0</td>
-      <td>37.644360</td>
+      <td>37.64</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>6.628062</td>
-      <td>9.697514</td>
-      <td>5.093336</td>
-      <td>11.232240</td>
+      <td>1.53</td>
+      <td>6.63</td>
+      <td>9.70</td>
+      <td>5.09</td>
+      <td>11.23</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>13.934955</td>
-      <td>5.772167</td>
+      <td>13.93</td>
+      <td>5.77</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: local income context, moderate deprivation | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -729,13 +729,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>12.5</td>
       <td>4.4</td>
       <td>5.75</td>
-      <td>2.370813</td>
-      <td>5.955263</td>
-      <td>5.882775</td>
-      <td>19.187981</td>
-      <td>9.465710</td>
-      <td>90.534290</td>
-      <td>0.000000</td>
+      <td>2.37</td>
+      <td>5.96</td>
+      <td>5.88</td>
+      <td>19.19</td>
+      <td>9.47</td>
+      <td>90.53</td>
+      <td>0.00</td>
       <td>12540.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -744,13 +744,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Agglestone Rock: 4Km; Studland Bay: 5Km; Spyway sea saunter, Spyway: 5Km; National Trust - Purbeck: 6Km; Spyway Dinosaur Footprints: 6Km; Brownsea Island: 9Km]</td>
       <td>92.0</td>
-      <td>7.336523</td>
-      <td>11.200332</td>
-      <td>3.863809</td>
-      <td>2.663477</td>
-      <td>2.663477</td>
-      <td>12.382391</td>
-      <td>16.658104</td>
+      <td>7.34</td>
+      <td>11.20</td>
+      <td>3.86</td>
+      <td>2.66</td>
+      <td>2.66</td>
+      <td>12.38</td>
+      <td>16.66</td>
       <td>Low Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -760,31 +760,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
-      <td>0.655027</td>
-      <td>-42.947833</td>
+      <td>0.66</td>
+      <td>-42.95</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>100.000000</td>
-      <td>78.095427</td>
-      <td>17.528900</td>
+      <td>100.00</td>
+      <td>78.10</td>
+      <td>17.53</td>
       <td>0</td>
-      <td>97.588824</td>
+      <td>97.59</td>
       <td>Very High</td>
-      <td>1.534726</td>
-      <td>9.665606</td>
-      <td>12.735058</td>
-      <td>8.130880</td>
-      <td>14.269784</td>
+      <td>1.53</td>
+      <td>9.67</td>
+      <td>12.74</td>
+      <td>8.13</td>
+      <td>14.27</td>
       <td>Severe Underperformance</td>
       <td>True</td>
       <td>False</td>
-      <td>1.258794</td>
+      <td>1.26</td>
       <td>25</td>
       <td>UnderperformingPrediction</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>19.726736</td>
-      <td>8.526404</td>
+      <td>19.73</td>
+      <td>8.53</td>
       <td>Engagement status: Below expected | Lowers the expected rate: deprivation level, lower deprivation | Raises the expected rate: Brownsea journey time, geographic access barriers</td>
       <td></td>
     </tr>
@@ -793,13 +793,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>34.6</td>
       <td>31.2</td>
       <td>4.71</td>
-      <td>7.787182</td>
-      <td>2.679735</td>
-      <td>4.991705</td>
-      <td>4.180000</td>
-      <td>41.620581</td>
-      <td>49.298835</td>
-      <td>9.080585</td>
+      <td>7.79</td>
+      <td>2.68</td>
+      <td>4.99</td>
+      <td>4.18</td>
+      <td>41.62</td>
+      <td>49.30</td>
+      <td>9.08</td>
       <td>20252.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -808,13 +808,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 26Km; Kingston Lacy: 26Km; The Bakehouse: 32Km; Brownsea Island: 13Km]</td>
       <td>25.0</td>
-      <td>1.234446</td>
-      <td>2.901879</td>
-      <td>1.667433</td>
-      <td>8.765554</td>
-      <td>8.765554</td>
-      <td>30.388406</td>
-      <td>47.568547</td>
+      <td>1.23</td>
+      <td>2.90</td>
+      <td>1.67</td>
+      <td>8.77</td>
+      <td>8.77</td>
+      <td>30.39</td>
+      <td>47.57</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -824,31 +824,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + Low FSM + Low Visit Rate</td>
-      <td>0.425395</td>
-      <td>-54.598554</td>
+      <td>0.43</td>
+      <td>-54.60</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>43.155152</td>
-      <td>46.242607</td>
-      <td>28.309034</td>
+      <td>43.16</td>
+      <td>46.24</td>
+      <td>28.31</td>
       <td>0</td>
-      <td>59.074236</td>
+      <td>59.07</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>1.367153</td>
-      <td>4.436605</td>
-      <td>-0.167574</td>
-      <td>5.971331</td>
+      <td>1.53</td>
+      <td>1.37</td>
+      <td>4.44</td>
+      <td>-0.17</td>
+      <td>5.97</td>
       <td>Moderate Underperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.543235</td>
+      <td>0.54</td>
       <td>55</td>
       <td>HighNeedLowVisits;UnderperformingPrediction</td>
       <td>High Risk</td>
       <td>-15.0</td>
-      <td>3.941034</td>
-      <td>1.039155</td>
+      <td>3.94</td>
+      <td>1.04</td>
       <td>Engagement status: Below expected | Lowers the expected rate: geographic access barriers, deprivation level | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -857,13 +857,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>35.2</td>
       <td>18.4</td>
       <td>5.80</td>
-      <td>1.515860</td>
-      <td>7.516407</td>
-      <td>6.241557</td>
-      <td>17.166594</td>
-      <td>5.004102</td>
-      <td>84.187859</td>
-      <td>10.808039</td>
+      <td>1.52</td>
+      <td>7.52</td>
+      <td>6.24</td>
+      <td>17.17</td>
+      <td>5.00</td>
+      <td>84.19</td>
+      <td>10.81</td>
       <td>29256.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -872,13 +872,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Corfe Castle: 14Km; Clouds Hill: 15Km; The Bakehouse: 16Km; White Mill: 22Km; Agglestone Rock: 23Km; Brownsea Island: 28Km]</td>
       <td>240.0</td>
-      <td>8.203445</td>
-      <td>7.177219</td>
-      <td>-1.026227</td>
-      <td>1.796555</td>
-      <td>1.796555</td>
-      <td>8.652849</td>
-      <td>11.446658</td>
+      <td>8.20</td>
+      <td>7.18</td>
+      <td>-1.03</td>
+      <td>1.80</td>
+      <td>1.80</td>
+      <td>8.65</td>
+      <td>11.45</td>
       <td>Low Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -888,31 +888,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Medium FSM + High Visit Rate</td>
-      <td>1.142984</td>
-      <td>-0.447339</td>
+      <td>1.14</td>
+      <td>-0.45</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-26.559978</td>
-      <td>84.693024</td>
-      <td>40.895176</td>
+      <td>-26.56</td>
+      <td>84.69</td>
+      <td>40.90</td>
       <td>0</td>
-      <td>44.473056</td>
+      <td>44.47</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>5.642493</td>
-      <td>8.711945</td>
-      <td>4.107767</td>
-      <td>10.246671</td>
+      <td>1.53</td>
+      <td>5.64</td>
+      <td>8.71</td>
+      <td>4.11</td>
+      <td>10.25</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>12.459217</td>
-      <td>5.281998</td>
+      <td>12.46</td>
+      <td>5.28</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: deprivation level, lower deprivation | Raises the expected rate: Brownsea journey time, geographic access barriers</td>
       <td></td>
     </tr>
@@ -921,13 +921,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>37.7</td>
       <td>9.6</td>
       <td>7.80</td>
-      <td>2.272900</td>
-      <td>7.372175</td>
-      <td>7.763528</td>
-      <td>12.286933</td>
-      <td>12.131844</td>
-      <td>25.333035</td>
-      <td>62.535121</td>
+      <td>2.27</td>
+      <td>7.37</td>
+      <td>7.76</td>
+      <td>12.29</td>
+      <td>12.13</td>
+      <td>25.33</td>
+      <td>62.54</td>
       <td>71539.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -936,13 +936,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 7Km; Kingston Lacy: 7Km; Badbury Rings: 9Km; White Mill: 9Km; The Bakehouse: 37Km; Brownsea Island: 17Km]</td>
       <td>642.0</td>
-      <td>8.974126</td>
-      <td>6.994663</td>
-      <td>-1.979463</td>
-      <td>1.025874</td>
-      <td>1.025874</td>
-      <td>12.178371</td>
-      <td>11.602482</td>
+      <td>8.97</td>
+      <td>6.99</td>
+      <td>-1.98</td>
+      <td>1.03</td>
+      <td>1.03</td>
+      <td>12.18</td>
+      <td>11.60</td>
       <td>Low Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -952,31 +952,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Low FSM + High Visit Rate</td>
-      <td>1.282996</td>
-      <td>10.189028</td>
+      <td>1.28</td>
+      <td>10.19</td>
       <td>Moderate Over-performance</td>
       <td>False</td>
-      <td>-51.230873</td>
-      <td>78.456341</td>
-      <td>100.000000</td>
+      <td>-51.23</td>
+      <td>78.46</td>
+      <td>100.00</td>
       <td>0</td>
-      <td>46.328758</td>
+      <td>46.33</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>5.459937</td>
-      <td>8.529389</td>
-      <td>3.925211</td>
-      <td>10.064115</td>
+      <td>1.53</td>
+      <td>5.46</td>
+      <td>8.53</td>
+      <td>3.93</td>
+      <td>10.06</td>
       <td>Moderate Overperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>12.798205</td>
-      <td>5.803542</td>
+      <td>12.80</td>
+      <td>5.80</td>
       <td>Engagement status: Above expected | Lowers the expected rate: local income context, moderate deprivation | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -985,13 +985,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>40.3</td>
       <td>16.5</td>
       <td>7.36</td>
-      <td>2.847282</td>
-      <td>6.311485</td>
-      <td>7.467918</td>
-      <td>20.639392</td>
-      <td>10.679771</td>
-      <td>41.154428</td>
-      <td>48.165801</td>
+      <td>2.85</td>
+      <td>6.31</td>
+      <td>7.47</td>
+      <td>20.64</td>
+      <td>10.68</td>
+      <td>41.15</td>
+      <td>48.17</td>
       <td>30422.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -1000,13 +1000,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 15Km; Kingston Lacy: 15Km; Badbury Rings: 17Km; White Mill: 17Km; Brownsea Island: 21Km]</td>
       <td>217.0</td>
-      <td>7.132996</td>
-      <td>5.701034</td>
-      <td>-1.431961</td>
-      <td>2.867004</td>
-      <td>2.867004</td>
-      <td>13.667657</td>
-      <td>18.168373</td>
+      <td>7.13</td>
+      <td>5.70</td>
+      <td>-1.43</td>
+      <td>2.87</td>
+      <td>2.87</td>
+      <td>13.67</td>
+      <td>18.17</td>
       <td>Low Need</td>
       <td>High Visit Rate</td>
       <td>Maintain</td>
@@ -1016,31 +1016,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>High Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Medium FSM + High Visit Rate</td>
-      <td>1.251176</td>
-      <td>7.456154</td>
+      <td>1.25</td>
+      <td>7.46</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-37.060876</td>
-      <td>75.821778</td>
-      <td>42.525056</td>
+      <td>-37.06</td>
+      <td>75.82</td>
+      <td>42.53</td>
       <td>0</td>
-      <td>35.991806</td>
+      <td>35.99</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>4.166308</td>
-      <td>7.235760</td>
-      <td>2.631582</td>
-      <td>8.770487</td>
+      <td>1.53</td>
+      <td>4.17</td>
+      <td>7.24</td>
+      <td>2.63</td>
+      <td>8.77</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>9.678608</td>
-      <td>3.977573</td>
+      <td>9.68</td>
+      <td>3.98</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: local income context | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -1049,13 +1049,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>52.1</td>
       <td>36.7</td>
       <td>7.05</td>
-      <td>3.602276</td>
-      <td>5.351632</td>
-      <td>6.719471</td>
-      <td>18.529569</td>
-      <td>17.950836</td>
-      <td>39.245358</td>
-      <td>42.803806</td>
+      <td>3.60</td>
+      <td>5.35</td>
+      <td>6.72</td>
+      <td>18.53</td>
+      <td>17.95</td>
+      <td>39.25</td>
+      <td>42.80</td>
       <td>60532.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1064,13 +1064,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 28Km; Kingston Lacy: 28Km; The Bakehouse: 52Km; Brownsea Island: 24Km]</td>
       <td>266.0</td>
-      <td>4.394370</td>
-      <td>2.996377</td>
-      <td>-1.397993</td>
-      <td>5.605630</td>
-      <td>5.605630</td>
-      <td>18.124456</td>
-      <td>29.504009</td>
+      <td>4.39</td>
+      <td>3.00</td>
+      <td>-1.40</td>
+      <td>5.61</td>
+      <td>5.61</td>
+      <td>18.12</td>
+      <td>29.50</td>
       <td>Medium Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1080,31 +1080,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Medium FSM + Medium Visit Rate</td>
-      <td>1.466561</td>
-      <td>25.954340</td>
+      <td>1.47</td>
+      <td>25.95</td>
       <td>Significant Over-performance</td>
       <td>False</td>
-      <td>-36.181730</td>
-      <td>67.937657</td>
-      <td>84.613987</td>
+      <td>-36.18</td>
+      <td>67.94</td>
+      <td>84.61</td>
       <td>0</td>
-      <td>44.966263</td>
+      <td>44.97</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>1.461651</td>
-      <td>4.531103</td>
-      <td>-0.073075</td>
-      <td>6.065829</td>
+      <td>1.53</td>
+      <td>1.46</td>
+      <td>4.53</td>
+      <td>-0.07</td>
+      <td>6.07</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>6.161465</td>
-      <td>3.165088</td>
+      <td>6.16</td>
+      <td>3.17</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: local income context, wider access barriers | Raises the expected rate: deprivation level, geographic access barriers</td>
       <td></td>
     </tr>
@@ -1113,13 +1113,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>50.3</td>
       <td>25.9</td>
       <td>7.56</td>
-      <td>2.225542</td>
-      <td>7.904984</td>
-      <td>7.319738</td>
-      <td>15.661577</td>
-      <td>0.000000</td>
-      <td>50.581147</td>
-      <td>49.418853</td>
+      <td>2.23</td>
+      <td>7.90</td>
+      <td>7.32</td>
+      <td>15.66</td>
+      <td>0.00</td>
+      <td>50.58</td>
+      <td>49.42</td>
       <td>28048.0</td>
       <td>New Forest</td>
       <td>South East</td>
@@ -1128,13 +1128,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Badbury Rings: 27Km; White Mill: 27Km; Foxbury: 28Km; Brownsea Island: 30Km]</td>
       <td>115.0</td>
-      <td>4.100114</td>
-      <td>7.223772</td>
-      <td>3.123658</td>
-      <td>5.899886</td>
-      <td>5.899886</td>
-      <td>4.698473</td>
-      <td>20.988589</td>
+      <td>4.10</td>
+      <td>7.22</td>
+      <td>3.12</td>
+      <td>5.90</td>
+      <td>5.90</td>
+      <td>4.70</td>
+      <td>20.99</td>
       <td>Low Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1144,31 +1144,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Medium FSM + Medium Visit Rate</td>
-      <td>0.567586</td>
-      <td>-51.253334</td>
+      <td>0.57</td>
+      <td>-51.25</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>80.843998</td>
-      <td>91.688355</td>
-      <td>39.206587</td>
+      <td>80.84</td>
+      <td>91.69</td>
+      <td>39.21</td>
       <td>0</td>
-      <td>100.000000</td>
+      <td>100.00</td>
       <td>Very High</td>
-      <td>1.534726</td>
-      <td>5.689046</td>
-      <td>8.758498</td>
-      <td>4.154320</td>
-      <td>10.293224</td>
+      <td>1.53</td>
+      <td>5.69</td>
+      <td>8.76</td>
+      <td>4.15</td>
+      <td>10.29</td>
       <td>Severe Underperformance</td>
       <td>True</td>
       <td>False</td>
-      <td>1.017660</td>
+      <td>1.02</td>
       <td>25</td>
       <td>UnderperformingPrediction</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>9.847013</td>
-      <td>2.623241</td>
+      <td>9.85</td>
+      <td>2.62</td>
       <td>Engagement status: Below expected | Lowers the expected rate: local income context | Raises the expected rate: deprivation level, geographic access barriers</td>
       <td></td>
     </tr>
@@ -1177,13 +1177,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>60.9</td>
       <td>29.8</td>
       <td>7.22</td>
-      <td>3.586370</td>
-      <td>8.587665</td>
-      <td>7.187391</td>
-      <td>18.773718</td>
-      <td>15.579563</td>
-      <td>31.166525</td>
-      <td>53.253912</td>
+      <td>3.59</td>
+      <td>8.59</td>
+      <td>7.19</td>
+      <td>18.77</td>
+      <td>15.58</td>
+      <td>31.17</td>
+      <td>53.25</td>
       <td>27029.0</td>
       <td>New Forest</td>
       <td>South East</td>
@@ -1192,13 +1192,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Foxbury: 32Km; Blackhill Common: 33Km; Kingston Lacy Estate: 41Km; Brownsea Island: 31Km]</td>
       <td>75.0</td>
-      <td>2.774797</td>
-      <td>4.312125</td>
-      <td>1.537328</td>
-      <td>7.225203</td>
-      <td>7.225203</td>
-      <td>16.537809</td>
-      <td>33.252074</td>
+      <td>2.77</td>
+      <td>4.31</td>
+      <td>1.54</td>
+      <td>7.23</td>
+      <td>7.23</td>
+      <td>16.54</td>
+      <td>33.25</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -1208,31 +1208,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>0.643487</td>
-      <td>-44.734652</td>
+      <td>0.64</td>
+      <td>-44.73</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>39.787882</td>
-      <td>70.744451</td>
-      <td>37.782189</td>
+      <td>39.79</td>
+      <td>70.74</td>
+      <td>37.78</td>
       <td>0</td>
-      <td>70.456446</td>
+      <td>70.46</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>2.777399</td>
-      <td>5.846851</td>
-      <td>1.242673</td>
-      <td>7.381577</td>
+      <td>1.53</td>
+      <td>2.78</td>
+      <td>5.85</td>
+      <td>1.24</td>
+      <td>7.38</td>
       <td>Moderate Underperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.500848</td>
+      <td>0.50</td>
       <td>25</td>
       <td>UnderperformingPrediction</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>5.826714</td>
-      <td>1.514589</td>
+      <td>5.83</td>
+      <td>1.51</td>
       <td>Engagement status: Below expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: deprivation level, wider access barriers</td>
       <td></td>
     </tr>
@@ -1241,13 +1241,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>34.4</td>
       <td>29.8</td>
       <td>6.38</td>
-      <td>7.565952</td>
-      <td>3.392349</td>
-      <td>6.262400</td>
-      <td>14.270000</td>
-      <td>15.216711</td>
-      <td>42.168675</td>
-      <td>42.614614</td>
+      <td>7.57</td>
+      <td>3.39</td>
+      <td>6.26</td>
+      <td>14.27</td>
+      <td>15.22</td>
+      <td>42.17</td>
+      <td>42.61</td>
       <td>12782.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1256,13 +1256,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 20Km; Kingston Lacy: 20Km; The Bakehouse: 32Km; Brownsea Island: 13Km]</td>
       <td>32.0</td>
-      <td>2.503521</td>
-      <td>2.962307</td>
-      <td>0.458786</td>
-      <td>7.496479</td>
-      <td>7.496479</td>
-      <td>14.932698</td>
-      <td>32.942327</td>
+      <td>2.50</td>
+      <td>2.96</td>
+      <td>0.46</td>
+      <td>7.50</td>
+      <td>7.50</td>
+      <td>14.93</td>
+      <td>32.94</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -1272,31 +1272,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Low FSM + Low Visit Rate</td>
-      <td>0.845125</td>
-      <td>-27.417128</td>
+      <td>0.85</td>
+      <td>-27.42</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>11.873931</td>
-      <td>73.583909</td>
-      <td>17.867177</td>
+      <td>11.87</td>
+      <td>73.58</td>
+      <td>17.87</td>
       <td>0</td>
-      <td>52.252777</td>
+      <td>52.25</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>1.427580</td>
-      <td>4.497033</td>
-      <td>-0.107146</td>
-      <td>6.031759</td>
+      <td>1.53</td>
+      <td>1.43</td>
+      <td>4.50</td>
+      <td>-0.11</td>
+      <td>6.03</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.149468</td>
+      <td>0.15</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>5.639508</td>
-      <td>2.677201</td>
+      <td>5.64</td>
+      <td>2.68</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, wider access barriers | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -1305,13 +1305,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>51.3</td>
       <td>23.5</td>
       <td>7.66</td>
-      <td>1.651787</td>
-      <td>8.066234</td>
-      <td>7.874873</td>
-      <td>9.004156</td>
-      <td>19.313006</td>
-      <td>12.175125</td>
-      <td>68.511870</td>
+      <td>1.65</td>
+      <td>8.07</td>
+      <td>7.87</td>
+      <td>9.00</td>
+      <td>19.31</td>
+      <td>12.18</td>
+      <td>68.51</td>
       <td>18661.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -1320,13 +1320,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 19Km; Kingston Lacy: 19Km; Badbury Rings: 21Km; White Mill: 21Km; Fontmell and Melbury Downs SAC: 29Km; Brownsea Island: 29Km]</td>
       <td>109.0</td>
-      <td>5.841059</td>
-      <td>4.737917</td>
-      <td>-1.103142</td>
-      <td>4.158941</td>
-      <td>4.158941</td>
-      <td>16.220351</td>
-      <td>23.831069</td>
+      <td>5.84</td>
+      <td>4.74</td>
+      <td>-1.10</td>
+      <td>4.16</td>
+      <td>4.16</td>
+      <td>16.22</td>
+      <td>23.83</td>
       <td>Medium Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1336,31 +1336,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Low FSM + Medium Visit Rate</td>
-      <td>1.232833</td>
-      <td>5.880774</td>
+      <td>1.23</td>
+      <td>5.88</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-28.550630</td>
-      <td>71.306038</td>
-      <td>26.085072</td>
+      <td>-28.55</td>
+      <td>71.31</td>
+      <td>26.09</td>
       <td>0</td>
-      <td>33.643677</td>
+      <td>33.64</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>3.203191</td>
-      <td>6.272643</td>
-      <td>1.668465</td>
-      <td>7.807369</td>
+      <td>1.53</td>
+      <td>3.20</td>
+      <td>6.27</td>
+      <td>1.67</td>
+      <td>7.81</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>9.122040</td>
-      <td>4.384123</td>
+      <td>9.12</td>
+      <td>4.38</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: local income context, moderate deprivation | Raises the expected rate: deprivation level, geographic access barriers</td>
       <td></td>
     </tr>
@@ -1369,13 +1369,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>31.1</td>
       <td>31.3</td>
       <td>6.50</td>
-      <td>6.202721</td>
-      <td>3.702689</td>
-      <td>6.185183</td>
-      <td>0.000000</td>
-      <td>19.614417</td>
-      <td>41.517828</td>
-      <td>38.867754</td>
+      <td>6.20</td>
+      <td>3.70</td>
+      <td>6.19</td>
+      <td>0.00</td>
+      <td>19.61</td>
+      <td>41.52</td>
+      <td>38.87</td>
       <td>15509.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1384,13 +1384,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 26Km; Kingston Lacy: 26Km; The Bakehouse: 32Km; Brownsea Island: 10Km]</td>
       <td>85.0</td>
-      <td>5.480689</td>
-      <td>4.944758</td>
-      <td>-0.535931</td>
-      <td>4.519311</td>
-      <td>4.519311</td>
-      <td>13.730092</td>
-      <td>23.168999</td>
+      <td>5.48</td>
+      <td>4.94</td>
+      <td>-0.54</td>
+      <td>4.52</td>
+      <td>4.52</td>
+      <td>13.73</td>
+      <td>23.17</td>
       <td>Low Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1400,31 +1400,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Low FSM + Medium Visit Rate</td>
-      <td>1.108384</td>
-      <td>-4.807426</td>
+      <td>1.11</td>
+      <td>-4.81</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-13.870526</td>
-      <td>75.711330</td>
-      <td>21.679084</td>
+      <td>-13.87</td>
+      <td>75.71</td>
+      <td>21.68</td>
       <td>0</td>
-      <td>41.514962</td>
+      <td>41.51</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>3.410032</td>
-      <td>6.479484</td>
-      <td>1.875306</td>
-      <td>8.014210</td>
+      <td>1.53</td>
+      <td>3.41</td>
+      <td>6.48</td>
+      <td>1.88</td>
+      <td>8.01</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>7.774718</td>
-      <td>2.829960</td>
+      <td>7.77</td>
+      <td>2.83</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, wider access barriers | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -1433,13 +1433,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>38.1</td>
       <td>34.5</td>
       <td>4.04</td>
-      <td>7.900658</td>
-      <td>2.670353</td>
-      <td>4.224848</td>
-      <td>12.805000</td>
-      <td>53.676005</td>
-      <td>37.028015</td>
-      <td>9.295981</td>
+      <td>7.90</td>
+      <td>2.67</td>
+      <td>4.22</td>
+      <td>12.80</td>
+      <td>53.68</td>
+      <td>37.03</td>
+      <td>9.30</td>
       <td>20525.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1448,13 +1448,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Brownsea Island: 14Km]</td>
       <td>52.0</td>
-      <td>2.533496</td>
-      <td>2.275026</td>
-      <td>-0.258470</td>
-      <td>7.466504</td>
-      <td>7.466504</td>
-      <td>41.414703</td>
-      <td>51.389805</td>
+      <td>2.53</td>
+      <td>2.28</td>
+      <td>-0.26</td>
+      <td>7.47</td>
+      <td>7.47</td>
+      <td>41.41</td>
+      <td>51.39</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -1464,31 +1464,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + Low FSM + Low Visit Rate</td>
-      <td>1.113612</td>
-      <td>18.853136</td>
+      <td>1.11</td>
+      <td>18.85</td>
       <td>Moderate Over-performance</td>
       <td>False</td>
-      <td>-6.689506</td>
-      <td>26.736978</td>
-      <td>28.690644</td>
+      <td>-6.69</td>
+      <td>26.74</td>
+      <td>28.69</td>
       <td>0</td>
-      <td>26.308885</td>
+      <td>26.31</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.740300</td>
-      <td>3.809752</td>
-      <td>-0.794426</td>
-      <td>5.344478</td>
+      <td>1.53</td>
+      <td>0.74</td>
+      <td>3.81</td>
+      <td>-0.79</td>
+      <td>5.34</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>10</td>
       <td>ExtremeDeprivation</td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>3.259480</td>
-      <td>0.984454</td>
+      <td>3.26</td>
+      <td>0.98</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: deprivation level, geographic access barriers | Raises the expected rate: local income context, Brownsea journey time</td>
       <td></td>
     </tr>
@@ -1497,13 +1497,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>42.8</td>
       <td>36.9</td>
       <td>6.49</td>
-      <td>6.946594</td>
-      <td>3.956116</td>
-      <td>6.279673</td>
-      <td>13.764000</td>
-      <td>20.951562</td>
-      <td>42.976338</td>
-      <td>36.072100</td>
+      <td>6.95</td>
+      <td>3.96</td>
+      <td>6.28</td>
+      <td>13.76</td>
+      <td>20.95</td>
+      <td>42.98</td>
+      <td>36.07</td>
       <td>31401.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1512,13 +1512,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 34Km; Kingston Lacy: 34Km; Brownsea Island: 17Km]</td>
       <td>130.0</td>
-      <td>4.139996</td>
-      <td>2.433334</td>
-      <td>-1.706661</td>
-      <td>5.860004</td>
-      <td>5.860004</td>
-      <td>18.795293</td>
-      <td>30.736719</td>
+      <td>4.14</td>
+      <td>2.43</td>
+      <td>-1.71</td>
+      <td>5.86</td>
+      <td>5.86</td>
+      <td>18.80</td>
+      <td>30.74</td>
       <td>Medium Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1528,31 +1528,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Low FSM + Medium Visit Rate</td>
-      <td>1.701367</td>
-      <td>46.120475</td>
+      <td>1.70</td>
+      <td>46.12</td>
       <td>Significant Over-performance</td>
       <td>False</td>
-      <td>-44.170436</td>
-      <td>66.750939</td>
-      <td>43.893541</td>
+      <td>-44.17</td>
+      <td>66.75</td>
+      <td>43.89</td>
       <td>0</td>
-      <td>29.027139</td>
+      <td>29.03</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.898608</td>
-      <td>3.968060</td>
-      <td>-0.636118</td>
-      <td>5.502786</td>
+      <td>1.53</td>
+      <td>0.90</td>
+      <td>3.97</td>
+      <td>-0.64</td>
+      <td>5.50</td>
       <td>Moderate Overperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>4.790115</td>
-      <td>2.356781</td>
+      <td>4.79</td>
+      <td>2.36</td>
       <td>Engagement status: Above expected | Lowers the expected rate: geographic access barriers, wider access barriers | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -1561,13 +1561,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>39.6</td>
       <td>34.2</td>
       <td>5.38</td>
-      <td>7.229039</td>
-      <td>4.141569</td>
-      <td>5.507753</td>
-      <td>20.432709</td>
-      <td>49.806185</td>
-      <td>22.431954</td>
-      <td>27.761861</td>
+      <td>7.23</td>
+      <td>4.14</td>
+      <td>5.51</td>
+      <td>20.43</td>
+      <td>49.81</td>
+      <td>22.43</td>
+      <td>27.76</td>
       <td>23734.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1576,13 +1576,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 25Km; Kingston Lacy: 25Km; Brownsea Island: 16Km]</td>
       <td>60.0</td>
-      <td>2.528019</td>
-      <td>2.480815</td>
-      <td>-0.047203</td>
-      <td>7.471981</td>
-      <td>7.471981</td>
-      <td>40.994142</td>
-      <td>51.111843</td>
+      <td>2.53</td>
+      <td>2.48</td>
+      <td>-0.05</td>
+      <td>7.47</td>
+      <td>7.47</td>
+      <td>40.99</td>
+      <td>51.11</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -1592,31 +1592,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>1.019027</td>
-      <td>8.758370</td>
+      <td>1.02</td>
+      <td>8.76</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-1.221682</td>
-      <td>27.480955</td>
-      <td>33.176309</td>
+      <td>-1.22</td>
+      <td>27.48</td>
+      <td>33.18</td>
       <td>0</td>
-      <td>30.590018</td>
+      <td>30.59</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.946089</td>
-      <td>4.015541</td>
-      <td>-0.588637</td>
-      <td>5.550268</td>
+      <td>1.53</td>
+      <td>0.95</td>
+      <td>4.02</td>
+      <td>-0.59</td>
+      <td>5.55</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>4.078732</td>
-      <td>1.597916</td>
+      <td>4.08</td>
+      <td>1.60</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, deprivation level | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -1625,13 +1625,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>39.3</td>
       <td>29.9</td>
       <td>4.98</td>
-      <td>7.717480</td>
-      <td>3.014431</td>
-      <td>5.095464</td>
-      <td>17.386135</td>
-      <td>46.632446</td>
-      <td>44.634017</td>
-      <td>8.733537</td>
+      <td>7.72</td>
+      <td>3.01</td>
+      <td>5.10</td>
+      <td>17.39</td>
+      <td>46.63</td>
+      <td>44.63</td>
+      <td>8.73</td>
       <td>54743.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1640,13 +1640,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 22Km; Kingston Lacy: 22Km; The Bakehouse: 34Km; Brownsea Island: 16Km]</td>
       <td>88.0</td>
-      <td>1.607511</td>
-      <td>2.183133</td>
-      <td>0.575622</td>
-      <td>8.392489</td>
-      <td>8.392489</td>
-      <td>37.858553</td>
-      <td>51.678453</td>
+      <td>1.61</td>
+      <td>2.18</td>
+      <td>0.58</td>
+      <td>8.39</td>
+      <td>8.39</td>
+      <td>37.86</td>
+      <td>51.68</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -1656,31 +1656,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>0.736332</td>
-      <td>-21.413009</td>
+      <td>0.74</td>
+      <td>-21.41</td>
       <td>Under-performing</td>
       <td>False</td>
-      <td>14.897782</td>
-      <td>33.027844</td>
-      <td>76.521897</td>
+      <td>14.90</td>
+      <td>33.03</td>
+      <td>76.52</td>
       <td>0</td>
-      <td>53.131099</td>
+      <td>53.13</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>0.648407</td>
-      <td>3.717859</td>
-      <td>-0.886319</td>
-      <td>5.252585</td>
+      <td>1.53</td>
+      <td>0.65</td>
+      <td>3.72</td>
+      <td>-0.89</td>
+      <td>5.25</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.187532</td>
+      <td>0.19</td>
       <td>30</td>
       <td>HighNeedLowVisits</td>
       <td>Medium Risk</td>
       <td>-15.0</td>
-      <td>3.458101</td>
-      <td>1.274968</td>
+      <td>3.46</td>
+      <td>1.27</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, deprivation level | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -1689,13 +1689,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>37.0</td>
       <td>24.4</td>
       <td>6.55</td>
-      <td>7.356936</td>
-      <td>3.691682</td>
-      <td>5.736307</td>
-      <td>20.450631</td>
-      <td>17.818912</td>
-      <td>43.583854</td>
-      <td>38.597235</td>
+      <td>7.36</td>
+      <td>3.69</td>
+      <td>5.74</td>
+      <td>20.45</td>
+      <td>17.82</td>
+      <td>43.58</td>
+      <td>38.60</td>
       <td>44840.0</td>
       <td>Bournemouth, Christchurch and Poole</td>
       <td>South West</td>
@@ -1704,13 +1704,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Kingston Lacy Estate: 20Km; Kingston Lacy: 20Km; White Mill: 22Km; Brownsea Island: 14Km]</td>
       <td>154.0</td>
-      <td>3.434434</td>
-      <td>2.949634</td>
-      <td>-0.484800</td>
-      <td>6.565566</td>
-      <td>6.565566</td>
-      <td>18.608427</td>
-      <td>32.722599</td>
+      <td>3.43</td>
+      <td>2.95</td>
+      <td>-0.48</td>
+      <td>6.57</td>
+      <td>6.57</td>
+      <td>18.61</td>
+      <td>32.72</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -1720,31 +1720,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>1.164359</td>
-      <td>0.000000</td>
+      <td>1.16</td>
+      <td>0.00</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-12.547198</td>
-      <td>67.081507</td>
-      <td>62.679098</td>
+      <td>-12.55</td>
+      <td>67.08</td>
+      <td>62.68</td>
       <td>0</td>
-      <td>50.085825</td>
+      <td>50.09</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>1.414908</td>
-      <td>4.484360</td>
-      <td>-0.119818</td>
-      <td>6.019086</td>
+      <td>1.53</td>
+      <td>1.41</td>
+      <td>4.48</td>
+      <td>-0.12</td>
+      <td>6.02</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>6.151757</td>
-      <td>3.202123</td>
+      <td>6.15</td>
+      <td>3.20</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers, wider access barriers | Raises the expected rate: Brownsea journey time, local income context</td>
       <td></td>
     </tr>
@@ -1753,13 +1753,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>43.1</td>
       <td>14.2</td>
       <td>6.59</td>
-      <td>4.935366</td>
-      <td>6.459718</td>
-      <td>6.364596</td>
-      <td>15.663508</td>
-      <td>16.989329</td>
-      <td>51.432927</td>
-      <td>31.577744</td>
+      <td>4.94</td>
+      <td>6.46</td>
+      <td>6.36</td>
+      <td>15.66</td>
+      <td>16.99</td>
+      <td>51.43</td>
+      <td>31.58</td>
       <td>26240.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -1768,13 +1768,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Cerne Abbas Giant: 14Km; Clouds Hill: 19Km; Eggardon Hill Fort: 23Km; Hod Hill: 35Km; The Bakehouse: 37Km; Brownsea Island: 50Km]</td>
       <td>108.0</td>
-      <td>4.115854</td>
-      <td>4.425835</td>
-      <td>0.309982</td>
-      <td>5.884146</td>
-      <td>5.884146</td>
-      <td>16.591583</td>
-      <td>29.266547</td>
+      <td>4.12</td>
+      <td>4.43</td>
+      <td>0.31</td>
+      <td>5.88</td>
+      <td>5.88</td>
+      <td>16.59</td>
+      <td>29.27</td>
       <td>Medium Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1784,31 +1784,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Medium Need</td>
       <td>Moderate Deprivation + Medium FSM + Medium Visit Rate</td>
-      <td>0.929961</td>
-      <td>-19.001414</td>
+      <td>0.93</td>
+      <td>-19.00</td>
       <td>Under-performing</td>
       <td>False</td>
-      <td>8.022695</td>
-      <td>70.649325</td>
-      <td>36.679294</td>
+      <td>8.02</td>
+      <td>70.65</td>
+      <td>36.68</td>
       <td>0</td>
-      <td>54.417448</td>
+      <td>54.42</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>2.891109</td>
-      <td>5.960561</td>
-      <td>1.356383</td>
-      <td>7.495287</td>
+      <td>1.53</td>
+      <td>2.89</td>
+      <td>5.96</td>
+      <td>1.36</td>
+      <td>7.50</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.100989</td>
+      <td>0.10</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>7.272457</td>
-      <td>2.846622</td>
+      <td>7.27</td>
+      <td>2.85</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: geographic access barriers | Raises the expected rate: Brownsea journey time, deprivation level</td>
       <td></td>
     </tr>
@@ -1817,13 +1817,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>63.8</td>
       <td>19.8</td>
       <td>5.52</td>
-      <td>1.057332</td>
-      <td>6.316862</td>
-      <td>6.678290</td>
-      <td>20.729824</td>
-      <td>19.770493</td>
-      <td>70.355380</td>
-      <td>9.874127</td>
+      <td>1.06</td>
+      <td>6.32</td>
+      <td>6.68</td>
+      <td>20.73</td>
+      <td>19.77</td>
+      <td>70.36</td>
+      <td>9.87</td>
       <td>22483.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -1832,13 +1832,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Hod Hill: 14Km; Cerne Abbas Giant: 21Km; Fontmell and Melbury Downs SAC: 21Km; Stourhead Gardens: 28Km; Stourhead Park: 28Km; Brownsea Island: 45Km]</td>
       <td>75.0</td>
-      <td>3.335854</td>
-      <td>1.929787</td>
-      <td>-1.406067</td>
-      <td>6.664146</td>
-      <td>6.664146</td>
-      <td>20.058293</td>
-      <td>34.033244</td>
+      <td>3.34</td>
+      <td>1.93</td>
+      <td>-1.41</td>
+      <td>6.66</td>
+      <td>6.66</td>
+      <td>20.06</td>
+      <td>34.03</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -1848,31 +1848,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>1.728612</td>
-      <td>50.560253</td>
+      <td>1.73</td>
+      <td>50.56</td>
       <td>Extreme Over-performance</td>
       <td>True</td>
-      <td>-36.390686</td>
-      <td>64.516681</td>
-      <td>31.427613</td>
+      <td>-36.39</td>
+      <td>64.52</td>
+      <td>31.43</td>
       <td>0</td>
-      <td>28.405512</td>
+      <td>28.41</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.395061</td>
-      <td>3.464513</td>
-      <td>-1.139665</td>
-      <td>4.999239</td>
+      <td>1.53</td>
+      <td>0.40</td>
+      <td>3.46</td>
+      <td>-1.14</td>
+      <td>5.00</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>15</td>
       <td>FragileOverperformance</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>4.037372</td>
-      <td>2.107585</td>
+      <td>4.04</td>
+      <td>2.11</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, deprivation level | Raises the expected rate: geographic access barriers, high deprivation [Less typical visitor pattern]</td>
       <td></td>
     </tr>
@@ -1881,13 +1881,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>46.3</td>
       <td>14.0</td>
       <td>5.90</td>
-      <td>1.918834</td>
-      <td>7.208059</td>
-      <td>6.671149</td>
-      <td>13.365363</td>
-      <td>4.984327</td>
-      <td>90.809026</td>
-      <td>4.206647</td>
+      <td>1.92</td>
+      <td>7.21</td>
+      <td>6.67</td>
+      <td>13.37</td>
+      <td>4.98</td>
+      <td>90.81</td>
+      <td>4.21</td>
       <td>41791.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -1896,13 +1896,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Hod Hill: 10Km; Badbury Rings: 12Km; White Mill: 15Km; Kingston Lacy: 15Km; Kingston Lacy Estate: 15Km; Brownsea Island: 27Km]</td>
       <td>288.0</td>
-      <td>6.891436</td>
-      <td>4.281107</td>
-      <td>-2.610329</td>
-      <td>3.108564</td>
-      <td>3.108564</td>
-      <td>7.498638</td>
-      <td>14.574739</td>
+      <td>6.89</td>
+      <td>4.28</td>
+      <td>-2.61</td>
+      <td>3.11</td>
+      <td>3.11</td>
+      <td>7.50</td>
+      <td>14.57</td>
       <td>Low Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1912,31 +1912,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Low FSM + Medium Visit Rate</td>
-      <td>1.609732</td>
-      <td>40.205939</td>
+      <td>1.61</td>
+      <td>40.21</td>
       <td>Significant Over-performance</td>
       <td>False</td>
-      <td>-67.558442</td>
-      <td>86.734835</td>
-      <td>58.417087</td>
+      <td>-67.56</td>
+      <td>86.73</td>
+      <td>58.42</td>
       <td>0</td>
-      <td>30.034716</td>
+      <td>30.03</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>2.746381</td>
-      <td>5.815833</td>
-      <td>1.211655</td>
-      <td>7.350559</td>
+      <td>1.53</td>
+      <td>2.75</td>
+      <td>5.82</td>
+      <td>1.21</td>
+      <td>7.35</td>
       <td>Moderate Overperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>7.866756</td>
-      <td>3.585649</td>
+      <td>7.87</td>
+      <td>3.59</td>
       <td>Engagement status: Above expected | Lowers the expected rate: lower deprivation, local income context | Raises the expected rate: geographic access barriers, Brownsea journey time</td>
       <td></td>
     </tr>
@@ -1945,13 +1945,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>43.5</td>
       <td>8.2</td>
       <td>5.86</td>
-      <td>1.231223</td>
-      <td>6.914222</td>
-      <td>7.224527</td>
-      <td>14.942159</td>
-      <td>5.269602</td>
-      <td>90.917495</td>
-      <td>3.812903</td>
+      <td>1.23</td>
+      <td>6.91</td>
+      <td>7.22</td>
+      <td>14.94</td>
+      <td>5.27</td>
+      <td>90.92</td>
+      <td>3.81</td>
       <td>40022.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -1960,13 +1960,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Cerne Abbas Giant: 9Km; Clouds Hill: 20Km; Eggardon Hill Fort: 25Km; Langdon Hill: 34Km; Hod Hill: 36Km; Brownsea Island: 51Km]</td>
       <td>188.0</td>
-      <td>4.697416</td>
-      <td>4.091399</td>
-      <td>-0.606018</td>
-      <td>5.302584</td>
-      <td>5.302584</td>
-      <td>8.171369</td>
-      <td>21.627709</td>
+      <td>4.70</td>
+      <td>4.09</td>
+      <td>-0.61</td>
+      <td>5.30</td>
+      <td>5.30</td>
+      <td>8.17</td>
+      <td>21.63</td>
       <td>Low Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -1976,31 +1976,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Low FSM + Medium Visit Rate</td>
-      <td>1.148120</td>
-      <td>0.000000</td>
+      <td>1.15</td>
+      <td>0.00</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-15.684461</td>
-      <td>85.544767</td>
-      <td>55.944310</td>
+      <td>-15.68</td>
+      <td>85.54</td>
+      <td>55.94</td>
       <td>0</td>
-      <td>54.451498</td>
+      <td>54.45</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>2.556673</td>
-      <td>5.626125</td>
-      <td>1.021947</td>
-      <td>7.160851</td>
+      <td>1.53</td>
+      <td>2.56</td>
+      <td>5.63</td>
+      <td>1.02</td>
+      <td>7.16</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>7.932298</td>
-      <td>3.840899</td>
+      <td>7.93</td>
+      <td>3.84</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: local income context, deprivation level | Raises the expected rate: geographic access barriers, Brownsea journey time</td>
       <td></td>
     </tr>
@@ -2009,13 +2009,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>48.9</td>
       <td>20.0</td>
       <td>5.97</td>
-      <td>2.569030</td>
-      <td>6.385742</td>
-      <td>6.305556</td>
-      <td>26.035339</td>
-      <td>22.854446</td>
-      <td>48.787047</td>
-      <td>28.358508</td>
+      <td>2.57</td>
+      <td>6.39</td>
+      <td>6.31</td>
+      <td>26.04</td>
+      <td>22.85</td>
+      <td>48.79</td>
+      <td>28.36</td>
       <td>34956.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2024,13 +2024,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Cerne Abbas Giant: 22Km; Eggardon Hill Fort: 27Km; Clouds Hill: 28Km; Langdon Hill: 37Km; Golden Cap: 37Km; Brownsea Island: 59Km]</td>
       <td>108.0</td>
-      <td>3.089598</td>
-      <td>3.830233</td>
-      <td>0.740634</td>
-      <td>6.910402</td>
-      <td>6.910402</td>
-      <td>23.808714</td>
-      <td>37.397304</td>
+      <td>3.09</td>
+      <td>3.83</td>
+      <td>0.74</td>
+      <td>6.91</td>
+      <td>6.91</td>
+      <td>23.81</td>
+      <td>37.40</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -2040,31 +2040,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Moderate Deprivation + High FSM + Low Visit Rate</td>
-      <td>0.806635</td>
-      <td>-29.742994</td>
+      <td>0.81</td>
+      <td>-29.74</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>19.168500</td>
-      <td>57.882149</td>
-      <td>48.862858</td>
+      <td>19.17</td>
+      <td>57.88</td>
+      <td>48.86</td>
       <td>0</td>
-      <td>57.955717</td>
+      <td>57.96</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>2.295506</td>
-      <td>5.364959</td>
-      <td>0.760780</td>
-      <td>6.899685</td>
+      <td>1.53</td>
+      <td>2.30</td>
+      <td>5.36</td>
+      <td>0.76</td>
+      <td>6.90</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.241292</td>
+      <td>0.24</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>6.645446</td>
-      <td>2.815213</td>
+      <td>6.65</td>
+      <td>2.82</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: deprivation level, FSM and poverty context | Raises the expected rate: geographic access barriers, Brownsea journey time</td>
       <td></td>
     </tr>
@@ -2073,13 +2073,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>55.1</td>
       <td>26.3</td>
       <td>5.04</td>
-      <td>4.074545</td>
-      <td>5.135298</td>
-      <td>5.365506</td>
-      <td>26.167742</td>
-      <td>47.623174</td>
-      <td>31.257109</td>
-      <td>21.119717</td>
+      <td>4.07</td>
+      <td>5.14</td>
+      <td>5.37</td>
+      <td>26.17</td>
+      <td>47.62</td>
+      <td>31.26</td>
+      <td>21.12</td>
       <td>55389.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2088,13 +2088,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Cerne Abbas Giant: 26Km; Eggardon Hill Fort: 31Km; Clouds Hill: 31Km; Corfe Castle: 39Km; Langdon Hill: 40Km; Brownsea Island: 53Km]</td>
       <td>81.0</td>
-      <td>1.462384</td>
-      <td>1.913797</td>
-      <td>0.451413</td>
-      <td>8.537616</td>
-      <td>8.537616</td>
-      <td>41.186545</td>
-      <td>54.443428</td>
+      <td>1.46</td>
+      <td>1.91</td>
+      <td>0.45</td>
+      <td>8.54</td>
+      <td>8.54</td>
+      <td>41.19</td>
+      <td>54.44</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -2104,31 +2104,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + High FSM + Low Visit Rate</td>
-      <td>0.764127</td>
-      <td>-18.446541</td>
+      <td>0.76</td>
+      <td>-18.45</td>
       <td>Under-performing</td>
       <td>False</td>
-      <td>11.683111</td>
-      <td>27.140593</td>
-      <td>77.424901</td>
+      <td>11.68</td>
+      <td>27.14</td>
+      <td>77.42</td>
       <td>0</td>
-      <td>49.306227</td>
+      <td>49.31</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.379071</td>
-      <td>3.448523</td>
-      <td>-1.155655</td>
-      <td>4.983249</td>
+      <td>1.53</td>
+      <td>0.38</td>
+      <td>3.45</td>
+      <td>-1.16</td>
+      <td>4.98</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.147066</td>
+      <td>0.15</td>
       <td>30</td>
       <td>HighNeedLowVisits</td>
       <td>Medium Risk</td>
       <td>-15.0</td>
-      <td>3.644417</td>
-      <td>1.730620</td>
+      <td>3.64</td>
+      <td>1.73</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: deprivation level, Brownsea journey time | Raises the expected rate: local income context</td>
       <td></td>
     </tr>
@@ -2137,13 +2137,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>67.9</td>
       <td>40.6</td>
       <td>3.97</td>
-      <td>2.277811</td>
-      <td>4.040835</td>
-      <td>4.674749</td>
-      <td>30.410000</td>
-      <td>67.722564</td>
-      <td>32.277436</td>
-      <td>0.000000</td>
+      <td>2.28</td>
+      <td>4.04</td>
+      <td>4.67</td>
+      <td>30.41</td>
+      <td>67.72</td>
+      <td>32.28</td>
+      <td>0.00</td>
       <td>13322.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2152,13 +2152,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Cerne Abbas Giant: 36Km; Eggardon Hill Fort: 36Km; Clouds Hill: 41Km; Corfe Castle: 47Km; Spyway Dinosaur Footprints: 54Km; Brownsea Island: 61Km]</td>
       <td>26.0</td>
-      <td>1.951659</td>
-      <td>0.742643</td>
-      <td>-1.209015</td>
-      <td>8.048341</td>
-      <td>8.048341</td>
-      <td>56.528795</td>
-      <td>63.715180</td>
+      <td>1.95</td>
+      <td>0.74</td>
+      <td>-1.21</td>
+      <td>8.05</td>
+      <td>8.05</td>
+      <td>56.53</td>
+      <td>63.72</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -2168,31 +2168,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>High Deprivation + High FSM + Low Visit Rate</td>
-      <td>2.627989</td>
-      <td>180.479042</td>
+      <td>2.63</td>
+      <td>180.48</td>
       <td>Extreme Over-performance</td>
       <td>True</td>
-      <td>-31.290768</td>
-      <td>0.000000</td>
-      <td>18.622010</td>
+      <td>-31.29</td>
+      <td>0.00</td>
+      <td>18.62</td>
       <td>0</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>Low</td>
-      <td>1.534726</td>
-      <td>-0.792083</td>
-      <td>2.277369</td>
-      <td>-2.326809</td>
-      <td>3.812096</td>
+      <td>1.53</td>
+      <td>-0.79</td>
+      <td>2.28</td>
+      <td>-2.33</td>
+      <td>3.81</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>55</td>
       <td>HighNeedLowVisits;ExtremeDeprivation;FragileOverperformance</td>
       <td>High Risk</td>
       <td>-15.0</td>
-      <td>2.031831</td>
-      <td>1.289188</td>
+      <td>2.03</td>
+      <td>1.29</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, deprivation level | Raises the expected rate: local income context, geographic access barriers [Less typical visitor pattern]</td>
       <td></td>
     </tr>
@@ -2201,13 +2201,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>67.6</td>
       <td>14.4</td>
       <td>5.57</td>
-      <td>2.135175</td>
-      <td>6.249204</td>
-      <td>6.247553</td>
-      <td>18.533769</td>
-      <td>26.805494</td>
-      <td>58.984170</td>
-      <td>14.210336</td>
+      <td>2.14</td>
+      <td>6.25</td>
+      <td>6.25</td>
+      <td>18.53</td>
+      <td>26.81</td>
+      <td>58.98</td>
+      <td>14.21</td>
       <td>24827.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2216,13 +2216,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Langdon Hill: 7Km; Golden Cap: 7Km; Eggardon Hill Fort: 11Km; Pilsdon Pen: 14Km; Lambert's Castle: 20Km; Brownsea Island: 77Km]</td>
       <td>74.0</td>
-      <td>2.980626</td>
-      <td>1.573192</td>
-      <td>-1.407434</td>
-      <td>7.019374</td>
-      <td>7.019374</td>
-      <td>24.323976</td>
-      <td>38.084906</td>
+      <td>2.98</td>
+      <td>1.57</td>
+      <td>-1.41</td>
+      <td>7.02</td>
+      <td>7.02</td>
+      <td>24.32</td>
+      <td>38.08</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -2232,31 +2232,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>1.894636</td>
-      <td>65.020770</td>
+      <td>1.89</td>
+      <td>65.02</td>
       <td>Extreme Over-performance</td>
       <td>True</td>
-      <td>-36.426085</td>
-      <td>56.970644</td>
-      <td>34.704147</td>
+      <td>-36.43</td>
+      <td>56.97</td>
+      <td>34.70</td>
       <td>0</td>
-      <td>26.118394</td>
+      <td>26.12</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.038466</td>
-      <td>3.107918</td>
-      <td>-1.496261</td>
-      <td>4.642644</td>
+      <td>1.53</td>
+      <td>0.04</td>
+      <td>3.11</td>
+      <td>-1.50</td>
+      <td>4.64</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>15</td>
       <td>FragileOverperformance</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>3.399750</td>
-      <td>1.826558</td>
+      <td>3.40</td>
+      <td>1.83</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, deprivation level | Raises the expected rate: geographic access barriers, local income context [Less typical visitor pattern]</td>
       <td></td>
     </tr>
@@ -2265,13 +2265,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>80.5</td>
       <td>9.6</td>
       <td>5.99</td>
-      <td>2.291220</td>
-      <td>5.878127</td>
-      <td>6.515569</td>
-      <td>21.640000</td>
-      <td>26.301685</td>
-      <td>54.338948</td>
-      <td>19.359367</td>
+      <td>2.29</td>
+      <td>5.88</td>
+      <td>6.52</td>
+      <td>21.64</td>
+      <td>26.30</td>
+      <td>54.34</td>
+      <td>19.36</td>
       <td>7836.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2280,13 +2280,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Langdon Hill: 6Km; Golden Cap: 8Km; Lambert's Castle: 11Km; Shute Barton: 16Km; Pilsdon Pen: 17Km; Brownsea Island: 87Km]</td>
       <td>12.0</td>
-      <td>1.531394</td>
-      <td>0.859491</td>
-      <td>-0.671902</td>
-      <td>8.468606</td>
-      <td>8.468606</td>
-      <td>24.903179</td>
-      <td>42.838045</td>
+      <td>1.53</td>
+      <td>0.86</td>
+      <td>-0.67</td>
+      <td>8.47</td>
+      <td>8.47</td>
+      <td>24.90</td>
+      <td>42.84</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -2296,31 +2296,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>1.781745</td>
-      <td>55.188022</td>
+      <td>1.78</td>
+      <td>55.19</td>
       <td>Extreme Over-performance</td>
       <td>True</td>
-      <td>-17.389641</td>
-      <td>55.946029</td>
-      <td>10.953466</td>
+      <td>-17.39</td>
+      <td>55.95</td>
+      <td>10.95</td>
       <td>0</td>
-      <td>28.383416</td>
+      <td>28.38</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>-0.675235</td>
-      <td>2.394217</td>
-      <td>-2.209961</td>
-      <td>3.928943</td>
+      <td>1.53</td>
+      <td>-0.68</td>
+      <td>2.39</td>
+      <td>-2.21</td>
+      <td>3.93</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>30</td>
       <td>SmallPopulation;FragileOverperformance</td>
       <td>Medium Risk</td>
       <td>-15.0</td>
-      <td>2.121647</td>
-      <td>1.262156</td>
+      <td>2.12</td>
+      <td>1.26</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, deprivation level | Raises the expected rate: geographic access barriers [Less typical visitor pattern]</td>
       <td></td>
     </tr>
@@ -2329,13 +2329,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>71.5</td>
       <td>8.9</td>
       <td>4.75</td>
-      <td>1.565163</td>
-      <td>7.083450</td>
-      <td>6.524173</td>
-      <td>20.868859</td>
-      <td>24.110146</td>
-      <td>75.889854</td>
-      <td>0.000000</td>
+      <td>1.57</td>
+      <td>7.08</td>
+      <td>6.52</td>
+      <td>20.87</td>
+      <td>24.11</td>
+      <td>75.89</td>
+      <td>0.00</td>
       <td>14272.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2344,13 +2344,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Pilsdon Pen: 8Km; Lambert's Castle: 14Km; Langdon Hill: 17Km; Eggardon Hill Fort: 17Km; Golden Cap: 17Km; Brownsea Island: 85Km]</td>
       <td>26.0</td>
-      <td>1.821749</td>
-      <td>1.055115</td>
-      <td>-0.766634</td>
-      <td>8.178251</td>
-      <td>8.178251</td>
-      <td>23.137760</td>
-      <td>40.731185</td>
+      <td>1.82</td>
+      <td>1.06</td>
+      <td>-0.77</td>
+      <td>8.18</td>
+      <td>8.18</td>
+      <td>23.14</td>
+      <td>40.73</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -2360,31 +2360,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>1.726588</td>
-      <td>50.383959</td>
+      <td>1.73</td>
+      <td>50.38</td>
       <td>Extreme Over-performance</td>
       <td>True</td>
-      <td>-19.841405</td>
-      <td>59.069073</td>
-      <td>19.949957</td>
+      <td>-19.84</td>
+      <td>59.07</td>
+      <td>19.95</td>
       <td>0</td>
-      <td>31.033449</td>
+      <td>31.03</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>-0.479611</td>
-      <td>2.589841</td>
-      <td>-2.014337</td>
-      <td>4.124567</td>
+      <td>1.53</td>
+      <td>-0.48</td>
+      <td>2.59</td>
+      <td>-2.01</td>
+      <td>4.12</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>15</td>
       <td>FragileOverperformance</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>2.529354</td>
-      <td>1.474239</td>
+      <td>2.53</td>
+      <td>1.47</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, deprivation level | Raises the expected rate: geographic access barriers, wider access barriers [Less typical visitor pattern]</td>
       <td></td>
     </tr>
@@ -2393,13 +2393,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>61.5</td>
       <td>14.8</td>
       <td>6.17</td>
-      <td>1.693538</td>
-      <td>7.749176</td>
-      <td>7.096354</td>
-      <td>13.682402</td>
-      <td>4.065888</td>
-      <td>77.330705</td>
-      <td>18.603407</td>
+      <td>1.69</td>
+      <td>7.75</td>
+      <td>7.10</td>
+      <td>13.68</td>
+      <td>4.07</td>
+      <td>77.33</td>
+      <td>18.60</td>
       <td>35515.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2408,13 +2408,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Sandbanks Jetty</td>
       <td>[Cerne Abbas Giant: 16Km; Montacute House: 17Km; Stoke-sub-Hamdon Priory: 22Km; Tintinhull Garden: 22Km; Treasurer's House: 23Km; Brownsea Island: 71Km]</td>
       <td>89.0</td>
-      <td>2.505983</td>
-      <td>2.804363</td>
-      <td>0.298380</td>
-      <td>7.494017</td>
-      <td>7.494017</td>
-      <td>6.950842</td>
-      <td>27.347639</td>
+      <td>2.51</td>
+      <td>2.80</td>
+      <td>0.30</td>
+      <td>7.49</td>
+      <td>7.49</td>
+      <td>6.95</td>
+      <td>27.35</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -2424,31 +2424,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
-      <td>0.893602</td>
-      <td>-22.168263</td>
+      <td>0.89</td>
+      <td>-22.17</td>
       <td>Under-performing</td>
       <td>False</td>
-      <td>7.722420</td>
-      <td>87.703892</td>
-      <td>49.644250</td>
+      <td>7.72</td>
+      <td>87.70</td>
+      <td>49.64</td>
       <td>0</td>
-      <td>65.147238</td>
+      <td>65.15</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>1.269637</td>
-      <td>4.339089</td>
-      <td>-0.265089</td>
-      <td>5.873815</td>
+      <td>1.53</td>
+      <td>1.27</td>
+      <td>4.34</td>
+      <td>-0.27</td>
+      <td>5.87</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.097209</td>
+      <td>0.10</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>5.292351</td>
-      <td>2.487988</td>
+      <td>5.29</td>
+      <td>2.49</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: geographic access barriers, wider access barriers</td>
       <td></td>
     </tr>
@@ -2457,13 +2457,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>73.4</td>
       <td>6.7</td>
       <td>6.65</td>
-      <td>5.772622</td>
-      <td>9.343271</td>
-      <td>6.565228</td>
-      <td>10.316074</td>
-      <td>22.860653</td>
-      <td>33.318878</td>
-      <td>43.820468</td>
+      <td>5.77</td>
+      <td>9.34</td>
+      <td>6.57</td>
+      <td>10.32</td>
+      <td>22.86</td>
+      <td>33.32</td>
+      <td>43.82</td>
       <td>27672.0</td>
       <td>Wiltshire</td>
       <td>South West</td>
@@ -2472,13 +2472,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Mompesson House: 3Km; The Avenue: 15Km; Stonehenge Landscape: 16Km; Walled Garden: 26Km; Mottisfont Abbey: 27Km; Brownsea Island: 65Km]</td>
       <td>62.0</td>
-      <td>2.240532</td>
-      <td>1.772450</td>
-      <td>-0.468081</td>
-      <td>7.759468</td>
-      <td>7.759468</td>
-      <td>19.097280</td>
-      <td>36.646500</td>
+      <td>2.24</td>
+      <td>1.77</td>
+      <td>-0.47</td>
+      <td>7.76</td>
+      <td>7.76</td>
+      <td>19.10</td>
+      <td>36.65</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -2488,31 +2488,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Low FSM + Low Visit Rate</td>
-      <td>1.264087</td>
-      <td>8.565043</td>
+      <td>1.26</td>
+      <td>8.57</td>
       <td>Stable</td>
       <td>False</td>
-      <td>-12.114508</td>
-      <td>66.216723</td>
-      <td>38.680999</td>
+      <td>-12.11</td>
+      <td>66.22</td>
+      <td>38.68</td>
       <td>0</td>
-      <td>43.161071</td>
+      <td>43.16</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>0.237724</td>
-      <td>3.307177</td>
-      <td>-1.297002</td>
-      <td>4.841903</td>
+      <td>1.53</td>
+      <td>0.24</td>
+      <td>3.31</td>
+      <td>-1.30</td>
+      <td>4.84</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>3.064845</td>
-      <td>1.292395</td>
+      <td>3.06</td>
+      <td>1.29</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, geographic access barriers | Raises the expected rate: wider access barriers, deprivation level</td>
       <td></td>
     </tr>
@@ -2521,13 +2521,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>93.3</td>
       <td>21.0</td>
       <td>6.80</td>
-      <td>4.193221</td>
-      <td>7.715828</td>
-      <td>6.207591</td>
-      <td>29.992933</td>
-      <td>27.536027</td>
-      <td>24.314328</td>
-      <td>48.149645</td>
+      <td>4.19</td>
+      <td>7.72</td>
+      <td>6.21</td>
+      <td>29.99</td>
+      <td>27.54</td>
+      <td>24.31</td>
+      <td>48.15</td>
       <td>49477.0</td>
       <td>Test Valley</td>
       <td>South East</td>
@@ -2536,13 +2536,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Outward Hound, NW Hants: 23Km; Family Amble, NW Hants: 23Km; Sandham Memorial Chapel: 23Km; Mottisfont Abbey: 24Km; Walled Garden: 24Km; Brownsea Island: 85Km]</td>
       <td>40.0</td>
-      <td>0.808456</td>
-      <td>0.808885</td>
-      <td>0.000429</td>
-      <td>9.191544</td>
-      <td>9.191544</td>
-      <td>28.273099</td>
-      <td>47.365800</td>
+      <td>0.81</td>
+      <td>0.81</td>
+      <td>0.00</td>
+      <td>9.19</td>
+      <td>9.19</td>
+      <td>28.27</td>
+      <td>47.37</td>
       <td>High Need</td>
       <td>Low Visit Rate</td>
       <td>Urgent Action</td>
@@ -2552,31 +2552,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>High Need</td>
       <td>Low Deprivation + High FSM + Low Visit Rate</td>
-      <td>0.999470</td>
-      <td>-14.161366</td>
+      <td>1.00</td>
+      <td>-14.16</td>
       <td>Under-performing</td>
       <td>False</td>
-      <td>0.011093</td>
-      <td>49.984607</td>
-      <td>69.160877</td>
+      <td>0.01</td>
+      <td>49.98</td>
+      <td>69.16</td>
       <td>0</td>
-      <td>50.879790</td>
+      <td>50.88</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>-0.725841</td>
-      <td>2.343611</td>
-      <td>-2.260567</td>
-      <td>3.878337</td>
+      <td>1.53</td>
+      <td>-0.73</td>
+      <td>2.34</td>
+      <td>-2.26</td>
+      <td>3.88</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000140</td>
+      <td>0.00</td>
       <td>30</td>
       <td>HighNeedLowVisits</td>
       <td>Medium Risk</td>
       <td>-15.0</td>
-      <td>1.662427</td>
-      <td>0.853541</td>
+      <td>1.66</td>
+      <td>0.85</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, geographic access barriers | Raises the expected rate: deprivation level, wider access barriers</td>
       <td></td>
     </tr>
@@ -2585,13 +2585,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>96.5</td>
       <td>17.8</td>
       <td>6.68</td>
-      <td>2.107355</td>
-      <td>7.795345</td>
-      <td>7.195390</td>
-      <td>17.192497</td>
-      <td>12.076271</td>
-      <td>53.876802</td>
-      <td>34.046926</td>
+      <td>2.11</td>
+      <td>7.80</td>
+      <td>7.20</td>
+      <td>17.19</td>
+      <td>12.08</td>
+      <td>53.88</td>
+      <td>34.05</td>
       <td>63248.0</td>
       <td>Test Valley</td>
       <td>South East</td>
@@ -2600,13 +2600,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Outward Hound, NW Hants: 20Km; Family Amble, NW Hants: 20Km; Sandham Memorial Chapel: 21Km; Walled Garden: 26Km; Mottisfont Abbey: 27Km; Brownsea Island: 88Km]</td>
       <td>41.0</td>
-      <td>0.648242</td>
-      <td>0.759097</td>
-      <td>0.110855</td>
-      <td>9.351758</td>
-      <td>9.351758</td>
-      <td>13.611139</td>
-      <td>37.583072</td>
+      <td>0.65</td>
+      <td>0.76</td>
+      <td>0.11</td>
+      <td>9.35</td>
+      <td>9.35</td>
+      <td>13.61</td>
+      <td>37.58</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -2616,31 +2616,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>0.853965</td>
-      <td>-25.620583</td>
+      <td>0.85</td>
+      <td>-25.62</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>2.869054</td>
-      <td>75.921760</td>
-      <td>88.410517</td>
+      <td>2.87</td>
+      <td>75.92</td>
+      <td>88.41</td>
       <td>0</td>
-      <td>68.702924</td>
+      <td>68.70</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>-0.775629</td>
-      <td>2.293823</td>
-      <td>-2.310356</td>
-      <td>3.828549</td>
+      <td>1.53</td>
+      <td>-0.78</td>
+      <td>2.29</td>
+      <td>-2.31</td>
+      <td>3.83</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.036115</td>
+      <td>0.04</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>1.586717</td>
-      <td>0.827620</td>
+      <td>1.59</td>
+      <td>0.83</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: geographic access barriers, wider access barriers</td>
       <td></td>
     </tr>
@@ -2649,13 +2649,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>73.6</td>
       <td>3.9</td>
       <td>6.09</td>
-      <td>3.988774</td>
-      <td>9.050543</td>
-      <td>6.170772</td>
-      <td>20.388470</td>
-      <td>17.097251</td>
-      <td>61.515524</td>
-      <td>21.387225</td>
+      <td>3.99</td>
+      <td>9.05</td>
+      <td>6.17</td>
+      <td>20.39</td>
+      <td>17.10</td>
+      <td>61.52</td>
+      <td>21.39</td>
       <td>39907.0</td>
       <td>Wiltshire</td>
       <td>South West</td>
@@ -2664,13 +2664,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Mompesson House: 2Km; Stonehenge Landscape: 15Km; The Avenue: 16Km; Walled Garden: 28Km; Mottisfont Abbey: 29Km; Brownsea Island: 67Km]</td>
       <td>71.0</td>
-      <td>1.779136</td>
-      <td>2.023647</td>
-      <td>0.244510</td>
-      <td>8.220864</td>
-      <td>8.220864</td>
-      <td>18.084617</td>
-      <td>37.321822</td>
+      <td>1.78</td>
+      <td>2.02</td>
+      <td>0.24</td>
+      <td>8.22</td>
+      <td>8.22</td>
+      <td>18.08</td>
+      <td>37.32</td>
       <td>Medium Need</td>
       <td>Low Visit Rate</td>
       <td>High Priority</td>
@@ -2680,31 +2680,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Medium Need</td>
       <td>Moderate Deprivation + Medium FSM + Low Visit Rate</td>
-      <td>0.879173</td>
-      <td>-23.424944</td>
+      <td>0.88</td>
+      <td>-23.42</td>
       <td>Under-performing</td>
       <td>False</td>
-      <td>6.328218</td>
-      <td>68.008133</td>
-      <td>55.783559</td>
+      <td>6.33</td>
+      <td>68.01</td>
+      <td>55.78</td>
       <td>0</td>
-      <td>57.853892</td>
+      <td>57.85</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>0.488921</td>
-      <td>3.558373</td>
-      <td>-1.045805</td>
-      <td>5.093099</td>
+      <td>1.53</td>
+      <td>0.49</td>
+      <td>3.56</td>
+      <td>-1.05</td>
+      <td>5.09</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.079659</td>
+      <td>0.08</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>3.404758</td>
-      <td>1.381112</td>
+      <td>3.40</td>
+      <td>1.38</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, lower deprivation | Raises the expected rate: wider access barriers, local income context</td>
       <td></td>
     </tr>
@@ -2713,13 +2713,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>86.7</td>
       <td>19.3</td>
       <td>5.72</td>
-      <td>2.049932</td>
-      <td>7.904011</td>
-      <td>7.258044</td>
-      <td>13.196531</td>
-      <td>0.000000</td>
-      <td>100.000000</td>
-      <td>0.000000</td>
+      <td>2.05</td>
+      <td>7.90</td>
+      <td>7.26</td>
+      <td>13.20</td>
+      <td>0.00</td>
+      <td>100.00</td>
+      <td>0.00</td>
       <td>22190.0</td>
       <td>Wiltshire</td>
       <td>South West</td>
@@ -2728,13 +2728,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Mompesson House: 17Km; Stonehenge Landscape: 19Km; The Avenue: 20Km; Cley Hill: 27Km; Fontmell and Melbury Downs SAC: 36Km; Brownsea Island: 74Km]</td>
       <td>30.0</td>
-      <td>1.351960</td>
-      <td>0.897696</td>
-      <td>-0.454265</td>
-      <td>8.648040</td>
-      <td>8.648040</td>
-      <td>3.958959</td>
-      <td>28.715390</td>
+      <td>1.35</td>
+      <td>0.90</td>
+      <td>-0.45</td>
+      <td>8.65</td>
+      <td>8.65</td>
+      <td>3.96</td>
+      <td>28.72</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -2744,31 +2744,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
-      <td>1.506034</td>
-      <td>31.173968</td>
+      <td>1.51</td>
+      <td>31.17</td>
       <td>Significant Over-performance</td>
       <td>False</td>
-      <td>-11.756918</td>
-      <td>92.996562</td>
-      <td>31.018046</td>
+      <td>-11.76</td>
+      <td>93.00</td>
+      <td>31.02</td>
       <td>0</td>
-      <td>52.511237</td>
+      <td>52.51</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>-0.637031</td>
-      <td>2.432422</td>
-      <td>-2.171757</td>
-      <td>3.967148</td>
+      <td>1.53</td>
+      <td>-0.64</td>
+      <td>2.43</td>
+      <td>-2.17</td>
+      <td>3.97</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>1.766358</td>
-      <td>0.868663</td>
+      <td>1.77</td>
+      <td>0.87</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: geographic access barriers, wider access barriers</td>
       <td></td>
     </tr>
@@ -2777,13 +2777,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>86.7</td>
       <td>7.8</td>
       <td>7.12</td>
-      <td>2.189449</td>
-      <td>7.576293</td>
-      <td>7.308627</td>
-      <td>13.256057</td>
-      <td>4.883417</td>
-      <td>56.070719</td>
-      <td>39.045864</td>
+      <td>2.19</td>
+      <td>7.58</td>
+      <td>7.31</td>
+      <td>13.26</td>
+      <td>4.88</td>
+      <td>56.07</td>
+      <td>39.05</td>
       <td>55883.0</td>
       <td>Wiltshire</td>
       <td>South West</td>
@@ -2792,13 +2792,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[The Avenue: 5Km; Stonehenge Landscape: 5Km; Mompesson House: 13Km; Walled Garden: 30Km; Mottisfont Abbey: 31Km; Brownsea Island: 76Km]</td>
       <td>55.0</td>
-      <td>0.984199</td>
-      <td>1.604623</td>
-      <td>0.620424</td>
-      <td>9.015801</td>
-      <td>9.015801</td>
-      <td>7.395209</td>
-      <td>32.224049</td>
+      <td>0.98</td>
+      <td>1.60</td>
+      <td>0.62</td>
+      <td>9.02</td>
+      <td>9.02</td>
+      <td>7.40</td>
+      <td>32.22</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -2808,31 +2808,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Low FSM + Low Visit Rate</td>
-      <td>0.613352</td>
-      <td>-47.322761</td>
+      <td>0.61</td>
+      <td>-47.32</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>16.057307</td>
-      <td>86.917802</td>
-      <td>78.115434</td>
+      <td>16.06</td>
+      <td>86.92</td>
+      <td>78.12</td>
       <td>0</td>
-      <td>76.965426</td>
+      <td>76.97</td>
       <td>Very High</td>
-      <td>1.534726</td>
-      <td>0.069897</td>
-      <td>3.139349</td>
-      <td>-1.464829</td>
-      <td>4.674075</td>
+      <td>1.53</td>
+      <td>0.07</td>
+      <td>3.14</td>
+      <td>-1.46</td>
+      <td>4.67</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.202128</td>
+      <td>0.20</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>2.634770</td>
-      <td>1.030147</td>
+      <td>2.63</td>
+      <td>1.03</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: deprivation level, geographic access barriers</td>
       <td></td>
     </tr>
@@ -2841,13 +2841,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>71.0</td>
       <td>16.3</td>
       <td>6.65</td>
-      <td>1.670194</td>
-      <td>8.761107</td>
-      <td>8.074238</td>
-      <td>12.834993</td>
-      <td>4.934901</td>
-      <td>64.920911</td>
-      <td>30.144188</td>
+      <td>1.67</td>
+      <td>8.76</td>
+      <td>8.07</td>
+      <td>12.83</td>
+      <td>4.93</td>
+      <td>64.92</td>
+      <td>30.14</td>
       <td>44317.0</td>
       <td>Wiltshire</td>
       <td>South West</td>
@@ -2856,13 +2856,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Mompesson House: 10Km; Blackhill Common: 23Km; Foxbury: 27Km; Mottisfont Abbey: 32Km; Walled Garden: 32Km; Brownsea Island: 51Km]</td>
       <td>78.0</td>
-      <td>1.760047</td>
-      <td>2.373978</td>
-      <td>0.613931</td>
-      <td>8.239953</td>
-      <td>8.239953</td>
-      <td>7.304929</td>
-      <td>29.833309</td>
+      <td>1.76</td>
+      <td>2.37</td>
+      <td>0.61</td>
+      <td>8.24</td>
+      <td>8.24</td>
+      <td>7.30</td>
+      <td>29.83</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -2872,31 +2872,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
-      <td>0.741391</td>
-      <td>-35.425608</td>
+      <td>0.74</td>
+      <td>-35.43</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>15.889270</td>
-      <td>87.077509</td>
-      <td>61.948028</td>
+      <td>15.89</td>
+      <td>87.08</td>
+      <td>61.95</td>
       <td>0</td>
-      <td>72.387530</td>
+      <td>72.39</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>0.839252</td>
-      <td>3.908704</td>
-      <td>-0.695474</td>
-      <td>5.443430</td>
+      <td>1.53</td>
+      <td>0.84</td>
+      <td>3.91</td>
+      <td>-0.70</td>
+      <td>5.44</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.200013</td>
+      <td>0.20</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>3.889165</td>
-      <td>1.515187</td>
+      <td>3.89</td>
+      <td>1.52</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: geographic access barriers, wider access barriers</td>
       <td></td>
     </tr>
@@ -2905,13 +2905,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>58.7</td>
       <td>25.1</td>
       <td>6.74</td>
-      <td>1.546794</td>
-      <td>8.030612</td>
-      <td>7.505308</td>
-      <td>14.596462</td>
-      <td>11.270872</td>
-      <td>56.519274</td>
-      <td>32.209854</td>
+      <td>1.55</td>
+      <td>8.03</td>
+      <td>7.51</td>
+      <td>14.60</td>
+      <td>11.27</td>
+      <td>56.52</td>
+      <td>32.21</td>
       <td>19404.0</td>
       <td>New Forest</td>
       <td>South East</td>
@@ -2920,13 +2920,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Mompesson House: 20Km; Blackhill Common: 21Km; Foxbury: 28Km; Kingston Lacy Estate: 30Km; Badbury Rings: 32Km; Brownsea Island: 40Km]</td>
       <td>53.0</td>
-      <td>2.731396</td>
-      <td>4.357810</td>
-      <td>1.626415</td>
-      <td>7.268604</td>
-      <td>7.268604</td>
-      <td>12.268549</td>
-      <td>30.393797</td>
+      <td>2.73</td>
+      <td>4.36</td>
+      <td>1.63</td>
+      <td>7.27</td>
+      <td>7.27</td>
+      <td>12.27</td>
+      <td>30.39</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -2936,31 +2936,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Low FSM + Low Visit Rate</td>
-      <td>0.626782</td>
-      <td>-45.407997</td>
+      <td>0.63</td>
+      <td>-45.41</td>
       <td>Severe Under-performance</td>
       <td>False</td>
-      <td>42.093562</td>
-      <td>78.296815</td>
-      <td>27.123667</td>
+      <td>42.09</td>
+      <td>78.30</td>
+      <td>27.12</td>
       <td>0</td>
-      <td>71.784208</td>
+      <td>71.78</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>2.823084</td>
-      <td>5.892536</td>
-      <td>1.288358</td>
-      <td>7.427263</td>
+      <td>1.53</td>
+      <td>2.82</td>
+      <td>5.89</td>
+      <td>1.29</td>
+      <td>7.43</td>
       <td>Moderate Underperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.529871</td>
+      <td>0.53</td>
       <td>25</td>
       <td>UnderperformingPrediction</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>6.218413</td>
-      <td>1.860603</td>
+      <td>6.22</td>
+      <td>1.86</td>
       <td>Engagement status: Below expected | Lowers the expected rate: local income context, Brownsea journey time | Raises the expected rate: geographic access barriers, wider access barriers</td>
       <td></td>
     </tr>
@@ -2969,13 +2969,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>57.9</td>
       <td>8.5</td>
       <td>6.08</td>
-      <td>1.987850</td>
-      <td>7.534310</td>
-      <td>7.302057</td>
-      <td>14.875522</td>
-      <td>9.132690</td>
-      <td>62.490899</td>
-      <td>28.376411</td>
+      <td>1.99</td>
+      <td>7.53</td>
+      <td>7.30</td>
+      <td>14.88</td>
+      <td>9.13</td>
+      <td>62.49</td>
+      <td>28.38</td>
       <td>21976.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -2984,13 +2984,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Fontmell and Melbury Downs SAC: 6Km; Hod Hill: 14Km; Stourhead Gardens: 25Km; Stourhead Park: 25Km; King Alfred's Tower: 29Km; Brownsea Island: 43Km]</td>
       <td>101.0</td>
-      <td>4.595923</td>
-      <td>2.728313</td>
-      <td>-1.867610</td>
-      <td>5.404077</td>
-      <td>5.404077</td>
-      <td>10.855540</td>
-      <td>23.811109</td>
+      <td>4.60</td>
+      <td>2.73</td>
+      <td>-1.87</td>
+      <td>5.40</td>
+      <td>5.40</td>
+      <td>10.86</td>
+      <td>23.81</td>
       <td>Low Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -3000,31 +3000,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Low Need</td>
       <td>Moderate Deprivation + Low FSM + Medium Visit Rate</td>
-      <td>1.684529</td>
-      <td>46.720676</td>
+      <td>1.68</td>
+      <td>46.72</td>
       <td>Significant Over-performance</td>
       <td>False</td>
-      <td>-48.335983</td>
-      <td>80.796442</td>
-      <td>30.718909</td>
+      <td>-48.34</td>
+      <td>80.80</td>
+      <td>30.72</td>
       <td>0</td>
-      <td>29.197566</td>
+      <td>29.20</td>
       <td>Medium</td>
-      <td>1.534726</td>
-      <td>1.193587</td>
-      <td>4.263039</td>
-      <td>-0.341139</td>
-      <td>5.797765</td>
+      <td>1.53</td>
+      <td>1.19</td>
+      <td>4.26</td>
+      <td>-0.34</td>
+      <td>5.80</td>
       <td>Moderate Overperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>5.248929</td>
-      <td>2.520616</td>
+      <td>5.25</td>
+      <td>2.52</td>
       <td>Engagement status: Above expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: geographic access barriers, wider access barriers</td>
       <td></td>
     </tr>
@@ -3033,13 +3033,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>70.1</td>
       <td>17.9</td>
       <td>6.49</td>
-      <td>2.504580</td>
-      <td>7.590203</td>
-      <td>6.797700</td>
-      <td>15.227174</td>
-      <td>27.791853</td>
-      <td>25.440135</td>
-      <td>46.768011</td>
+      <td>2.50</td>
+      <td>7.59</td>
+      <td>6.80</td>
+      <td>15.23</td>
+      <td>27.79</td>
+      <td>25.44</td>
+      <td>46.77</td>
       <td>15393.0</td>
       <td>Dorset</td>
       <td>South West</td>
@@ -3048,13 +3048,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[Stourhead Gardens: 13Km; Stourhead Park: 13Km; Fontmell and Melbury Downs SAC: 14Km; King Alfred's Tower: 17Km; Hod Hill: 22Km; Brownsea Island: 52Km]</td>
       <td>71.0</td>
-      <td>4.612486</td>
-      <td>1.952527</td>
-      <td>-2.659959</td>
-      <td>5.387514</td>
-      <td>5.387514</td>
-      <td>24.022450</td>
-      <td>32.978256</td>
+      <td>4.61</td>
+      <td>1.95</td>
+      <td>-2.66</td>
+      <td>5.39</td>
+      <td>5.39</td>
+      <td>24.02</td>
+      <td>32.98</td>
       <td>Medium Need</td>
       <td>Medium Visit Rate</td>
       <td>Monitor</td>
@@ -3064,31 +3064,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Medium Visit Rate</td>
       <td>Medium Need</td>
       <td>Low Deprivation + Medium FSM + Medium Visit Rate</td>
-      <td>2.362316</td>
-      <td>102.885517</td>
+      <td>2.36</td>
+      <td>102.89</td>
       <td>Extreme Over-performance</td>
       <td>True</td>
-      <td>-68.842932</td>
-      <td>57.504048</td>
-      <td>21.516935</td>
+      <td>-68.84</td>
+      <td>57.50</td>
+      <td>21.52</td>
       <td>0</td>
-      <td>6.613381</td>
+      <td>6.61</td>
       <td>Low</td>
-      <td>1.534726</td>
-      <td>0.417801</td>
-      <td>3.487253</td>
-      <td>-1.116925</td>
-      <td>5.021979</td>
+      <td>1.53</td>
+      <td>0.42</td>
+      <td>3.49</td>
+      <td>-1.12</td>
+      <td>5.02</td>
       <td>Moderate Overperformance</td>
       <td>False</td>
       <td>False</td>
-      <td>0.000000</td>
+      <td>0.00</td>
       <td>15</td>
       <td>FragileOverperformance</td>
       <td>Low Risk</td>
       <td>-15.0</td>
-      <td>3.953120</td>
-      <td>2.000593</td>
+      <td>3.95</td>
+      <td>2.00</td>
       <td>Engagement status: Above expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: geographic access barriers, wider access barriers [Less typical visitor pattern]</td>
       <td></td>
     </tr>
@@ -3097,13 +3097,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>97.1</td>
       <td>15.1</td>
       <td>6.53</td>
-      <td>2.307712</td>
-      <td>6.276549</td>
-      <td>7.087800</td>
-      <td>9.641635</td>
-      <td>10.233881</td>
-      <td>51.226296</td>
-      <td>38.539823</td>
+      <td>2.31</td>
+      <td>6.28</td>
+      <td>7.09</td>
+      <td>9.64</td>
+      <td>10.23</td>
+      <td>51.23</td>
+      <td>38.54</td>
       <td>15820.0</td>
       <td>Wiltshire</td>
       <td>South West</td>
@@ -3112,13 +3112,13 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Poole Quay</td>
       <td>[The Avenue: 17Km; Stonehenge Landscape: 18Km; Walled Garden: 28Km; Mottisfont Abbey: 28Km; Mompesson House: 34Km; Brownsea Island: 89Km]</td>
       <td>10.0</td>
-      <td>0.632111</td>
-      <td>0.653420</td>
-      <td>0.021309</td>
-      <td>9.367889</td>
-      <td>9.367889</td>
-      <td>10.056207</td>
-      <td>35.143011</td>
+      <td>0.63</td>
+      <td>0.65</td>
+      <td>0.02</td>
+      <td>9.37</td>
+      <td>9.37</td>
+      <td>10.06</td>
+      <td>35.14</td>
       <td>Low Need</td>
       <td>Low Visit Rate</td>
       <td>Growth Opportunity</td>
@@ -3128,31 +3128,31 @@ tr:nth-child(even) { background: #f8f8f8; }
       <td>Low Visit Rate</td>
       <td>Low Need</td>
       <td>Low Deprivation + Low FSM + Low Visit Rate</td>
-      <td>0.967389</td>
-      <td>-16.916651</td>
+      <td>0.97</td>
+      <td>-16.92</td>
       <td>Under-performing</td>
       <td>False</td>
-      <td>0.551499</td>
-      <td>82.210469</td>
-      <td>22.113812</td>
+      <td>0.55</td>
+      <td>82.21</td>
+      <td>22.11</td>
       <td>0</td>
-      <td>51.511205</td>
+      <td>51.51</td>
       <td>High</td>
-      <td>1.534726</td>
-      <td>-0.881306</td>
-      <td>2.188146</td>
-      <td>-2.416032</td>
-      <td>3.722872</td>
+      <td>1.53</td>
+      <td>-0.88</td>
+      <td>2.19</td>
+      <td>-2.42</td>
+      <td>3.72</td>
       <td>Within Safe Zone</td>
       <td>False</td>
       <td>False</td>
-      <td>0.006942</td>
+      <td>0.01</td>
       <td>0</td>
       <td></td>
       <td>Minimal Risk</td>
       <td>-15.0</td>
-      <td>1.301162</td>
-      <td>0.647742</td>
+      <td>1.30</td>
+      <td>0.65</td>
       <td>Engagement status: In line with expected | Lowers the expected rate: Brownsea journey time, local income context | Raises the expected rate: geographic access barriers, deprivation level</td>
       <td></td>
     </tr>
