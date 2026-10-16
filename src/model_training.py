@@ -154,13 +154,25 @@ def format_model_ranking_table(results_df: pd.DataFrame, max_rows: int | None = 
     body = [fmt(row) for row in rows]
     return '\n'.join(['Model ranking by Mean MAE', header_row, separator, *body])
 
+# Headings for the published model table. The CSV keeps the column names.
+MODEL_TABLE_LABELS = {
+    'Mean MAE': 'MAE',
+    'Std MAE': 'MAE spread across folds',
+    'Mean R2': 'R²',
+    'Mean RMSE': 'RMSE',
+    'Weighted MAE': 'MAE, weighted by population',
+    'Repeated CV MAE': 'MAE, repeated shuffled CV',
+}
+
+
 def _diagnostics_html(diagnostics: dict | None) -> str:
     """Plain-language notes on how the figures in the performance report were produced."""
     if not diagnostics:
         return ''
+    used, scored = diagnostics.get('districts_used'), diagnostics.get('districts_scored')
     lines = [
-        f"Trained on {diagnostics.get('districts_used')} districts and scored on the "
-        f"{diagnostics.get('districts_scored')} in the study area, out of {diagnostics.get('districts_in_dataset')} in the dataset.",
+        f"Trained and scored on the {scored} districts in the study area." if used == scored
+        else f"Trained on {used} districts and scored on the {scored} in the study area.",
         f"Method: {diagnostics.get('cross_validation')}. Errors are in {diagnostics.get('error_unit')}.",
         f"Average observed rate: {diagnostics.get('mean_observed_rate', float('nan')):.2f}. "
         f"Mean absolute error of the selected model: {diagnostics.get('best_mae', float('nan')):.2f}.",
@@ -180,7 +192,7 @@ def save_model_performance_outputs(results_df: pd.DataFrame, config: dict, best_
     display_df = display_df[~display_df['Mean MAE'].isna()]
     if 'Type' in display_df.columns:
         display_df = display_df[display_df['Type'] != 'Baseline']
-    display_df = display_df.drop(columns=['Role', 'Skill vs baseline'], errors='ignore')
+    display_df = display_df.drop(columns=['Role', 'Skill vs baseline'], errors='ignore').dropna(axis=1, how='all')
     if display_df.empty:
         return {}
 
@@ -214,8 +226,8 @@ def save_model_performance_outputs(results_df: pd.DataFrame, config: dict, best_
     summary_path.write_text(json.dumps(summary, indent=2), encoding='utf-8')
 
     report_html = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>Model Performance</title></head><body><h1>Model Performance</h1>'
-    report_html += f"<p>Best model: <strong>{summary['best_model']}</strong>; MAE: {summary['best_mae']}</p>"
-    report_html += display_df.round(4).to_html(index=False, border=0)
+    report_html += f"<p>Best model: <strong>{summary['best_model']}</strong>; MAE: {summary['best_mae']:.2f}</p>"
+    report_html += display_df.rename(columns=MODEL_TABLE_LABELS).round(2).to_html(index=False, border=0)
     report_html += _diagnostics_html(diagnostics)
     report_html += '</body></html>'
     report_path = save_text_report(report_html, 'model_performance.html', config)

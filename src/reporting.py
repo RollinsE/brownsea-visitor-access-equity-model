@@ -10,7 +10,85 @@ from typing import Optional
 
 import pandas as pd
 
+from src.constants import DeprivationConstants
+
 LOG = logging.getLogger("Brownsea_Equity_Analysis")
+
+# Readable headings for the HTML tables. CSV and parquet files keep the column names.
+COLUMN_LABELS = {
+    "District": "District",
+    "total_journey_min": "Journey to Brownsea (min)",
+    "nearest_competitor_drive_min": "Drive to nearest NT site (min)",
+    "imd_decile_mean": "IMD decile",
+    "geo_barriers_decile": "Geographical barriers decile",
+    "wider_barriers_decile": "Wider barriers decile",
+    "income_decile": "Income decile",
+    "avg_fsm%": "Free school meals (%)",
+    "pop%_most_deprived": "Most deprived residents (%)",
+    "pop%_moderately_deprived": "Moderately deprived residents (%)",
+    "pop%_least_deprived": "Least deprived residents (%)",
+    "Population": "Population",
+    "Authority_Name": "Local authority",
+    "Region_Name": "Region",
+    "Post_Town": "Post town",
+    "lsoa_count": "LSOAs",
+    "nearest_ferry_terminal": "Nearest ferry terminal",
+    "competitor_context": "Nearby NT sites",
+    "Visits": "Visits",
+    "visits_per_1000": "Visits per 1,000",
+    "predicted_visit_rate": "Expected visits per 1,000",
+    "performance_gap": "Gap to expected",
+    "visits_gap_raw": "Gap to target (signed)",
+    "visits_gap": f"Gap to target ({DeprivationConstants.TARGET_VISIT_RATE:g} per 1,000)",
+    "composite_need_score": "Need score",
+    "impact_score": "Impact score",
+    "need_tier": "Need tier",
+    "visit_tier": "Visit tier",
+    "priority_zone": "Priority zone",
+    "intervention_type": "Intervention type",
+    "deprivation_tier": "Deprivation tier",
+    "fsm_tier": "Free school meals tier",
+    "visit_rate_tier": "Visit rate tier",
+    "composite_need_tier": "Need score tier",
+    "intersection_segment": "Segment",
+    "performance_ratio": "Observed / expected",
+    "fragility_score": "Fragility score",
+    "fragility_tier": "Fragility tier",
+    "fragility_alert": "Fragility alert",
+    "gap_score": "Gap score",
+    "need_inverse_score": "Low-need score",
+    "population_score": "Population score",
+    "accessibility_score_norm": "Accessibility score",
+    "growth_potential_score": "Growth potential score",
+    "growth_potential_tier": "Growth potential tier",
+    "safe_zone_band_width": "Model error band",
+    "safe_zone_lower_1rmse": "Safe zone lower (1 RMSE)",
+    "safe_zone_upper_1rmse": "Safe zone upper (1 RMSE)",
+    "safe_zone_lower_2rmse": "Safe zone lower (2 RMSE)",
+    "safe_zone_upper_2rmse": "Safe zone upper (2 RMSE)",
+    "safe_zone_status": "Safe zone status",
+    "needs_intervention": "Needs intervention",
+    "high_potential_flag": "High potential",
+    "underperformance_confidence": "Shortfall in RMSE",
+    "risk_score": "Risk score",
+    "risk_flags": "Risk flags",
+    "risk_tier": "Risk tier",
+    "sensitivity_total_journey_min_delta": "What-if: journey change (min)",
+    "sensitivity_total_journey_min_new_pred": "What-if: expected visits per 1,000",
+    "sensitivity_total_journey_min_impact": "What-if: change in expected visits",
+    "shap_narrative": "Summary",
+    "shap_error": "Summary error",
+    "total_districts": "Districts",
+    "total_population": "Population",
+    "total_visits": "Visits",
+    "avg_performance_gap": "Average gap to expected",
+}
+
+
+def readable_table(df: pd.DataFrame) -> pd.DataFrame:
+    """Copy of a table with readable headings and numbers rounded for display."""
+    shown = df.rename(columns=lambda column: COLUMN_LABELS.get(column, column))
+    return shown.round(2)
 
 
 def _reports_dir(config: dict) -> Path:
@@ -57,7 +135,7 @@ def save_dataframe_bundle(
         LOG.warning(f"Could not write parquet for {base_name}: {exc}")
 
     safe_title = title or base_name.replace("_", " ").title()
-    table_html = df.to_html(index=index, border=0, classes="dataframe")
+    table_html = readable_table(df).to_html(index=index, border=0, classes="dataframe")
     html = f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>

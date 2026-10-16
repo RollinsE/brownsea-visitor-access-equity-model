@@ -99,6 +99,9 @@ def create_intervention_treemap(data: pd.DataFrame, show_plot=True):
         data, path=['intervention_type', 'Authority_Name', 'District'], values='Population', color='intervention_type',
         color_discrete_map=ColorService.get_intervention_colors(), title='Intervention Strategy Map',
         hover_data={'visits_per_1000': ':.2f', 'visits_gap': ':.2f', 'total_journey_min': ':.1f', 'avg_fsm%': ':.1f', 'pop%_most_deprived': ':.1f', 'Population': ':,.0f'},
+        labels={'visits_per_1000': 'Visits per 1,000', 'visits_gap': f'Gap to target ({DeprivationConstants.TARGET_VISIT_RATE:g} per 1,000)', 'total_journey_min': 'Journey to Brownsea (min)',
+                'avg_fsm%': 'Free school meals (%)', 'pop%_most_deprived': 'Most deprived residents (%)', 'intervention_type': 'Intervention type',
+                'Authority_Name': 'Local authority'},
         height=600
     )
     fig.update_layout(margin=dict(t=60, l=25, r=25, b=25), font=dict(size=14))

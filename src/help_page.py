@@ -5,6 +5,8 @@ from __future__ import annotations
 from html import escape
 from pathlib import Path
 
+from src.constants import DeprivationConstants
+
 
 def _rows(rows: list[tuple[str, str]]) -> str:
     return "\n".join(
@@ -73,6 +75,7 @@ def build_help_html(*, home_href: str = "/", downloads_href: str = "/downloads",
         ("Observed visits per 1,000", "Current observed Brownsea visit rate for the postcode district, shown per 1,000 residents."),
         ("Model expected visits per 1,000", "The visit rate the model expects for a district with similar characteristics."),
         ("Performance against expectation", "Difference between observed and expected visits, shown as visits per 1,000."),
+        ("Gap to target", f"How far a district's visit rate is below the target of {DeprivationConstants.TARGET_VISIT_RATE:g} visits per 1,000 residents. Districts at or above the target show 0."),
         ("Within the normal range for the model", "The difference is smaller than the model's typical error, so it should not be read as a district doing better or worse than expected."),
         ("Engagement status", "In line with expected when observed visits are within the model's typical error of the expected rate. Below or above expected when the difference is larger than that."),
         ("Lowers / raises the expected rate", "The district characteristics that pull the model's expected rate down or push it up most. They describe how the estimate was reached. They are not evidence of what stops or helps people visiting."),

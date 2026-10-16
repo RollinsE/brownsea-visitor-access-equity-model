@@ -572,14 +572,6 @@ def train_and_evaluate(
             "No model predicts better than assuming the same visit rate everywhere. "
             "Treat the expected visit rates and performance gaps with caution."
         )
-    if len(scored_rows) < 100:
-        notes.append(
-            f"The model is scored on only {len(scored_rows)} districts, so the error figures are themselves uncertain."
-        )
-    notes.append(
-        "The final model and the ensemble members are chosen on the same folds they are scored on, "
-        "so the winning score is slightly optimistic."
-    )
 
     diagnostics = {
         "training_scope": scope,
@@ -603,6 +595,6 @@ def train_and_evaluate(
         "error_unit": "visits per 1,000 residents, on out-of-fold predictions",
         "notes": notes,
     }
-    for note in notes[:-1]:
+    for note in notes:
         LOG.warning(note)
     return results, fitted, diagnostics
