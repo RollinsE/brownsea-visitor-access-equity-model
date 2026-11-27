@@ -299,8 +299,10 @@ def _build_agent(artifacts_dir: Path, reports_dir: Path, lookup_index: dict[str,
     except ImportError:
         return None, 'The assistant module is not installed.'
     try:
+        from src.agent.retrieval import build_documentation_index
         store = ArtifactStore.from_paths(
             artifacts_dir, reports_dir, lookup_index=lookup_index, narrative_cleaner=_plain_narrative,
+            documentation=build_documentation_index(reports_dir),
         )
         return EquityAgent(store, llm=llm), ''
     except AgentUnavailable as exc:

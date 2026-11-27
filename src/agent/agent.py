@@ -30,6 +30,8 @@ class AgentResult:
     steps: int = 0
     complete: bool = True
     model: str = ""
+    # Each tool call with its result, for evaluation. Not sent to the browser.
+    evidence: list[dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return {"answer": self.answer, "tool_calls": self.tool_calls, "steps": self.steps, "complete": self.complete, "model": self.model}
@@ -83,23 +85,26 @@ class EquityAgent:
                 # model, if the provider has one. Tool calls are local, so repeating
                 # them costs nothing.
                 can_switch = getattr(self.llm, "has_available_model", lambda: False)()
-                if exc.status not in (404, 429, 503) or not can_switch:
+                if exc.status not in (404, 429, 503, 504) or not can_switch:
                     raise
 
     def _answer(self, question: str, turns: list[dict[str, str]]) -> AgentResult:
         messages = self.llm.start(turns, question)
         tool_calls: list[dict[str, Any]] = []
+        evidence: list[dict[str, Any]] = []
 
         for step in range(1, self.max_steps + 1):
             reply = self.llm.send(self.system_prompt, messages, TOOL_SCHEMAS)
             if not reply.tool_requests:
                 answer = reply.text or "I could not produce an answer to that. Please try rephrasing the question."
-                return AgentResult(answer=answer, tool_calls=tool_calls, steps=step, complete=bool(reply.text), model=reply.model)
+                return AgentResult(answer=answer, tool_calls=tool_calls, steps=step, complete=bool(reply.text),
+                                   model=reply.model, evidence=evidence)
 
             results = []
             for request in reply.tool_requests:
                 output = self.store.run_tool(request["name"], request["input"])
                 tool_calls.append({"name": request["name"], "input": request["input"]})
+                evidence.append({"name": request["name"], "input": request["input"], "output": output})
                 results.append((request, output))
             self.llm.add_tool_results(messages, reply, results)
 
@@ -108,4 +113,5 @@ class EquityAgent:
             tool_calls=tool_calls,
             steps=self.max_steps,
             complete=False,
+            evidence=evidence,
         )

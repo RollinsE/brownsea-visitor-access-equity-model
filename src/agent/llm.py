@@ -29,6 +29,7 @@ GEMINI_DEFAULT_MODEL = "gemini-3.8-flash"
 GEMINI_FALLBACK_MODELS = ["gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.5-flash", "gemini-3.5-flash-lite"]
 ANTHROPIC_DEFAULT_MODEL = "claude-sonnet-5-5"
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+REQUEST_TIMEOUT = 120  # seconds; long prompts to a thinking model can take a while
 MAX_TOOL_RESULT_CHARS = 20000
 
 
@@ -54,7 +55,7 @@ class LLMReply:
 
 
 # --------------------------------------------------------------------- Gemini
-def _http_post(url: str, headers: dict[str, str], body: dict[str, Any], timeout: float = 60) -> dict[str, Any]:
+def _http_post(url: str, headers: dict[str, str], body: dict[str, Any], timeout: float = REQUEST_TIMEOUT) -> dict[str, Any]:
     request = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers, method="POST")
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
@@ -67,7 +68,12 @@ def _http_post(url: str, headers: dict[str, str], body: dict[str, Any], timeout:
             pass
         raise LLMError(f"Gemini API error {exc.code}: {str(detail)[:500]}", status=exc.code) from None
     except urllib.error.URLError as exc:
+        if isinstance(exc.reason, TimeoutError):
+            raise LLMError(f"Gemini took longer than {timeout:.0f} s to reply.", status=504) from None
         raise LLMError(f"Could not reach the Gemini API: {exc.reason}") from None
+    except TimeoutError:
+        # Treated like a busy model: retried once, then the next model is used.
+        raise LLMError(f"Gemini took longer than {timeout:.0f} s to reply.", status=504) from None
 
 
 def gemini_tools(tool_schemas: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -140,6 +146,7 @@ class GeminiLLM:
         self._clock = clock
         self._set_aside_until: dict[str, float] = {}
         self.last_problem = ""
+        self.last_model = ""
 
     @property
     def model(self) -> str:
@@ -173,16 +180,16 @@ class GeminiLLM:
             try:
                 return self.transport(url, headers, body)
             except LLMError as exc:
-                if exc.status not in (404, 429, 503):
+                if exc.status not in (404, 429, 503, 504):
                     raise
                 wait = _retry_seconds(str(exc))
-                if exc.status == 503 and wait is None:
+                if exc.status in (503, 504) and wait is None:
                     wait = 5.0  # busy model: one quick retry
                 if exc.status != 404 and wait is not None and wait <= self.short_wait_limit and attempt == 1:
                     self._sleep(wait)  # per-minute limit or a brief spike
                     continue
                 # Daily quota (long wait), a model that stays busy, or an unknown model name.
-                pause = {404: 86400.0, 503: 120.0}.get(exc.status, wait if wait is not None else 60.0)
+                pause = {404: 86400.0, 503: 120.0, 504: 120.0}.get(exc.status, wait if wait is not None else 60.0)
                 self._set_aside_until[model] = self._clock() + min(pause, 86400.0)
                 self.last_problem = f"{model}: {str(exc)[:200]}"
                 raise
@@ -221,6 +228,38 @@ class GeminiLLM:
         # thoughtSignature to function calls and rejects the next turn without it.
         return LLMReply(text="\n".join(texts).strip(), tool_requests=requests, raw={"role": "model", "parts": parts}, model=model)
 
+    def complete_json(self, system: str, prompt: str, schema: dict[str, Any]) -> dict[str, Any]:
+        """One question, no tools, answered as JSON that follows `schema`.
+
+        If a model is busy or over its limit, the next model in the chain is tried.
+        The model that answered is kept in `last_model`.
+        """
+        body = {
+            "systemInstruction": {"parts": [{"text": system}]},
+            "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+            "generationConfig": {
+                # Room for the model's own reasoning as well as the JSON it returns.
+                "maxOutputTokens": max(self.max_tokens, 8192),
+                "temperature": 0,
+                "responseMimeType": "application/json",
+                "responseSchema": schema,
+            },
+        }
+        while True:
+            model = self._pick_model()
+            if model is None:
+                raise LLMError(f"Every configured Gemini model is over its limit or unavailable. {self.last_problem}", status=429)
+            try:
+                data = self._post(model, body)
+                break
+            except LLMError as exc:
+                if exc.status not in (404, 429, 503, 504):
+                    raise
+        self.last_model = model
+        parts = ((data.get("candidates") or [{}])[0].get("content") or {}).get("parts") or []
+        text = "".join(part.get("text", "") for part in parts if not part.get("thought"))
+        return _parse_json(text)
+
     def add_tool_results(self, messages: list[dict[str, Any]], reply: LLMReply, results: list[tuple[dict[str, Any], dict[str, Any]]]) -> None:
         messages.append(reply.raw)
         parts = []
@@ -230,6 +269,18 @@ class GeminiLLM:
                 response["id"] = request["id"]
             parts.append({"functionResponse": response})
         messages.append({"role": "user", "parts": parts})
+
+
+def _parse_json(text: str) -> dict[str, Any]:
+    """Read a JSON object from a model reply, allowing for a ```json fence around it."""
+    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", (text or "").strip())
+    try:
+        value = json.loads(cleaned)
+    except ValueError as exc:
+        raise LLMError(f"The model did not return valid JSON: {cleaned[:200]}") from exc
+    if not isinstance(value, dict):
+        raise LLMError("The model returned JSON that is not an object.")
+    return value
 
 
 def _dump_safe(output: dict[str, Any]) -> str:
@@ -280,6 +331,17 @@ class AnthropicLLM:
                 requests.append(request)
                 content.append({"type": "tool_use", **request})
         return LLMReply(text="\n".join(part for part in texts if part).strip(), tool_requests=requests, raw=content, model=self.model)
+
+    def complete_json(self, system: str, prompt: str, schema: dict[str, Any]) -> dict[str, Any]:
+        """One question, no tools, answered as JSON that follows `schema`."""
+        instruction = f"{system}\n\nReply with a single JSON object that matches this schema, and nothing else:\n{json.dumps(schema)}"
+        response = self.client.messages.create(
+            model=self.model, max_tokens=self.max_tokens, system=instruction,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        text = "".join(_block_value(block, "text") or "" for block in _block_value(response, "content") or []
+                       if _block_value(block, "type") == "text")
+        return _parse_json(text)
 
     def add_tool_results(self, messages: list[dict[str, Any]], reply: LLMReply, results: list[tuple[dict[str, Any], dict[str, Any]]]) -> None:
         messages.append({"role": "assistant", "content": reply.raw})
