@@ -16,6 +16,7 @@ from pathlib import Path
 
 from src.agent.agent import EquityAgent
 from src.agent.llm import AgentUnavailable, LLMError
+from src.agent.retrieval import build_documentation_index
 from src.agent.tools import DISTRICT_TABLE, ArtifactStore
 
 
@@ -36,7 +37,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--show-tools", action="store_true", help="Print the tool calls the agent made")
     args = parser.parse_args(argv)
 
-    store = ArtifactStore.from_paths(args.artifacts, args.reports)
+    store = ArtifactStore.from_paths(args.artifacts, args.reports, documentation=build_documentation_index(args.reports))
     try:
         agent = EquityAgent(store, model=args.model)
     except AgentUnavailable as exc:

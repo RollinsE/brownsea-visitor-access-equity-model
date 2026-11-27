@@ -51,10 +51,33 @@ The assistant is an LLM agent built on Google's Gemini API. It does not answer f
 | `get_district`, `query_districts`, `aggregate_districts` | the district table |
 | `get_model_performance` | the model comparison |
 | `get_definitions` | the priority zone and need tier definitions |
+| `search_documentation` | the help page, the model report notes and this README |
 
 * Counts, totals and averages are worked out in Python by the tools, not by the model.
 * The tools only read the published postcode and district outputs. The assistant never sees visitor or member records.
 * Each answer lists which data it used.
+
+Questions about numbers go to the data tools. Questions about meaning or method, like "what does Urgent Action mean?" or "how was the model tested?", go to `search_documentation`, which is a small retrieval (RAG) step. The help page, the model report notes and parts of this README are split into short passages. A question is matched against them by keyword (BM25) and, when a Gemini key is set, by embedding similarity, and the two rankings are merged with reciprocal rank fusion. Keyword search on its own misses questions that use different words from the text ("tested" against "cross-validation"), which is what the embeddings are for. If the embedding call fails, search carries on with keywords alone. The assistant answers from the passages it gets back and says where they came from.
+
+### Evaluating the assistant
+
+`scripts/eval_agent.py` asks the assistant a fixed set of questions and checks the answers in two ways.
+
+* **Exact checks.** For questions with one right answer, such as a count or a district, the script works out the answer from the district table itself and looks for it in the reply.
+* **LLM as a judge.** A second model lists every factual claim in the answer and checks each one against what the assistant had to go on: its tool results and the short background on the analysis it is given. The pass or fail is then decided in code: an answer fails if any claim is unsupported. The judge also checks that off-topic questions are declined and that questions the data can't answer (member numbers, past years) get "I can't answer that" rather than a guess.
+
+A judge can be wrong too, so it is tested before its scores are trusted. `evals/judge_check.jsonl` holds 18 answers paired with real tool results. Fifteen are written by hand, about half with a planted mistake: a wrong number, a wrong district, an invented reason, or a made-up reply to an off-topic question. The other three come from real evaluation runs: two mistakes the assistant made, and one correct answer that an earlier version of the judge wrongly failed. `--check-judge` runs the judge on them and reports how many bad answers it let through and how many good ones it failed. Using a different model for the judge (`BROWNSEA_JUDGE_MODEL`) helps, since a model tends to go easy on its own writing.
+
+Each run is saved with the tool results, so the same answers can be judged again later with `--rejudge` without asking the assistant again.
+
+Results from the latest run (27 November 2026):
+
+* The judge agreed with all 18 labelled answers in the check set.
+* All 9 exact checks passed.
+* The judge found no unsupported claims in any of the 18 answers.
+* The judge passed 17 of the 18. The one it failed was "What was the visit rate for BH1 in 2019?", where the assistant said there are no figures by year and then gave BH1's current rate. That's a reasonable reply, but the judge didn't count it as declining the question.
+
+Earlier runs found two real problems, both fixed in the assistant's instructions: it named a local authority when asked for a district, and it once added a made-up example figure to an "I can't answer that" reply. Most of the judging was done by `gemini-3.5-flash-lite`, because the other free models were busy at the time.
 
 Gemini's free tier has low daily limits per model, so if one model is over its limit or busy the assistant falls back to the next in a list.
 
@@ -64,6 +87,9 @@ Gemini's free tier has low daily limits per model, so if one model is over its l
 | `BROWNSEA_AGENT_MODEL` | `gemini-3.8-flash` | First model to try |
 | `BROWNSEA_AGENT_FALLBACK_MODELS` | `gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite` | Models to fall back to, in order |
 | `BROWNSEA_AGENT_RATE_PER_MIN` | `10` | Questions allowed per client per minute |
+| `BROWNSEA_EMBEDDINGS` | `1` | Set to `0` to search the documentation by keyword only |
+| `BROWNSEA_EMBEDDING_MODEL` | `gemini-embedding-001` | Embedding model for documentation search |
+| `BROWNSEA_JUDGE_MODEL` | the first agent model | Model used as the judge in the evaluation |
 
 ## Run it yourself
 
@@ -86,11 +112,12 @@ export GEMINI_API_KEY=your-key
 
 On Windows, use `$env:GEMINI_API_KEY="your-key"` in PowerShell or `set GEMINI_API_KEY=your-key` in Command Prompt.
 
-You can also ask a question from the command line, or check the assistant's answers against values calculated from the data:
+You can also ask a question from the command line, or run the evaluation described above:
 
 ```bash
 python -m src.agent --show-tools "How many districts are in each priority zone?"
 python scripts/eval_agent.py
+python scripts/eval_agent.py --check-judge
 ```
 
 The hosted version is deployed on Render from `render.yaml`.
@@ -106,11 +133,12 @@ The pipeline runs in five stages: data preparation, model training, framework de
 ├── assets/              # Images for this README
 ├── data/reference/      # Public reference data
 ├── docs/                # Static app and published results (GitHub Pages)
+├── evals/               # Hand-labelled answers for checking the LLM judge
 ├── notebooks/           # Colab notebooks
 ├── requirements/        # Dependency files
 ├── scripts/             # QA, release and export scripts
 ├── src/                 # Pipeline and app code
-│   └── agent/           # AI assistant: tools, prompt and LLM connections
+│   └── agent/           # AI assistant: tools, retrieval, judge and LLM connections
 ├── tests/
 ├── cli.py               # Pipeline entry point
 ├── render.yaml          # Hosting config for Render

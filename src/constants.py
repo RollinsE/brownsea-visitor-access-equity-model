@@ -5,6 +5,8 @@ import os
 import numpy as np
 import pandas as pd
 
+from src import targets
+
 # =============================================================================
 # CONSTANT DEFINITIONS
 # =============================================================================
@@ -21,10 +23,10 @@ class DeprivationConstants:
     MODERATELY_DEPRIVED_DECILES = [5, 6, 7]
     LEAST_DEPRIVED_DECILES = [8, 9, 10]
 
-    LOW_VISIT_RATE_THRESHOLD = 4
-    MEDIUM_VISIT_RATE_THRESHOLD = 7
-    HIGH_VISIT_RATE_THRESHOLD = 7
-    TARGET_VISIT_RATE = 10
+    LOW_VISIT_RATE_THRESHOLD = targets.LOW_VISIT_RATE_THRESHOLD
+    MEDIUM_VISIT_RATE_THRESHOLD = targets.MEDIUM_VISIT_RATE_THRESHOLD
+    HIGH_VISIT_RATE_THRESHOLD = targets.MEDIUM_VISIT_RATE_THRESHOLD
+    TARGET_VISIT_RATE = targets.TARGET_VISIT_RATE
 
     FSM_WEIGHT = 0.3
     DEPRIVATION_WEIGHT = 0.7

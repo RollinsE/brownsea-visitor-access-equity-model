@@ -125,8 +125,10 @@ class ArtifactStore:
         districts: list[dict[str, Any]] | None = None,
         model_performance: dict[str, Any] | None = None,
         definitions: dict[str, list[dict[str, str]]] | None = None,
+        documentation: Any = None,
     ) -> None:
         self.lookup_index = lookup_index or {}
+        self.documentation = documentation  # a retrieval.DocumentIndex, or None
         self.districts = districts or []
         self.model_performance = model_performance or {}
         self.definitions = definitions or {}
@@ -140,6 +142,7 @@ class ArtifactStore:
         reports_dir: str | Path | None = None,
         lookup_index: dict[str, dict[str, Any]] | None = None,
         narrative_cleaner: Callable[[Any], str] | None = None,
+        documentation: Any = None,
     ) -> "ArtifactStore":
         artifacts = Path(artifacts_dir)
 
@@ -177,7 +180,7 @@ class ArtifactStore:
                     if rows:
                         definitions[topic] = rows
 
-        return cls(lookup_index, districts, performance, definitions)
+        return cls(lookup_index, districts, performance, definitions, documentation)
 
     @staticmethod
     def _load_lookup(artifacts: Path) -> dict[str, dict[str, Any]]:
@@ -354,6 +357,13 @@ class ArtifactStore:
         return dict(self.definitions)
 
     # ----------------------------------------------------------------- dispatch
+    def search_documentation(self, query: str, k: int = 4) -> dict[str, Any]:
+        if not str(query or "").strip():
+            raise ToolError("query is required")
+        if self.documentation is None:
+            return {"message": "The written documentation is not available in this release."}
+        return self.documentation.search(str(query), k=k)
+
     def run_tool(self, name: str, arguments: dict[str, Any] | None) -> dict[str, Any]:
         """Run a tool by name. Bad input comes back as {'error': ...} so the model can retry."""
         handlers: dict[str, Callable[..., dict[str, Any]]] = {
@@ -363,6 +373,7 @@ class ArtifactStore:
             "aggregate_districts": self.aggregate_districts,
             "get_model_performance": self.get_model_performance,
             "get_definitions": self.get_definitions,
+            "search_documentation": self.search_documentation,
         }
         handler = handlers.get(name)
         if handler is None:
@@ -498,6 +509,22 @@ TOOL_SCHEMAS: list[dict[str, Any]] = [
         "input_schema": {
             "type": "object",
             "properties": {"topic": {"type": "string", "enum": list(DEFINITION_TABLES)}},
+        },
+    },
+    {
+        "name": "search_documentation",
+        "description": (
+            "Search the written documentation (help page, model performance notes and project description) "
+            "for passages that explain terms, methods and how the tool works. Use it for questions about "
+            "meaning or method, such as what a label means or how the model was built and tested."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "The question or the key terms to look up."},
+                "k": {"type": "integer", "description": "How many passages to return (1 to 8, default 4)."},
+            },
+            "required": ["query"],
         },
     },
 ]
