@@ -286,7 +286,8 @@ const askHistory = [];
 function describeToolCall(call){
   const names = {
     lookup_postcode: 'Postcode lookup', get_district: 'District record', query_districts: 'District filter',
-    aggregate_districts: 'District totals', get_model_performance: 'Model performance', get_definitions: 'Framework definitions'
+    aggregate_districts: 'District totals', get_model_performance: 'Model performance', get_definitions: 'Framework definitions',
+    search_documentation: 'Documentation'
   };
   return names[call.name] || call.name;
 }
