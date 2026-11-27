@@ -22,7 +22,7 @@ The assistant is an LLM agent built on Google's Gemini API. It doesn't answer fr
 
 Questions about numbers go to the data tools. Questions about meaning or method, such as "how was the model tested?", are answered with retrieval-augmented generation (RAG): `search_documentation` finds the most relevant passages in the help page, the model report notes and parts of the README, and the assistant writes its answer from them.
 
-The text is split into short passages, and each question is matched against them in two ways: by keyword (BM25) and by embedding similarity, using Gemini's embedding model. The two rankings are combined with reciprocal rank fusion. Keywords alone miss questions worded differently from the text, such as "tested" when the passage says "cross-validation". If the embedding call fails, search falls back to keywords. Each answer says which document its passages came from.
+The text is split into short passages, and each question is matched against them in two ways: by keyword (BM25) and by embedding similarity, using Gemini's embedding model. The two rankings are combined with reciprocal rank fusion. Keywords alone miss questions worded differently from the text, such as "tested" when the passage says "cross-validation". If the embedding call fails, search falls back to keywords.
 
 ## Settings
 
