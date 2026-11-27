@@ -2,6 +2,8 @@
 
 This project looks at who visits Brownsea Island and who doesn't, and what might be keeping people away, so that outreach can be aimed at the areas that would benefit most. It groups every postcode district in the BH, DT and SP areas by how much need there is locally and how often residents visit, so that high-need areas with few visits stand out. A model then estimates the visit rate each district would be expected to have, given its deprivation, how long the journey to Brownsea takes, and whether there is another National Trust site closer to home that residents might choose instead. Comparing that with actual visits shows where a district falls short.
 
+The hosted version also has an AI assistant that answers questions about the results, built with tool calling and retrieval-augmented generation (RAG). More on that under [AI assistant](#ai-assistant).
+
 **Live app with AI assistant:** https://brownsea-visitor-access.onrender.com
 
 **Static version (no assistant):** https://rollinse.github.io/brownsea-visitor-access-equity-model/
@@ -30,72 +32,17 @@ Journey times are planning estimates, not live travel times.
 
 ## The two apps
 
-| | Static app | Flask app |
-|---|---|---|
-| Where | GitHub Pages | Render |
-| Needs a server | No | Yes |
-| Postcode lookup and reports | Yes | Yes |
-| AI assistant | No | Yes |
-
-The assistant needs a server to keep its API key private, so it is only in the Flask app.
+The postcode lookup and reports are published as a static site on GitHub Pages, which needs no server. The Flask app on Render has the same features plus the AI assistant, which needs a server to keep its API key private.
 
 ## AI assistant
 
 The Flask app has an "Ask about the analysis" box. You can ask things like "Which districts need urgent action and are under 40 minutes from Brownsea?" or "What does Urgent Action mean?" and get a short written answer.
 
-The assistant is an LLM agent built on Google's Gemini API. It doesn't answer from memory. For each question it picks from a small set of read-only tools, the tools look up the published results, and the model writes its answer from what comes back.
+It's an LLM agent built on Google's Gemini API. It doesn't answer from memory: questions about the data go to read-only tools that look up the published results, and questions about terms or method are answered with RAG over the help page, the model report notes and this README. It never sees visitor or member records.
 
-| Tool | Reads |
-|---|---|
-| `lookup_postcode` | the postcode lookup |
-| `get_district`, `query_districts`, `aggregate_districts` | the district table |
-| `get_model_performance` | the model comparison |
-| `get_definitions` | the priority zone and need tier definitions |
-| `search_documentation` | the help page, the model report notes and this README |
+I tested it with exact checks against the data and an LLM judge that checks every claim in an answer against what the tools returned. In the latest run, none of its 18 answers contained an unsupported claim, and the judge itself agreed with all 18 of my hand-labelled test answers.
 
-* Counts, totals and averages are worked out in Python by the tools, not by the model.
-* The tools only read the published postcode and district outputs. The assistant never sees visitor or member records.
-* Each answer lists which data it used.
-
-### Searching the documentation
-
-Questions about numbers go to the data tools. Questions about meaning or method, such as "how was the model tested?", go to `search_documentation`, a small retrieval (RAG) step over the help page, the model report notes and parts of this README.
-
-The text is split into short passages, and each question is matched against them in two ways: by keyword (BM25) and by embedding similarity, using Gemini's embedding model. The two rankings are then combined with reciprocal rank fusion. Keywords alone miss questions that are worded differently from the text, such as "tested" when the passage says "cross-validation". If the embedding call fails, search falls back to keywords. The assistant answers from the passages it gets back and says where they came from.
-
-### Settings
-
-Gemini's free tier has low daily limits per model, so if one model is over its limit or busy, the assistant moves on to the next one in the list.
-
-| Setting | Default | Purpose |
-|---|---|---|
-| `GEMINI_API_KEY` | none | Turns the assistant on |
-| `BROWNSEA_AGENT_MODEL` | `gemini-3.8-flash` | First model to try |
-| `BROWNSEA_AGENT_FALLBACK_MODELS` | `gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite` | Models to fall back to, in order |
-| `BROWNSEA_AGENT_RATE_PER_MIN` | `10` | Questions allowed per client per minute |
-| `BROWNSEA_EMBEDDINGS` | `1` | Set to `0` to search the documentation by keyword only |
-| `BROWNSEA_EMBEDDING_MODEL` | `gemini-embedding-001` | Embedding model for documentation search |
-| `BROWNSEA_JUDGE_MODEL` | the first agent model | Model used as the judge in the evaluation |
-
-### Evaluating the assistant
-
-`scripts/eval_agent.py` asks the assistant a fixed set of 18 questions: questions about the data, questions about terms and method, and questions it should decline or say it can't answer. Each answer is checked in two ways.
-
-* **Exact checks.** Where a question has one right answer, such as a count or a district, the script works it out from the district table and looks for it in the reply.
-* **LLM as a judge.** A second model lists every factual claim in the answer and checks each one against what the assistant had to go on: its tool results and the short background on the analysis it's given. Pass or fail is then decided in code, and any unsupported claim is a fail. The judge also checks that off-topic questions are declined, and that questions the data can't answer (member numbers, past years) get "I can't answer that" rather than a guess.
-
-A judge can get things wrong too, so I tested it before relying on its scores. `evals/judge_check.jsonl` holds 18 answers paired with real tool results. Fifteen I wrote by hand, about half with a planted mistake: a wrong number, a wrong district, an invented reason, or a made-up reply to an off-topic question. The other three are answers the assistant gave in evaluation runs, two wrong and one right. `--check-judge` runs the judge over them and reports how many bad answers it let through and how many good ones it failed. It also helps to use a different model as the judge (`BROWNSEA_JUDGE_MODEL`), since a model tends to go easy on its own writing.
-
-Each run is saved with the tool results, so the answers can be judged again later with `--rejudge` without asking the assistant again.
-
-**Latest results (27 November 2026)**
-
-* The judge agreed with all 18 labelled answers in the check set.
-* All 9 exact checks passed.
-* None of the 18 answers contained an unsupported claim.
-* The judge passed 17 of the 18. The one it failed was "What was the visit rate for BH1 in 2019?". The assistant said there are no figures by year and then gave BH1's current rate. That's a reasonable reply, but the judge didn't count it as declining the question.
-
-Most of the judging was done by `gemini-3.5-flash-lite`, as the other free models were busy at the time.
+How it works, the settings and the full evaluation are in [ASSISTANT.md](ASSISTANT.md).
 
 ## Run it yourself
 
@@ -118,12 +65,10 @@ export GEMINI_API_KEY=your-key
 
 On Windows, use `$env:GEMINI_API_KEY="your-key"` in PowerShell or `set GEMINI_API_KEY=your-key` in Command Prompt.
 
-You can also ask a question from the command line, or run the evaluation described above:
+You can also ask a question from the command line:
 
 ```bash
 python -m src.agent --show-tools "How many districts are in each priority zone?"
-python scripts/eval_agent.py
-python scripts/eval_agent.py --check-judge
 ```
 
 The hosted version is deployed on Render from `render.yaml`.
