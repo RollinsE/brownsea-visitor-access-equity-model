@@ -3,9 +3,9 @@
 Each item pairs real tool results from the published release with an answer.
 Most answers are written by hand: about half are correct and half contain a
 planted mistake (a wrong number, a wrong district, an invented reason, or a
-made-up answer to an off-topic question). The last items copy answers
-from real evaluation runs: two mistakes, and one correct answer the judge
-wrongly failed because it used facts from the assistant's instructions. The label says whether a careful
+made-up answer to an off-topic question). The last three are answers the
+assistant gave in evaluation runs: two wrong, and one right that uses facts
+from the assistant's background text. The label says whether a careful
 reviewer would pass the answer.
 
     python scripts/build_judge_check.py            # writes evals/judge_check.jsonl
@@ -100,7 +100,7 @@ def build_items(store: ArtifactStore) -> list[dict]:
              [bh1], True),
         item("nodata-guessed", "How many National Trust members live in BH1?", "cannot_answer",
              "About 2,400 National Trust members live in BH1.", [bh1], False),
-        # The two items below copy mistakes the assistant made in a real evaluation run.
+        # Answers the assistant gave in evaluation runs.
         item("run-authority-not-district", "Which district has the longest total journey to Brownsea?", "answer",
              f"**{far_row['Authority_Name']}** has the longest total journey to Brownsea Island, with a journey time of "
              f"{far_row['total_journey_min']:.1f} minutes.", [far], False),

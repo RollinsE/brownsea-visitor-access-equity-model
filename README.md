@@ -17,7 +17,7 @@ The first link is on a free hosting plan, so the first load can take about a min
 * Look up any of 44,222 postcodes and see the journey to Brownsea (drive plus ferry), the nearest competing National Trust site, local deprivation, and how the surrounding district is doing.
 * See how the 48 districts are grouped into five priority zones, from Urgent Action to Maintain, each with a suggested type of intervention.
 * Read the [reports](https://rollinse.github.io/brownsea-visitor-access-equity-model/reports/index.html) and download the results as CSV.
-* Ask the AI assistant a question in plain English, on the hosted version.
+* Ask the AI assistant about the data, or what a term means and how the analysis was done (hosted version only).
 
 Journey times are planning estimates, not live travel times.
 
@@ -41,9 +41,9 @@ The assistant needs a server to keep its API key private, so it is only in the F
 
 ## AI assistant
 
-The Flask app has an "Ask about the analysis" box. You can type a question such as "Which districts need urgent action and are under 40 minutes from Brownsea?" and get a short written answer.
+The Flask app has an "Ask about the analysis" box. You can ask things like "Which districts need urgent action and are under 40 minutes from Brownsea?" or "What does Urgent Action mean?" and get a short written answer.
 
-The assistant is an LLM agent built on Google's Gemini API. It does not answer from memory. For each question it picks from a small set of read-only tools, the tools look up the published results, and the model writes its answer from what they return.
+The assistant is an LLM agent built on Google's Gemini API. It doesn't answer from memory. For each question it picks from a small set of read-only tools, the tools look up the published results, and the model writes its answer from what comes back.
 
 | Tool | Reads |
 |---|---|
@@ -57,29 +57,15 @@ The assistant is an LLM agent built on Google's Gemini API. It does not answer f
 * The tools only read the published postcode and district outputs. The assistant never sees visitor or member records.
 * Each answer lists which data it used.
 
-Questions about numbers go to the data tools. Questions about meaning or method, like "what does Urgent Action mean?" or "how was the model tested?", go to `search_documentation`, which is a small retrieval (RAG) step. The help page, the model report notes and parts of this README are split into short passages. A question is matched against them by keyword (BM25) and, when a Gemini key is set, by embedding similarity, and the two rankings are merged with reciprocal rank fusion. Keyword search on its own misses questions that use different words from the text ("tested" against "cross-validation"), which is what the embeddings are for. If the embedding call fails, search carries on with keywords alone. The assistant answers from the passages it gets back and says where they came from.
+### Searching the documentation
 
-### Evaluating the assistant
+Questions about numbers go to the data tools. Questions about meaning or method, such as "how was the model tested?", go to `search_documentation`, a small retrieval (RAG) step over the help page, the model report notes and parts of this README.
 
-`scripts/eval_agent.py` asks the assistant a fixed set of questions and checks the answers in two ways.
+The text is split into short passages, and each question is matched against them in two ways: by keyword (BM25) and by embedding similarity, using Gemini's embedding model. The two rankings are then combined with reciprocal rank fusion. Keywords alone miss questions that are worded differently from the text, such as "tested" when the passage says "cross-validation". If the embedding call fails, search falls back to keywords. The assistant answers from the passages it gets back and says where they came from.
 
-* **Exact checks.** For questions with one right answer, such as a count or a district, the script works out the answer from the district table itself and looks for it in the reply.
-* **LLM as a judge.** A second model lists every factual claim in the answer and checks each one against what the assistant had to go on: its tool results and the short background on the analysis it is given. The pass or fail is then decided in code: an answer fails if any claim is unsupported. The judge also checks that off-topic questions are declined and that questions the data can't answer (member numbers, past years) get "I can't answer that" rather than a guess.
+### Settings
 
-A judge can be wrong too, so it is tested before its scores are trusted. `evals/judge_check.jsonl` holds 18 answers paired with real tool results. Fifteen are written by hand, about half with a planted mistake: a wrong number, a wrong district, an invented reason, or a made-up reply to an off-topic question. The other three come from real evaluation runs: two mistakes the assistant made, and one correct answer that an earlier version of the judge wrongly failed. `--check-judge` runs the judge on them and reports how many bad answers it let through and how many good ones it failed. Using a different model for the judge (`BROWNSEA_JUDGE_MODEL`) helps, since a model tends to go easy on its own writing.
-
-Each run is saved with the tool results, so the same answers can be judged again later with `--rejudge` without asking the assistant again.
-
-Results from the latest run (27 November 2026):
-
-* The judge agreed with all 18 labelled answers in the check set.
-* All 9 exact checks passed.
-* The judge found no unsupported claims in any of the 18 answers.
-* The judge passed 17 of the 18. The one it failed was "What was the visit rate for BH1 in 2019?", where the assistant said there are no figures by year and then gave BH1's current rate. That's a reasonable reply, but the judge didn't count it as declining the question.
-
-Earlier runs found two real problems, both fixed in the assistant's instructions: it named a local authority when asked for a district, and it once added a made-up example figure to an "I can't answer that" reply. Most of the judging was done by `gemini-3.5-flash-lite`, because the other free models were busy at the time.
-
-Gemini's free tier has low daily limits per model, so if one model is over its limit or busy the assistant falls back to the next in a list.
+Gemini's free tier has low daily limits per model, so if one model is over its limit or busy, the assistant moves on to the next one in the list.
 
 | Setting | Default | Purpose |
 |---|---|---|
@@ -90,6 +76,26 @@ Gemini's free tier has low daily limits per model, so if one model is over its l
 | `BROWNSEA_EMBEDDINGS` | `1` | Set to `0` to search the documentation by keyword only |
 | `BROWNSEA_EMBEDDING_MODEL` | `gemini-embedding-001` | Embedding model for documentation search |
 | `BROWNSEA_JUDGE_MODEL` | the first agent model | Model used as the judge in the evaluation |
+
+### Evaluating the assistant
+
+`scripts/eval_agent.py` asks the assistant a fixed set of 18 questions: questions about the data, questions about terms and method, and questions it should decline or say it can't answer. Each answer is checked in two ways.
+
+* **Exact checks.** Where a question has one right answer, such as a count or a district, the script works it out from the district table and looks for it in the reply.
+* **LLM as a judge.** A second model lists every factual claim in the answer and checks each one against what the assistant had to go on: its tool results and the short background on the analysis it's given. Pass or fail is then decided in code, and any unsupported claim is a fail. The judge also checks that off-topic questions are declined, and that questions the data can't answer (member numbers, past years) get "I can't answer that" rather than a guess.
+
+A judge can get things wrong too, so I tested it before relying on its scores. `evals/judge_check.jsonl` holds 18 answers paired with real tool results. Fifteen I wrote by hand, about half with a planted mistake: a wrong number, a wrong district, an invented reason, or a made-up reply to an off-topic question. The other three are answers the assistant gave in evaluation runs, two wrong and one right. `--check-judge` runs the judge over them and reports how many bad answers it let through and how many good ones it failed. It also helps to use a different model as the judge (`BROWNSEA_JUDGE_MODEL`), since a model tends to go easy on its own writing.
+
+Each run is saved with the tool results, so the answers can be judged again later with `--rejudge` without asking the assistant again.
+
+**Latest results (27 November 2026)**
+
+* The judge agreed with all 18 labelled answers in the check set.
+* All 9 exact checks passed.
+* None of the 18 answers contained an unsupported claim.
+* The judge passed 17 of the 18. The one it failed was "What was the visit rate for BH1 in 2019?". The assistant said there are no figures by year and then gave BH1's current rate. That's a reasonable reply, but the judge didn't count it as declining the question.
+
+Most of the judging was done by `gemini-3.5-flash-lite`, as the other free models were busy at the time.
 
 ## Run it yourself
 
